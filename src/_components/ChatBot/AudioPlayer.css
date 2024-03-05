@@ -1,0 +1,43 @@
+.audio-player {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background-color: rgb(40, 121, 145);
+  border-radius: 15px;
+  padding: 13px;
+  width: max-content;
+  color: #ffffff;
+}
+
+.menu-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.menu:hover .menu-content {
+  display:inline;
+  position: relative;
+  top: 2px;
+  right: -10px;
+  padding: 3px;
+  border-radius: 5px;
+  border: none;
+  background: grey;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  z-index: 2;
+}
+
+.play-button {
+    border: none;
+}
+
+.play-button:focus {
+  outline: none;
+}
+

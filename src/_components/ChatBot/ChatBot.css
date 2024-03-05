@@ -1,0 +1,113 @@
+/* ChatBot styling */
+
+.chatbot-container {
+    width: 100%;
+    /* max-width: 600px; */
+    margin: auto;
+    border: 1px solid #ddd;
+    /* border-radius: 4px; */
+    display: flex;
+}
+
+/* Conversations Block styling */
+
+.message-area {
+    width: 70%;
+    height: 87vh;
+    /* .message-area.height must be the same as .conversations-list.height */
+    overflow-y: auto;
+    background-color: white;
+    border-radius: 0.3rem;
+}
+
+.conversation-block {
+    height: 80vh;
+    /* .conversation-block.height: 78vh -> .message-area.height: 87vh */
+    /* <UserInput>.userInputViewportHeight must be the same as .conversation-block.height */
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+/* Input styling */
+
+/*
+.input-area textarea {
+    flex: 1;
+    width: 100%;
+    margin-right: 8px;
+    background-color: #eee;
+    color: #000;
+    max-height: 200px;
+    overflow-y: hidden;
+}    
+
+.input-area input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+}
+*/
+
+.input-area {
+    display: flex;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.input-area button {
+    padding: 10px;
+}
+
+.input-area textarea {
+    width: 100%;
+    background-color: #eee;
+    color: #000;
+    /* let the input type text to grow vertically according to the test size */
+    max-height: 200px;
+    overflow-y: hidden;
+    margin-right: 10px;
+}
+
+/* Conversations List styling */
+
+.conversations-list {
+    width: 30%;
+    height: 87vh;
+    /* .message-area.height must be the same as .conversations-list.height */
+    border: 1px solid #ddd;
+    border-radius: 0.3rem;
+    padding: 10px;
+    background-color: #282626;
+    overflow-y: auto;
+}
+
+.conversations-list h2 {
+    color: grey;
+    font-size: small;
+}
+
+.conversation-item {
+    margin-bottom: 10px;
+    /* padding: 5px; */
+    /* border-bottom: 1px solid #eee; */
+    color: #fff;
+}
+
+/* Message styling */
+
+.message {
+    padding: 10px;
+    /* margin-bottom: 2px; */
+}
+
+.user-message {
+    /* text-align: right; */
+    text-align: left;
+    background-color: #daf1da;
+}
+
+.bot-message {
+    text-align: left;
+    background-color: #f1f1f1;
+}
+

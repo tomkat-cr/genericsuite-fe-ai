@@ -1,0 +1,42 @@
+{
+  "name": "genericsuite-ai",
+  "version": "1.0.0",
+  "description": "The GenericSuite AI for ReactJS (frontend version).",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/tomkat-cr/genericsuite-fe-ai/issues"
+  },
+  "homepage": "https://github.com/tomkat-cr/genericsuite-fe-ai#readme",
+  "scripts": {
+    "test": "react-app-rewired test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomkat-cr/genericsuite-fe-ai.git"
+  },
+  "keywords": [
+    "ai",
+    "chatbot",
+    "llm",
+    "nlp",
+    "react",
+    "reactjs",
+    "react-bootstrap",
+    "react-hooks",
+    "webpack"
+  ],
+  "author": "Carlos J. Ramirez",
+  "license": "MIT",
+  "dependencies": {
+    "genericsuite": "^1.0.0"
+  },
+  "devDependencies": {},
+  "peerDependencies": {
+    "react": "^16.8.6 || ^17.0.2 || ^18.2.0"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": false
+    }
+  }
+}
