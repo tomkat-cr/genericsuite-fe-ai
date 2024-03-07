@@ -16,11 +16,30 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.2 (2024-03-06)
+---
+
+### New
+Add files and package.json configurations to make genericsuite-ai an npm module.
+Add webpack.config.js to test the module locally.
+
+### Fixes
+Fix the error "webpack reactjs Uncaught ReferenceError: require is not defined".
+Fix the error "The request '../_constants/general_constants' failed to resolve only because it was resolved as fully specified".
+
+
+## 1.0.1 (2024-03-06)
+---
+
+### Fixes
+Fix .babel, rollup.config.js, tsconfig.json, package.json, and index.tsx to generate the npm module and include the "/dist" files.
+
+
 ## 1.0.0 (2024-03-05)
 ---
 
 ### New
-Separate FE Generic Suite AI to publish on PyPi [FA-221].
+Separate FE Generic Suite AI to publish on NPM [FA-221].
 Initial commit as an independent repository.
 
 

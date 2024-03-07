@@ -1,6 +1,6 @@
 declare module "*.json"
 
-// declare module '*';
+declare module 'react-dom/client';
 
 // declare genericsuite modules
 
@@ -9,9 +9,9 @@ declare module "*.json"
 // declare module 'genericsuite/src/_components/About';
 // declare module 'genericsuite/src/_components/About/About';
 
-// declare module 'genericsuite/src/_components/App';
+declare module 'genericsuite/src/_components/App';
 // declare module 'genericsuite/src/_components/App/App.css';
-// declare module 'genericsuite/src/_components/App/App';
+// declare module 'genericsuite/src/_components/App/App.jsx';
 
 // declare module 'genericsuite/src/_components/HomePage';
 // declare module 'genericsuite/src/_components/HomePage/HomePage';

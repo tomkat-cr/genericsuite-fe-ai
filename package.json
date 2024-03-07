@@ -1,19 +1,28 @@
 {
   "name": "genericsuite-ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The GenericSuite AI for ReactJS (frontend version).",
-  "main": "index.js",
-  "bugs": {
-    "url": "https://github.com/tomkat-cr/genericsuite-fe-ai/issues"
-  },
-  "homepage": "https://github.com/tomkat-cr/genericsuite-fe-ai#readme",
-  "scripts": {
-    "test": "react-app-rewired test"
-  },
+  "author": "Carlos J. Ramirez",
+  "license": "MIT",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "Makefile",
+    "webpack.config.js",
+    "config-overrides.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tomkat-cr/genericsuite-fe-ai.git"
   },
+  "bugs": {
+    "url": "https://github.com/tomkat-cr/genericsuite-fe-ai/issues"
+  },
+  "homepage": "https://github.com/tomkat-cr/genericsuite-fe-ai#readme",
   "keywords": [
     "ai",
     "chatbot",
@@ -25,18 +34,93 @@
     "react-hooks",
     "webpack"
   ],
-  "author": "Carlos J. Ramirez",
-  "license": "MIT",
-  "dependencies": {
-    "genericsuite": "^1.0.0"
+  "scripts": {
+    "start": "node server.js",
+    "start-build": "./node_modules/react-app-rewired/bin/react-app-rewired.js build && node server.js",
+    "start-debug": "ls -lah && node server.js",
+    "start-dev": "react-app-rewired start",
+    "start-dev-webpack": "npx webpack-dev-server --config webpack.config.js",
+    "build-prod": "webpack --mode production",
+    "heroku-postbuild": "npm run build",
+    "build-dev": "react-app-rewired build",
+    "build-tsc": "npx tsc -p .",
+    "build": "rollup -c",
+    "eject-dev": "react-scripts eject",
+    "test": "react-app-rewired test",
+    "//": "See https://stackoverflow.com/questions/70368760/react-uncaught-referenceerror-process-is-not-defined",
+    "// preinstall": "npx npm-force-resolutions",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
-  "devDependencies": {},
-  "peerDependencies": {
-    "react": "^16.8.6 || ^17.0.2 || ^18.2.0"
+  "dependencies": {
+    "genericsuite": "^1.0.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.0",
+    "@babel/core": "^7.23.3",
+    "@babel/plugin-proposal-class-properties": "^7.18.6",
+    "@babel/plugin-proposal-private-property-in-object": "7.21.0-placeholder-for-preset-env.2",
+    "@babel/plugin-syntax-jsx": "^7.23.3",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
+    "@babel/preset-stage-0": "^7.8.3",
+    "@babel/preset-typescript": "^7.23.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/react": "^18.2.63",
+    "autoprefixer": "^10.4.16",
+    "babel-loader": "^9.1.3",
+    "constants-browserify": "^1.0.0",
+    "css-loader": "^6.10.0",
+    "file-loader": "^6.2.0",
+    "gh-pages": "^6.0.0",
+    "html-webpack-plugin": "^5.5.3",
+    "path": "^0.12.7",
+    "postcss": "^8.4.31",
+    "postcss-loader": "^8.1.1",
+    "react-error-overlay": "6.0.9",
+    "rollup": "^4.12.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4",
+    "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-typescript2": "^0.36.0",
+    "style-loader": "^3.3.4",
+    "tailwindcss": "^3.3.5",
+    "typescript": "^5.3.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.0.2"
   },
   "peerDependenciesMeta": {
     "react": {
       "optional": false
     }
+  },
+  "engines": {
+    "node": ">= 18.12.0"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "browser": {
+    "fs": false
   }
 }
