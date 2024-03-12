@@ -1,39 +1,31 @@
 import React, { useState, useEffect } from 'react';
 
-import {
-    console_debug_log,
-    usePlainFetch,
-} from "genericsuite/src/_services";
-import {
-    growUpTextArea,
-    resetTextArea,
-    toggleIdVisibility,
-    formatCaughtError,
-} from 'genericsuite/src/_helpers';
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
+const usePlainFetch = require("genericsuite").responseHandlersService.usePlainFetch;
+const growUpTextArea = require("genericsuite").ui.growUpTextArea;
+const resetTextArea = require("genericsuite").ui.resetTextArea;
+const toggleIdVisibility = require("genericsuite").ui.toggleIdVisibility;
+const formatCaughtError = require("genericsuite").errorAndReenter.formatCaughtError;
+const WaitAnimation = require("genericsuite").waitAnimationUtility.WaitAnimation;
+const getFilenameFromContentDisposition = require("genericsuite").blobFilesUtilities.getFilenameFromContentDisposition;
+const responseHasFile = require("genericsuite").blobFilesUtilities.responseHasFile;
+const BUTTON_LISTING_CLASS = require("genericsuite").classNameConstants.BUTTON_LISTING_CLASS;
+// const INPUT_FLEXIBLE_CLASS = require("genericsuite").classNameConstants.INPUT_FLEXIBLE_CLASS;
 
-import { WaitAnimation } from 'genericsuite/src/_services/wait.animation.utility';
-import {
-    getFilenameFromContentDisposition, responseHasFile
-} from 'genericsuite/src/_services/blob.files.utilities';
-import { 
-    BUTTON_LISTING_CLASS,
-    // INPUT_FLEXIBLE_CLASS,
-} from 'genericsuite/src/_constants/class_name_constants';
-
-import { VoiceMessageRecorder } from './VoiceMessageRecorder';
-import { FileUploader } from './FileUploader';
-import { CameraComponent } from './CameraComponent';
+import { VoiceMessageRecorder } from './VoiceMessageRecorder.jsx';
+import { FileUploader } from './FileUploader.jsx';
+import { CameraComponent } from './CameraComponent.jsx';
 
 import {
     handleCancelProcessing,
     sendMessageToBot,
     checkConversationIdChange,
-} from "./chatbot.db.operations";
+} from "./chatbot.db.operations.jsx";
 
 import {
     // setChatbotInputMessage,
     setChatbotErrorMsg,
-} from './chatbot.general.functions';
+} from './chatbot.general.functions.jsx';
 
 /*
 Warning: Failed prop type: Invalid prop `size` of value `m` supplied to `FontAwesomeIcon`,

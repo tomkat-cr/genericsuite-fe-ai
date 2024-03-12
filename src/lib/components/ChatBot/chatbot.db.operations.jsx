@@ -1,12 +1,8 @@
-import {
-    formatCaughtError,
-} from 'genericsuite/src/_helpers/error-and-reenter';
-import {
-    authenticationService,
-    dbApiService,
-    defaultValue,
-    console_debug_log,
-} from "genericsuite/src/_services";
+const formatCaughtError = require("genericsuite").errorAndReenter.formatCaughtError;
+const authenticationService = require("genericsuite").authenticationService.authenticationService;
+const dbApiService = require("genericsuite").dbService.dbApiService;
+const defaultValue = require("genericsuite").genericEditorUtilities.defaultValue;
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
 
 // Ensure to install the crypto library with: npm install crypto
 // import crypto from 'crypto';
@@ -204,8 +200,8 @@ export const ApiCall = async (
         response.operationMessage = `${the} ${operationDescription} ${ActionDescription} ${was_successful}`;
     } else {
         response.operationMessage = `${error_in_the} ${operationDescription} ${ActionDescription}`;
-        console.error('ApiCall ERROR:');
-        console.error(response.operationMessage);
+        console_debug_log('ApiCall ERROR:');
+        console_debug_log(response.operationMessage);
     }
     dispatch({ type: 'API_PROCESSING_STATUS', payload: false }); // Clear API processing status
     if (debug) {

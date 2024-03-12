@@ -1,4 +1,4 @@
-import { console_debug_log } from 'genericsuite/src/_services';
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
 
 const debug = false;
 

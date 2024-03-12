@@ -1,15 +1,13 @@
 import React from 'react';
 
-import {
-    convertId,
-    console_debug_log,
-} from "genericsuite/src/_services";
-import { timestampToDate } from 'genericsuite/src/_helpers/date-timestamp';
+const convertId = require("genericsuite").dbService.convertId;
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
+const timestampToDate = require("genericsuite").dateTimestamp.timestampToDate;
 
 import {
     loadConversation,
     deleteConversation,
-} from './chatbot.db.operations';
+} from './chatbot.db.operations.jsx';
 
 import './ChatBot.css';
 

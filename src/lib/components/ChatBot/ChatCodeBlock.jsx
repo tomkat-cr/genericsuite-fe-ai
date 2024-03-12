@@ -9,15 +9,13 @@ import React from 'react';
 // "Prism" has more supported languages and the most intenresting, comprared with  "HLJS"
 
 import { Prism, Light } from 'react-syntax-highlighter';
-import { vscDarkPlus as shStyleforPrism } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { grayscale as shStyleForLight } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { vscDarkPlus as shStyleforPrism } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { grayscale as shStyleForLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 ///////////////////////////
 
-import {
-    LinkifyText,
-    CopyButton,
-} from 'genericsuite/src/_helpers';
+const LinkifyText = require("genericsuite").ui.LinkifyText;
+const CopyButton = require("genericsuite").ui.CopyButton;
 
 export const ChatCodeBlock = ({ children, shType = "prism" }) => {
     // Regular expression to match code blocks enclosed in ```

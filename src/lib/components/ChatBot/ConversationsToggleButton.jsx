@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { console_debug_log } from 'genericsuite/src/_services';
-import { setConversationListToggle } from './chatbot.general.functions';
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
+
+import { setConversationListToggle } from './chatbot.general.functions.jsx';
 
 import './ChatBot.css';
 

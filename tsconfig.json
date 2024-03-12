@@ -1,26 +1,35 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
-    "module": "es6",
+    "module": "ESNext",
+    "moduleResolution": "node",
     "target": "es5",
     "lib": [
       "es6",
       "dom"
     ],
     "sourceMap": true,
-    "allowJs": false,
+    "allowJs": true,
+    "checkJs": false,
     "jsx": "react",
-    "moduleResolution": "node",
+    "baseUrl": "./src/lib",
     "rootDirs": [
-      "src"
+      "src/lib"
     ],
-    "baseUrl": ".",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "allowSyntheticDefaultImports": true,
     "strict": true,
-    "declaration": true
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationDir": "types",
+    "emitDeclarationOnly": true,
+    "paths": {
+      "src/*": ["./src/*"],
+    }
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
   ]
 }

@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
 
-import {
-    dbApiService,
-    MULTIPART_FORM_DATA_HEADER,
-} from "genericsuite/src/_services";
-import { console_debug_log } from 'genericsuite/src/_services';
-import { formatCaughtError } from 'genericsuite/src/_helpers/error-and-reenter';
-import { toggleIdVisibility } from 'genericsuite/src/_helpers';
+const dbApiService = require("genericsuite").dbService.dbApiService;
+const MULTIPART_FORM_DATA_HEADER = require("genericsuite").dbService.MULTIPART_FORM_DATA_HEADER;
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
+const formatCaughtError = require("genericsuite").errorAndReenter.formatCaughtError;
+const toggleIdVisibility = require("genericsuite").ui.toggleIdVisibility;
+const BUTTON_LISTING_CLASS = require("genericsuite").classNameConstants.BUTTON_LISTING_CLASS;
+
 import {
     setChatbotErrorMsg,
     addMessageToConversation,
     dispatchWaitAnimation,
-} from './chatbot.general.functions';
-import { checkConversationIdChange } from './chatbot.db.operations';
+} from './chatbot.general.functions.jsx';
+import { checkConversationIdChange } from './chatbot.db.operations.jsx';
 
-import { 
-    BUTTON_LISTING_CLASS,
-} from 'genericsuite/src/_constants/class_name_constants';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import fontawesome from "@fortawesome/fontawesome";

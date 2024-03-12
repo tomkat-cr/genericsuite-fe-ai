@@ -9,11 +9,19 @@ help:
 install:
 	npm install
 
+lock:
+	npm install --package-lock-only
+
 build-dev:
 	npm run build
 
+build: build-dev
+
 build-prod:
 	npm run build-prod
+
+publish:
+	npm publish --access=public
 
 dev:
 	npm install --dev
@@ -24,13 +32,11 @@ clean:
 fresh: clean install
 
 # Development Commands
-tests-dev:
+test-dev:
 	npm run test-dev
 
-tests:
+test:
 	npm test
-
-test: tests
 
 eject-dev:
 	npm run eject-dev

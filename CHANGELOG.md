@@ -16,16 +16,38 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
-## 1.0.2 (2024-03-06)
+## 1.0.2 (2024-03-11)
 ---
 
 ### New
 Add files and package.json configurations to make genericsuite-ai an npm module.
+Add ".env.example" and "CHANGELOG.md" to package.json included files.
 Add webpack.config.js to test the module locally.
+Add "lock", "build" and "publish" options to Makefile.
+Add ".env.example" to package.json included files.
+Add jest and <Chatbot /> test.
+New GenericSuite AI cirle logo "gs_ai_logo_circle.svg"
+Add GenericSuite AI logo to index.tsx to customize Login.
+Add a <App /> component with "appLogo" and "componentMap" parameters when calling GenericSuite's <App />.
+
+### Changes
+Change module structure: add "src/lib" directory, remove "_" prefix to "_components", and move it to "src/lib".
+All components and generic code exports included in the "src/lib/index.cjs" file.
+REACT_APP_GENERIC_SUITE_AI_PATH removed from env.example, webpack.config.js and generic.editor.rfc.ai.button.jsx, and replaced by REACT_APP_GENERIC_SUITE_AI.
+All dependencies moved to devDependencies and peerDependencies to effectively build the library in npmjs.
+Module in "tsconfig.json" changed to "ESNext".
+"src/lib/index.js" renamed to "src/lib/index.cjs".
+"babel.config.json" renamed to "babel.config.cjs".
+"rollup.config.js" renamed to "rollup.config.mjs".
+"console.error" replaced by "console_debug_log" in chatbot.db.operations.jsx to avoid test errors.
 
 ### Fixes
 Fix the error "webpack reactjs Uncaught ReferenceError: require is not defined".
 Fix the error "The request '../_constants/general_constants' failed to resolve only because it was resolved as fully specified".
+Fix the "RollupError: Could not resolve entry module "dist/esm/index.js"." error changing the following values in "package.json":
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
 
 
 ## 1.0.1 (2024-03-06)

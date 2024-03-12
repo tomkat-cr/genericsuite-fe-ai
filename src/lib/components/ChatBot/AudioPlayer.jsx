@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
 
-import { WARNING_MSG_CLASS } from 'genericsuite/src/_constants';
-import { defaultFilenametoDownload } from 'genericsuite/src/_services/blob.files.utilities';
-import { console_debug_log } from 'genericsuite/src/_services';
+const WARNING_MSG_CLASS = require("genericsuite").classNameConstants.WARNING_MSG_CLASS;
+const defaultFilenametoDownload = require("genericsuite").blobFilesUtilities.defaultFilenametoDownload;
+const decodeBlob = require("genericsuite").blobFilesUtilities.decodeBlob;
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
 
 import './AudioPlayer.css';
 
@@ -12,7 +13,6 @@ import {
     faPlay,
     faStop,
 } from "@fortawesome/fontawesome-free-solid";
-import { decodeBlob } from 'genericsuite/src/_services/blob.files.utilities';
 fontawesome.library.add(
     faPlay,
     faStop,

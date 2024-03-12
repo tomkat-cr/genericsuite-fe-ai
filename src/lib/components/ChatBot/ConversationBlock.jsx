@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 
-import {
-    console_debug_log, usePlainFetch,
-} from "genericsuite/src/_services";
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
+const usePlainFetch = require("genericsuite").responseHandlersService.usePlainFetch;
+const getFileExtension = require("genericsuite").blobFilesUtilities.getFileExtension;
+const performDownload = require("genericsuite").blobFilesUtilities.performDownload;
+const INFO_MSG_CLASS = require("genericsuite").classNameConstants.INFO_MSG_CLASS;
+const WARNING_MSG_CLASS = require("genericsuite").classNameConstants.WARNING_MSG_CLASS;
 
-import { GoToTheBottom } from './GoToTheBottom'
-import { ScrollToBottomButton } from './ScrollToBottomButton'
-import { ChatCodeBlock } from './ChatCodeBlock';
-
-import { getFileExtension, performDownload } from 'genericsuite/src/_services/blob.files.utilities';
-import { INFO_MSG_CLASS, WARNING_MSG_CLASS } from 'genericsuite/src/_constants';
-import AudioPlayer from './AudioPlayer';
+import AudioPlayer from './AudioPlayer.jsx';
+import { GoToTheBottom } from './GoToTheBottom.jsx'
+import { ScrollToBottomButton } from './ScrollToBottomButton.jsx'
+import { ChatCodeBlock } from './ChatCodeBlock.jsx';
 
 import './ChatBot.css';
 

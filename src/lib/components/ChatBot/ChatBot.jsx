@@ -1,30 +1,24 @@
 import React, { useEffect, useReducer } from 'react';
 
-import {
-    convertId,
-    console_debug_log,
-} from "genericsuite/src/_services";
-import {
-    isMobileDevice,
-    getUrlParams,
-} from 'genericsuite/src/_helpers';
-import {
-    errorAndReEnter,
-} from 'genericsuite/src/_helpers/error-and-reenter';
+const convertId = require("genericsuite").dbService.convertId;
+const console_debug_log = require("genericsuite").loggingService.console_debug_log;
+const isMobileDevice = require("genericsuite").ui.isMobileDevice;
+const getUrlParams = require("genericsuite").urlParams.getUrlParams;
+const errorAndReEnter = require("genericsuite").errorAndReenter.errorAndReEnter;
 
 import {
     setChatbotInputMessage,
     setChatbotErrorMsg,
-} from './chatbot.general.functions';
+} from './chatbot.general.functions.jsx';
 
-import { UserInput } from './UserInput';
+import { UserInput } from './UserInput.jsx';
 import {
     fetchConversations,
-} from './chatbot.db.operations';
-import { NewConversationButton } from './NewConversationButton';
-import { ConversationList } from './ConversationList';
-import { ConversationsToggleButton } from './ConversationsToggleButton';
-import { ConversationBlock } from './ConversationBlock';
+} from './chatbot.db.operations.jsx';
+import { NewConversationButton } from './NewConversationButton.jsx';
+import { ConversationList } from './ConversationList.jsx';
+import { ConversationsToggleButton } from './ConversationsToggleButton.jsx';
+import { ConversationBlock } from './ConversationBlock.jsx';
 
 import './ChatBot.css';
 

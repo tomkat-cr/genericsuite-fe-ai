@@ -1,9 +1,7 @@
 import React from 'react';
 
-import { 
-    BUTTON_LISTING_CLASS,
-    // INPUT_FLEXIBLE_CLASS,
-} from 'genericsuite/src/_constants/class_name_constants';
+const BUTTON_LISTING_CLASS = require("genericsuite").classNameConstants.BUTTON_LISTING_CLASS;
+// const INPUT_FLEXIBLE_CLASS = require("genericsuite").classNameConstants.INPUT_FLEXIBLE_CLASS;
 
 import './ChatBot.css';
 
