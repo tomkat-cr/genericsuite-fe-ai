@@ -16,6 +16,16 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.3 (2024-03-11)
+---
+
+### Changes
+New version of genericsuite 0.1.10.
+
+### Fixes
+"package-lock.json" rebuilt.
+
+
 ## 1.0.2 (2024-03-11)
 ---
 
