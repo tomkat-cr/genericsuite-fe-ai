@@ -16,6 +16,20 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.4 (2024-03-13)
+---
+
+### New
+Library documentation in the README file.
+
+### Changes
+New version of genericsuite 0.1.112.
+Enhaced logo version.
+
+### Fixes
+Fix error "BREAKING CHANGE: The request 'react-syntax-highlighter/dist/cjs/styles/hljs' failed to resolve only because it was resolved as fully specified.
+
+
 ## 1.0.3 (2024-03-11)
 ---
 

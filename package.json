@@ -1,6 +1,6 @@
 {
   "name": "genericsuite-ai",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The GenericSuite AI for ReactJS (frontend version).",
   "author": "Carlos J. Ramirez",
   "license": "MIT",
@@ -165,6 +165,6 @@
     "fs": false
   },
   "dependencies": {
-    "genericsuite": "^1.0.10"
+    "genericsuite": "^1.0.112"
   }
 }

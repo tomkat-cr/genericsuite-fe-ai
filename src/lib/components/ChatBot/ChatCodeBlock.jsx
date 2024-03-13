@@ -9,8 +9,8 @@ import React from 'react';
 // "Prism" has more supported languages and the most intenresting, comprared with  "HLJS"
 
 import { Prism, Light } from 'react-syntax-highlighter';
-import { vscDarkPlus as shStyleforPrism } from 'react-syntax-highlighter/dist/cjs/styles/prism';
-import { grayscale as shStyleForLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { vscDarkPlus as shStyleforPrism } from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
+import { grayscale as shStyleForLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
 
 ///////////////////////////
 
