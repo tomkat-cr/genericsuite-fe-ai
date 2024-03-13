@@ -7,19 +7,19 @@ Welcome to GenericSuite AI, a comprehensive software solution designed to enhanc
 
 ## Features
 
-- **AI ChatBot tools:** to implement ChatBot conversations base ond NLP (Natural Language Processing), LLM (Large Languaje Models) and other AI technologies like ChatGPT.
+- **AI ChatBot tools:** to implement Chatbot conversations base on NLP (Natural Language Processing), LLM (Large Language Models) and other AI technologies like ChatGPT.
 - **Customizable CRUD editor:** core CRUD (Create-Read-Update-Delete) code that can be parametrized and extended by JSON configuration files. There's no need to rewrite code for each table editor.
 - **Customizable menu:** menu and endpoints can be parametrized and extended by JSON configuration files in the backend side. The API will supply the menu estructure and security check based on the user's security group, and GenericSuite will draw the menu and available options.
 - **Customizable Login Interface:** Easily adapt the login page to match your brand identity with the App logo.
 - **Development and Production Scripts:** Quick commands to start development or build your application for QA, staging production environments on AWS.
 - **Testing with Jest:** Comes pre-configured with Jest for running tests, including an initial test for the `<App />` component.
-- **Inclusion of Essential Files:** `.env.example` for environment variables setup, `Makefile` to short-cut frecuent operations, `webpack.config.js` and `config-overrides.js` to run the App locally with `Webpack` or `react-app-rewired`, `scripts` with development and production scripts, 
+- **Inclusion of Essential Files:** `.env.example` for environment variables setup, `Makefile` to short-cut frequent operations, `webpack.config.js` and `config-overrides.js` to run the App locally with `Webpack` or `react-app-rewired`, `scripts` with development and production scripts, 
  and `CHANGELOG.md` for tracking changes across versions.
 
-The perfect companion for this frontend solution is the backend version of Genericsuite AI:<br/>
+The perfect companion for this frontend solution is the backend version of GenericSuite AI:<br/>
 [https://github.com/tomkat-cr/genericsuite-be-ai](https://github.com/tomkat-cr/genericsuite-be-ai)
 
-Genericsuite AI (frontend version) is based on The Genericsuite:<br/>
+GenericSuite AI (frontend version) is based on The GenericSuite:<br/>
 [https://github.com/tomkat-cr/genericsuite-fe](https://github.com/tomkat-cr/genericsuite-fe)
 
 ## Pre-requisites
@@ -78,9 +78,9 @@ To get started with GenericSuite, follow these simple steps:
 
    4. Configure `BACKEND_PATH` with the path for your backend API local development repo.
 
-   5. Configure `GITHUB_USERNAME` and `GITHUB_REPONAME`. It will be used by `scripts/aws_deploy_to_s3.sh` to change the `homepage` in `package.json` with the proper public domain during the AWS S3 deploytment and restores to GITHUB_USERNAME.github.io/GITHUB_REPONAME after that.
+   5. Configure `GITHUB_USERNAME` and `GITHUB_REPONAME`. It will be used by `scripts/aws_deploy_to_s3.sh` to change the `homepage` in `package.json` with the proper public domain during the AWS S3 deployment and restores to GITHUB_USERNAME.github.io/GITHUB_REPONAME after that.
 
-   6. Configure `GIT_SUBMODULE_LOCAL_PATH` and `GIT_SUBMODULE_URL` with the JSON files submodule parameters to stablish a common configuraton place for both frontend and backend (used by add_github_submodules.sh).<BR/>For example files, visit: [https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs](https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs)
+   6. Configure `GIT_SUBMODULE_LOCAL_PATH` and `GIT_SUBMODULE_URL` with the JSON files submodule parameters to stablish a common configuration place for both frontend and backend (used by add_github_submodules.sh).<BR/>For example files, visit: [https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs](https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs)
 
    7. Configure the `AWS_*` parameters with your AWS data (used by aws_deploy_to_s3.sh and change_env_be_endpoint.sh). You'll need an AWS account.
 

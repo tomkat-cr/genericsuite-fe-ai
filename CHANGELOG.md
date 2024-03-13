@@ -16,11 +16,28 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.7 (2024-03-13)
+---
+
+### New
+Add ChatBotButton component.
+
+### Fixes
+Fix the component exports for the "dist", isolating each component.
+
+
+## 1.0.6 (2024-03-13)
+---
+
+### Fixes
+Fix error "Warning: React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: object." in the referring project, replacing "import { App as GsApp } from 'genericsuite'" by "import * as gs from "genericsuite"" in src/components/App.jsx.
+
+
 ## 1.0.5 (2024-03-13)
 ---
 
 ### Fixes
-Fix error "Uncaught ReferenceError: require is not defined at ./node_modules/genericsuite-ai/dist/esm/index.js (chatbot.general.functions.jsx:) replacing all require('genericsuite) with import * as gs from "genericsuite".
+Fix error "Uncaught ReferenceError: require is not defined at ./node_modules/genericsuite-ai/dist/esm/index.js (chatbot.general.functions.jsx:) replacing all "require('genericsuite)" with "import * as gs from "genericsuite"".
 
 
 ## 1.0.4 (2024-03-13)
@@ -57,7 +74,7 @@ Add webpack.config.js to test the module locally.
 Add "lock", "build" and "publish" options to Makefile.
 Add ".env.example" to package.json included files.
 Add jest and <Chatbot /> test.
-New GenericSuite AI cirle logo "gs_ai_logo_circle.svg"
+New GenericSuite AI circle logo "gs_ai_logo_circle.svg"
 Add GenericSuite AI logo to index.tsx to customize Login.
 Add a <App /> component with "appLogo" and "componentMap" parameters when calling GenericSuite's <App />.
 

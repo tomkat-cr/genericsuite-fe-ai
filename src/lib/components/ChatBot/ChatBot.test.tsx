@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 
-import { ChatBot } from "./ChatBot";
+import { ChatBot } from "./ChatBot.jsx";
 
 describe("ChatBot", () => {
     test("renders the ChatBot component", () =>
