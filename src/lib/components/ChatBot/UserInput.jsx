@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
 
-const console_debug_log = require("genericsuite").loggingService.console_debug_log;
-const usePlainFetch = require("genericsuite").responseHandlersService.usePlainFetch;
-const growUpTextArea = require("genericsuite").ui.growUpTextArea;
-const resetTextArea = require("genericsuite").ui.resetTextArea;
-const toggleIdVisibility = require("genericsuite").ui.toggleIdVisibility;
-const formatCaughtError = require("genericsuite").errorAndReenter.formatCaughtError;
-const WaitAnimation = require("genericsuite").waitAnimationUtility.WaitAnimation;
-const getFilenameFromContentDisposition = require("genericsuite").blobFilesUtilities.getFilenameFromContentDisposition;
-const responseHasFile = require("genericsuite").blobFilesUtilities.responseHasFile;
-const BUTTON_LISTING_CLASS = require("genericsuite").classNameConstants.BUTTON_LISTING_CLASS;
-// const INPUT_FLEXIBLE_CLASS = require("genericsuite").classNameConstants.INPUT_FLEXIBLE_CLASS;
+import * as gs from "genericsuite";
+
+const console_debug_log = gs.loggingService.console_debug_log;
+const usePlainFetch = gs.responseHandlersService.usePlainFetch;
+const growUpTextArea = gs.ui.growUpTextArea;
+const resetTextArea = gs.ui.resetTextArea;
+const toggleIdVisibility = gs.ui.toggleIdVisibility;
+const formatCaughtError = gs.errorAndReenter.formatCaughtError;
+const WaitAnimation = gs.waitAnimationUtility.WaitAnimation;
+const getFilenameFromContentDisposition = gs.blobFilesUtilities.getFilenameFromContentDisposition;
+const responseHasFile = gs.blobFilesUtilities.responseHasFile;
+const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+// const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
 import { VoiceMessageRecorder } from './VoiceMessageRecorder.jsx';
 import { FileUploader } from './FileUploader.jsx';

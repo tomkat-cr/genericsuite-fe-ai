@@ -16,6 +16,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.5 (2024-03-13)
+---
+
+### Fixes
+Fix error "Uncaught ReferenceError: require is not defined at ./node_modules/genericsuite-ai/dist/esm/index.js (chatbot.general.functions.jsx:) replacing all require('genericsuite) with import * as gs from "genericsuite".
+
+
 ## 1.0.4 (2024-03-13)
 ---
 

@@ -2,9 +2,7 @@ import React from 'react';
 import { HashRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 
-// import { App } from 'genericsuite';
-// import { App } from 'genericsuite/src/lib/components/App/App';
-const gs = require("genericsuite");
+import * as gs from "genericsuite";
 
 const root = createRoot(document.getElementById('root'));
 

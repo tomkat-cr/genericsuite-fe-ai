@@ -1,10 +1,12 @@
 import React, { useEffect, useReducer } from 'react';
 
-const convertId = require("genericsuite").dbService.convertId;
-const console_debug_log = require("genericsuite").loggingService.console_debug_log;
-const isMobileDevice = require("genericsuite").ui.isMobileDevice;
-const getUrlParams = require("genericsuite").urlParams.getUrlParams;
-const errorAndReEnter = require("genericsuite").errorAndReenter.errorAndReEnter;
+import * as gs from "genericsuite";
+
+const convertId = gs.dbService.convertId;
+const console_debug_log = gs.loggingService.console_debug_log;
+const isMobileDevice = gs.ui.isMobileDevice;
+const getUrlParams = gs.urlParams.getUrlParams;
+const errorAndReEnter = gs.errorAndReenter.errorAndReEnter;
 
 import {
     setChatbotInputMessage,

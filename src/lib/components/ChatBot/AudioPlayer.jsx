@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
 
-const WARNING_MSG_CLASS = require("genericsuite").classNameConstants.WARNING_MSG_CLASS;
-const defaultFilenametoDownload = require("genericsuite").blobFilesUtilities.defaultFilenametoDownload;
-const decodeBlob = require("genericsuite").blobFilesUtilities.decodeBlob;
-const console_debug_log = require("genericsuite").loggingService.console_debug_log;
+import * as gs from "genericsuite";
+
+const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
+const defaultFilenametoDownload = gs.blobFilesUtilities.defaultFilenametoDownload;
+const decodeBlob = gs.blobFilesUtilities.decodeBlob;
+const console_debug_log = gs.loggingService.console_debug_log;
 
 import './AudioPlayer.css';
 

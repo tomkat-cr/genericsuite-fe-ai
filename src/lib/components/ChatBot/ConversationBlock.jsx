@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-const console_debug_log = require("genericsuite").loggingService.console_debug_log;
-const usePlainFetch = require("genericsuite").responseHandlersService.usePlainFetch;
-const getFileExtension = require("genericsuite").blobFilesUtilities.getFileExtension;
-const performDownload = require("genericsuite").blobFilesUtilities.performDownload;
-const INFO_MSG_CLASS = require("genericsuite").classNameConstants.INFO_MSG_CLASS;
-const WARNING_MSG_CLASS = require("genericsuite").classNameConstants.WARNING_MSG_CLASS;
+import * as gs from "genericsuite";
+
+const console_debug_log = gs.loggingService.console_debug_log;
+const usePlainFetch = gs.responseHandlersService.usePlainFetch;
+const getFileExtension = gs.blobFilesUtilities.getFileExtension;
+const performDownload = gs.blobFilesUtilities.performDownload;
+const INFO_MSG_CLASS = gs.classNameConstants.INFO_MSG_CLASS;
+const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 
 import AudioPlayer from './AudioPlayer.jsx';
 import { GoToTheBottom } from './GoToTheBottom.jsx'

@@ -14,8 +14,10 @@ import { grayscale as shStyleForLight } from 'react-syntax-highlighter/dist/cjs/
 
 ///////////////////////////
 
-const LinkifyText = require("genericsuite").ui.LinkifyText;
-const CopyButton = require("genericsuite").ui.CopyButton;
+import * as gs from "genericsuite";
+
+const LinkifyText = gs.ui.LinkifyText;
+const CopyButton = gs.ui.CopyButton;
 
 export const ChatCodeBlock = ({ children, shType = "prism" }) => {
     // Regular expression to match code blocks enclosed in ```

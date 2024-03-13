@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 
-const dbApiService = require("genericsuite").dbService.dbApiService;
-const MULTIPART_FORM_DATA_HEADER = require("genericsuite").dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log = require("genericsuite").loggingService.console_debug_log;
-const formatCaughtError = require("genericsuite").errorAndReenter.formatCaughtError;
-const toggleIdVisibility = require("genericsuite").ui.toggleIdVisibility;
-const BUTTON_LISTING_CLASS = require("genericsuite").classNameConstants.BUTTON_LISTING_CLASS;
+import * as gs from "genericsuite";
+
+const dbApiService = gs.dbService.dbApiService;
+const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
+const console_debug_log = gs.loggingService.console_debug_log;
+const formatCaughtError = gs.errorAndReenter.formatCaughtError;
+const toggleIdVisibility = gs.ui.toggleIdVisibility;
+const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
 import {
     setChatbotErrorMsg,

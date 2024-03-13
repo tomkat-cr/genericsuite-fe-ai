@@ -1,8 +1,10 @@
-const formatCaughtError = require("genericsuite").errorAndReenter.formatCaughtError;
-const authenticationService = require("genericsuite").authenticationService.authenticationService;
-const dbApiService = require("genericsuite").dbService.dbApiService;
-const defaultValue = require("genericsuite").genericEditorUtilities.defaultValue;
-const console_debug_log = require("genericsuite").loggingService.console_debug_log;
+import * as gs from "genericsuite";
+
+const formatCaughtError = gs.errorAndReenter.formatCaughtError;
+const authenticationService = gs.authenticationService.authenticationService;
+const dbApiService = gs.dbService.dbApiService;
+const defaultValue = gs.genericEditorUtilities.defaultValue;
+const console_debug_log = gs.loggingService.console_debug_log;
 
 // Ensure to install the crypto library with: npm install crypto
 // import crypto from 'crypto';
