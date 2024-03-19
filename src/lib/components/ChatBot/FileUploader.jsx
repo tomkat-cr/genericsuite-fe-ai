@@ -2,13 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 import * as gs from "genericsuite";
 
-const dbApiService = gs.dbService.dbApiService;
-const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log = gs.loggingService.console_debug_log;
-const formatCaughtError = gs.errorAndReenter.formatCaughtError;
-const toggleIdVisibility = gs.ui.toggleIdVisibility;
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
-
 import {
     setChatbotErrorMsg,
     addMessageToConversation,
@@ -29,6 +22,13 @@ fontawesome.library.add(
     faTimes, // Close
     faPaperclip, // Added clip icon
 );
+
+const dbApiService = gs.dbService.dbApiService;
+const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
+const console_debug_log = gs.loggingService.console_debug_log;
+const formatCaughtError = gs.errorAndReenter.formatCaughtError;
+const toggleIdVisibility = gs.ui.toggleIdVisibility;
+const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
 const debug = false;
 

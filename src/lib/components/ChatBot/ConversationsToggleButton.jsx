@@ -1,7 +1,6 @@
 import React from 'react';
 
 import * as gs from "genericsuite";
-const console_debug_log = gs.loggingService.console_debug_log;
 
 import { setConversationListToggle } from './chatbot.general.functions.jsx';
 
@@ -17,6 +16,8 @@ fontawesome.library.add(
     faGreaterThan,
     faLessThan,
 );
+
+const console_debug_log = gs.loggingService.console_debug_log;
 
 const debug = false;
 

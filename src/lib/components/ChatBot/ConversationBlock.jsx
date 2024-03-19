@@ -2,19 +2,19 @@ import React, { useState, useEffect } from 'react';
 
 import * as gs from "genericsuite";
 
-const console_debug_log = gs.loggingService.console_debug_log;
-const usePlainFetch = gs.responseHandlersService.usePlainFetch;
-const getFileExtension = gs.blobFilesUtilities.getFileExtension;
-const performDownload = gs.blobFilesUtilities.performDownload;
-const INFO_MSG_CLASS = gs.classNameConstants.INFO_MSG_CLASS;
-const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
-
 import AudioPlayer from './AudioPlayer.jsx';
 import { GoToTheBottom } from './GoToTheBottom.jsx'
 import { ScrollToBottomButton } from './ScrollToBottomButton.jsx'
 import { ChatCodeBlock } from './ChatCodeBlock.jsx';
 
 import './ChatBot.css';
+
+const console_debug_log = gs.loggingService.console_debug_log;
+const usePlainFetch = gs.responseHandlersService.usePlainFetch;
+const getFileExtension = gs.blobFilesUtilities.getFileExtension;
+const performDownload = gs.blobFilesUtilities.performDownload;
+const INFO_MSG_CLASS = gs.classNameConstants.INFO_MSG_CLASS;
+const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 
 const debug = false;
 

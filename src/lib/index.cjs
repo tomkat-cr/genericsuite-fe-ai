@@ -12,7 +12,7 @@ import { NewConversationButton } from "./components/ChatBot/NewConversationButto
 import { UserInput } from "./components/ChatBot/UserInput.jsx";
 import { VoiceMessageRecorder } from './components/ChatBot/VoiceMessageRecorder.jsx';
 // Images
-import * as GsAiLogoCircle from './images/gs_ai_logo_circle.svg'
+const gsAiLogoCircle = 'gs_ai_logo_circle.svg'
 
 export {
     // Components
@@ -29,5 +29,5 @@ export {
     UserInput,
     VoiceMessageRecorder,
     // Images
-    GsAiLogoCircle,
+    gsAiLogoCircle,
 };

@@ -8,8 +8,9 @@ import { ChatBot } from "../ChatBot/ChatBot.jsx"
 
 const console_debug_log = gs.loggingService.console_debug_log;
 
-// const SparkIcon = gs.Spark;
-import SparkIcon from "../../images/spark.svg";
+const imageDirectory = gs.generalConstants.imageDirectory;
+const sparkIcon = gs.spark;
+// import SparkIcon from "../../images/spark.svg";
 
 const debug = true;
 const sparkClickOpenWindow = true;
@@ -53,7 +54,7 @@ export const ChatBotButton = ({
                     <button
                         onClick={handleSparkClick}
                     >
-                        <SparkIcon alt="Open AI Chat" />
+                        <img src={imageDirectory + sparkIcon} alt="Open AI Chat" />
                     </button>
                 </div>
             </div>

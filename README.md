@@ -1,7 +1,6 @@
-# GenericSuite AI (frontend version)
-The GenericSuite AI for ReactJS (frontend version).
+# GenericSuite AI for ReactJS (frontend version)
 
-![GenericSuite AI Logo](https://github.com/tomkat-cr/genericsuite-fe-ai/blob/main/src/lib/images/gs_ai_logo_circle.svg)
+![GenericSuite AI Logo](https://github.com/tomkat-cr/genericsuite-fe-ai/blob/main/src/lib/images/gs_ai_logo_circle.png)
 
 Welcome to GenericSuite AI, a comprehensive software solution designed to enhance your productivity and streamline your workflows. This repository contains the front-end component of GenericSuite AI, equipped with AI ChatBot tools, a customizable CRUD editor, login interface and a suite of tools to kickstart your development process.
 
@@ -16,33 +15,43 @@ Welcome to GenericSuite AI, a comprehensive software solution designed to enhanc
 - **Inclusion of Essential Files:** `.env.example` for environment variables setup, `Makefile` to short-cut frequent operations, `webpack.config.js` and `config-overrides.js` to run the App locally with `Webpack` or `react-app-rewired`, `scripts` with development and production scripts, 
  and `CHANGELOG.md` for tracking changes across versions.
 
-The perfect companion for this frontend solution is the backend version of GenericSuite AI:<br/>
-[https://github.com/tomkat-cr/genericsuite-be-ai](https://github.com/tomkat-cr/genericsuite-be-ai)
+The perfect companion for this frontend solution is the [backend version of The GenericSuite AI](https://github.com/tomkat-cr/genericsuite-be-ai).
 
-GenericSuite AI (frontend version) is based on The GenericSuite:<br/>
-[https://github.com/tomkat-cr/genericsuite-fe](https://github.com/tomkat-cr/genericsuite-fe)
+GenericSuite AI (frontend version) is based on [The GenericSuite](https://github.com/tomkat-cr/genericsuite-fe).
 
 ## Pre-requisites
 
 You need to install these tools:
 
-- Node 18+
-- Git
-- Make
+- [Node](https://nodejs.org/en/download/package-manager) 18+
+- [Git](https://www.atlassian.com/git/tutorials/install-git)
+- Make: [Mac](https://formulae.brew.sh/formula/make) | [Windows](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows)
 
 ## Getting Started
 
-To get started with GenericSuite, follow these simple steps:
+To get started with GenericSuite AI, follow these simple steps:
 
 1. **Initiate your project**
 
-   Change to your frontend local development directory and run:
+   Create the ReactJs App. E.g. `exampleapp_frontend`:
 
    ```bash
-   npm init
+   npx create-react-app exampleapp_frontend
+   ```
+   NOTE: Check the documentation [here](https://react.dev/learn/start-a-new-react-project) for alternatives.
+
+   Change to your frontend local development directory.<br/>
+   ```bash
+   cd exampleapp_frontend
    ```
 
-   And:
+   CRA (`create-react-app`) is outdated, so we use [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) to to customize CRA configuration without the need to eject:
+
+   ```bash
+   npm install --save-dev react-app-rewired
+   ```
+
+   Initialize the git respository:
 
    ```bash
    git init
@@ -54,11 +63,40 @@ To get started with GenericSuite, follow these simple steps:
    npm install genericsuite-ai
    ```
 
-3. **Install Dependencies**
-
-   ```bash
-   npm install
-   ```
+3. **Install additional development dependencies**:
+```bash
+npm install --save-dev \
+   @babel/cli \
+   @babel/core \
+   @babel/plugin-proposal-class-properties \
+   @babel/plugin-proposal-private-property-in-object \
+   @babel/plugin-syntax-jsx \
+   @babel/preset-env \
+   @babel/preset-react \
+   @babel/preset-stage-0 \
+   @babel/preset-typescript \
+   @testing-library/jest-dom \
+   @testing-library/react \
+   @testing-library/user-event \
+   @types/jest \
+   @types/react \
+   babel-jest \
+   babel-loader \
+   babel-plugin-css-modules-transform \
+   file-loader \
+   html-webpack-plugin \
+   jest \
+   jest-environment-jsdom \
+   path \
+   postcss \
+   postcss-loader \
+   style-loader \
+   tailwindcss \
+   url-loader \
+   webpack \
+   webpack-cli \
+   webpack-dev-server
+```
 
 4. **Prepare the Configuration File**:
 
@@ -86,7 +124,7 @@ To get started with GenericSuite, follow these simple steps:
 
 5. **Prepare the Makefile**
 
-   Copy the template from `node_modules/genericsuite-ai`:
+   Copy the `Makefile` template from `node_modules/genericsuite-ai`:
 
    ```bash
    cp node_modules/genericsuite-ai/Makefile ./Makefile
@@ -131,7 +169,80 @@ To get started with GenericSuite, follow these simple steps:
       },
    ```
 
-7. **Start Development Server**
+## App structure
+
+This is a suggested App development repository structure:
+
+```
+.
+├── .babelrc
+├── .env
+├── .env.example
+├── .gitignore
+├── CHANGELOG.md
+├── LICENSE
+├── Makefile
+├── README.md
+├── babel.config.js
+├── config-overrides.js
+├── jest.config.cjs
+├── package-lock.json
+├── package.json
+├── public
+├── server.js
+├── src
+│   ├── components
+│   │   ├── About
+│   │   │   └── About.jsx
+│   │   ├── App
+│   │   │   ├── App.jsx
+│   │   │   └── App.test.tsx
+│   │   ├── HomePage
+│   │   │   ├── HomePage.jsx
+│   │   ├── ExampleMenu
+│   │   │   ├── ExampleMainElement.jsx
+│   │   │   └── ExampleChildElement.jsx
+│   ├── constants
+│   │   └── app_constants.jsx
+│   ├── images
+│   │   ├── app_logo_circle.svg
+│   │   └── madeby_logo_square.svg
+│   ├── configs
+│   │   ├── CHANGELOG.md
+│   │   ├── README.md
+│   │   ├── backend
+│   │   │   ├── app_main_menu.json
+│   │   │   ├── endpoints.json
+│   │   │   ├── general_config.json
+│   │   │   ├── example_main_element.json
+│   │   │   └── example_child_element.json
+│   │   └── frontend
+│   │       ├── app_constants.json
+│   │       ├── general_constants.json
+│   │       ├── users_profile.json
+│   │       ├── example_main_element.json
+│   │       └── example_child_element.json
+│   ├── d.ts
+│   ├── index.jsx
+│   ├── input.css
+│   └── setupTests.js
+├── tailwind.config.js
+├── tsconfig.json
+├── version.txt
+└── webpack.config.js
+```
+
+## Configure the project
+
+Click [here](https://github.com/tomkat-cr/genericsuite-fe/blob/main/README.md#configure-the-project) for more information about how to configure the project.
+
+## Code examples and JSON configuration files
+
+The main menu, API endpoints and CRUD editor configurations are defined in the JSON configuration files.
+
+You can find examples about configurations and how to code an App [here](https://github.com/tomkat-cr/genericsuite-fe/blob/main/src/configs/README.md) and the different JSON files in the [src/configs/frontend](https://github.com/tomkat-cr/genericsuite-fe/blob/main/src/configs/frontend) and [src/configs/backend](https://github.com/tomkat-cr/genericsuite-fe/blob/main/src/configs/backend) directories.
+
+## Start Development Server
 
 To start the development server:
 
@@ -139,7 +250,7 @@ To start the development server:
    make run
    ```
 
-8. **Deploy QA**
+## Deploy QA
 
 To perform a QA deployment over AWS S3:
 

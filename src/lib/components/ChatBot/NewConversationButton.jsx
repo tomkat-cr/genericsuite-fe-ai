@@ -1,10 +1,11 @@
 import React from 'react';
 
 import * as gs from "genericsuite";
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
-// const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
 import './ChatBot.css';
+
+const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+// const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
 // const debug = false;
 

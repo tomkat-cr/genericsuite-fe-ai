@@ -2,14 +2,6 @@ import React, { useState, useRef } from 'react';
 
 import * as gs from "genericsuite";
 
-const dbApiService = gs.dbService.dbApiService;
-const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log = gs.loggingService.console_debug_log;
-const formatCaughtError = gs.errorAndReenter.formatCaughtError;
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
-const toggleIdVisibility = gs.ui.toggleIdVisibility;
-const ModalPopUp = gs.ModalPopUp.ModalPopUp;
-
 import {
     dispatchWaitAnimation,
     addMessageToConversation,
@@ -35,6 +27,14 @@ fontawesome.library.add(
     faCameraRetro, // Icon for taking the photo
     faExchangeAlt, // Icon for interchange
 );
+
+const dbApiService = gs.dbService.dbApiService;
+const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
+const console_debug_log = gs.loggingService.console_debug_log;
+const formatCaughtError = gs.errorAndReenter.formatCaughtError;
+const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+const toggleIdVisibility = gs.ui.toggleIdVisibility;
+const ModalPopUp = gs.ModalPopUp.ModalPopUp;
 
 const debug = false;
 

@@ -15,13 +15,16 @@ lock:
 build-dev:
 	npm run build
 
-build: build-dev
-
 build-prod:
 	npm run build-prod
 
+build: build-dev
+
+pre-publish:
+	sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
+
 publish:
-	npm publish --access=public
+	sh node_modules/genericsuite/scripts/npm_publish.sh publish
 
 dev:
 	npm install --dev
@@ -37,6 +40,13 @@ test-dev:
 
 test:
 	npm test
+
+test-run-build:
+	. node_modules/genericsuite/scripts/build_prod_test.sh
+	. node_modules/genericsuite/scripts/build_prod_test.sh restore
+ 
+test-run-build-restore:
+	. node_modules/genericsuite/scripts/build_prod_test.sh restore
 
 eject-dev:
 	npm run eject-dev

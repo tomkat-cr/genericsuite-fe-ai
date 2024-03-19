@@ -16,6 +16,27 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.8 (2024-03-19)
+---
+
+### New
+Add `make pre-publish` and `make publish` to publish library to NPMJS.
+Add `make test-run-build` and `make test-run-build-restore` and "server.js" to preview the QA/Staging/Prod live environments behavior along with the new genericsuite-fe `build_prod_test.sh` bash script.
+Add the `src/configs/README.md` documentation as a complete GenericSuite App creation and configuration guide for all versions.
+
+### Changes
+New version of genericsuite-fe 1.0.14.
+Add the `src/lib/images` directory to the library distribution.
+Deployment and local run bash scripts changed to copy all images to the `build/static/media` directory.
+Local run bash script creates a symlink in the `dist` directory to the `build/static/media` directory.
+"gsAiLogoCircle" exported as image name, not object.
+
+### Fixes
+Fix the images load error in QA/Staging/Prod live environments: "DOMException: Failed to execute 'createElement' on 'Document': The tag name provided ('/static/media/app_logo_square.cd60e8686a973f7c77e9d25313787676.svg') is not a valid name."
+Fix the "Import in body of module; reorder to top" in all AI components.
+[FA-83], [FA-239]
+
+
 ## 1.0.7 (2024-03-13)
 ---
 
@@ -47,7 +68,7 @@ Fix error "Uncaught ReferenceError: require is not defined at ./node_modules/gen
 Library documentation in the README file.
 
 ### Changes
-New version of genericsuite 0.1.112.
+New version of genericsuite-fe 0.1.112.
 Enhaced logo version.
 
 ### Fixes
@@ -58,7 +79,7 @@ Fix error "BREAKING CHANGE: The request 'react-syntax-highlighter/dist/cjs/style
 ---
 
 ### Changes
-New version of genericsuite 0.1.10.
+New version of genericsuite-fe 0.1.10.
 
 ### Fixes
 "package-lock.json" rebuilt.

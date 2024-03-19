@@ -2,11 +2,6 @@ import React, { useState, useRef } from 'react';
 
 import * as gs from "genericsuite";
 
-const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
-const defaultFilenametoDownload = gs.blobFilesUtilities.defaultFilenametoDownload;
-const decodeBlob = gs.blobFilesUtilities.decodeBlob;
-const console_debug_log = gs.loggingService.console_debug_log;
-
 import './AudioPlayer.css';
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,6 +14,11 @@ fontawesome.library.add(
     faPlay,
     faStop,
 );
+
+const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
+const defaultFilenametoDownload = gs.blobFilesUtilities.defaultFilenametoDownload;
+const decodeBlob = gs.blobFilesUtilities.decodeBlob;
+const console_debug_log = gs.loggingService.console_debug_log;
 
 const debug = false;
 const browserAudioController = true;

@@ -2,12 +2,6 @@ import React, { useEffect, useReducer } from 'react';
 
 import * as gs from "genericsuite";
 
-const convertId = gs.dbService.convertId;
-const console_debug_log = gs.loggingService.console_debug_log;
-const isMobileDevice = gs.ui.isMobileDevice;
-const getUrlParams = gs.urlParams.getUrlParams;
-const errorAndReEnter = gs.errorAndReenter.errorAndReEnter;
-
 import {
     setChatbotInputMessage,
     setChatbotErrorMsg,
@@ -23,6 +17,12 @@ import { ConversationsToggleButton } from './ConversationsToggleButton.jsx';
 import { ConversationBlock } from './ConversationBlock.jsx';
 
 import './ChatBot.css';
+
+const convertId = gs.dbService.convertId;
+const console_debug_log = gs.loggingService.console_debug_log;
+const isMobileDevice = gs.ui.isMobileDevice;
+const getUrlParams = gs.urlParams.getUrlParams;
+const errorAndReEnter = gs.errorAndReenter.errorAndReEnter;
 
 const debug = false;
 

@@ -2,10 +2,6 @@ import React from 'react';
 
 import * as gs from "genericsuite";
 
-const convertId = gs.dbService.convertId;
-const console_debug_log = gs.loggingService.console_debug_log;
-const timestampToDate = gs.dateTimestamp.timestampToDate;
-
 import {
     loadConversation,
     deleteConversation,
@@ -21,6 +17,10 @@ import {
 fontawesome.library.add(
     faTrash,
 );
+
+const convertId = gs.dbService.convertId;
+const console_debug_log = gs.loggingService.console_debug_log;
+const timestampToDate = gs.dateTimestamp.timestampToDate;
 
 const debug = false;
 

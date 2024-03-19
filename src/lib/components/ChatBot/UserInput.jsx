@@ -2,18 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import * as gs from "genericsuite";
 
-const console_debug_log = gs.loggingService.console_debug_log;
-const usePlainFetch = gs.responseHandlersService.usePlainFetch;
-const growUpTextArea = gs.ui.growUpTextArea;
-const resetTextArea = gs.ui.resetTextArea;
-const toggleIdVisibility = gs.ui.toggleIdVisibility;
-const formatCaughtError = gs.errorAndReenter.formatCaughtError;
-const WaitAnimation = gs.waitAnimationUtility.WaitAnimation;
-const getFilenameFromContentDisposition = gs.blobFilesUtilities.getFilenameFromContentDisposition;
-const responseHasFile = gs.blobFilesUtilities.responseHasFile;
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
-// const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
-
 import { VoiceMessageRecorder } from './VoiceMessageRecorder.jsx';
 import { FileUploader } from './FileUploader.jsx';
 import { CameraComponent } from './CameraComponent.jsx';
@@ -44,6 +32,18 @@ fontawesome.library.add(
     faGreaterThan,
     faStop,
 );
+
+const console_debug_log = gs.loggingService.console_debug_log;
+const usePlainFetch = gs.responseHandlersService.usePlainFetch;
+const growUpTextArea = gs.ui.growUpTextArea;
+const resetTextArea = gs.ui.resetTextArea;
+const toggleIdVisibility = gs.ui.toggleIdVisibility;
+const formatCaughtError = gs.errorAndReenter.formatCaughtError;
+const WaitAnimation = gs.waitAnimationUtility.WaitAnimation;
+const getFilenameFromContentDisposition = gs.blobFilesUtilities.getFilenameFromContentDisposition;
+const responseHasFile = gs.blobFilesUtilities.responseHasFile;
+const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+// const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
 const debug = false;
 
