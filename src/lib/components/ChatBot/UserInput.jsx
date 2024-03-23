@@ -98,7 +98,7 @@ export const UserInput = ({
     // Function to handle sending a message
     const sendMessage = async (newInputMessage = null) => {
         const extControlsToShowHide = ['fileUploader', 'voiceMessageRecorder', 'cameraComponent'];
-        const botReplyDebug = true;
+        const botReplyDebug = false;
         if (newInputMessage === null) {
             newInputMessage = inputMessage;
         }

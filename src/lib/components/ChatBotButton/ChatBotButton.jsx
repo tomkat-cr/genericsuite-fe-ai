@@ -12,7 +12,7 @@ const imageDirectory = gs.generalConstants.imageDirectory;
 const sparkIcon = gs.spark;
 // import SparkIcon from "../../images/spark.svg";
 
-const debug = true;
+const debug = false;
 const sparkClickOpenWindow = true;
 
 export const ChatBotButton = ({

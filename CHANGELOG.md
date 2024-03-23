@@ -16,6 +16,25 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.9 (2024-03-22)
+---
+
+### New
+Add About and HomePage components (not exported, only for "src/index.jsx" test).
+Add "react-test-renderer" and test for About and HomePage components.
+
+### Changes
+New version of genericsuite-fe 1.0.16 with the **"dictToAdd" precedence over "originDict" in mergeDicts()** fix to allow the referring App to overwrite "componentMap" with specific <AboutBody/> and <HomePage/> on the <App/> component call.
+REACT_APP_GENERIC_SUITE_AI environment variable removed from webpack.config.js and .env.example.
+Debug turned off on <App/>, <UserInput/>, <ChatBotButton/> and <HomePage/>.
+"componentMap" added to "src/index.jsx" to show specific <AboutBody/> and <HomePage/>.
+Enhanced introduction and code examples text in the  "/README.md" file.
+"__snapshots__" included in ".gitignore" and ".npmignore".
+
+### Fixes
+Fix the "ReferenceError: Response is not defined" message during the tests by adding the "whatwg-fetch" devDependency.
+
+
 ## 1.0.8 (2024-03-19)
 ---
 

@@ -2,7 +2,7 @@
 
 ![GenericSuite AI Logo](https://github.com/tomkat-cr/genericsuite-fe-ai/blob/main/src/lib/images/gs_ai_logo_circle.png)
 
-Welcome to GenericSuite AI, a comprehensive software solution designed to enhance your productivity and streamline your workflows. This repository contains the front-end component of GenericSuite AI, equipped with AI ChatBot tools, a customizable CRUD editor, login interface and a suite of tools to kickstart your development process.
+Welcome to GenericSuite AI, a comprehensive software solution designed to enhance your productivity and streamline your workflows. This repository contains the frontend part of GenericSuite AI, equipped with AI ChatBot tools, a customizable CRUD editor, login interface and a suite of tools to kickstart your development process.
 
 ## Features
 
@@ -90,12 +90,14 @@ npm install --save-dev \
    path \
    postcss \
    postcss-loader \
+   react-test-renderer \
    style-loader \
    tailwindcss \
    url-loader \
    webpack \
    webpack-cli \
-   webpack-dev-server
+   webpack-dev-server \
+   whatwg-fetch
 ```
 
 4. **Prepare the Configuration File**:
@@ -240,7 +242,7 @@ Click [here](https://github.com/tomkat-cr/genericsuite-fe/blob/main/README.md#co
 
 The main menu, API endpoints and CRUD editor configurations are defined in the JSON configuration files.
 
-You can find examples about configurations and how to code an App [here](https://github.com/tomkat-cr/genericsuite-fe/blob/main/src/configs/README.md) and the different JSON files in the [src/configs/frontend](https://github.com/tomkat-cr/genericsuite-fe/blob/main/src/configs/frontend) and [src/configs/backend](https://github.com/tomkat-cr/genericsuite-fe/blob/main/src/configs/backend) directories.
+You can find examples about configurations and how to code an App in the [GenericSuite App Creation and Configuration guide](https://github.com/tomkat-cr/genericsuite-fe/blob/main/src/configs/README.md).
 
 ## Start Development Server
 
