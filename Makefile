@@ -20,12 +20,6 @@ build-prod:
 
 build: build-dev
 
-pre-publish:
-	sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
-
-publish:
-	sh node_modules/genericsuite/scripts/npm_publish.sh publish
-
 dev:
 	npm install --dev
 
@@ -57,10 +51,16 @@ config:
 config_qa:
 	sh node_modules/genericsuite/scripts/change_env_be_endpoint.sh qa
 
+config_demo:
+	sh node_modules/genericsuite/scripts/change_env_be_endpoint.sh demo
+
 deploy: config
 	sh node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
 
 deploy_qa: config_qa
+	sh node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
+
+deploy_demo: config_demo
 	sh node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
 
 run: config
@@ -86,3 +86,17 @@ add_submodules:
 
 create_ssl_certs:
 	sh node_modules/genericsuite/scripts/create_ssl_certs.sh
+
+## NPM scripts library
+
+config_lib:
+	sh node_modules/genericsuite/scripts/change_env_be_endpoint.sh dev
+
+run_lib: config_lib
+	sh node_modules/genericsuite/scripts/run_app_frontend.sh dev
+
+pre-publish:
+	sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
+
+publish:
+	sh node_modules/genericsuite/scripts/npm_publish.sh publish

@@ -2,7 +2,6 @@ import React from "react";
 
 import renderer from 'react-test-renderer';
 import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
 import { act } from "react-dom/test-utils";
 
 import { HomePage } from "./HomePage.jsx";

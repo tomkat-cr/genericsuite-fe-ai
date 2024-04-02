@@ -23,7 +23,7 @@ GenericSuite AI (frontend version) is based on [The GenericSuite](https://github
 
 You need to install these tools:
 
-- [Node](https://nodejs.org/en/download/package-manager) 18+
+- Node version 18+, installed via [NVM (Node Package Manager)](https://nodejs.org/en/download/package-manager) or [NPM and Node](https://nodejs.org/en/download) install.
 - [Git](https://www.atlassian.com/git/tutorials/install-git)
 - Make: [Mac](https://formulae.brew.sh/formula/make) | [Windows](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows)
 
@@ -31,39 +31,37 @@ You need to install these tools:
 
 To get started with GenericSuite AI, follow these simple steps:
 
-1. **Initiate your project**
+### Initiate your project
 
-   Create the ReactJs App. E.g. `exampleapp_frontend`:
+Create the ReactJs App. E.g. `exampleapp_frontend`:
 
-   ```bash
-   npx create-react-app exampleapp_frontend
-   ```
-   NOTE: Check the documentation [here](https://react.dev/learn/start-a-new-react-project) for alternatives.
+```bash
+npx create-react-app exampleapp_frontend
+```
 
-   Change to your frontend local development directory.<br/>
-   ```bash
-   cd exampleapp_frontend
-   ```
+It automatically performs the `npm init` and `git init`, adds the ReactJS dependencies, and creates a default ReactJS project structure.
 
-   CRA (`create-react-app`) is outdated, so we use [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) to to customize CRA configuration without the need to eject:
+NOTE: Check the documentation [here](https://react.dev/learn/start-a-new-react-project) for alternatives.
 
-   ```bash
-   npm install --save-dev react-app-rewired
-   ```
+Change to your frontend local development directory.<br/>
+```bash
+cd exampleapp_frontend
+```
 
-   Initialize the git respository:
+CRA (`create-react-app`) is outdated, so we use [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) to customize CRA configuration with no need to eject:
 
-   ```bash
-   git init
-   ```
+```bash
+npm install --save-dev react-app-rewired
+```
 
-2. **Install Library**
+### Install GenericSuite AI Library
 
-   ```bash
-   npm install genericsuite-ai
-   ```
+```bash
+npm install genericsuite-ai
+```
 
-3. **Install additional development dependencies**:
+### Install additional development dependencies
+
 ```bash
 npm install --save-dev \
    @babel/cli \
@@ -100,76 +98,87 @@ npm install --save-dev \
    whatwg-fetch
 ```
 
-4. **Prepare the Configuration File**:
+### Prepare the Configuration Files
 
-   Copy the template from `node_modules/genericsuite-ai`:
+Copy the template from `node_modules/genericsuite-ai`:
 
-   ```bash
-   cp node_modules/genericsuite-ai/.env.example ./.env
-   ```
-   
-   And configure the variables according your needs:
+```bash
+cp node_modules/genericsuite-ai/.env.example ./.env
+```
 
-   1. Replace `exampleapp` with your App's name.
+And configure the variables according your needs:
 
-   2. Replace `url-qa`, `url-staging` and `url-prod` with the corresponding public domain names for your App environments.
+1. Assign `REACT_APP_APP_NAME` with your App's name.
 
-   3. Configure your desired `RUN_METHOD`. Available options are "webpack" and "react-scripts". Defaults to "webpack".
+2. Assign `APP_LOCAL_DOMAIN_NAME` with the local development environment backend API domain name. E.g. app.exampleapp.local or localhost.<BR/>
+Defaults to app.${REACT_APP_APP_NAME}.local (the REACT_APP_APP_NAME will be converted to all lowercase).
 
-   4. Configure `BACKEND_PATH` with the path for your backend API local development repo.
+2. Assign `FRONTEND_LOCAL_PORT` with the port number for the local development environment backend API. Defaults to 3000.
 
-   5. Configure `GITHUB_USERNAME` and `GITHUB_REPONAME`. It will be used by `scripts/aws_deploy_to_s3.sh` to change the `homepage` in `package.json` with the proper public domain during the AWS S3 deployment and restores to GITHUB_USERNAME.github.io/GITHUB_REPONAME after that.
+3. Assign `BACKEND_LOCAL_PORT` with the port number for the local development environment backend API. Defaults to 5000.
 
-   6. Configure `GIT_SUBMODULE_LOCAL_PATH` and `GIT_SUBMODULE_URL` with the JSON files submodule parameters to stablish a common configuration place for both frontend and backend (used by add_github_submodules.sh).<BR/>For example files, visit: [https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs](https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs)
+4. Assign `APP_API_URL_QA`, `APP_API_URL_STAGING`, `APP_API_URL_PROD`, and `APP_API_URL_DEMO` with the corresponding public backend API domain names for your App environments.
 
-   7. Configure the `AWS_*` parameters with your AWS data (used by aws_deploy_to_s3.sh and change_env_be_endpoint.sh). You'll need an AWS account.
+5. Assign `APP_FE_URL_QA`, `APP_FE_URL_STAGING`, `APP_FE_URL_PROD`, and `APP_FE_URL_DEMO` with the corresponding public frontend domain names for your App environments.
 
-5. **Prepare the Makefile**
+6. Assign `REACT_APP_URI_PREFIX` with the App URI prefix. This will be used in all environments after the domain name. E.g. https://app.exampleapp.com/exampleapp_frontend
 
-   Copy the `Makefile` template from `node_modules/genericsuite-ai`:
+7. Configure your desired `RUN_METHOD`. Available options are "webpack" and "react-scripts". Defaults to "webpack".
 
-   ```bash
-   cp node_modules/genericsuite-ai/Makefile ./Makefile
-   ```
+8. Configure `BACKEND_PATH` with the path for your backend API local development repo.
 
-6. **Change Scripts in Package.json**
+9. Configure `GIT_SUBMODULE_LOCAL_PATH` and `GIT_SUBMODULE_URL` with the JSON files submodule parameters to stablish a common configuration place for both frontend and backend (used by add_github_submodules.sh).<BR/>For example files, visit: [Generic Suite Configuration Guide](https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs)
 
-   Open the `package.json`:
+10. Configure the `AWS_*` parameters with your AWS data (used by aws_deploy_to_s3.sh and change_env_be_endpoint.sh). You'll need an AWS account.
 
-   ```bash
-   vi ./package.json
-   # or
-   code ./package.json
-   ```
+For more information, check the comments for each variable in the [.env.example](https://github.com/tomkat-cr/genericsuite-fe-ai/blob/main/.env.example) file.
 
-   Add the homepage parameter:
+### Prepare the Makefile
 
-   ```package.json
-   "homepage": "https://your-github-username.github.io/your-github-repository/",
-   ```
-   ```
-   NOTE: replace `your-github-username` and `your-github-repository` with your owns.
-   ```
-   
-   Add the following scripts:
+Copy the `Makefile` template from `node_modules/genericsuite-ai`:
 
-   ```package.json
-     "scripts": {
-         "start": "node server.js",
-         "start-build": "./node_modules/react-app-rewired/bin/react-app-rewired.js build && node server.js",
-         "start-debug": "ls -lah && node server.js",
-         "start-dev": "react-app-rewired start",
-         "start-dev-webpack": "npx webpack-dev-server --config webpack.config.js",
-         "build-prod": "webpack --mode production",
-         "build-dev": "react-app-rewired build",
-         "build": "react-app-rewired build",
-         "eject-dev": "react-scripts eject",
-         "test-dev": "react-app-rewired test",
-         "test": "jest",
-         "predeploy": "npm run build",
-         "deploy": "gh-pages -d build"
-      },
-   ```
+```bash
+cp node_modules/genericsuite-ai/Makefile ./Makefile
+```
+
+### Change Scripts in Package.json
+
+Open the `package.json`:
+
+```bash
+vi ./package.json
+# or
+# code ./package.json
+```
+
+If you want to host your frontend on **github.io**, add the homepage parameter:
+
+```package.json
+"homepage": "https://your-github-username.github.io/your-github-repository/",
+```
+```
+NOTE: replace `your-github-username` and `your-github-repository` with your owns.
+```
+
+Add the following scripts:
+
+```package.json
+   "scripts": {
+      "start": "node server.js",
+      "start-build": "./node_modules/react-app-rewired/bin/react-app-rewired.js build && node server.js",
+      "start-debug": "ls -lah && node server.js",
+      "start-dev": "react-app-rewired start",
+      "start-dev-webpack": "npx webpack-dev-server --config webpack.config.js",
+      "build-prod": "webpack --mode production",
+      "build-dev": "react-app-rewired build",
+      "build": "react-app-rewired build",
+      "eject-dev": "react-scripts eject",
+      "test-dev": "react-app-rewired test",
+      "test": "jest",
+      "predeploy": "npm run build",
+      "deploy": "gh-pages -d build"
+   },
+```
 
 ## App structure
 
@@ -248,21 +257,21 @@ You can find examples about configurations and how to code an App in the [Generi
 
 To start the development server:
 
-   ```bash
-   make run
-   ```
+```bash
+make run
+```
 
 ## Deploy QA
 
 To perform a QA deployment over AWS S3:
 
-   ```bash
-   make deploy_qa
-   ```
+```bash
+make deploy_qa
+```
 
 ## License
 
-GenericSuite is open-sourced software licensed under the MIT license.
+GenericSuite AI is open-sourced software licensed under the ISC license.
 
 ## Credits
 

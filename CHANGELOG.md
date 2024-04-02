@@ -16,6 +16,30 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.10 (2024-04-01)
+---
+
+### New
+Add `make deploy_demo` and `make config_demo` to manage the "demo" stage.
+Add "demo" stage to REACT_APP_API_URL, and AWS_S3_BUCKET_NAME.
+Add APP_FE_URL_DEV, APP_FE_URL_QA, APP_FE_URL_STAGING, APP_FE_URL_PROD, APP_FE_URL_DEMO variables to .env file, to be used by "aws_deploy_to_s3.sh" and "change_env_be_endpoint.sh" as the frontend domain.
+Add the FRONTEND_LOCAL_PORT and BACKEND_LOCAL_PORT variables to .env file, to define the local frontend and backend port numbers.
+
+### Fixes
+Fix "add_github_submodules.sh" to do "git submodule init", "git submodule sync" and "git pull --tags origin main" instead of "git checkout origin/main" to effectively pull the JSON configs from the git repository when the directory specified in "GIT_SUBMODULE_LOCAL_PATH" already exists and "git submodule add" was already run.
+
+### Changes
+New version of genericsuite-fe 1.0.17.
+The REACT_APP_API_URL_DEV, REACT_APP_API_URL_QA, REACT_APP_API_URL_STAGING, REACT_APP_API_URL_PROD, and REACT_APP_API_URL_DEMO variable names in the .env file were renamed to APP_API_URL_DEV, APP_API_URL_QA, APP_API_URL_STAGING, APP_API_URL_PROD, and APP_API_URL_DEMO.
+The GITHUB_USERNAME and GITHUB_REPONAME variables are not longer required because "aws_deploy_to_s3.sh" just saves the existing value of "homepage" in package.json. Those 2 variables were removed from the .env file.
+"aws_deploy_to_s3.sh" take into account the APP_FE_URL domain in the CloudFront distribution creation.
+"make publish" report the package name and version in the publishing confirmation.
+"run_app_frontend.sh" assign APP_API_URL_DEV and REACT_APP_API_URL in the "dev" stage for both http and https modes. Previously it was only made for http.
+"config-overrides.js", "webpack.config.js" and "server.js" use the "FRONTEND_LOCAL_PORT" env. var.
+Node install links changed to include the NVM alternative download in the README.
+License changed to ISC [FA-244].
+
+
 ## 1.0.9 (2024-03-22)
 ---
 
