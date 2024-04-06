@@ -16,6 +16,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.11 (2024-04-06)
+---
+
+### Changes
+New version of genericsuite-fe 1.0.18.
+
+
 ## 1.0.10 (2024-04-01)
 ---
 
