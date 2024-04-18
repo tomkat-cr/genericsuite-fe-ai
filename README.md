@@ -1,6 +1,6 @@
 # GenericSuite AI for ReactJS (frontend version)
 
-![GenericSuite AI Logo](https://github.com/tomkat-cr/genericsuite-fe-ai/blob/main/src/lib/images/gs_ai_logo_circle.png)
+![GenericSuite AI Logo](https://genericsuite.carlosjramirez.com/images/gs_ai_logo_circle.svg)
 
 Welcome to GenericSuite AI, a comprehensive software solution designed to enhance your productivity and streamline your workflows. This repository contains the frontend part of GenericSuite AI, equipped with AI ChatBot tools, a customizable CRUD editor, login interface and a suite of tools to kickstart your development process.
 
@@ -30,6 +30,28 @@ You need to install these tools:
 ## Getting Started
 
 To get started with GenericSuite AI, follow these simple steps:
+
+### Create the git repositories
+
+Create the git repositories in your favorite Git Platform ([Github](https://github.com/), [Gitlab](https://gitlab.com/), [Bitbucket](https://bitbucket.org/)).
+
+One repository is for the frontend App, and the other for the configs (JSON configuration files) to be shared between the frontend and backend repos as a Git sub-module.
+
+Open a Terminal window and change to your repositories' root directory.
+
+Clone the repos.
+
+E.g. for a repo called `exampleapp_frontend` created in Github:
+
+```bash
+git clone https://github.com/tomkat-cr/exampleapp_frontend.git
+```
+
+And for the configs repo called `exampleapp_configs` created in Github:
+
+```bash
+git clone https://github.com/tomkat-cr/exampleapp_configs.git
+```
 
 ### Initiate your project
 
@@ -110,8 +132,9 @@ And configure the variables according your needs:
 
 1. Assign `REACT_APP_APP_NAME` with your App's name.
 
-2. Assign `APP_LOCAL_DOMAIN_NAME` with the local development environment backend API domain name. E.g. app.exampleapp.local or localhost.<BR/>
-Defaults to app.${REACT_APP_APP_NAME}.local (the REACT_APP_APP_NAME will be converted to all lowercase).
+2. Assign `APP_LOCAL_DOMAIN_NAME` with the local development environment backend API domain name.<br>
+E.g. `app.exampleapp.local` or `localhost`.<BR/>
+Defaults to `app.${REACT_APP_APP_NAME}.local` (the REACT_APP_APP_NAME will be converted to all lowercase).
 
 2. Assign `FRONTEND_LOCAL_PORT` with the port number for the local development environment backend API. Defaults to 3000.
 
@@ -127,7 +150,8 @@ Defaults to app.${REACT_APP_APP_NAME}.local (the REACT_APP_APP_NAME will be conv
 
 8. Configure `BACKEND_PATH` with the path for your backend API local development repo.
 
-9. Configure `GIT_SUBMODULE_LOCAL_PATH` and `GIT_SUBMODULE_URL` with the JSON files submodule parameters to stablish a common configuration place for both frontend and backend (used by add_github_submodules.sh).<BR/>For example files, visit: [Generic Suite Configuration Guide](https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs)
+9. Configure `GIT_SUBMODULE_LOCAL_PATH` and `GIT_SUBMODULE_URL` with the JSON files submodule parameters to stablish a common configuration place for both frontend and backend (used by add_github_submodules.sh).<BR/>
+For example files, visit: [Generic Suite Configuration Guide](https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs)
 
 10. Configure the `AWS_*` parameters with your AWS data (used by aws_deploy_to_s3.sh and change_env_be_endpoint.sh). You'll need an AWS account.
 
@@ -179,6 +203,19 @@ Add the following scripts:
       "deploy": "gh-pages -d build"
    },
 ```
+
+### Create the version file
+
+Create the `version.txt` file with the App version:
+
+```bash
+vi ./version.txt
+# or
+# code ./version.txt
+```
+
+Add the version number (e.g. `1.0.0`) and save the file.
+
 
 ## App structure
 

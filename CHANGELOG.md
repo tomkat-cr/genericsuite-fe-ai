@@ -16,6 +16,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## Unreleased
+---
+
+### Changes
+".env.example" GIT_SUBMODULE_URL and AWS_S3_BUCKET_NAME_* variables with more descriptive values.
+Change: README with main image from the official documentation site and .png version removed [FA-246].
+
+
 ## 1.0.11 (2024-04-06)
 ---
 
