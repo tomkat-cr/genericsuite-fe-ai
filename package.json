@@ -1,6 +1,6 @@
 {
   "name": "genericsuite-ai",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "The GenericSuite AI for ReactJS (frontend version).",
   "author": "Carlos J. Ramirez",
   "license": "MIT",
@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/tomkat-cr/genericsuite-fe-ai/issues"
   },
-  "homepage": "https://github.com/tomkat-cr/genericsuite-fe-ai#readme",
+  "homepage": "https://genericsuite.carlosjramirez.com/Frontend-Development/GenericSuite-AI/",
   "keywords": [
     "ai",
     "chatbot",
