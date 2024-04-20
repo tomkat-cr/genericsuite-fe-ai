@@ -167,6 +167,6 @@
     "fs": false
   },
   "dependencies": {
-    "genericsuite": "^1.0.18"
+    "genericsuite": "^1.0.19"
   }
 }
