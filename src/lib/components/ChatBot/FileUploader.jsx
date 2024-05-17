@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { TextEncoder, TextDecoder } from 'text-encoding';
 
 import * as gs from "genericsuite";
 
@@ -34,6 +35,9 @@ const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 const debug = true;
 
 const useAxios = true;
+
+global.TextEncoder = TextEncoder;
+global.TextDecoder = TextDecoder;
 
 export function FileUploader({
     id,

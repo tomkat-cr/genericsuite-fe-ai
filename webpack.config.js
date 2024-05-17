@@ -75,6 +75,10 @@ module.exports = {
             "vm": require.resolve("vm-browserify"),
             "tty": require.resolve("tty-browserify"),
             "constants": require.resolve("constants-browserify"),
+            "zlib": require.resolve("browserify-zlib"),
+            "https": require.resolve("https-browserify"),
+            "http": require.resolve("stream-http"),
+            "util": require.resolve("util"),
         }
     },
     plugins: [

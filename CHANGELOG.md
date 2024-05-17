@@ -16,6 +16,27 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.16 (2024-05-17)
+---
+
+### Fixes
+Try to fix the "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" error adding GenericSuite FE to prod dependencies.
+
+
+## 1.0.15 (2024-05-17)
+---
+
+### Fixes
+Try to fix the "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" error adding the TextEncodingPolyfill to index.cjs.
+
+
+## 1.0.14 (2024-05-17)
+---
+
+### Fixes
+Try to fix the Fix "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" using axios by installing by import "text-encoding" in <FileUploader>.
+
+
 ## 1.0.13 (2024-05-04)
 ---
 
