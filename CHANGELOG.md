@@ -16,6 +16,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.17 (2024-05-17)
+---
+
+### Fixes
+Fix the "Uncaught ReferenceError: global is not defined" error removing "global.TextEncoder" from <FileUploader>.
+
+
 ## 1.0.16 (2024-05-17)
 ---
 
