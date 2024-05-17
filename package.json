@@ -4,7 +4,7 @@
   "description": "The GenericSuite AI for ReactJS (frontend version).",
   "author": "Carlos J. Ramirez",
   "license": "MIT",
-  "type": "module",
+  "type1": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
@@ -166,5 +166,8 @@
   },
   "browser": {
     "fs": false
+  },
+  "dependencies": {
+    "axios": "^1.6.8"
   }
 }

@@ -19,9 +19,16 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ## 1.0.13 (2024-05-04)
 ---
 
+### New
+Add "axios" to send files to the FastAPk bacjend API [GS-68].
+
 ### Changes
 Break the AI libs dependency from its Core [GS-74].
 Redirect README instructions to the GenericSuite Documentation [GS-73].
+Add "fileTypeFilter" parameter to <FileUploader/> to upload any file type.
+
+### Changes
+Fix: <VoiceMessageRecorder /> to restore the other buttons when there's any error.
 
 
 ## 1.0.12 (2024-04-20)

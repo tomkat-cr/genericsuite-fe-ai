@@ -71,10 +71,10 @@ export const VoiceMessageRecorder = ({
         //     // something else
         // }).catch((e) => {
         //     console.error(e);
-        //     const errorMsg = 'We could not start recording:';
+        //     const errorMsgAux = 'We could not start recording:';
         //     console.error(errorMsg, e);
         //     setIsRecording(false);
-        //     setErrorMsg(`${errorMsg} ${e.message}`);
+        //     setErrorMsg(`${errorMsgAux} ${e.message}`);
         // });
     };
     
@@ -106,10 +106,11 @@ export const VoiceMessageRecorder = ({
             mediaRecorder.start(1000);
 
         } catch (error) {
-            const errorMsg = 'Error starting recording:';
+            const errorMsgAux = 'Error starting recording:';
             console.error(errorMsg, error);
             setIsRecording(false);
-            setErrorMsg(`${errorMsg} ${error.message}`);
+            setErrorMsg(`${errorMsgAux} ${error.message}`);
+            toggleIdVisibility("on", extControlsToShowHide);
         }
     };
 
@@ -139,10 +140,10 @@ export const VoiceMessageRecorder = ({
                     // const player = new Audio(URL.createObjectURL(file));
                     // player.play();
                 }).catch((e) => {
-                    const errorMsg = 'We could not retrieve your message:';
+                    const errorMsgAux = 'We could not retrieve your message:';
                     console.error(errorMsg, e);
                     setIsRecording(false);
-                    setErrorMsg(`${errorMsg} ${e.message}`);
+                    setErrorMsg(`${errorMsgAux} ${e.message}`);
                 });
         }
     };
