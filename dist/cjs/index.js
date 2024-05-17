@@ -17,7 +17,6 @@ var Downshift = require('downshift');
 var Container = require('react-bootstrap/cjs/Container.js');
 var Navbar = require('react-bootstrap/cjs/Navbar.js');
 var axios = require('axios');
-var textEncoding = require('text-encoding');
 var reactSyntaxHighlighter = require('react-syntax-highlighter');
 var index_js = require('react-syntax-highlighter/dist/cjs/styles/prism/index.js');
 var index_js$1 = require('react-syntax-highlighter/dist/cjs/styles/hljs/index.js');
@@ -5295,8 +5294,6 @@ const console_debug_log$1 = logging_service.console_debug_log;
 const formatCaughtError$2 = errorAndReenter.formatCaughtError;
 const toggleIdVisibility$2 = ui.toggleIdVisibility;
 const BUTTON_LISTING_CLASS$3 = class_name_constants.BUTTON_LISTING_CLASS;
-global.TextEncoder = textEncoding.TextEncoder;
-global.TextDecoder = textEncoding.TextDecoder;
 function FileUploader(_ref) {
   let {
     id,

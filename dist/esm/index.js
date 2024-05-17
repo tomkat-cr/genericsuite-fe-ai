@@ -15,7 +15,6 @@ import Downshift from 'downshift';
 import Container from 'react-bootstrap/cjs/Container.js';
 import Navbar from 'react-bootstrap/cjs/Navbar.js';
 import axios from 'axios';
-import { TextEncoder, TextDecoder } from 'text-encoding';
 import { Prism, Light } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
 import { grayscale } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
@@ -5274,8 +5273,6 @@ const console_debug_log$1 = logging_service.console_debug_log;
 const formatCaughtError$2 = errorAndReenter.formatCaughtError;
 const toggleIdVisibility$2 = ui.toggleIdVisibility;
 const BUTTON_LISTING_CLASS$3 = class_name_constants.BUTTON_LISTING_CLASS;
-global.TextEncoder = TextEncoder;
-global.TextDecoder = TextDecoder;
 function FileUploader(_ref) {
   let {
     id,
