@@ -21,6 +21,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Fixes
 Fix the "Uncaught ReferenceError: global is not defined" error removing "global.TextEncoder" from <FileUploader>.
+Fix the "TextEncoder is not a constructor" error moving "axios", "browserify-zlib", "https-browserify", "net", "stream-http", "text-encoding", "util" to the peerDependencies.
 
 
 ## 1.0.16 (2024-05-17)
