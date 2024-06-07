@@ -33,7 +33,7 @@ const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
 const debug = true;
 
-const useAxios = true;
+const useAxios = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 
 export function FileUploader({
     id,

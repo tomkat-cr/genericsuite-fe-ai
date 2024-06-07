@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useRef } from 'react';
+import axios from 'axios';
 
 import * as gs from "genericsuite";
 
@@ -27,11 +28,12 @@ const getMediaTypeToRecord = gs.media.getMediaTypeToRecord;
 const mediaSupported = gs.media.mediaSupported;
 const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
-const debug = false;
+const debug = true;
 
 const extControlsToShowHide = ['user_input', 'user_input_submit', 'fileUploader', 'cameraComponent'];
 
 const useMicRecorder = false;
+const useAxios = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 
 export const VoiceMessageRecorder = ({
     id,
@@ -155,11 +157,54 @@ export const VoiceMessageRecorder = ({
         }
     };
 
+    const sendFile = async (url, formData, authHeader, queryParams) => {
+        const headers = Object.assign(
+            { 
+                'Access-Control-Allow-Origin': '*',
+            }, 
+            authHeader
+        );
+        try {
+            const response = await axios.post(url, formData, {
+                headers: headers,
+                params: queryParams,
+            });
+            // Hide WaitAnimation after fetching data
+            dispatchWaitAnimation(false, dispatch);
+            if (debug) {
+                console_debug_log('[FA] VoiceMessageRecorder is calling setExternalInputMessage', response.data);
+            }
+            // Send the transcript to the input text box
+            setExternalInputMessage(response.data.response);
+            // Restore buttons in the input text area
+            toggleIdVisibility("on", extControlsToShowHide);
+            // Update the size of the input text area if the handleUpdateSize function is provided.
+            if (handleUpdateSize) {
+                handleUpdateSize();
+            }
+            // Send the message if the sendMessage function is provided (automatic send functionality).
+            if (sendMessage) {
+                sendMessage();
+            }
+        } catch (errorRaw) {
+            console.error(errorRaw);
+            // Hide WaitAnimation after the error
+            const error = errorRaw.message + (typeof errorRaw.response !== 'undefined' ?  ": " + errorRaw.response.data : '');
+            // Hide WaitAnimation after the error
+            dispatchWaitAnimation(false, dispatch);
+            // Restore buttons in the input text area
+            toggleIdVisibility("on", extControlsToShowHide);
+            // Send error message to the chatbot
+            console.error('[FA] Error sending voice message:', error);
+            setErrorMsg(error.message);
+        }
+    };
+
     useEffect(() => {
         if (debug) {
             console_debug_log(`VoiceMessageRecorder | useEffect() of sendVoiceMessage | isRecording: ${isRecording}`);
         }
-        const sendVoiceMessage = () => {
+        const sendVoiceMessage = async () => {
             if (!audioData) {
                 return;
             }
@@ -171,7 +216,7 @@ export const VoiceMessageRecorder = ({
             const appleDevice = extension === 'mp4';
             const sourceLang = (appleDevice ? 'get_user_lang' : 'auto');
             const other = (appleDevice ? 'no_mp3_native_support' : '');
-            formData.append('audio', audioData, fileName);
+            formData.append('file', audioData, fileName);
             const options = {
                 raw_body: true,
                 headers: MULTIPART_FORM_DATA_HEADER
@@ -188,50 +233,56 @@ export const VoiceMessageRecorder = ({
             // Clear previous message in the input text area
             setExternalInputMessage('');
             // Update the size of the input text area if the handleUpdateSize function is provided.
-            if (handleUpdateSize) {
-                handleUpdateSize();
-            }
+            // if (handleUpdateSize) {
+            //     handleUpdateSize();
+            // }
             // Clear audio data
             setAudioData(null);
             // Show WaitAnimation while fetching data
             dispatchWaitAnimation(true, dispatch);
-            db.getAll(query_params, formData, 'POST', options).then(
-                data => {
-                    if (debug) {
-                        console_debug_log("VoiceMessageRecorder | sendVoiceMessage | data:", data);
+            if (useAxios) {
+                const authHeader = gs.authHeader.authHeader();
+                const endpointUrl = `${process.env.REACT_APP_API_URL}/${"ai/voice_to_text"}`;
+                await sendFile(endpointUrl, formData, authHeader, query_params)
+            } else {
+                db.getAll(query_params, formData, 'POST', options).then(
+                    data => {
+                        if (debug) {
+                            console_debug_log("VoiceMessageRecorder | sendVoiceMessage | data:", data);
+                        }
+                        // Hide WaitAnimation after fetching data
+                        dispatchWaitAnimation(false, dispatch);
+                        if (debug) {
+                            console_debug_log('VoiceMessageRecorder is calling setExternalInputMessage', data.response);
+                        }
+                        // Send the transcript to the input text box
+                        setExternalInputMessage(data.response);
+                        // Restore buttons in the input text area
+                        toggleIdVisibility("on", extControlsToShowHide);
+                        // Update the size of the input text area if the handleUpdateSize function is provided.
+                        // if (handleUpdateSize) {
+                        //     handleUpdateSize();
+                        // }
+                        // Send the message if the sendMessage function is provided (automatic send functionality).
+                        if (sendMessage) {
+                            sendMessage();
+                        }
+                    },
+                    error => {
+                        error = formatCaughtError(error);
+                        if (debug) {
+                            console_debug_log("VoiceMessageRecorder | sendVoiceMessage | ERROR:", error);
+                        }
+                        // Hide WaitAnimation after the error
+                        dispatchWaitAnimation(false, dispatch);
+                        // Restore buttons in the input text area
+                        toggleIdVisibility("on", extControlsToShowHide);
+                        // Send error message to the chatbot
+                        console.error('Error sending voice message:', error);
+                        setErrorMsg(error.message);
                     }
-                    // Hide WaitAnimation after fetching data
-                    dispatchWaitAnimation(false, dispatch);
-                    if (debug) {
-                        console_debug_log(`VoiceMessageRecorder is calling setExternalInputMessage("${data.response}")`);
-                    }
-                    // Send the transcript to the input text box
-                    setExternalInputMessage(data.response);
-                    // Restore buttons in the input text area
-                    toggleIdVisibility("on", extControlsToShowHide);
-                    // Update the size of the input text area if the handleUpdateSize function is provided.
-                    if (handleUpdateSize) {
-                        handleUpdateSize();
-                    }
-                    // Send the message if the sendMessage function is provided (automatic send functionality).
-                    if (sendMessage) {
-                        sendMessage();
-                    }
-                },
-                error => {
-                    error = formatCaughtError(error);
-                    if (debug) {
-                        console_debug_log("VoiceMessageRecorder | sendVoiceMessage | ERROR:", error);
-                    }
-                    // Hide WaitAnimation after the error
-                    dispatchWaitAnimation(false, dispatch);
-                    // Restore buttons in the input text area
-                    toggleIdVisibility("on", extControlsToShowHide);
-                    // Send error message to the chatbot
-                    console.error('Error sending voice message:', error);
-                    setErrorMsg(error.message);
-                }
-            );
+                );
+            }
         };
         if (!isRecording && audioData) {
             sendVoiceMessage();

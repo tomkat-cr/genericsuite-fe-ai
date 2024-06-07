@@ -16,6 +16,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.18 (2024-06-06)
+---
+
+### New
+Add REACT_APP_USE_AXIOS env. var. to eventually suppress use of axios to send files. Axios is needed for FastAPI based API backend. Defaults to "1" [GS-95].
+
+### Fixes
+Fix audio processing issues in FastAPI Apps [GS-95].
+Revert the box size and location on <VoiceMessageRecorder> change [GS-4].
+
+
 ## 1.0.17 (2024-05-17)
 ---
 
