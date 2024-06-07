@@ -698,10 +698,10 @@ var blob_files_utilities = /*#__PURE__*/Object.freeze({
 });
 
 // export const MULTIPART_FORM_DATA_HEADER = {'Content-Type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW'};
-const MULTIPART_FORM_DATA_HEADER$2 = {
+const MULTIPART_FORM_DATA_HEADER$3 = {
   'Content-Type': 'multipart/form-data'
 };
-let dbApiService$3 = class dbApiService {
+let dbApiService$4 = class dbApiService {
   constructor(props) {
     _defineProperty(this, "props", null);
     _defineProperty(this, "apiUrl", process.env.REACT_APP_API_URL);
@@ -916,9 +916,9 @@ const convertId$2 = id => {
 
 var db_service = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    MULTIPART_FORM_DATA_HEADER: MULTIPART_FORM_DATA_HEADER$2,
+    MULTIPART_FORM_DATA_HEADER: MULTIPART_FORM_DATA_HEADER$3,
     convertId: convertId$2,
-    dbApiService: dbApiService$3
+    dbApiService: dbApiService$4
 });
 
 // Authentication service
@@ -942,7 +942,7 @@ function login(username, password) {
       "Authorization": "Basic " + Buffer.from(username + ":" + password).toString('base64')
     }
   };
-  let userService = new dbApiService$3({
+  let userService = new dbApiService$4({
     url: 'users'
   });
   return fetch("".concat(config.apiUrl, "/users/login"), requestOptions).then(handleResponse, handleFetchError).then(res => {
@@ -964,7 +964,7 @@ function login(username, password) {
   });
 }
 const getUserData = userId => {
-  const dbApi = new dbApiService$3({
+  const dbApi = new dbApiService$4({
     url: 'users'
   });
   return dbApi.getOne({
@@ -1713,7 +1713,7 @@ const getMenuFromApi = (state, setState, setMenuOptions) => {
     return;
   }
   const endpoint = "menu_options";
-  const db = new dbApiService$3({
+  const db = new dbApiService$4({
     url: endpoint
   });
   db.getAll().then(data => {
@@ -2112,7 +2112,7 @@ const getEditoObj = (props, editor_response) => {
   editor.error = null;
   editor.errorMsg = null;
   // Database backend handler
-  editor.db = new dbApiService$3({
+  editor.db = new dbApiService$4({
     url: editor.dbApiUrl
   });
   // Child components
@@ -2239,7 +2239,7 @@ const verifyEditorObj = editorObj => {
     return Promise.resolve(gfd_response);
   }
   const endpoint = "menu_options/element";
-  const db = new dbApiService$3({
+  const db = new dbApiService$4({
     url: endpoint
   });
   const json_body = {
@@ -2347,7 +2347,7 @@ const SuggestionDropdown = _ref => {
   useEffect(() => {
     if (inputValue) {
       // Get suggestions from external surce
-      const dbService = new dbApiService$3({
+      const dbService = new dbApiService$4({
         url: filter_api_url
       });
       let urlParams = {};
@@ -3022,7 +3022,7 @@ const saveRowToDatabase = (editor, action, rowId, submitedtElements, initialValu
     rowToSave[editor.array_name + "_old"] = initialValues; // array object in the parent row with initial values
   }
   // Save the row to Database
-  const dbService = new dbApiService$3({
+  const dbService = new dbApiService$4({
     url: editor.dbApiUrl
   });
   return dbService.createUpdateDelete(action, rowId, rowToSave);
@@ -3098,7 +3098,7 @@ const getFieldElementsDbValues = function (editor, datasetRaw) {
   }
   // }
 
-  const dbService = new dbApiService$3({
+  const dbService = new dbApiService$4({
     url: editor.dbApiUrl
   });
   const verifyElementExistence = (dataset, element) => {
@@ -4727,16 +4727,17 @@ const setConversationListToggle = (conversationListToggle, dispatch) => {
 };
 
 fontawesome.library.add(faMicrophone, faStop);
-const dbApiService$2 = db_service.dbApiService;
-const MULTIPART_FORM_DATA_HEADER$1 = db_service.MULTIPART_FORM_DATA_HEADER;
+const dbApiService$3 = db_service.dbApiService;
+const MULTIPART_FORM_DATA_HEADER$2 = db_service.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log$3 = logging_service.console_debug_log;
 const formatCaughtError$4 = errorAndReenter.formatCaughtError;
 const toggleIdVisibility$3 = ui.toggleIdVisibility;
 const getMediaTypeToRecord = media.getMediaTypeToRecord;
 const mediaSupported = media.mediaSupported;
 const BUTTON_LISTING_CLASS$4 = class_name_constants.BUTTON_LISTING_CLASS;
-const debug = false;
+const debug = true;
 const extControlsToShowHide$1 = ['user_input', 'user_input_submit', 'fileUploader', 'cameraComponent'];
+const useAxios$1 = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 const VoiceMessageRecorder = _ref => {
   let {
     id,
@@ -4763,8 +4764,8 @@ const VoiceMessageRecorder = _ref => {
         audio: true
       });
       const mediaType = getMediaTypeToRecord();
-      if (debug) ;
-      if (debug) ;
+      if (debug) console_debug_log$3("VoiceMessageRecorder | startRecording | extension: ".concat(mediaType["extension"]));
+      if (debug) console_debug_log$3("mediaSupported", mediaSupported());
 
       // Set the MediaRecorder options   
       const mediaRecorder = new MediaRecorder(stream, mediaType["options"]);
@@ -4805,8 +4806,50 @@ const VoiceMessageRecorder = _ref => {
       setIsRecording(false);
     }
   };
+  const sendFile = async (url, formData, authHeader, queryParams) => {
+    const headers = Object.assign({
+      'Access-Control-Allow-Origin': '*'
+    }, authHeader);
+    try {
+      const response = await axios.post(url, formData, {
+        headers: headers,
+        params: queryParams
+      });
+      // Hide WaitAnimation after fetching data
+      dispatchWaitAnimation(false, dispatch);
+      if (debug) {
+        console_debug_log$3('[FA] VoiceMessageRecorder is calling setExternalInputMessage', response.data);
+      }
+      // Send the transcript to the input text box
+      setExternalInputMessage(response.data.response);
+      // Restore buttons in the input text area
+      toggleIdVisibility$3("on", extControlsToShowHide$1);
+      // Update the size of the input text area if the handleUpdateSize function is provided.
+      if (handleUpdateSize) {
+        handleUpdateSize();
+      }
+      // Send the message if the sendMessage function is provided (automatic send functionality).
+      if (sendMessage) {
+        sendMessage();
+      }
+    } catch (errorRaw) {
+      console.error(errorRaw);
+      // Hide WaitAnimation after the error
+      const error = errorRaw.message + (typeof errorRaw.response !== 'undefined' ? ": " + errorRaw.response.data : '');
+      // Hide WaitAnimation after the error
+      dispatchWaitAnimation(false, dispatch);
+      // Restore buttons in the input text area
+      toggleIdVisibility$3("on", extControlsToShowHide$1);
+      // Send error message to the chatbot
+      console.error('[FA] Error sending voice message:', error);
+      setErrorMsg(error.message);
+    }
+  };
   useEffect(() => {
-    const sendVoiceMessage = () => {
+    {
+      console_debug_log$3("VoiceMessageRecorder | useEffect() of sendVoiceMessage | isRecording: ".concat(isRecording));
+    }
+    const sendVoiceMessage = async () => {
       if (!audioData) {
         return;
       }
@@ -4818,54 +4861,72 @@ const VoiceMessageRecorder = _ref => {
       const appleDevice = extension === 'mp4';
       const sourceLang = appleDevice ? 'get_user_lang' : 'auto';
       const other = appleDevice ? 'no_mp3_native_support' : '';
-      formData.append('audio', audioData, fileName);
+      formData.append('file', audioData, fileName);
       const options = {
         raw_body: true,
-        headers: MULTIPART_FORM_DATA_HEADER$1
+        headers: MULTIPART_FORM_DATA_HEADER$2
       };
       const query_params = {
         "extension": extension,
         "source_lang": sourceLang,
         "other": other
       };
-      const db = new dbApiService$2({
+      const db = new dbApiService$3({
         url: "ai/voice_to_text"
       });
+      {
+        console_debug_log$3("VoiceMessageRecorder | sendVoiceMessage | fileName: ".concat(fileName));
+      }
       // Clear previous message in the input text area
       setExternalInputMessage('');
       // Update the size of the input text area if the handleUpdateSize function is provided.
-      if (handleUpdateSize) {
-        handleUpdateSize();
-      }
+      // if (handleUpdateSize) {
+      //     handleUpdateSize();
+      // }
       // Clear audio data
       setAudioData(null);
       // Show WaitAnimation while fetching data
       dispatchWaitAnimation(true, dispatch);
-      db.getAll(query_params, formData, 'POST', options).then(data => {
-        // Hide WaitAnimation after fetching data
-        dispatchWaitAnimation(false, dispatch);
-        // Send the transcript to the input text box
-        setExternalInputMessage(data.response);
-        // Restore buttons in the input text area
-        toggleIdVisibility$3("on", extControlsToShowHide$1);
-        // Update the size of the input text area if the handleUpdateSize function is provided.
-        if (handleUpdateSize) {
-          handleUpdateSize();
-        }
-        // Send the message if the sendMessage function is provided (automatic send functionality).
-        if (sendMessage) {
-          sendMessage();
-        }
-      }, error => {
-        error = formatCaughtError$4(error);
-        // Hide WaitAnimation after the error
-        dispatchWaitAnimation(false, dispatch);
-        // Restore buttons in the input text area
-        toggleIdVisibility$3("on", extControlsToShowHide$1);
-        // Send error message to the chatbot
-        console.error('Error sending voice message:', error);
-        setErrorMsg(error.message);
-      });
+      if (useAxios$1) {
+        const authHeader = authHeader$1.authHeader();
+        const endpointUrl = "".concat(process.env.REACT_APP_API_URL, "/", "ai/voice_to_text");
+        await sendFile(endpointUrl, formData, authHeader, query_params);
+      } else {
+        db.getAll(query_params, formData, 'POST', options).then(data => {
+          {
+            console_debug_log$3("VoiceMessageRecorder | sendVoiceMessage | data:", data);
+          }
+          // Hide WaitAnimation after fetching data
+          dispatchWaitAnimation(false, dispatch);
+          {
+            console_debug_log$3('VoiceMessageRecorder is calling setExternalInputMessage', data.response);
+          }
+          // Send the transcript to the input text box
+          setExternalInputMessage(data.response);
+          // Restore buttons in the input text area
+          toggleIdVisibility$3("on", extControlsToShowHide$1);
+          // Update the size of the input text area if the handleUpdateSize function is provided.
+          // if (handleUpdateSize) {
+          //     handleUpdateSize();
+          // }
+          // Send the message if the sendMessage function is provided (automatic send functionality).
+          if (sendMessage) {
+            sendMessage();
+          }
+        }, error => {
+          error = formatCaughtError$4(error);
+          {
+            console_debug_log$3("VoiceMessageRecorder | sendVoiceMessage | ERROR:", error);
+          }
+          // Hide WaitAnimation after the error
+          dispatchWaitAnimation(false, dispatch);
+          // Restore buttons in the input text area
+          toggleIdVisibility$3("on", extControlsToShowHide$1);
+          // Send error message to the chatbot
+          console.error('Error sending voice message:', error);
+          setErrorMsg(error.message);
+        });
+      }
     };
     if (!isRecording && audioData) {
       sendVoiceMessage();
@@ -4891,7 +4952,7 @@ const VoiceMessageRecorder = _ref => {
 
 const formatCaughtError$3 = errorAndReenter.formatCaughtError;
 const authenticationService = authentication_service.authenticationService;
-const dbApiService$1 = db_service.dbApiService;
+const dbApiService$2 = db_service.dbApiService;
 const defaultValue = generic_editor_utilities.defaultValue;
 const console_debug_log$2 = logging_service.console_debug_log;
 
@@ -5004,7 +5065,7 @@ const ApiCall = async (dispatch, params) => {
   const options = defaultValue(params, "options", {});
   const responseAttrName = defaultValue(params, "responseAttrName", "resultset");
   let response;
-  const db = new dbApiService$1({
+  const db = new dbApiService$2({
     url: endpointUrl
   });
   // Set API processing status
@@ -5267,12 +5328,13 @@ faTimes,
 // Close
 faPaperclip // Added clip icon
 );
-db_service.dbApiService;
-db_service.MULTIPART_FORM_DATA_HEADER;
+const dbApiService$1 = db_service.dbApiService;
+const MULTIPART_FORM_DATA_HEADER$1 = db_service.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log$1 = logging_service.console_debug_log;
 const formatCaughtError$2 = errorAndReenter.formatCaughtError;
 const toggleIdVisibility$2 = ui.toggleIdVisibility;
 const BUTTON_LISTING_CLASS$3 = class_name_constants.BUTTON_LISTING_CLASS;
+const useAxios = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 function FileUploader(_ref) {
   let {
     id,
@@ -5332,6 +5394,10 @@ function FileUploader(_ref) {
       const formData = new FormData();
       const fileSize = (selectedFile.size / (1024 * 1024)).toFixed(2); // Mb
       formData.append('file', selectedFile, selectedFile.name);
+      const options = {
+        raw_body: true,
+        headers: MULTIPART_FORM_DATA_HEADER$1
+      };
       const query = {
         "cid": state.currentConversationId,
         question: question,
@@ -5351,10 +5417,48 @@ function FileUploader(_ref) {
       {
         console_debug_log$1("FileUploader | selectedFile:", selectedFile);
       }
-      {
+      if (useAxios) {
         const authHeader = authHeader$1.authHeader();
         const endpointUrl = "".concat(process.env.REACT_APP_API_URL, "/", "ai/image_to_text");
         await sendFile(endpointUrl, formData, authHeader, query);
+      } else {
+        const db = new dbApiService$1({
+          url: "ai/image_to_text"
+        });
+        db.getAll(query, formData, 'POST', options).then(data => {
+          {
+            console_debug_log$1("FileUploader | handleUpload | data:", data);
+          }
+          dispatchWaitAnimation(false, dispatch);
+          {
+            console_debug_log$1("FileUploader is calling checkConversationIdChange(\"".concat(data, "\")"));
+          }
+          // addMessageToConversation(data.response, "assistant", dispatch);
+          checkConversationIdChange(state, dispatch, data).then(() => {
+            // Current conversation updated sucssesfuly
+          }, error => {
+            error = formatCaughtError$2(error);
+            {
+              console_debug_log$1("FileUploader | checkConversationIdChange | ERROR:", error);
+            }
+            setChatbotErrorMsg(error.message, dispatch);
+          });
+          setSelectedFile(null);
+          setButtonToggle(false);
+        }, errorRaw => {
+          // Hide WaitAnimation after the error
+          const error = formatCaughtError$2(errorRaw);
+          {
+            console_debug_log$1(">>--> FileUploader | handleUpload | errorRaw:", errorRaw);
+          }
+          dispatchWaitAnimation(false, dispatch);
+          console.error('Error uploading the file:', error);
+          // setExternalErrorMsg(error.message);
+          setChatbotErrorMsg(error.message, dispatch);
+          {
+            console_debug_log$1("FileUploader | after setExternalErrorMsg...");
+          }
+        });
       }
     } else {
       alert('Please select a file to upload.');
