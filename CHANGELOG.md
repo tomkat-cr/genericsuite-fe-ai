@@ -16,6 +16,71 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.18 (2024-06-06)
+---
+
+### New
+Add REACT_APP_USE_AXIOS env. var. to eventually suppress use of axios to send files. Axios is needed for FastAPI based API backend. Defaults to "1" [GS-95].
+
+### Fixes
+Fix audio processing issues in FastAPI Apps [GS-95].
+Revert the box size and location on <VoiceMessageRecorder> change [GS-4].
+
+
+## 1.0.17 (2024-05-17)
+---
+
+### Fixes
+Fix the "Uncaught ReferenceError: global is not defined" error removing "global.TextEncoder" from <FileUploader>.
+Fix the "TextEncoder is not a constructor" error moving "axios", "browserify-zlib", "https-browserify", "net", "stream-http", "text-encoding", "util" to the peerDependencies.
+
+
+## 1.0.16 (2024-05-17)
+---
+
+### Fixes
+Try to fix the "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" error adding GenericSuite FE to prod dependencies.
+
+
+## 1.0.15 (2024-05-17)
+---
+
+### Fixes
+Try to fix the "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" error adding the TextEncodingPolyfill to index.cjs.
+
+
+## 1.0.14 (2024-05-17)
+---
+
+### Fixes
+Try to fix the Fix "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" using axios by installing by import "text-encoding" in <FileUploader>.
+
+
+## 1.0.13 (2024-05-04)
+---
+
+### New
+Add "axios" to send files to the FastAPk bacjend API [GS-68].
+
+### Changes
+Break the AI libs dependency from its Core [GS-74].
+Redirect README instructions to the GenericSuite Documentation [GS-73].
+Add "fileTypeFilter" parameter to <FileUploader/> to upload any file type.
+
+### Changes
+Fix: <VoiceMessageRecorder /> to restore the other buttons when there's any error.
+
+
+## 1.0.12 (2024-04-20)
+---
+
+### Changes
+New version of genericsuite-fe 1.0.19 with FastAPI enhanced support [FA-246].
+".env.example" GIT_SUBMODULE_URL and AWS_S3_BUCKET_NAME_* variables with more descriptive values.
+README with main image from the official documentation site, and .png version removed [FA-246].
+Homepage pointed to "https://genericsuite.carlosjramirez.com/Frontend-Development/GenericSuite-AI/" [FA-257].
+
+
 ## 1.0.11 (2024-04-06)
 ---
 

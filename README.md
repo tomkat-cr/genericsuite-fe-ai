@@ -1,6 +1,12 @@
 # GenericSuite AI for ReactJS (frontend version)
 
-![GenericSuite AI Logo](https://github.com/tomkat-cr/genericsuite-fe-ai/blob/main/src/lib/images/gs_ai_logo_circle.png)
+<img 
+    align="right"
+    width="100"
+    height="100"
+    src="https://genericsuite.carlosjramirez.com/images/gs_ai_logo_circle.svg"
+    title="GenericSuite AI logo by Carlos J. Ramirez"
+/>
 
 Welcome to GenericSuite AI, a comprehensive software solution designed to enhance your productivity and streamline your workflows. This repository contains the frontend part of GenericSuite AI, equipped with AI ChatBot tools, a customizable CRUD editor, login interface and a suite of tools to kickstart your development process.
 
@@ -19,255 +25,18 @@ The perfect companion for this frontend solution is the [backend version of The 
 
 GenericSuite AI (frontend version) is based on [The GenericSuite](https://github.com/tomkat-cr/genericsuite-fe).
 
-## Pre-requisites
-
-You need to install these tools:
-
-- Node version 18+, installed via [NVM (Node Package Manager)](https://nodejs.org/en/download/package-manager) or [NPM and Node](https://nodejs.org/en/download) install.
-- [Git](https://www.atlassian.com/git/tutorials/install-git)
-- Make: [Mac](https://formulae.brew.sh/formula/make) | [Windows](https://stackoverflow.com/questions/32127524/how-to-install-and-use-make-in-windows)
-
 ## Getting Started
 
-To get started with GenericSuite AI, follow these simple steps:
+Visit the [GenericSuite Documentation](https://genericsuite.carlosjramirez.com/Frontend-Development/GenericSuite-AI/) for details about getting started, pre-requisites, installation, configuration, structure and operation.
 
-### Initiate your project
+## Usage
 
-Create the ReactJs App. E.g. `exampleapp_frontend`:
+Check the [The GenericSuite usage](https://genericsuite.carlosjramirez.com/Frontend-Development/GenericSuite-AI#usage) for more details.
 
-```bash
-npx create-react-app exampleapp_frontend
-```
+## Documentation
 
-It automatically performs the `npm init` and `git init`, adds the ReactJS dependencies, and creates a default ReactJS project structure.
-
-NOTE: Check the documentation [here](https://react.dev/learn/start-a-new-react-project) for alternatives.
-
-Change to your frontend local development directory.<br/>
-```bash
-cd exampleapp_frontend
-```
-
-CRA (`create-react-app`) is outdated, so we use [react-app-rewired](https://www.npmjs.com/package/react-app-rewired) to customize CRA configuration with no need to eject:
-
-```bash
-npm install --save-dev react-app-rewired
-```
-
-### Install GenericSuite AI Library
-
-```bash
-npm install genericsuite-ai
-```
-
-### Install additional development dependencies
-
-```bash
-npm install --save-dev \
-   @babel/cli \
-   @babel/core \
-   @babel/plugin-proposal-class-properties \
-   @babel/plugin-proposal-private-property-in-object \
-   @babel/plugin-syntax-jsx \
-   @babel/preset-env \
-   @babel/preset-react \
-   @babel/preset-stage-0 \
-   @babel/preset-typescript \
-   @testing-library/jest-dom \
-   @testing-library/react \
-   @testing-library/user-event \
-   @types/jest \
-   @types/react \
-   babel-jest \
-   babel-loader \
-   babel-plugin-css-modules-transform \
-   file-loader \
-   html-webpack-plugin \
-   jest \
-   jest-environment-jsdom \
-   path \
-   postcss \
-   postcss-loader \
-   react-test-renderer \
-   style-loader \
-   tailwindcss \
-   url-loader \
-   webpack \
-   webpack-cli \
-   webpack-dev-server \
-   whatwg-fetch
-```
-
-### Prepare the Configuration Files
-
-Copy the template from `node_modules/genericsuite-ai`:
-
-```bash
-cp node_modules/genericsuite-ai/.env.example ./.env
-```
-
-And configure the variables according your needs:
-
-1. Assign `REACT_APP_APP_NAME` with your App's name.
-
-2. Assign `APP_LOCAL_DOMAIN_NAME` with the local development environment backend API domain name. E.g. app.exampleapp.local or localhost.<BR/>
-Defaults to app.${REACT_APP_APP_NAME}.local (the REACT_APP_APP_NAME will be converted to all lowercase).
-
-2. Assign `FRONTEND_LOCAL_PORT` with the port number for the local development environment backend API. Defaults to 3000.
-
-3. Assign `BACKEND_LOCAL_PORT` with the port number for the local development environment backend API. Defaults to 5000.
-
-4. Assign `APP_API_URL_QA`, `APP_API_URL_STAGING`, `APP_API_URL_PROD`, and `APP_API_URL_DEMO` with the corresponding public backend API domain names for your App environments.
-
-5. Assign `APP_FE_URL_QA`, `APP_FE_URL_STAGING`, `APP_FE_URL_PROD`, and `APP_FE_URL_DEMO` with the corresponding public frontend domain names for your App environments.
-
-6. Assign `REACT_APP_URI_PREFIX` with the App URI prefix. This will be used in all environments after the domain name. E.g. https://app.exampleapp.com/exampleapp_frontend
-
-7. Configure your desired `RUN_METHOD`. Available options are "webpack" and "react-scripts". Defaults to "webpack".
-
-8. Configure `BACKEND_PATH` with the path for your backend API local development repo.
-
-9. Configure `GIT_SUBMODULE_LOCAL_PATH` and `GIT_SUBMODULE_URL` with the JSON files submodule parameters to stablish a common configuration place for both frontend and backend (used by add_github_submodules.sh).<BR/>For example files, visit: [Generic Suite Configuration Guide](https://github.com/tomkat-cr/genericsuite-fe/tree/main/src/configs)
-
-10. Configure the `AWS_*` parameters with your AWS data (used by aws_deploy_to_s3.sh and change_env_be_endpoint.sh). You'll need an AWS account.
-
-For more information, check the comments for each variable in the [.env.example](https://github.com/tomkat-cr/genericsuite-fe-ai/blob/main/.env.example) file.
-
-### Prepare the Makefile
-
-Copy the `Makefile` template from `node_modules/genericsuite-ai`:
-
-```bash
-cp node_modules/genericsuite-ai/Makefile ./Makefile
-```
-
-### Change Scripts in Package.json
-
-Open the `package.json`:
-
-```bash
-vi ./package.json
-# or
-# code ./package.json
-```
-
-If you want to host your frontend on **github.io**, add the homepage parameter:
-
-```package.json
-"homepage": "https://your-github-username.github.io/your-github-repository/",
-```
-```
-NOTE: replace `your-github-username` and `your-github-repository` with your owns.
-```
-
-Add the following scripts:
-
-```package.json
-   "scripts": {
-      "start": "node server.js",
-      "start-build": "./node_modules/react-app-rewired/bin/react-app-rewired.js build && node server.js",
-      "start-debug": "ls -lah && node server.js",
-      "start-dev": "react-app-rewired start",
-      "start-dev-webpack": "npx webpack-dev-server --config webpack.config.js",
-      "build-prod": "webpack --mode production",
-      "build-dev": "react-app-rewired build",
-      "build": "react-app-rewired build",
-      "eject-dev": "react-scripts eject",
-      "test-dev": "react-app-rewired test",
-      "test": "jest",
-      "predeploy": "npm run build",
-      "deploy": "gh-pages -d build"
-   },
-```
-
-## App structure
-
-This is a suggested App development repository structure:
-
-```
-.
-├── .babelrc
-├── .env
-├── .env.example
-├── .gitignore
-├── CHANGELOG.md
-├── LICENSE
-├── Makefile
-├── README.md
-├── babel.config.js
-├── config-overrides.js
-├── jest.config.cjs
-├── package-lock.json
-├── package.json
-├── public
-├── server.js
-├── src
-│   ├── components
-│   │   ├── About
-│   │   │   └── About.jsx
-│   │   ├── App
-│   │   │   ├── App.jsx
-│   │   │   └── App.test.tsx
-│   │   ├── HomePage
-│   │   │   ├── HomePage.jsx
-│   │   ├── ExampleMenu
-│   │   │   ├── ExampleMainElement.jsx
-│   │   │   └── ExampleChildElement.jsx
-│   ├── constants
-│   │   └── app_constants.jsx
-│   ├── images
-│   │   ├── app_logo_circle.svg
-│   │   └── madeby_logo_square.svg
-│   ├── configs
-│   │   ├── CHANGELOG.md
-│   │   ├── README.md
-│   │   ├── backend
-│   │   │   ├── app_main_menu.json
-│   │   │   ├── endpoints.json
-│   │   │   ├── general_config.json
-│   │   │   ├── example_main_element.json
-│   │   │   └── example_child_element.json
-│   │   └── frontend
-│   │       ├── app_constants.json
-│   │       ├── general_constants.json
-│   │       ├── users_profile.json
-│   │       ├── example_main_element.json
-│   │       └── example_child_element.json
-│   ├── d.ts
-│   ├── index.jsx
-│   ├── input.css
-│   └── setupTests.js
-├── tailwind.config.js
-├── tsconfig.json
-├── version.txt
-└── webpack.config.js
-```
-
-## Configure the project
-
-Click [here](https://github.com/tomkat-cr/genericsuite-fe/blob/main/README.md#configure-the-project) for more information about how to configure the project.
-
-## Code examples and JSON configuration files
-
-The main menu, API endpoints and CRUD editor configurations are defined in the JSON configuration files.
-
-You can find examples about configurations and how to code an App in the [GenericSuite App Creation and Configuration guide](https://github.com/tomkat-cr/genericsuite-fe/blob/main/src/configs/README.md).
-
-## Start Development Server
-
-To start the development server:
-
-```bash
-make run
-```
-
-## Deploy QA
-
-To perform a QA deployment over AWS S3:
-
-```bash
-make deploy_qa
-```
+* [https://genericsuite.carlosjramirez.com](https://genericsuite.carlosjramirez.com)
+* Mirror: [https://genericsuite.readthedocs.io](https://genericsuite.readthedocs.io)
 
 ## License
 

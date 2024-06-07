@@ -203,6 +203,7 @@ export const UserInput = ({
                 handleUpdateSize={handleUpdateSize}
                 dispatch={dispatch}
                 state={state}
+                // fileTypeFilter="image/*"
             />
             <CameraComponent
                 id='cameraComponent'

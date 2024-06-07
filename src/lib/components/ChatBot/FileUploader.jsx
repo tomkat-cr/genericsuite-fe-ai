@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 import * as gs from "genericsuite";
 
@@ -30,7 +31,9 @@ const formatCaughtError = gs.errorAndReenter.formatCaughtError;
 const toggleIdVisibility = gs.ui.toggleIdVisibility;
 const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
-const debug = false;
+const debug = true;
+
+const useAxios = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 
 export function FileUploader({
     id,
@@ -39,16 +42,58 @@ export function FileUploader({
     dispatch,
     state,
     question,
+    fileTypeFilter,
 }) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [buttonToggle, setButtonToggle] = useState(false);
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
-        if (file && file.type.startsWith('image/')) {
-            setSelectedFile(file);
-        } else {
-            alert('Por favor, seleccione un archivo de imagen válido.');
+        if (file) {
+            if (fileTypeFilter) {
+                // "image/*"
+                if (file.type.startsWith('image/')) {
+                    setSelectedFile(file);
+                } else {
+                    alert('Please selecct a valid image file.');
+                }
+            } else {
+                setSelectedFile(file);
+            }
+        }
+    };
+
+    const sendFile = async (url, formData, authHeader, queryParams) => {
+        const headers = Object.assign(
+            { 
+                'Access-Control-Allow-Origin': '*',
+            }, 
+            authHeader
+        );
+        try {
+            const response = await axios.post(url, formData, {
+                headers: headers,
+                params: queryParams,
+            });
+            dispatchWaitAnimation(false, dispatch);
+            checkConversationIdChange(state, dispatch, response.data).then(
+                () => {
+                    // Current conversation updated sucssesfuly
+                },
+                error => {
+                    error = formatCaughtError(error);
+                    setChatbotErrorMsg(error.message, dispatch);
+                }
+            );
+            setSelectedFile(null);
+            setButtonToggle(false);
+        } catch (errorRaw) {
+            console.error(errorRaw);
+            // Hide WaitAnimation after the error
+            const error = errorRaw.message + (typeof errorRaw.response !== 'undefined' ?  ": " + errorRaw.response.data : '');
+            console.error('Error uploading the file:', error);
+            setChatbotErrorMsg(error, dispatch);
+            dispatchWaitAnimation(false, dispatch);
         }
     };
 
@@ -61,7 +106,6 @@ export function FileUploader({
                 raw_body: true,
                 headers: MULTIPART_FORM_DATA_HEADER
             };
-            const db = new dbApiService({ url: "ai/image_to_text" });
             const query = {
                 "cid": state.currentConversationId,
                 question: question,
@@ -81,46 +125,56 @@ export function FileUploader({
             }
             // Show WaitAnimation while fetching data
             dispatchWaitAnimation(true, dispatch);
-            db.getAll(query, formData, 'POST', options).then(
-                data => {
-                    if (debug) {
-                        console_debug_log("FileUploader | handleUpload | data:", data);
-                    }
-                    dispatchWaitAnimation(false, dispatch);
-                    if (debug) {
-                        console_debug_log(`FileUploader is calling checkConversationIdChange("${data}")`);
-                    }
-                    // addMessageToConversation(data.response, "assistant", dispatch);
-                    checkConversationIdChange(state, dispatch, data).then(
-                        () => {
-                            // Current conversation updated sucssesfuly
-                        },
-                        error => {
-                            error = formatCaughtError(error);
-                            if (debug) {
-                                console_debug_log("FileUploader | checkConversationIdChange | ERROR:", error);
-                            }
-                            setChatbotErrorMsg(error.message, dispatch);
+            if (debug) {
+                console_debug_log(`FileUploader | selectedFile:`, selectedFile);
+            }
+            if (useAxios) {
+                const authHeader = gs.authHeader.authHeader();
+                const endpointUrl = `${process.env.REACT_APP_API_URL}/${"ai/image_to_text"}`;
+                await sendFile(endpointUrl, formData, authHeader, query)
+            } else {
+                const db = new dbApiService({ url: "ai/image_to_text" });
+                db.getAll(query, formData, 'POST', options).then(
+                    data => {
+                        if (debug) {
+                            console_debug_log("FileUploader | handleUpload | data:", data);
                         }
-                    );
-                    setSelectedFile(null);
-                    setButtonToggle(false);
-                },
-                errorRaw => {
-                    // Hide WaitAnimation after the error
-                    const error = formatCaughtError(errorRaw);
-                    if (debug) {
-                        console_debug_log(">>--> FileUploader | handleUpload | errorRaw:", errorRaw);
+                        dispatchWaitAnimation(false, dispatch);
+                        if (debug) {
+                            console_debug_log(`FileUploader is calling checkConversationIdChange("${data}")`);
+                        }
+                        // addMessageToConversation(data.response, "assistant", dispatch);
+                        checkConversationIdChange(state, dispatch, data).then(
+                            () => {
+                                // Current conversation updated sucssesfuly
+                            },
+                            error => {
+                                error = formatCaughtError(error);
+                                if (debug) {
+                                    console_debug_log("FileUploader | checkConversationIdChange | ERROR:", error);
+                                }
+                                setChatbotErrorMsg(error.message, dispatch);
+                            }
+                        );
+                        setSelectedFile(null);
+                        setButtonToggle(false);
+                    },
+                    errorRaw => {
+                        // Hide WaitAnimation after the error
+                        const error = formatCaughtError(errorRaw);
+                        if (debug) {
+                            console_debug_log(">>--> FileUploader | handleUpload | errorRaw:", errorRaw);
+                        }
+                        dispatchWaitAnimation(false, dispatch);
+                        console.error('Error uploading the file:', error);
+                        // setExternalErrorMsg(error.message);
+                        setChatbotErrorMsg(error.message, dispatch);
+                        if (debug) {
+                            console_debug_log("FileUploader | after setExternalErrorMsg...");
+                        }
                     }
-                    dispatchWaitAnimation(false, dispatch);
-                    console.error('Error upploading the file:', error);
-                    // setExternalErrorMsg(error.message);
-                    setChatbotErrorMsg(error.message, dispatch);
-                    if (debug) {
-                        console_debug_log("FileUploader | after setExternalErrorMsg...");
-                    }
-                }
-            );
+                );
+            }
         } else {
             alert('Please select a file to upload.');
         }
@@ -150,7 +204,7 @@ export function FileUploader({
                     <div className='flex items-center'>
                         <input
                             type="file"
-                            accept="image/*"
+                            accept={fileTypeFilter ? fileTypeFilter : "*"}
                             onChange={handleFileChange}
                             className='p-0 m-0'
                         />

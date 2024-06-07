@@ -75,6 +75,10 @@ module.exports = {
             "vm": require.resolve("vm-browserify"),
             "tty": require.resolve("tty-browserify"),
             "constants": require.resolve("constants-browserify"),
+            "zlib": require.resolve("browserify-zlib"),
+            "https": require.resolve("https-browserify"),
+            "http": require.resolve("stream-http"),
+            "util": require.resolve("util"),
         }
     },
     plugins: [
@@ -95,6 +99,7 @@ module.exports = {
                 REACT_APP_URI_PREFIX: JSON.stringify(process.env.REACT_APP_URI_PREFIX || 'exampleapp_frontend'),
                 REACT_APP_X_TOKEN: JSON.stringify(process.env.REACT_APP_X_TOKEN || ''),
                 REACT_APP_APP_NAME: JSON.stringify(process.env.REACT_APP_APP_NAME || 'exampleapp'),
+                REACT_APP_USE_AXIOS: JSON.stringify(process.env.REACT_APP_USE_AXIOS || '1'),
             }
         }),
         new webpack.ProvidePlugin({
