@@ -17,6 +17,7 @@ const INFO_MSG_CLASS = gs.classNameConstants.INFO_MSG_CLASS;
 const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 
 const debug = false;
+const defaultTtsFilename = 'audio.mp3'
 
 export const ConversationBlock = ({
     id,
@@ -83,7 +84,7 @@ export const ConversationBlock = ({
                 message = message.substring(firstWord.length + 1).trim();
             }
             if (hasAttachment && !message) {
-                message = filename;
+                message = filename ?? defaultTtsFilename;
             }
             return (
                 <div style={{backgroundColor: 'white'}}>

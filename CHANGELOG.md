@@ -19,7 +19,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ## 1.0.19 (2024-07-22)
 
 ### New
-Add: ".nvmrc" file to set the repo detaul node version.
+Add: ".nvmrc" file to set the repo default node version.
 
 ### Changes
 Change: replace FynBot with AiAssitant, AI Asistant or Chatbot.

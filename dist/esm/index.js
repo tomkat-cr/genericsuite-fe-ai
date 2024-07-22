@@ -6342,6 +6342,7 @@ const getFileExtension = blob_files_utilities.getFileExtension;
 const performDownload = blob_files_utilities.performDownload;
 const INFO_MSG_CLASS = class_name_constants.INFO_MSG_CLASS;
 const WARNING_MSG_CLASS = class_name_constants.WARNING_MSG_CLASS;
+const defaultTtsFilename = 'audio.mp3';
 const ConversationBlock = _ref => {
   let {
     id,
@@ -6393,7 +6394,7 @@ const ConversationBlock = _ref => {
         message = message.substring(firstWord.length + 1).trim();
       }
       if (hasAttachment && !message) {
-        message = filename;
+        message = filename !== null && filename !== void 0 ? filename : defaultTtsFilename;
       }
       return /*#__PURE__*/React.createElement("div", {
         style: {
