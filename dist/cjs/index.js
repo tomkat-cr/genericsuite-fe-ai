@@ -5049,7 +5049,7 @@ const ApiCall = async (dispatch, params) => {
       return {
         ok: false,
         response: null,
-        errorMessage: "Element ".concat(responseAttrName, " not found in the API response")
+        errorMessage: `Element ${responseAttrName} not found in the API response`
       };
     }
     return {
@@ -5068,7 +5068,7 @@ const ApiCall = async (dispatch, params) => {
   const verifyId = id => {
     return {
       ok: id !== null,
-      errorMessage: id !== null ? "" : "Missing ID: ".concat(id)
+      errorMessage: id !== null ? "" : `Missing ID: ${id}`
     };
   };
   const the = "the";
@@ -5140,7 +5140,7 @@ const ApiCall = async (dispatch, params) => {
       default:
         response = {
           ok: false,
-          errorMessage: "Invalid operation type: \"".concat(operationType, "\"")
+          errorMessage: `Invalid operation type: "${operationType}"`
         };
     }
   } catch (error) {
@@ -5150,9 +5150,9 @@ const ApiCall = async (dispatch, params) => {
     };
   }
   if (response.ok) {
-    response.operationMessage = "".concat(the, " ").concat(operationDescription, " ").concat(ActionDescription, " ").concat(was_successful);
+    response.operationMessage = `${the} ${operationDescription} ${ActionDescription} ${was_successful}`;
   } else {
-    response.operationMessage = "".concat(error_in_the, " ").concat(operationDescription, " ").concat(ActionDescription);
+    response.operationMessage = `${error_in_the} ${operationDescription} ${ActionDescription}`;
     console_debug_log$2('ApiCall ERROR:');
     console_debug_log$2(response.operationMessage);
   }
@@ -5194,7 +5194,7 @@ const checkConversationIdChange = async (state, dispatch, externalApiResponse) =
   let cid = state.currentConversationId;
   let apiResponse;
   // if (debug) {
-  console_debug_log$2(">> checkConversationIdChange | cid: ".concat(cid, " | externalApiResponse:"), externalApiResponse);
+  console_debug_log$2(`>> checkConversationIdChange | cid: ${cid} | externalApiResponse:`, externalApiResponse);
   // }
   if (typeof externalApiResponse['cid'] !== 'undefined' && state.currentConversationId !== externalApiResponse['cid']) {
     cid = externalApiResponse['cid'];
@@ -6180,13 +6180,12 @@ const WARNING_MSG_CLASS$1 = class_name_constants.WARNING_MSG_CLASS;
 blob_files_utilities.defaultFilenametoDownload;
 const decodeBlob = blob_files_utilities.decodeBlob;
 logging_service.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   React.useState(0);
   React.useState(0);
@@ -6232,7 +6231,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -6245,11 +6244,10 @@ const AudioPlayer = _ref => {
 };
 
 logging_service.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const GoToTheBottom = ({
+  elementId,
+  elementsToRender
+}) => {
   const objDiv = document.getElementById(elementId);
   React.useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -6267,11 +6265,10 @@ styleInject(css_248z);
 
 fontawesome.library.add(fontawesomeFreeSolid.faArrowDown);
 logging_service.console_debug_log;
-const ScrollToBottomButton = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const ScrollToBottomButton = ({
+  elementId,
+  elementsToRender
+}) => {
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
@@ -6410,11 +6407,14 @@ const ConversationBlock = _ref => {
         }, message ? message : "Click here to download the \"".concat(filename, "\" file"));
       }
     }
-    if (hasAttachment || message.startsWith('```File')) {
-      if (message.startsWith('```')) {
+    if (hasAttachment || message && message.startsWith('```File')) {
+      if (message && message.startsWith('```')) {
         message = message.substring(3, message.length - 3);
         const firstWord = message.split(' ')[0];
         message = message.substring(firstWord.length + 1).trim();
+      }
+      if (hasAttachment && !message) {
+        message = filename;
       }
       return /*#__PURE__*/React.createElement("div", {
         style: {
