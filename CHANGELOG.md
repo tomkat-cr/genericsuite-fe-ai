@@ -16,6 +16,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.19 (2024-07-22)
+
+### Changes
+Change: replace FynBot with AiAssitant, AI Asistant or Chatbot.
+
+### Fixes
+Fix: "ReferenceError: fetch is not defined" error in npm test.
+
+
 ## 1.0.18 (2024-06-06)
 ---
 

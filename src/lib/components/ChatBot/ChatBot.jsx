@@ -146,8 +146,8 @@ export const ChatBot = ({
         (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '30%' : '70%') : "100%")
     
     if (debug) {
-        console_debug_log("FYNBOT STATE:", state);
-        console_debug_log("FYNBOT Main | state.errorMsg:", state.errorMsg);
+        console_debug_log("AiAssistant STATE:", state);
+        console_debug_log("AiAssistant Main | state.errorMsg:", state.errorMsg);
     }
 
     // If there's an initial UserQuestion, send it inmediatelly to the LLM
@@ -185,7 +185,7 @@ export const ChatBot = ({
             .then(
                 apiResponse => {
                     if (debug) {
-                        console_debug_log(`>>> FynBot INITIAL useEffect |  apiResponse:`, apiResponse);
+                        console_debug_log(`>>> AiAssistant INITIAL useEffect |  apiResponse:`, apiResponse);
                     }
                     if (!apiResponse.ok) {
                         setChatbotErrorMsg(apiResponse.errorMessage, dispatch)

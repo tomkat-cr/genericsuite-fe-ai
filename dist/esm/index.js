@@ -5296,7 +5296,7 @@ const sendMessageToBot = async (messageText, state, dispatch) => {
   }];
   const response = ApiCall(dispatch, {
     operationName: "sendMessageToBot",
-    operationDescription: "Communication with FynBot",
+    operationDescription: "Communication with AiAssistant",
     operationType: "getAll",
     endpointUrl: "ai/chatbot",
     requestMethod: "POST",
@@ -5750,7 +5750,7 @@ const getFilenameFromContentDisposition = blob_files_utilities.getFilenameFromCo
 const responseHasFile = blob_files_utilities.responseHasFile;
 const BUTTON_LISTING_CLASS$1 = class_name_constants.BUTTON_LISTING_CLASS;
 const userInputViewportHeight = 80;
-/* <UserInput>.userInputViewportHeight must be the same as ".conversation-block.height" in FynBot.css */
+/* <UserInput>.userInputViewportHeight must be the same as ".conversation-block.height" in ChatBot.css */
 /* 81 for 81vh, 78 for 78vh, an so on */
 const userInputMaxOffsetHeight = 200;
 const UserInput = _ref => {
@@ -5873,11 +5873,11 @@ const UserInput = _ref => {
     name: "user_input",
     id: "user_input",
     value: inputMessage
-    // TODO: remove INPUT_FLEXIBLE_CLASS and put the css in FynBot.css
+    // TODO: remove INPUT_FLEXIBLE_CLASS and put the css in ChatBot.css
     // className={`${INPUT_FLEXIBLE_CLASS} mr-2`}
     ,
     className: "p-2",
-    "aria-label": "Message FynBot\u2026",
+    "aria-label": "Message AI Assistant...",
     rows: "1",
     onChange: handleInputChange,
     onKeyDown: event => {
@@ -5892,7 +5892,7 @@ const UserInput = _ref => {
     id: "user_input_submit",
     onClick: () => state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage(),
     className: "".concat(BUTTON_LISTING_CLASS$1, " mr-2"),
-    title: state && state.isApiProcessing ? 'Stop Processing' : 'Chat with FynBot'
+    title: state && state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'
   }, /*#__PURE__*/React.createElement(FontAwesomeIcon, {
     icon: state && state.isApiProcessing ? 'stop' : 'greater-than',
     size: "lg"
