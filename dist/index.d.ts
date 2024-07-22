@@ -1,6 +1,12 @@
 import React from 'react';
 
-declare function App(_ref: any): React.FunctionComponentElement<any>;
+declare function App(_ref: any): React.CElement<{
+    appLogo: any;
+    componentMap: any;
+}, React.Component<{
+    appLogo: any;
+    componentMap: any;
+}, any, any>>;
 declare function CameraComponent(_ref: any): React.DetailedReactHTMLElement<{
     id: any;
     className: string;
@@ -31,7 +37,9 @@ declare function FileUploader(_ref: any): React.DetailedReactHTMLElement<{
 declare function NewConversationButton(_ref: any): React.FunctionComponentElement<{
     children?: React.ReactNode;
 }>;
-declare function UserInput(_ref: any): React.DetailedReactHTMLElement<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
+declare function UserInput(_ref: any): React.DetailedReactHTMLElement<{
+    className: string;
+}, HTMLElement>;
 declare function VoiceMessageRecorder(_ref: any): React.DetailedReactHTMLElement<{
     id: any;
     className: string;
