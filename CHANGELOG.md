@@ -23,6 +23,7 @@ Change: replace FynBot with AiAssitant, AI Asistant or Chatbot.
 
 ### Fixes
 Fix: "ReferenceError: fetch is not defined" error in npm test.
+Fix: Cannot read properties of undefined (reading 'startsWith') reading audios from FastAPI [GS-95].
 
 
 ## 1.0.18 (2024-06-06)

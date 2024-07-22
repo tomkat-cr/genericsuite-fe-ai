@@ -76,11 +76,14 @@ export const ConversationBlock = ({
                 );
             }
         }
-        if (hasAttachment || message.startsWith('```File')) {
-            if (message.startsWith('```')) {
+        if (hasAttachment || (message && message.startsWith('```File'))) {
+            if (message && message.startsWith('```')) {
                 message = message.substring(3, message.length - 3);
                 const firstWord = message.split(' ')[0];
                 message = message.substring(firstWord.length + 1).trim();
+            }
+            if (hasAttachment && !message) {
+                message = filename;
             }
             return (
                 <div style={{backgroundColor: 'white'}}>
