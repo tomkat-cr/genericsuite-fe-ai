@@ -1663,7 +1663,7 @@ const getFileExtension = gs.blobFilesUtilities.getFileExtension;
 const performDownload = gs.blobFilesUtilities.performDownload;
 const INFO_MSG_CLASS = gs.classNameConstants.INFO_MSG_CLASS;
 const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
-const defaultTtsFilename = 'audio.mp3';
+const defaultDownloadFilename = 'file_with_no_name.mp3';
 const ConversationBlock = _ref => {
   let {
     id,
@@ -1679,12 +1679,15 @@ const ConversationBlock = _ref => {
     const downloadedFilename = hasDownloadFileToken ? message.replace("[SEND_FILE_BACK]=", "").split('/').pop() : null;
     const url = typeof messageObject.attachment_url !== "undefined" ? messageObject.attachment_url : null;
     const hasAttachment = url !== null || hasDownloadFileToken;
-    const filename = typeof messageObject.filename !== "undefined" ? messageObject.filename : downloadedFilename;
+    let filename = typeof messageObject.filename !== "undefined" ? messageObject.filename : downloadedFilename;
     const extension = filename ? getFileExtension(filename) : null;
-    const errorMsgSuffix = usePlainFetch ? " (No headers allowed)" : "";
+    let errorMsgSuffix = usePlainFetch ? " (No headers allowed)" : "";
+    if (!filename) {
+      filename = defaultDownloadFilename;
+      errorMsgSuffix += (errorMsgSuffix === '' ? '' : '. ') + 'WARNING: no file name received. Fix the Backend API to send headers.';
+    }
     if (hasAttachment && extension) {
       if (['wav', 'mp3'].includes(extension.toLowerCase())) {
-        // if (['1wav', '1mp3'].includes(extension.toLowerCase())) {
         return /*#__PURE__*/React.createElement(AudioPlayer, {
           blobUrl: url,
           filename: filename,
@@ -1715,7 +1718,7 @@ const ConversationBlock = _ref => {
         message = message.substring(firstWord.length + 1).trim();
       }
       if (hasAttachment && !message) {
-        message = filename !== null && filename !== void 0 ? filename : defaultTtsFilename;
+        message = filename;
       }
       return /*#__PURE__*/React.createElement("div", {
         style: {
