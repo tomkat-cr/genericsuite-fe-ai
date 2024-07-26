@@ -43,7 +43,7 @@ export const ConversationBlock = ({
         let errorMsgSuffix = usePlainFetch ? " (No headers allowed)" : "";
         if (!filename) {
             filename = defaultDownloadFilename;
-            errorMsgSuffix += (errorMsgSuffix === '' ? '' : '. ') + 'WARNING: no file name received. Fix the Backend API to send headers.'
+            errorMsgSuffix += (errorMsgSuffix.trim() === '' ? '' : '.') + ' WARNING: no file name received. Fix the Backend API to send headers.'
         }
         if (hasAttachment && extension) {
             if (['wav', 'mp3'].includes(extension.toLowerCase())) {

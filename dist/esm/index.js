@@ -1477,13 +1477,12 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   useState(0);
   useState(0);
@@ -1529,7 +1528,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -1542,10 +1541,11 @@ const AudioPlayer = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = ({
-  elementId,
-  elementsToRender
-}) => {
+const GoToTheBottom = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -1683,7 +1683,7 @@ const ConversationBlock = _ref => {
     let errorMsgSuffix = usePlainFetch ? " (No headers allowed)" : "";
     if (!filename) {
       filename = defaultDownloadFilename;
-      errorMsgSuffix += (errorMsgSuffix === '' ? '' : '. ') + 'WARNING: no file name received. Fix the Backend API to send headers.';
+      errorMsgSuffix += (errorMsgSuffix.trim() === '' ? '' : '.') + ' WARNING: no file name received. Fix the Backend API to send headers.';
     }
     if (hasAttachment && extension) {
       if (['wav', 'mp3'].includes(extension.toLowerCase())) {
