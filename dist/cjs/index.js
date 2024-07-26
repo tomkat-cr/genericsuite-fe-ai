@@ -1498,12 +1498,13 @@ const WARNING_MSG_CLASS$1 = gs__namespace.classNameConstants.WARNING_MSG_CLASS;
 gs__namespace.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs__namespace.blobFilesUtilities.decodeBlob;
 gs__namespace.loggingService.console_debug_log;
-const AudioPlayer = ({
-  blobUrl,
-  filename,
-  expired,
-  errorMsgSuffix
-}) => {
+const AudioPlayer = _ref => {
+  let {
+    blobUrl,
+    filename,
+    expired,
+    errorMsgSuffix
+  } = _ref;
   const [isPlaying, setIsPlaying] = React.useState(false);
   React.useState(0);
   React.useState(0);
@@ -1549,7 +1550,7 @@ const AudioPlayer = ({
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, `Audio file expired${errorMsgSuffix}`);
+    }, "Audio file expired".concat(errorMsgSuffix));
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -1760,7 +1761,7 @@ const ConversationBlock = _ref => {
           color: 'black',
           fontWeight: 'bold'
         }
-      }, message + errorMsgSuffix), !hasAttachment && /*#__PURE__*/React.createElement(React.Fragment, null, message + errorMsgSuffix)), hasAttachment && /*#__PURE__*/React.createElement("div", {
+      }, message + errorMsgSuffix), !hasAttachment && /*#__PURE__*/React.createElement(React.Fragment, null, message + errorMsgSuffix)), hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(extension.toLowerCase())) && /*#__PURE__*/React.createElement("div", {
         className: "mt-2"
       }, /*#__PURE__*/React.createElement("img", {
         className: "rounded-md",

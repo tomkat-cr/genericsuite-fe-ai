@@ -106,7 +106,7 @@ export const ConversationBlock = ({
                             <>{message+errorMsgSuffix}</>
                         )}
                     </div>
-                    {hasAttachment && (
+                    {hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(extension.toLowerCase())) && (
                             <div className='mt-2'>
                                 <img
                                     className='rounded-md'
