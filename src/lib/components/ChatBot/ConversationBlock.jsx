@@ -106,7 +106,7 @@ export const ConversationBlock = ({
                             <>{message+errorMsgSuffix}</>
                         )}
                     </div>
-                    {hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(extension).toLowerCase()) && (
+                    {hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(getFileExtension(messageObject.attachment_url)).toLowerCase()) && (
                             <div className='mt-2'>
                                 <img
                                     className='rounded-md'
