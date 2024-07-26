@@ -1703,10 +1703,6 @@ const ConversationBlock = _ref => {
     let filename = typeof messageObject.filename !== "undefined" ? messageObject.filename : downloadedFilename;
     const extension = filename ? getFileExtension(filename) : null;
     let errorMsgSuffix = usePlainFetch ? " (No headers allowed)" : "";
-    if (!filename) {
-      filename = defaultDownloadFilename;
-      errorMsgSuffix += (errorMsgSuffix.trim() === '' ? '' : '.') + ' WARNING: no file name received. Fix the Backend API to send headers.';
-    }
     if (hasAttachment && extension) {
       if (['wav', 'mp3'].includes(extension.toLowerCase())) {
         return /*#__PURE__*/React.createElement(AudioPlayer, {
@@ -1739,6 +1735,10 @@ const ConversationBlock = _ref => {
         message = message.substring(firstWord.length + 1).trim();
       }
       if (hasAttachment && !message) {
+        if (!filename) {
+          filename = defaultDownloadFilename;
+          errorMsgSuffix += (errorMsgSuffix.trim() === '' ? '' : '.') + ' WARNING: no file name received. Fix the Backend API to send headers.';
+        }
         message = filename;
       }
       return /*#__PURE__*/React.createElement("div", {
