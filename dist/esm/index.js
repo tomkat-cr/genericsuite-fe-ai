@@ -1542,11 +1542,10 @@ const AudioPlayer = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const GoToTheBottom = ({
+  elementId,
+  elementsToRender
+}) => {
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -1708,7 +1707,7 @@ const ConversationBlock = _ref => {
             e.preventDefault();
             performDownload(url, filename);
           }
-        }, message ? message : "Click here to download the \"".concat(filename, "\" file"));
+        }, (message ? message : "Click here to download the \"".concat(filename, "\" file")) + errorMsgSuffix);
       }
     }
     if (hasAttachment || message && message.startsWith('```File')) {
@@ -1740,7 +1739,7 @@ const ConversationBlock = _ref => {
           color: 'black',
           fontWeight: 'bold'
         }
-      }, message), !hasAttachment && /*#__PURE__*/React.createElement(React.Fragment, null, message)), hasAttachment && /*#__PURE__*/React.createElement("div", {
+      }, message + errorMsgSuffix), !hasAttachment && /*#__PURE__*/React.createElement(React.Fragment, null, message + errorMsgSuffix)), hasAttachment && /*#__PURE__*/React.createElement("div", {
         className: "mt-2"
       }, /*#__PURE__*/React.createElement("img", {
         className: "rounded-md",

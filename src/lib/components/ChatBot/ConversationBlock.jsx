@@ -75,7 +75,7 @@ export const ConversationBlock = ({
                             performDownload(url, filename);
                         }}
                     >
-                        {message ? message : `Click here to download the "${filename}" file`}
+                        {(message ? message : `Click here to download the "${filename}" file`)+errorMsgSuffix}
                     </button>
                 );
             }
@@ -99,11 +99,11 @@ export const ConversationBlock = ({
                                 rel="noreferrer"
                                 style={{color: 'black', fontWeight: 'bold'}}
                             >
-                                {message}
+                                {message+errorMsgSuffix}
                             </a>
                         )}
                         {!hasAttachment && (
-                            <>{message}</>
+                            <>{message+errorMsgSuffix}</>
                         )}
                     </div>
                     {hasAttachment && (
