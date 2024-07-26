@@ -1740,7 +1740,7 @@ const ConversationBlock = _ref => {
           color: 'black',
           fontWeight: 'bold'
         }
-      }, message + errorMsgSuffix), !hasAttachment && /*#__PURE__*/React.createElement(React.Fragment, null, message + errorMsgSuffix)), hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(extension.toLowerCase())) && /*#__PURE__*/React.createElement("div", {
+      }, message + errorMsgSuffix), !hasAttachment && /*#__PURE__*/React.createElement(React.Fragment, null, message + errorMsgSuffix)), hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(extension).toLowerCase()) && /*#__PURE__*/React.createElement("div", {
         className: "mt-2"
       }, /*#__PURE__*/React.createElement("img", {
         className: "rounded-md",
