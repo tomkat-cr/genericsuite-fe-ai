@@ -27,7 +27,7 @@ Change: replace FynBot with AiAssitant, AI Asistant or Chatbot.
 ### Fixes
 Fix: Fix audio processing issues in FastAPI Apps [GS-95].
 Fix: "Cannot read properties of undefined (reading 'startsWith')" reading audios from FastAPI [GS-95].
-Fix: avoid broken image and missing header message when the API does not send http headers to the frontend [GS-95].
+Fix: avoid broken image and add a "missing API headers" message when the backend API does not send http headers to the frontend [GS-95].
 Fix: "ReferenceError: fetch is not defined" error in npm test.
 
 
