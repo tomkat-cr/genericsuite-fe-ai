@@ -22,7 +22,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 Add: ".nvmrc" file to set the repo default node version.
 
 ### Changes
-Change: replace FynBot with AiAssitant, AI Asistant or Chatbot.
+Replace FynBot with AiAssitant, AI Asistant or Chatbot.
+Uninstall "genericsuite-fe" from devDependencies to separate both libraries and use the one installed in the parent project [GS-74].
+Specific instructions in Makefile "publish" and "pre-publish" to break "genericsuite-fe" scripts dependency [GS-74].
 
 ### Fixes
 Fix: Fix audio processing issues in FastAPI Apps [GS-95].

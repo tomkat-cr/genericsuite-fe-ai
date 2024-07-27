@@ -96,12 +96,12 @@ run_lib: config_lib
 	sh node_modules/genericsuite/scripts/run_app_frontend.sh dev
 
 pre-publish:
-	sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
-
-publish:
-	# sh node_modules/genericsuite/scripts/npm_publish.sh publish
+	# sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
 	npm install --package-lock-only
 	npm run build
+
+publish: pre-publish
+	# sh node_modules/genericsuite/scripts/npm_publish.sh publish
 	echo "Press Enter to publish, Ctrl-C to stop"
 	read answer
 	npm publish --access=public
