@@ -16,6 +16,23 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.19 (2024-07-27)
+
+### New
+Add: ".nvmrc" file to set the repo default node version.
+
+### Changes
+Replace FynBot with AiAssitant, AI Asistant or Chatbot.
+Uninstall "genericsuite-fe" from devDependencies to separate both libraries and use the one installed in the parent project [GS-74].
+Specific instructions in Makefile "publish" and "pre-publish" to break "genericsuite-fe" scripts dependency [GS-74].
+
+### Fixes
+Fix: Fix audio processing issues in FastAPI Apps [GS-95].
+Fix: "Cannot read properties of undefined (reading 'startsWith')" reading audios from FastAPI [GS-95].
+Fix: avoid broken image and add a "missing API headers" message when the backend API does not send http headers to the frontend [GS-95].
+Fix: "ReferenceError: fetch is not defined" error in npm test.
+
+
 ## 1.0.18 (2024-06-06)
 ---
 

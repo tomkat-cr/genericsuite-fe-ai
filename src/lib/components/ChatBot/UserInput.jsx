@@ -48,7 +48,7 @@ const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 const debug = false;
 
 const userInputViewportHeight = 80;
-/* <UserInput>.userInputViewportHeight must be the same as ".conversation-block.height" in FynBot.css */
+/* <UserInput>.userInputViewportHeight must be the same as ".conversation-block.height" in ChatBot.css */
 /* 81 for 81vh, 78 for 78vh, an so on */
 const userInputMaxOffsetHeight = 200;
 
@@ -164,10 +164,10 @@ export const UserInput = ({
                 name="user_input"
                 id="user_input"
                 value={inputMessage}
-                // TODO: remove INPUT_FLEXIBLE_CLASS and put the css in FynBot.css
+                // TODO: remove INPUT_FLEXIBLE_CLASS and put the css in ChatBot.css
                 // className={`${INPUT_FLEXIBLE_CLASS} mr-2`}
                 className="p-2"
-                aria-label="Message FynBot…"
+                aria-label="Message AI Assistant..."
                 rows="1" 
                 onChange={handleInputChange}
                 onKeyDown={(event) => {
@@ -184,7 +184,7 @@ export const UserInput = ({
                     id="user_input_submit"
                     onClick={() => (state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage())}
                     className={`${BUTTON_LISTING_CLASS} mr-2`}
-                    title={state &&  state.isApiProcessing ? 'Stop Processing' : 'Chat with FynBot'}
+                    title={state &&  state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'}
                 >
                     <FontAwesomeIcon icon={state && state.isApiProcessing ? 'stop' : 'greater-than'} size='lg'/>
                 </button>

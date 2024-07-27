@@ -88,7 +88,7 @@ export const ApiCall = async (
 
     const processGoodResponse = (data) => {
         if (debug) {
-            console_debug_log(`FynBot | ${operationName} | data:`, data);
+            console_debug_log(`AiAssistant | ${operationName} | data:`, data);
         }
         if (responseAttrName !== "" && typeof data[responseAttrName] === "undefined") {
             return {
@@ -107,7 +107,7 @@ export const ApiCall = async (
     const processErrorResponse = (errorRaw) => {
         const error = formatCaughtError(errorRaw);
         if (debug) {
-            console_debug_log(`FynBot | ${operationName} | ERROR:`, error);
+            console_debug_log(`AiAssistant | ${operationName} | ERROR:`, error);
         }
         return {
             ok: false,
@@ -142,7 +142,7 @@ export const ApiCall = async (
     const db = new dbApiService({ url: endpointUrl });
     if (debug) {
         console_debug_log(
-            `FynBot | ${operationName} | operationType: ${operationType}, requestMethod: ${requestMethod}, endpointUrl:`,
+            `AiAssistant | ${operationName} | operationType: ${operationType}, requestMethod: ${requestMethod}, endpointUrl:`,
             endpointUrl, 'body:', body, 'query:', query, 'options:', options, 'id:', id,
         );
     }
@@ -207,7 +207,7 @@ export const ApiCall = async (
     }
     dispatch({ type: 'API_PROCESSING_STATUS', payload: false }); // Clear API processing status
     if (debug) {
-        console_debug_log(`FynBot | ${operationName} | response:`, response);
+        console_debug_log(`AiAssistant | ${operationName} | response:`, response);
     }
     return response;
 }
@@ -372,7 +372,7 @@ export const sendMessageToBot = async (messageText, state, dispatch) => {
     // Set the fetch() abort controller
     if (abortController) {
         if (debug) {
-            console_debug_log(`FynBot | sendMessageToBot | ABORTING PREVIOUS REQUEST`);
+            console_debug_log(`AiAssistant | sendMessageToBot | ABORTING PREVIOUS REQUEST`);
         }
         abortController.abort(); // Abort previous request if it exists
     }
@@ -385,7 +385,7 @@ export const sendMessageToBot = async (messageText, state, dispatch) => {
         dispatch,
         {
             operationName: "sendMessageToBot",
-            operationDescription: "Communication with FynBot",
+            operationDescription: "Communication with AiAssistant",
             operationType: "getAll",
             endpointUrl: "ai/chatbot",
             requestMethod: "POST",
@@ -400,7 +400,7 @@ export const sendMessageToBot = async (messageText, state, dispatch) => {
         }
     );
     if (debug) {
-        console_debug_log('FynBot | sendMessageToBot | response:', response);
+        console_debug_log('AiAssistant | sendMessageToBot | response:', response);
     }
     if (response.ok) {
         checkConversationIdChange(state, dispatch, response);

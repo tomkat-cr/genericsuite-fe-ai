@@ -17,6 +17,7 @@ const INFO_MSG_CLASS = gs.classNameConstants.INFO_MSG_CLASS;
 const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 
 const debug = false;
+const defaultDownloadFilename = 'file_with_no_name.mp3'
 
 export const ConversationBlock = ({
     id,
@@ -37,12 +38,11 @@ export const ConversationBlock = ({
         const downloadedFilename = hasDownloadFileToken ? message.replace("[SEND_FILE_BACK]=", "").split('/').pop() : null;
         const url = typeof messageObject.attachment_url !== "undefined" ? messageObject.attachment_url : null;
         const hasAttachment = (url !== null || hasDownloadFileToken);
-        const filename = typeof messageObject.filename !== "undefined" ? messageObject.filename : downloadedFilename; 
+        let filename = typeof messageObject.filename !== "undefined" ? messageObject.filename : downloadedFilename; 
         const extension = filename ? getFileExtension(filename) : null;
-        const errorMsgSuffix = usePlainFetch ? " (No headers allowed)" : "";
+        let errorMsgSuffix = usePlainFetch ? " (No headers allowed)" : "";
         if (hasAttachment && extension) {
             if (['wav', 'mp3'].includes(extension.toLowerCase())) {
-            // if (['1wav', '1mp3'].includes(extension.toLowerCase())) {
                 return (
                     <AudioPlayer
                         blobUrl={url}
@@ -71,16 +71,23 @@ export const ConversationBlock = ({
                             performDownload(url, filename);
                         }}
                     >
-                        {message ? message : `Click here to download the "${filename}" file`}
+                        {(message ? message : `Click here to download the "${filename}" file`)+errorMsgSuffix}
                     </button>
                 );
             }
         }
-        if (hasAttachment || message.startsWith('```File')) {
-            if (message.startsWith('```')) {
+        if (hasAttachment || (message && message.startsWith('```File'))) {
+            if (message && message.startsWith('```')) {
                 message = message.substring(3, message.length - 3);
                 const firstWord = message.split(' ')[0];
                 message = message.substring(firstWord.length + 1).trim();
+            }
+            if (hasAttachment && !message) {
+                if (!filename) {
+                    filename = defaultDownloadFilename;
+                    errorMsgSuffix += (errorMsgSuffix.trim() === '' ? '' : '.') + ' WARNING: no file name received. Fix the Backend API to send headers.'
+                }
+                message = filename;
             }
             return (
                 <div style={{backgroundColor: 'white'}}>
@@ -92,14 +99,14 @@ export const ConversationBlock = ({
                                 rel="noreferrer"
                                 style={{color: 'black', fontWeight: 'bold'}}
                             >
-                                {message}
+                                {message+errorMsgSuffix}
                             </a>
                         )}
                         {!hasAttachment && (
-                            <>{message}</>
+                            <>{message+errorMsgSuffix}</>
                         )}
                     </div>
-                    {hasAttachment && (
+                    {hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(getFileExtension(messageObject.attachment_url)).toLowerCase()) && (
                             <div className='mt-2'>
                                 <img
                                     className='rounded-md'
