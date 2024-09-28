@@ -3,9 +3,6 @@
 var React = require('react');
 var gs = require('genericsuite');
 var axios = require('axios');
-var reactFontawesome = require('@fortawesome/react-fontawesome');
-var fontawesome = require('@fortawesome/fontawesome');
-var fontawesomeFreeSolid = require('@fortawesome/fontawesome-free-solid');
 var reactSyntaxHighlighter = require('react-syntax-highlighter');
 var index_js = require('react-syntax-highlighter/dist/cjs/styles/prism/index.js');
 var index_js$1 = require('react-syntax-highlighter/dist/cjs/styles/hljs/index.js');
@@ -65,16 +62,26 @@ const setConversationListToggle = (conversationListToggle, dispatch) => {
   });
 };
 
-fontawesome.library.add(fontawesomeFreeSolid.faMicrophone, fontawesomeFreeSolid.faStop);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faMicrophone,
+//     faStop,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faMicrophone,
+//     faStop,
+// );
+const GsIcons$5 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$3 = gs__namespace.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER$2 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log$3 = gs__namespace.loggingService.console_debug_log;
+const console_debug_log$2 = gs__namespace.loggingService.console_debug_log;
 const formatCaughtError$4 = gs__namespace.errorAndReenter.formatCaughtError;
 const toggleIdVisibility$3 = gs__namespace.ui.toggleIdVisibility;
 const getMediaTypeToRecord = gs__namespace.media.getMediaTypeToRecord;
 const mediaSupported = gs__namespace.media.mediaSupported;
 const BUTTON_LISTING_CLASS$4 = gs__namespace.classNameConstants.BUTTON_LISTING_CLASS;
-const debug = true;
+const debug = false;
 const extControlsToShowHide$1 = ['user_input', 'user_input_submit', 'fileUploader', 'cameraComponent'];
 const useAxios$1 = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 const VoiceMessageRecorder = _ref => {
@@ -103,8 +110,8 @@ const VoiceMessageRecorder = _ref => {
         audio: true
       });
       const mediaType = getMediaTypeToRecord();
-      if (debug) console_debug_log$3("VoiceMessageRecorder | startRecording | extension: ".concat(mediaType["extension"]));
-      if (debug) console_debug_log$3("mediaSupported", mediaSupported());
+      if (debug) ;
+      if (debug) ;
 
       // Set the MediaRecorder options   
       const mediaRecorder = new MediaRecorder(stream, mediaType["options"]);
@@ -156,9 +163,7 @@ const VoiceMessageRecorder = _ref => {
       });
       // Hide WaitAnimation after fetching data
       dispatchWaitAnimation(false, dispatch);
-      if (debug) {
-        console_debug_log$3('[FA] VoiceMessageRecorder is calling setExternalInputMessage', response.data);
-      }
+      if (debug) ;
       // Send the transcript to the input text box
       setExternalInputMessage(response.data.response);
       // Restore buttons in the input text area
@@ -185,9 +190,6 @@ const VoiceMessageRecorder = _ref => {
     }
   };
   React.useEffect(() => {
-    {
-      console_debug_log$3("VoiceMessageRecorder | useEffect() of sendVoiceMessage | isRecording: ".concat(isRecording));
-    }
     const sendVoiceMessage = async () => {
       if (!audioData) {
         return;
@@ -213,9 +215,6 @@ const VoiceMessageRecorder = _ref => {
       const db = new dbApiService$3({
         url: "ai/voice_to_text"
       });
-      {
-        console_debug_log$3("VoiceMessageRecorder | sendVoiceMessage | fileName: ".concat(fileName));
-      }
       // Clear previous message in the input text area
       setExternalInputMessage('');
       // Update the size of the input text area if the handleUpdateSize function is provided.
@@ -232,14 +231,8 @@ const VoiceMessageRecorder = _ref => {
         await sendFile(endpointUrl, formData, authHeader, query_params);
       } else {
         db.getAll(query_params, formData, 'POST', options).then(data => {
-          {
-            console_debug_log$3("VoiceMessageRecorder | sendVoiceMessage | data:", data);
-          }
           // Hide WaitAnimation after fetching data
           dispatchWaitAnimation(false, dispatch);
-          {
-            console_debug_log$3('VoiceMessageRecorder is calling setExternalInputMessage', data.response);
-          }
           // Send the transcript to the input text box
           setExternalInputMessage(data.response);
           // Restore buttons in the input text area
@@ -254,9 +247,6 @@ const VoiceMessageRecorder = _ref => {
           }
         }, error => {
           error = formatCaughtError$4(error);
-          {
-            console_debug_log$3("VoiceMessageRecorder | sendVoiceMessage | ERROR:", error);
-          }
           // Hide WaitAnimation after the error
           dispatchWaitAnimation(false, dispatch);
           // Restore buttons in the input text area
@@ -283,35 +273,32 @@ const VoiceMessageRecorder = _ref => {
     onClick: isRecording ? stopRecording : startRecording,
     className: "".concat(BUTTON_LISTING_CLASS$4, " mr-2"),
     title: isRecording ? 'Stop Recording' : 'Start Recording'
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons$5, {
     icon: isRecording ? 'stop' : 'microphone',
     size: "lg"
   })));
 };
 
 const formatCaughtError$3 = gs__namespace.errorAndReenter.formatCaughtError;
-const authenticationService = gs__namespace.authenticationService.authenticationService;
 const dbApiService$2 = gs__namespace.dbService.dbApiService;
 const defaultValue = gs__namespace.genericEditorUtilities.defaultValue;
-const console_debug_log$2 = gs__namespace.loggingService.console_debug_log;
+const console_debug_log$1 = gs__namespace.loggingService.console_debug_log;
 
 // Current user
 
-const getCurrentUser = () => {
-  let currentUser;
-  const setCurrentUser = x => {
-    currentUser = x;
-  };
-  if (authenticationService.currentUser) {
-    const subscription = authenticationService.currentUser.subscribe(x => setCurrentUser(x));
-    subscription.unsubscribe();
-  }
-  if (typeof currentUser !== "undefined" && currentUser !== null) {
-    return currentUser.id;
+const getCurrentUserId = dispatch => {
+  // if(debug) {
+  console_debug_log$1(">>--> getCurrentUserId");
+  // }
+  const state = dispatch({
+    type: 'GET_CURRENT_USER',
+    payload: null
+  });
+  if (typeof state !== "undefined" && state !== null) {
+    return state.currentUser.id;
   }
   return null;
 };
-const currentUser = getCurrentUser();
 
 // DB: generic calls
 
@@ -471,8 +458,8 @@ const ApiCall = async (dispatch, params) => {
     response.operationMessage = "".concat(the, " ").concat(operationDescription, " ").concat(ActionDescription, " ").concat(was_successful);
   } else {
     response.operationMessage = "".concat(error_in_the, " ").concat(operationDescription, " ").concat(ActionDescription);
-    console_debug_log$2('ApiCall ERROR:');
-    console_debug_log$2(response.operationMessage);
+    console_debug_log$1('ApiCall ERROR:');
+    console_debug_log$1(response.operationMessage);
   }
   dispatch({
     type: 'API_PROCESSING_STATUS',
@@ -512,7 +499,7 @@ const checkConversationIdChange = async (state, dispatch, externalApiResponse) =
   let cid = state.currentConversationId;
   let apiResponse;
   // if (debug) {
-  console_debug_log$2(">> checkConversationIdChange | cid: ".concat(cid, " | externalApiResponse:"), externalApiResponse);
+  console_debug_log$1(">> checkConversationIdChange | cid: ".concat(cid, " | externalApiResponse:"), externalApiResponse);
   // }
   if (typeof externalApiResponse['cid'] !== 'undefined' && state.currentConversationId !== externalApiResponse['cid']) {
     cid = externalApiResponse['cid'];
@@ -538,13 +525,14 @@ const checkConversationIdChange = async (state, dispatch, externalApiResponse) =
   return cid;
 };
 const loadConversationList = async dispatch => {
+  const currentUserId = getCurrentUserId(dispatch);
   const response = ApiCall(dispatch, {
     operationName: "loadConversationList",
     operationDescription: "Conversation list",
     operationType: "getAll",
     endpointUrl: "ai_chatbot_conversations",
     query: {
-      user_id: currentUser
+      user_id: currentUserId
     }
   });
   return response;
@@ -567,7 +555,7 @@ const fetchOneConversation = async (conversationId, dispatch) => {
       messages: apiResponse.response.messages
     };
     dispatch({
-      type: 'GET_MESSAGES',
+      type: 'SET_MESSAGES',
       payload: data
     });
   }
@@ -577,7 +565,7 @@ const fetchOneConversation = async (conversationId, dispatch) => {
 // DB: Conversations
 
 // const saveConversation = async (conversationId, conversation, dispatch) => {
-//     const conversationAddition = {user_id: currentUser}
+//     const conversationAddition = {user_id: currentUserId}
 //     const response = ApiCall(
 //         dispatch,
 //         {
@@ -593,19 +581,21 @@ const fetchOneConversation = async (conversationId, dispatch) => {
 // };
 
 const loadConversation = async (conversationId, dispatch) => {
+  const currentUserId = getCurrentUserId(dispatch);
   const response = ApiCall(dispatch, {
     operationName: "loadConversation (one)",
     operationDescription: "Conversation",
     operationType: "getOne",
     endpointUrl: "ai_chatbot_conversations",
     query: {
-      user_id: currentUser,
+      user_id: currentUserId,
       id: conversationId
     }
   });
   return response;
 };
 const deleteConversation = async (conversationId, dispatch) => {
+  const currentUserId = getCurrentUserId(dispatch);
   const response = ApiCall(dispatch, {
     operationName: "deleteConversation",
     operationDescription: "Conversation",
@@ -613,7 +603,7 @@ const deleteConversation = async (conversationId, dispatch) => {
     id: conversationId,
     endpointUrl: "ai_chatbot_conversations",
     query: {
-      user_id: currentUser
+      user_id: currentUserId
     }
   });
   return response;
@@ -661,15 +651,22 @@ const handleCancelProcessing = dispatch => {
   }); // Clear API processing status
 };
 
-fontawesome.library.add(fontawesomeFreeSolid.faArrowUp,
-// Select file + Upload
-fontawesomeFreeSolid.faTimes,
-// Close
-fontawesomeFreeSolid.faPaperclip // Added clip icon
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faArrowUp,
+//     faTimes,
+//     faPaperclip, // Added clip icon
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faArrowUp, // Select file + Upload
+//     faTimes, // Close
+//     faPaperclip, // Added clip icon
+// );
+const GsIcons$4 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$1 = gs__namespace.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER$1 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log$1 = gs__namespace.loggingService.console_debug_log;
+gs__namespace.loggingService.console_debug_log;
 const formatCaughtError$2 = gs__namespace.errorAndReenter.formatCaughtError;
 const toggleIdVisibility$2 = gs__namespace.ui.toggleIdVisibility;
 const BUTTON_LISTING_CLASS$3 = gs__namespace.classNameConstants.BUTTON_LISTING_CLASS;
@@ -753,9 +750,6 @@ function FileUploader(_ref) {
       }
       // Show WaitAnimation while fetching data
       dispatchWaitAnimation(true, dispatch);
-      {
-        console_debug_log$1("FileUploader | selectedFile:", selectedFile);
-      }
       if (useAxios) {
         const authHeader = gs__namespace.authHeader.authHeader();
         const endpointUrl = "".concat(process.env.REACT_APP_API_URL, "/", "ai/image_to_text");
@@ -765,21 +759,12 @@ function FileUploader(_ref) {
           url: "ai/image_to_text"
         });
         db.getAll(query, formData, 'POST', options).then(data => {
-          {
-            console_debug_log$1("FileUploader | handleUpload | data:", data);
-          }
           dispatchWaitAnimation(false, dispatch);
-          {
-            console_debug_log$1("FileUploader is calling checkConversationIdChange(\"".concat(data, "\")"));
-          }
           // addMessageToConversation(data.response, "assistant", dispatch);
           checkConversationIdChange(state, dispatch, data).then(() => {
             // Current conversation updated sucssesfuly
           }, error => {
             error = formatCaughtError$2(error);
-            {
-              console_debug_log$1("FileUploader | checkConversationIdChange | ERROR:", error);
-            }
             setChatbotErrorMsg(error.message, dispatch);
           });
           setSelectedFile(null);
@@ -787,16 +772,10 @@ function FileUploader(_ref) {
         }, errorRaw => {
           // Hide WaitAnimation after the error
           const error = formatCaughtError$2(errorRaw);
-          {
-            console_debug_log$1(">>--> FileUploader | handleUpload | errorRaw:", errorRaw);
-          }
           dispatchWaitAnimation(false, dispatch);
           console.error('Error uploading the file:', error);
           // setExternalErrorMsg(error.message);
           setChatbotErrorMsg(error.message, dispatch);
-          {
-            console_debug_log$1("FileUploader | after setExternalErrorMsg...");
-          }
         });
       }
     } else {
@@ -816,7 +795,7 @@ function FileUploader(_ref) {
     onClick: () => setButtonToggle(buttonToggle ? false : true),
     className: "".concat(BUTTON_LISTING_CLASS$3, " mr-2"),
     title: buttonToggle ? 'Close' : 'Select File'
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons$4, {
     icon: buttonToggle ? 'times' : 'paperclip',
     size: "lg"
   })), buttonToggle && /*#__PURE__*/React.createElement("div", {
@@ -830,7 +809,7 @@ function FileUploader(_ref) {
     onClick: handleUpload,
     className: "".concat(BUTTON_LISTING_CLASS$3),
     title: "Submit"
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons$4, {
     icon: "arrow-up",
     size: "lg"
   })))));
@@ -866,16 +845,23 @@ function styleInject(css, ref) {
 var css_248z$3 = ".video-container {\n  position: relative;\n  width: 100%;\n  max-width: 100%;\n}\n\n.video-container video {\n  width: 100%;\n  height: auto;\n}\n\n.overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: space-around;\n  background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color and opacity as needed */\n}\n\n.overlay button {\n  padding: 10px 20px;\n  font-size: 16px;\n  background-color: #007bff; /* Button background color */\n  color: #fff; /* Button text color */\n  border: none;\n  cursor: pointer;\n}\n\n.overlay button:hover {\n  background-color: #0056b3; /* Button background color on hover */\n}\n";
 styleInject(css_248z$3);
 
-fontawesome.library.add(fontawesomeFreeSolid.faArrowUp,
-// Arrow-up: to select file + perform the upload
-fontawesomeFreeSolid.faTimes,
-// X: to close the component controls
-fontawesomeFreeSolid.faCamera,
-// Camera
-fontawesomeFreeSolid.faCameraRetro,
-// Icon for taking the photo
-fontawesomeFreeSolid.faExchangeAlt // Icon for interchange
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faArrowUp,
+//     faTimes,
+//     faCamera, // Camera
+//     faCameraRetro, // Icon for taking the photo
+//     faExchangeAlt, // Icon for interchange
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faArrowUp, // Arrow-up: to select file + perform the upload
+//     faTimes, // X: to close the component controls
+//     faCamera, // Camera
+//     faCameraRetro, // Icon for taking the photo
+//     faExchangeAlt, // Icon for interchange
+// );
+const GsIcons$3 = gs__namespace.IconsLib.GsIcons;
 const dbApiService = gs__namespace.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
 gs__namespace.loggingService.console_debug_log;
@@ -1032,21 +1018,21 @@ const CameraComponent = _ref => {
     },
     className: "".concat(BUTTON_LISTING_CLASS$2, " mr-2"),
     title: buttonToggle ? 'Close' : 'Start Camera'
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons$3, {
     icon: buttonToggle ? 'times' : 'camera',
     size: "lg"
   })), buttonToggle && /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
     onClick: () => cameraOnOff(!cameraOn),
     className: "".concat(BUTTON_LISTING_CLASS$2, " mr-2"),
     title: "Start Camera"
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons$3, {
     icon: "camera-retro",
     size: "lg"
   })), /*#__PURE__*/React.createElement("button", {
     onClick: sendPhoto,
     className: "".concat(BUTTON_LISTING_CLASS$2, " mr-2"),
     title: "Send Photo"
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons$3, {
     icon: "arrow-up",
     size: "lg"
   })), photo && /*#__PURE__*/React.createElement("img", {
@@ -1077,7 +1063,22 @@ const CameraComponent = _ref => {
   }))))));
 };
 
-fontawesome.library.add(fontawesomeFreeSolid.faGreaterThan, fontawesomeFreeSolid.faStop);
+/*
+Warning: Failed prop type: Invalid prop `size` of value `m` supplied to `FontAwesomeIcon`,
+expected one of ["2xs","xs","sm","lg","xl","2xl","1x","2x","3x","4x","5x","6x","7x","8x","9x","10x"].
+*/
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faGreaterThan,
+//     faStop,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faGreaterThan,
+//     faStop,
+// );
+const GsIcons$2 = gs__namespace.IconsLib.GsIcons;
 gs__namespace.loggingService.console_debug_log;
 const usePlainFetch$1 = gs__namespace.responseHandlersService.usePlainFetch;
 const growUpTextArea = gs__namespace.ui.growUpTextArea;
@@ -1232,7 +1233,7 @@ const UserInput = _ref => {
     onClick: () => state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage(),
     className: "".concat(BUTTON_LISTING_CLASS$1, " mr-2"),
     title: state && state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons$2, {
     icon: state && state.isApiProcessing ? 'stop' : 'greater-than',
     size: "lg"
   }))), /*#__PURE__*/React.createElement(VoiceMessageRecorder, {
@@ -1293,7 +1294,15 @@ const NewConversationButton = _ref => {
   }, "New Conversation"));
 };
 
-fontawesome.library.add(fontawesomeFreeSolid.faTrash);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faTrash,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faTrash,
+// );
+const GsIcons$1 = gs__namespace.IconsLib.GsIcons;
 const convertId$1 = gs__namespace.dbService.convertId;
 gs__namespace.loggingService.console_debug_log;
 const timestampToDate = gs__namespace.dateTimestamp.timestampToDate;
@@ -1325,7 +1334,7 @@ const ConversationList = _ref => {
         messages: apiResponse.response.messages
       };
       dispatch({
-        type: 'GET_MESSAGES',
+        type: 'SET_MESSAGES',
         payload: data
       });
     } else {
@@ -1441,7 +1450,7 @@ const ConversationList = _ref => {
         type: "button",
         onClick: () => confirmDeleteConversation(convId, dispatch, conversation.title),
         className: "ml-2 mb-1 bg-blue-500 text-white p-0 rounded close"
-      }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+      }, /*#__PURE__*/React.createElement(GsIcons$1, {
         icon: "trash",
         size: "xs"
       }))));
@@ -1469,42 +1478,54 @@ const ConversationList = _ref => {
   }, /*#__PURE__*/React.createElement("h2", null, monthYear), renderConversations(groupedConversations.older[monthYear]))));
 };
 
-fontawesome.library.add(fontawesomeFreeSolid.faGreaterThan, fontawesomeFreeSolid.faLessThan);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faGreaterThan,
+//     faLessThan,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faGreaterThan,
+//     faLessThan,
+// );
+
+const ToggleSideBar = gs__namespace.NavLib.ToggleSideBar;
 gs__namespace.loggingService.console_debug_log;
 const ConversationsToggleButton = _ref => {
   let {
     state,
     dispatch
   } = _ref;
-  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
+  return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ToggleSideBar, {
     key: "conversation-list-toggle-button",
-    type: "button",
-    className: "bg-white border-none focus:outline-none",
     onClick: () => setConversationListToggle(!state.conversationListToggle, dispatch)
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
-    icon: state.conversationListToggle ? 'less-than' : 'greater-than',
-    size: "xl",
-    style: {
-      color: 'lightgray'
-    }
-  })));
+  }));
 };
 
 var css_248z$1 = ".audio-player {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n  background-color: rgb(40, 121, 145);\n  border-radius: 15px;\n  padding: 13px;\n  width: max-content;\n  color: #ffffff;\n}\n\n.menu-content {\n  display: none;\n  position: absolute;\n  background-color: #f9f9f9;\n  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);\n  padding: 12px 16px;\n  z-index: 1;\n}\n\n.menu:hover .menu-content {\n  display:inline;\n  position: relative;\n  top: 2px;\n  right: -10px;\n  padding: 3px;\n  border-radius: 5px;\n  border: none;\n  background: grey;\n  color: white;\n  cursor: pointer;\n  font-size: 12px;\n  z-index: 2;\n}\n\n.play-button {\n    border: none;\n}\n\n.play-button:focus {\n  outline: none;\n}\n\n";
 styleInject(css_248z$1);
 
-fontawesome.library.add(fontawesomeFreeSolid.faPlay, fontawesomeFreeSolid.faStop);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faPlay,
+//     faStop,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faPlay,
+//     faStop,
+// );
+gs__namespace.IconsLib.GsIcons;
 const WARNING_MSG_CLASS$1 = gs__namespace.classNameConstants.WARNING_MSG_CLASS;
 gs__namespace.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs__namespace.blobFilesUtilities.decodeBlob;
 gs__namespace.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   React.useState(0);
   React.useState(0);
@@ -1550,7 +1571,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -1583,7 +1604,16 @@ const GoToTheBottom = _ref => {
 var css_248z = ".float{\n\tposition:fixed;\n\twidth:40px;\n\theight:40px;\n\tbottom:90px;\n\tright:500px;\n\t/* background-color:#0C9; */\n\tbackground-color: lightgray;\n\tcolor:#FFF;\n\tborder-radius:50px;\n\ttext-align:center;\n\tbox-shadow: 2px 2px 3px #999;\n    /* visibility: hidden; */\n}\n\n.my-float{\n\t/* margin-top:22px; */\n    margin-top:12px;\n}\n";
 styleInject(css_248z);
 
-fontawesome.library.add(fontawesomeFreeSolid.faArrowDown);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faArrowDown,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faArrowDown,
+// );
+
+const GsIcons = gs__namespace.IconsLib.GsIcons;
 gs__namespace.loggingService.console_debug_log;
 const ScrollToBottomButton = _ref => {
   let {
@@ -1616,7 +1646,7 @@ const ScrollToBottomButton = _ref => {
     className: "float"
   }, /*#__PURE__*/React.createElement("i", {
     className: "a fa-plus my-float"
-  }, /*#__PURE__*/React.createElement(reactFontawesome.FontAwesomeIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons, {
     icon: "arrow-down",
     size: "lg"
   }))));
@@ -1689,9 +1719,7 @@ const ConversationBlock = _ref => {
   let {
     id,
     state,
-    dispatch,
     handleRetry
-    // errorMsg,
   } = _ref;
   const [elementsToRender, setElementsToRender] = React.useState('');
   const formatMessage = messageObject => {
@@ -1813,6 +1841,7 @@ const console_debug_log = gs__namespace.loggingService.console_debug_log;
 const isMobileDevice = gs__namespace.ui.isMobileDevice;
 const getUrlParams = gs__namespace.urlParams.getUrlParams;
 const errorAndReEnter = gs__namespace.errorAndReenter.errorAndReEnter;
+const useUser = gs__namespace.UserContext.useUser;
 const urlParams = getUrlParams();
 
 // A reducer function for chat state management
@@ -1826,7 +1855,7 @@ const chatReducer = (state, action) => {
         ...state,
         messages: [...state.messages, action.payload]
       };
-    case 'GET_MESSAGES':
+    case 'SET_MESSAGES':
       return {
         ...state,
         // Payload has an array of messages and the conversationId
@@ -1891,6 +1920,15 @@ const chatReducer = (state, action) => {
         errorMsg: action.payload
       };
 
+    // Current user
+
+    case 'SET_CURRENT_USER':
+      return {
+        ...state,
+        // Payload has the currentUser data
+        currentUser: action.payload
+      };
+
     // Not registered action
 
     default:
@@ -1905,6 +1943,9 @@ const ChatBot = _ref => {
     userQuestion = urlParams.q ? decodeURIComponent(urlParams.q) : '',
     showSideBar = !(urlParams.ssb && urlParams.ssb === "0")
   } = _ref;
+  const {
+    currentUser
+  } = useUser();
   const [state, dispatch] = React.useReducer(chatReducer, {
     messages: [],
     conversations: [],
@@ -1913,7 +1954,8 @@ const ChatBot = _ref => {
     isTyping: false,
     inputMessage: userQuestion,
     conversationListToggle: !isMobileDevice(),
-    errorMsg: null
+    errorMsg: null,
+    currentUser: currentUser
   });
   const columnSizeList = () => showSideBar && state.conversationListToggle ? isMobileDevice() ? '70%' : '30%' : "0%";
   const columnSizeMessages = () => showSideBar && state.conversationListToggle ? isMobileDevice() ? '30%' : '70%' : "100%";
@@ -1932,9 +1974,6 @@ const ChatBot = _ref => {
       console_debug_log("handleRetry | lastUserMessage:", lastUserMessage, "state.messages:", state.messages);
       // }
       if (typeof lastUserMessage !== "undefined" && lastUserMessage !== null && typeof lastUserMessage["content"] !== "undefined") {
-        // if (debug) {
-        console_debug_log("handleRetry | setChatbotInputMessage: ".concat(lastUserMessage.content));
-        // }
         setChatbotInputMessage(lastUserMessage.content, dispatch);
       }
     }
@@ -1949,6 +1988,12 @@ const ChatBot = _ref => {
       }
     }, error => setChatbotErrorMsg(error, dispatch));
   }, []);
+  React.useEffect(() => {
+    dispatch({
+      type: 'SET_CURRENT_USER',
+      payload: currentUser
+    });
+  }, [currentUser]);
   return /*#__PURE__*/React.createElement("div", {
     className: "chatbot-container"
   }, state.errorMsg && /*#__PURE__*/React.createElement(React.Fragment, null, errorAndReEnter(state.errorMsg, null, null, handleRetry)), showSideBar && state.conversationListToggle && /*#__PURE__*/React.createElement("div", {
@@ -2005,8 +2050,12 @@ const App = _ref => {
 // AI button
 
 gs__namespace.loggingService.console_debug_log;
-const imageDirectory = gs__namespace.generalConstants.imageDirectory;
-const sparkIcon = gs__namespace.spark;
+
+// const imageDirectory = gs.generalConstants.imageDirectory;
+// const sparkIcon = gs.spark;
+// Does not work:
+// import SparkIcon from "../../images/spark.svg";
+gs__namespace.IconsLib.GsIcons;
 const ChatBotButton = _ref => {
   let {
     valueElement,
@@ -2031,9 +2080,9 @@ const ChatBotButton = _ref => {
     className: "ml-2"
   }, /*#__PURE__*/React.createElement("button", {
     onClick: handleSparkClick
-  }, /*#__PURE__*/React.createElement("img", {
-    src: imageDirectory + sparkIcon,
-    alt: "Open AI Chat"
+  }, /*#__PURE__*/React.createElement(GsIcon, {
+    icon: "spark",
+    alt: "Open AI Assistant"
   })))), showLLMPopup && /*#__PURE__*/React.createElement("div", {
     className: "mt-5"
   }, /*#__PURE__*/React.createElement("div", {

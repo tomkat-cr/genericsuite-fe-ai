@@ -16,6 +16,27 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## Unreleased
+## 1.0.20 (2024-09-14)
+---
+
+### New
+New "GsIcons" library replaces FontAwesome [GS-115].
+
+### Changes
+Update GS FE AI with GS FE Core Tailwind conversion and new contexts [GS-129].
+<HashRouter> was replaced by <RouterProvider> and createBrowserRouter() [GS-112].
+
+### Fixes
+Fix missing classes in the new output.css of Tailwind v3.4.9 [GS-63].
+Fix the %PUBLIC_URL% issue in public/index.html file running the app with webpack [GS-116].
+
+### Breaks
+Bootstrap CSS is not longer used [GS-63].
+FontAwesome is not longer used [GS-115].
+SVG images removed and included in the "GsIcons" library [GS-115].
+
+
 ## 1.0.19 (2024-07-27)
 
 ### New

@@ -9,14 +9,15 @@ import {
 
 import './ChatBot.css';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
-import {
-    faTrash,
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faTrash,
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faTrash,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faTrash,
+// );
+const GsIcons = gs.IconsLib.GsIcons;
 
 const convertId = gs.dbService.convertId;
 const console_debug_log = gs.loggingService.console_debug_log;
@@ -37,18 +38,18 @@ export const ConversationList = ({
     }
 
     // Handle load conversation
-    const handleLoadConversation = async (conversationId, dispatch) => {
+    const handleLoadConversation = async (conversationId, state, dispatch) => {
         if (!showSideBar) {
             return;
         }
-        const apiResponse = await loadConversation(conversationId, dispatch);
+        const apiResponse = await loadConversation(conversationId, state, dispatch);
         if (debug) console_debug_log('handleLoadConversation | apiResponse:', apiResponse);
         if (apiResponse.ok) {
             const data = {
                 conversationId: conversationId,
                 messages: apiResponse.response.messages,
             }
-            dispatch({ type: 'GET_MESSAGES', payload: data });
+            dispatch({ type: 'SET_MESSAGES', payload: data });
         } else {
             setErrorMsg(apiResponse.errorMessage);
         }
@@ -63,7 +64,7 @@ export const ConversationList = ({
     // Handle delete conversation
     const handleDeleteConversation = async (conversationId, dispatch) => {
         const startNew = (conversationId === state.currentConversationId);
-        const apiResponse = await deleteConversation(conversationId, dispatch);
+        const apiResponse = await deleteConversation(conversationId, state, dispatch);
         if (debug) {
             console_debug_log(`handleDeleteConversation | conversationId: ${conversationId} | state.currentConversationId: ${state.currentConversationId} | startNew: ${startNew} | apiResponse:`, apiResponse);
         }
@@ -136,7 +137,7 @@ export const ConversationList = ({
                         >
                             <button
                                 key={`${convId}_desc_button`}
-                                onClick={() => handleLoadConversation(convId, dispatch)}
+                                onClick={() => handleLoadConversation(convId, state, dispatch)}
                                 title={timestampToDate(conversation[dateColumn], true, " ", false)}
                             >
                                 <div
@@ -158,7 +159,11 @@ export const ConversationList = ({
                             onClick={() => confirmDeleteConversation(convId, dispatch, conversation.title)}
                             className="ml-2 mb-1 bg-blue-500 text-white p-0 rounded close"
                         >
-                            <FontAwesomeIcon icon="trash" size='xs' />
+                            {/* <FontAwesomeIcon icon="trash" size='xs' /> */}
+                            <GsIcons
+                                icon="trash"
+                                size='xs'
+                            />
                         </button>
                     </div>
                 </div>

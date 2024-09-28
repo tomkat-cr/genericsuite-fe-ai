@@ -16,10 +16,10 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <HashRouter>
+    {/* <HashRouter> */}
       <App
         componentMap={componentMap}
       />
-    </HashRouter>
+    {/* </HashRouter> */}
   </React.StrictMode>
 );

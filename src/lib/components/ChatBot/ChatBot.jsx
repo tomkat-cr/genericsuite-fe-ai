@@ -23,6 +23,7 @@ const console_debug_log = gs.loggingService.console_debug_log;
 const isMobileDevice = gs.ui.isMobileDevice;
 const getUrlParams = gs.urlParams.getUrlParams;
 const errorAndReEnter = gs.errorAndReenter.errorAndReEnter;
+const useUser = gs.UserContext.useUser;
 
 const debug = false;
 
@@ -41,9 +42,9 @@ const chatReducer = (state, action) => {
                 messages: [...state.messages, action.payload]
             };
 
-        case 'GET_MESSAGES':
-            if(debug) {
-                console_debug_log(">>--> ** ChatReducer ** | action:", action);
+        case 'SET_MESSAGES':
+            if (debug) {
+                console_debug_log(" ChatReducer | SET_MESSAGES | action:", action);
             }
             return {
                 ...state,
@@ -115,9 +116,21 @@ const chatReducer = (state, action) => {
                 errorMsg: action.payload
             };
 
+        // Current user
+
+        case 'SET_CURRENT_USER':
+            return {
+                ...state,
+                // Payload has the currentUser data
+                currentUser: action.payload,
+            };
+
         // Not registered action
     
         default:
+            if (debug) {
+                console_debug_log("ChatReducer | NOT REGISTERED ACTION:", action, "|| state:", state);
+            }
             return state;
     }
 };
@@ -128,6 +141,7 @@ export const ChatBot = ({
     userQuestion = (urlParams.q ? decodeURIComponent(urlParams.q) : ''),
     showSideBar = !(urlParams.ssb && urlParams.ssb === "0")
 }) => {
+    const { currentUser } = useUser();
     const [state, dispatch] = useReducer(chatReducer, {
         messages: [],
         conversations: [],
@@ -137,13 +151,14 @@ export const ChatBot = ({
         inputMessage: userQuestion,
         conversationListToggle: !isMobileDevice(),
         errorMsg: null,
+        currentUser: currentUser,
     });
 
     const columnSizeList = () =>
-        (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '70%' : '30%') : "0%")
+        (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '80%' : '20%') : "0%")
 
     const columnSizeMessages = () =>
-        (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '30%' : '70%') : "100%")
+        (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '20%' : '80%') : "100%")
     
     if (debug) {
         console_debug_log("AiAssistant STATE:", state);
@@ -162,17 +177,17 @@ export const ChatBot = ({
             const lastUserMessage = state.messages.slice().reverse().find(
                 message => message.role === 'user' && message.content !== ''
             );
-            // if (debug) {
+            if (debug) {
                 console_debug_log("handleRetry | lastUserMessage:", lastUserMessage, "state.messages:", state.messages);
-            // }
+            }
             if (
                 typeof lastUserMessage !== "undefined" &&
                 lastUserMessage !== null &&
                 typeof lastUserMessage["content"] !== "undefined"
             ) {
-                // if (debug) {
+                if (debug) {
                     console_debug_log(`handleRetry | setChatbotInputMessage: ${lastUserMessage.content}`);
-                // }
+                }
                 setChatbotInputMessage(lastUserMessage.content, dispatch);
             }
         }
@@ -181,7 +196,7 @@ export const ChatBot = ({
     
     // Load conversations
     useEffect(() => {
-        fetchConversations(dispatch)
+        fetchConversations(state, dispatch)
             .then(
                 apiResponse => {
                     if (debug) {
@@ -194,6 +209,10 @@ export const ChatBot = ({
                 error => setChatbotErrorMsg(error, dispatch)
             );
     }, []);
+
+    useEffect(() => {
+        dispatch({ type: 'SET_CURRENT_USER', payload: currentUser });
+    }, [currentUser]);
 
     return (
         <div className="chatbot-container">

@@ -29,28 +29,31 @@ it("renders the HomePage component with the LoginPage", () => {
 jest.mock('genericsuite', () => ({
     // Emulate a logged-in user
     authenticationService: {
-        authenticationService: {
-            currentUser: {
-                subscribe: jest.fn(callback => {
-                    callback({
-                        id: 'mockedUserId',
-                        username: "Mocked Username",
-                        firstName: 'Mocked firstName',
-                        lastName: 'Mocked lastName',
-                        token: 'Mocked token',
-                    });
-                    return { unsubscribe: jest.fn() };
-                }),
-            },
-            currentUserValue: {
-                id: 'mockedUserId',
-                username: "Mocked Username",
-                firstName: 'Mocked firstName',
-                lastName: 'Mocked lastName',
-                token: 'Mocked token',
-            },
-        },
+        currentUserValue: {
+          token: 'Mocked token',
+        }
     },
+    // To fix the error: "TypeError: (0 , _authenticationService.getUserData) is not a function"
+    getUserData: () => Promise.resolve({
+        error: false,
+        error_message: null,
+        resultset: {
+            _id: 'mockedUserId',
+            first_name: 'Mocked firstName',
+            last_name: 'Mocked lastName',
+            superuser: 0,
+        }
+    }),
+    getCurrentUserData: () => Promise.resolve({resultset: {
+        error: false,
+        error_message: null,
+        resultset: {
+            _id: 'mockedUserId',
+            first_name: 'Mocked firstName',
+            last_name: 'Mocked lastName',
+            superuser: 0,
+        }
+    }}),
     // Emulate console_debug_log
     loggingService: {
         console_debug_log: jest.fn(),

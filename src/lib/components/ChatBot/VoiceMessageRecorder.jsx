@@ -3,21 +3,23 @@ import axios from 'axios';
 
 import * as gs from "genericsuite";
 
+import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import {
     setChatbotErrorMsg,
     dispatchWaitAnimation,
 } from './chatbot.general.functions.jsx';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
-import {
-    faMicrophone,
-    faStop,
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faMicrophone,
-    faStop,
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faMicrophone,
+//     faStop,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faMicrophone,
+//     faStop,
+// );
+const GsIcons = gs.IconsLib.GsIcons;
 
 const dbApiService = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
@@ -28,7 +30,7 @@ const getMediaTypeToRecord = gs.media.getMediaTypeToRecord;
 const mediaSupported = gs.media.mediaSupported;
 const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
-const debug = true;
+const debug = false;
 
 const extControlsToShowHide = ['user_input', 'user_input_submit', 'fileUploader', 'cameraComponent'];
 
@@ -305,7 +307,12 @@ export const VoiceMessageRecorder = ({
                 className={`${BUTTON_LISTING_CLASS} mr-2`}
                 title={isRecording ? 'Stop Recording' : 'Start Recording'}
             >
-                <FontAwesomeIcon icon={isRecording ? 'stop' : 'microphone'} size='lg' />
+                {/* <FontAwesomeIcon icon={isRecording ? 'stop' : 'microphone'} size='lg' /> */}
+                <GsIcons
+                    icon={isRecording ? 'stop' : 'microphone'}
+                    size='lg'
+                    additionalIconsFn={iconsLibAiExtras}
+                />
             </button>
         </div>
     );

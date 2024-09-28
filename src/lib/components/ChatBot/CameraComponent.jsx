@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 
 import * as gs from "genericsuite";
 
+import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import {
     dispatchWaitAnimation,
     addMessageToConversation,
@@ -11,22 +12,23 @@ import { checkConversationIdChange } from './chatbot.db.operations.jsx';
 
 import './CameraComponent.css';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
-import {
-    faArrowUp,
-    faTimes,
-    faCamera, // Camera
-    faCameraRetro, // Icon for taking the photo
-    faExchangeAlt, // Icon for interchange
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faArrowUp, // Arrow-up: to select file + perform the upload
-    faTimes, // X: to close the component controls
-    faCamera, // Camera
-    faCameraRetro, // Icon for taking the photo
-    faExchangeAlt, // Icon for interchange
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faArrowUp,
+//     faTimes,
+//     faCamera, // Camera
+//     faCameraRetro, // Icon for taking the photo
+//     faExchangeAlt, // Icon for interchange
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faArrowUp, // Arrow-up: to select file + perform the upload
+//     faTimes, // X: to close the component controls
+//     faCamera, // Camera
+//     faCameraRetro, // Icon for taking the photo
+//     faExchangeAlt, // Icon for interchange
+// );
+const GsIcons = gs.IconsLib.GsIcons;
 
 const dbApiService = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
@@ -206,7 +208,12 @@ export const CameraComponent = ({
                     className={`${BUTTON_LISTING_CLASS} mr-2`}
                     title={buttonToggle ? 'Close' : 'Start Camera'}
                 >
-                    <FontAwesomeIcon icon={buttonToggle ? 'times' : 'camera'} size='lg' />
+                    {/* <FontAwesomeIcon icon={buttonToggle ? 'times' : 'camera'} size='lg' /> */}
+                    <GsIcons
+                        icon={buttonToggle ? 'times' : 'camera'}
+                        size='lg'
+                        additionalIconsFn={iconsLibAiExtras}
+                    />
                 </button>
                 {buttonToggle && (
                     <>
@@ -215,14 +222,24 @@ export const CameraComponent = ({
                             className={`${BUTTON_LISTING_CLASS} mr-2`}
                             title='Start Camera'
                         >
-                            <FontAwesomeIcon icon='camera-retro' size='lg'/>
+                            {/* <FontAwesomeIcon icon='camera-retro' size='lg'/> */}
+                            <GsIcons
+                                icon='camera-retro'
+                                size='lg'
+                                additionalIconsFn={iconsLibAiExtras}
+                            />
                         </button>
                         <button
                             onClick={sendPhoto}
                             className={`${BUTTON_LISTING_CLASS} mr-2`}
                             title='Send Photo'
                         >
-                            <FontAwesomeIcon icon='arrow-up' size='lg'/>
+                            {/* <FontAwesomeIcon icon='arrow-up' size='lg'/> */}
+                            <GsIcons
+                                icon='arrow-up'
+                                size='lg'
+                                additionalIconsFn={iconsLibAiExtras}
+                            />
                         </button>
                         {photo && (
                             <img

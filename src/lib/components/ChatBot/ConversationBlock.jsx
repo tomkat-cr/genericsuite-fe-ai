@@ -22,9 +22,7 @@ const defaultDownloadFilename = 'file_with_no_name.mp3'
 export const ConversationBlock = ({
     id,
     state,
-    dispatch,
     handleRetry,
-    // errorMsg,
 }) => {
     const [elementsToRender, setElementsToRender] = useState('');
 
@@ -90,14 +88,23 @@ export const ConversationBlock = ({
                 message = filename;
             }
             return (
-                <div style={{backgroundColor: 'white'}}>
-                    <div style={{maxWidth: 'fit-content', border: '1px solid black', borderRadius: '5px', backgroundColor: '#f2f2f2', padding: '10px'}}>
+                <div
+                    // style={{backgroundColor: 'white'}}
+                    // tailwind it
+                    className="bg-white"
+                >
+                    <div
+                        // style={{maxWidth: 'fit-content', border: '1px solid black', borderRadius: '5px', backgroundColor: '#f2f2f2', padding: '10px'}}
+                        // tailwind it
+                        className="rounded-md p-2 shadow-sm"
+                    >
                         {hasAttachment && (
                             <a
                                 href={messageObject.attachment_url}
                                 target='_blank'
                                 rel="noreferrer"
-                                style={{color: 'black', fontWeight: 'bold'}}
+                                // style={{color: 'black', fontWeight: 'bold'}}
+                                className="text-black font-bold"
                             >
                                 {message+errorMsgSuffix}
                             </a>

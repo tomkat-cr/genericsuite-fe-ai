@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import * as gs from "genericsuite";
 
+import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import { VoiceMessageRecorder } from './VoiceMessageRecorder.jsx';
 import { FileUploader } from './FileUploader.jsx';
 import { CameraComponent } from './CameraComponent.jsx';
@@ -22,16 +23,17 @@ Warning: Failed prop type: Invalid prop `size` of value `m` supplied to `FontAwe
 expected one of ["2xs","xs","sm","lg","xl","2xl","1x","2x","3x","4x","5x","6x","7x","8x","9x","10x"].
 */ 
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
-import {
-    faGreaterThan,
-    faStop,
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faGreaterThan,
-    faStop,
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faGreaterThan,
+//     faStop,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faGreaterThan,
+//     faStop,
+// );
+const GsIcons = gs.IconsLib.GsIcons;
 
 const console_debug_log = gs.loggingService.console_debug_log;
 const usePlainFetch = gs.responseHandlersService.usePlainFetch;
@@ -186,7 +188,12 @@ export const UserInput = ({
                     className={`${BUTTON_LISTING_CLASS} mr-2`}
                     title={state &&  state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'}
                 >
-                    <FontAwesomeIcon icon={state && state.isApiProcessing ? 'stop' : 'greater-than'} size='lg'/>
+                    {/* <FontAwesomeIcon icon={state && state.isApiProcessing ? 'stop' : 'greater-than'} size='lg'/> */}
+                    <GsIcons
+                        icon={state && state.isApiProcessing ? 'stop' : 'greater-than'}
+                        size='lg'
+                        additionalIconsFn={iconsLibAiExtras}
+                    />
                 </button>
             </div>
             <VoiceMessageRecorder

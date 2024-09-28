@@ -2,18 +2,20 @@ import React, { useState, useRef } from 'react';
 
 import * as gs from "genericsuite";
 
+import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import './AudioPlayer.css';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
-import {
-    faPlay,
-    faStop,
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faPlay,
-    faStop,
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faPlay,
+//     faStop,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faPlay,
+//     faStop,
+// );
+const GsIcons = gs.IconsLib.GsIcons;
 
 const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 const defaultFilenametoDownload = gs.blobFilesUtilities.defaultFilenametoDownload;
@@ -123,7 +125,12 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
         onClick={togglePlayPause}
         className="play-button"
       >
-          <FontAwesomeIcon icon={isPlaying ? 'stop' : 'play'} size='sm'/>
+          {/* <FontAwesomeIcon icon={isPlaying ? 'stop' : 'play'} size='sm'/> */}
+          <GsIcons
+            icon={isPlaying ? 'stop' : 'play'}
+            size='sm'
+            additionalIconsFn={iconsLibAiExtras}
+          />
       </button>
       <input
         type="range"

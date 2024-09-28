@@ -6,17 +6,18 @@ import { setConversationListToggle } from './chatbot.general.functions.jsx';
 
 import './ChatBot.css';
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
-import {
-    faGreaterThan,
-    faLessThan,
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faGreaterThan,
-    faLessThan,
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faGreaterThan,
+//     faLessThan,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faGreaterThan,
+//     faLessThan,
+// );
 
+const ToggleSideBar = gs.NavLib.ToggleSideBar;
 const console_debug_log = gs.loggingService.console_debug_log;
 
 const debug = false;
@@ -30,7 +31,7 @@ export const ConversationsToggleButton = ({
     }
     return (
         <>
-            <button
+            {/* <button
                 key='conversation-list-toggle-button'
                 type='button'
                 className="bg-white border-none focus:outline-none"
@@ -41,7 +42,12 @@ export const ConversationsToggleButton = ({
                     size='xl'
                     style={{ color: 'lightgray' }}
                 />
-            </button>
+            </button> */}
+            <ToggleSideBar
+                key='conversation-list-toggle-button'
+                onClick={() => setConversationListToggle(!state.conversationListToggle, dispatch)}
+            >
+            </ToggleSideBar>
         </>
     )
 }
