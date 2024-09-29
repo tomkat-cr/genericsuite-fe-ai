@@ -16,7 +16,12 @@ import { ConversationList } from './ConversationList.jsx';
 import { ConversationsToggleButton } from './ConversationsToggleButton.jsx';
 import { ConversationBlock } from './ConversationBlock.jsx';
 
-import './ChatBot.css';
+// import './ChatBot.css';
+import {
+    CHATBOT_MAIN_CONTAINER_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_CLASS,
+    CHATBOT_MESSAGE_AREA_CLASS,
+} from '../../constants/class_name_constants.jsx';
 
 const convertId = gs.dbService.convertId;
 const console_debug_log = gs.loggingService.console_debug_log;
@@ -215,7 +220,9 @@ export const ChatBot = ({
     }, [currentUser]);
 
     return (
-        <div className="chatbot-container">
+        <div
+            className={CHATBOT_MAIN_CONTAINER_CLASS}
+        >
             {state.errorMsg && (
                 <>
                     {errorAndReEnter(state.errorMsg, null, null, handleRetry)}
@@ -223,7 +230,7 @@ export const ChatBot = ({
             )}
             {showSideBar && state.conversationListToggle && (
                 <div
-                    className="conversations-list"
+                    className={CHATBOT_CONVERSATIONS_LIST_CLASS}
                     style={{ width: columnSizeList() }}
                 >
                     <NewConversationButton
@@ -244,7 +251,7 @@ export const ChatBot = ({
             )}
             <div 
                 id="message-area"
-                className="message-area"
+                className={CHATBOT_MESSAGE_AREA_CLASS}
                 style={{ width: columnSizeMessages() }}
             >
                 <ConversationBlock

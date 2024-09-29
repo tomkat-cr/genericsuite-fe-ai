@@ -5,6 +5,10 @@ import * as gs from "genericsuite";
 
 import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import {
+    VOICE_MESSAGE_RECORDER_BUTTON_CLASS,
+    VOICE_MESSAGE_RECORDER_DIV_1_CLASS,
+} from '../../constants/class_name_constants.jsx';
+import {
     setChatbotErrorMsg,
     dispatchWaitAnimation,
 } from './chatbot.general.functions.jsx';
@@ -300,11 +304,12 @@ export const VoiceMessageRecorder = ({
     return (
         <div
             id={id}
-            className="voice-recorder"
+            // className="voice-recorder"
+            className={VOICE_MESSAGE_RECORDER_DIV_1_CLASS}
         >
             <button
                 onClick={isRecording ? stopRecording : startRecording}
-                className={`${BUTTON_LISTING_CLASS} mr-2`}
+                className={VOICE_MESSAGE_RECORDER_BUTTON_CLASS}
                 title={isRecording ? 'Stop Recording' : 'Start Recording'}
             >
                 {/* <FontAwesomeIcon icon={isRecording ? 'stop' : 'microphone'} size='lg' /> */}

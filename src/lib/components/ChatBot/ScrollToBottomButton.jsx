@@ -3,7 +3,11 @@ import React, { useEffect } from 'react'
 import * as gs from "genericsuite";
 
 import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
-import "./ScrollToBottomButton.css";
+import {
+    SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS,
+    SCROLL_TO_BOTTOM_BUTTON_MY_FLOAT_CLASS
+} from '../../constants/class_name_constants.jsx';
+// import "./ScrollToBottomButton.css";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import fontawesome from "@fortawesome/fontawesome";
@@ -61,9 +65,12 @@ export const ScrollToBottomButton = ({ elementId, elementsToRender }) => {
         >
             <button
                 onClick={scrollToBottom}
-                className="float"
+                className={SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS}
             >
-                    <i className="a fa-plus my-float">
+                    <i
+                        // className="a fa-plus my-float"
+                        className={SCROLL_TO_BOTTOM_BUTTON_MY_FLOAT_CLASS}
+                    >
                         {/* <FontAwesomeIcon icon='arrow-down' size='lg'/> */}
                         <GsIcons
                             icon='arrow-down'

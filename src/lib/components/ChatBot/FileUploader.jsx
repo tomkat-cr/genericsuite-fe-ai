@@ -5,6 +5,14 @@ import * as gs from "genericsuite";
 
 import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import {
+    FILE_UPLOADER_BASE_BUTTON_CLASS,
+    FILE_UPLOADER_BUTTON_CLASS,
+    FILE_UPLOADER_DIV_1_CLASS,
+    FILE_UPLOADER_DIV_2_CLASS,
+    FILE_UPLOADER_INPUT_AREA_CONTAINER_CLASS,
+    FILE_UPLOADER_INPUT_AREA_INPUT_CLASS,
+} from '../../constants/class_name_constants.jsx';
+import {
     setChatbotErrorMsg,
     addMessageToConversation,
     dispatchWaitAnimation,
@@ -189,14 +197,15 @@ export function FileUploader({
     return (
         <div
             id={id}
-            className="file-uploader"
+            className={FILE_UPLOADER_DIV_1_CLASS}
         >
             <div
-                className="flex items-center"
+                className={FILE_UPLOADER_DIV_2_CLASS}
             >
                 <button
                     onClick={() => setButtonToggle(buttonToggle ? false : true)}
-                    className={`${BUTTON_LISTING_CLASS} mr-2`}
+                    // className={`${BUTTON_LISTING_CLASS} mr-2`}
+                    className={FILE_UPLOADER_BUTTON_CLASS}
                     title={buttonToggle ? 'Close' : 'Select File'}
                 >
                     {/* <FontAwesomeIcon icon={buttonToggle ? 'times' : 'paperclip'} size='lg' /> */}
@@ -207,16 +216,19 @@ export function FileUploader({
                     />
                 </button>
                 {buttonToggle && (
-                    <div className='flex items-center'>
+                    <div
+                        className={FILE_UPLOADER_INPUT_AREA_CONTAINER_CLASS}
+                    >
                         <input
                             type="file"
                             accept={fileTypeFilter ? fileTypeFilter : "*"}
                             onChange={handleFileChange}
-                            className='p-0 m-0'
+                            className={FILE_UPLOADER_INPUT_AREA_INPUT_CLASS}
                         />
                         <button
                             onClick={handleUpload}
-                            className={`${BUTTON_LISTING_CLASS}`}
+                            // className={`${BUTTON_LISTING_CLASS}`}
+                            className={FILE_UPLOADER_BASE_BUTTON_CLASS}
                             title='Submit'
                         >
                             {/* <FontAwesomeIcon icon='arrow-up' size='lg'/> */}

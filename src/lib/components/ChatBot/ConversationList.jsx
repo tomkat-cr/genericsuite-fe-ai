@@ -6,8 +6,14 @@ import {
     loadConversation,
     deleteConversation,
 } from './chatbot.db.operations.jsx';
+import {
+    CHATBOT_CONVERSATION_ITEM_DIV_1_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DESC_INNER_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS,
+} from '../../constants/class_name_constants.jsx';
 
-import './ChatBot.css';
+// import './ChatBot.css';
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import fontawesome from "@fortawesome/fontawesome";
@@ -125,7 +131,7 @@ export const ConversationList = ({
             return (
                 <div
                     key={`${convId}_main_div`}
-                    className="conversation-item align-middle flex"
+                    className={CHATBOT_CONVERSATION_ITEM_DIV_1_CLASS}
                 >
                     <div
                         key={`${convId}_inner_div`}
@@ -133,7 +139,9 @@ export const ConversationList = ({
                     >
                         <div
                             key={`${convId}_desc_outter_div`}
-                            style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                            // style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                            className={CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS}
+
                         >
                             <button
                                 key={`${convId}_desc_button`}
@@ -142,7 +150,8 @@ export const ConversationList = ({
                             >
                                 <div
                                     key={`${convId}_desc_inner_div`}
-                                    style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                                    // style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                                    className={CHATBOT_CONVERSATION_ITEM_DESC_INNER_CLASS}
                                 >
                                     {fixTitle(conversation.title)}
                                 </div>
@@ -157,7 +166,7 @@ export const ConversationList = ({
                             key={`${convId}_delete_button`}
                             type="button"
                             onClick={() => confirmDeleteConversation(convId, dispatch, conversation.title)}
-                            className="ml-2 mb-1 bg-blue-500 text-white p-0 rounded close"
+                            className={CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS}
                         >
                             {/* <FontAwesomeIcon icon="trash" size='xs' /> */}
                             <GsIcons

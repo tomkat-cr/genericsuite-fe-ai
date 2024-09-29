@@ -8,6 +8,13 @@ import { FileUploader } from './FileUploader.jsx';
 import { CameraComponent } from './CameraComponent.jsx';
 
 import {
+    CHATBOT_INPUT_AREA_DIV_1_CLASS,
+    CHATBOT_INPUT_AREA_BUTTON_CLASS,
+    CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS,
+    CHATBOT_INPUT_AREA_TEXTAREA_CLASS,
+} from '../../constants/class_name_constants.jsx';
+
+import {
     handleCancelProcessing,
     sendMessageToBot,
     checkConversationIdChange,
@@ -44,8 +51,9 @@ const formatCaughtError = gs.errorAndReenter.formatCaughtError;
 const WaitAnimation = gs.waitAnimationUtility.WaitAnimation;
 const getFilenameFromContentDisposition = gs.blobFilesUtilities.getFilenameFromContentDisposition;
 const responseHasFile = gs.blobFilesUtilities.responseHasFile;
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
-// const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
+
+// const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+// //const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
 const debug = false;
 
@@ -160,7 +168,7 @@ export const UserInput = ({
 
     return (
         <div
-            className="input-area"
+            className={CHATBOT_INPUT_AREA_DIV_1_CLASS}
         >
             <textarea
                 name="user_input"
@@ -168,7 +176,7 @@ export const UserInput = ({
                 value={inputMessage}
                 // TODO: remove INPUT_FLEXIBLE_CLASS and put the css in ChatBot.css
                 // className={`${INPUT_FLEXIBLE_CLASS} mr-2`}
-                className="p-2"
+                className={CHATBOT_INPUT_AREA_TEXTAREA_CLASS}
                 aria-label="Message AI Assistant..."
                 rows="1" 
                 onChange={handleInputChange}
@@ -185,7 +193,8 @@ export const UserInput = ({
                     name="user_input_submit"
                     id="user_input_submit"
                     onClick={() => (state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage())}
-                    className={`${BUTTON_LISTING_CLASS} mr-2`}
+                    // className={`${BUTTON_LISTING_CLASS} mr-2`}
+                    className={CHATBOT_INPUT_AREA_BUTTON_CLASS}
                     title={state &&  state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'}
                 >
                     {/* <FontAwesomeIcon icon={state && state.isApiProcessing ? 'stop' : 'greater-than'} size='lg'/> */}
@@ -221,7 +230,7 @@ export const UserInput = ({
                 state={state}
             />
             {state && state.isApiProcessing && 
-                <div className="ml-2 flex items-center"><WaitAnimation /></div>
+                <div className={CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS}><WaitAnimation /></div>
             }
             {
                 growUpTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight)

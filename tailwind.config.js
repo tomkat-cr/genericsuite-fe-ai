@@ -5,7 +5,9 @@ module.exports = {
     relative: true,
     files: [
       "./node_modules/genericsuite/src/lib/**/*.{html,js,jsx}",
+      "./src/lib/constants/**/*.{html,js,jsx}",
       "./src/lib/components/**/*.{html,js,jsx}",
+      "./src/lib/helpers/**/*.{html,js,jsx}",
       "./src/index.{tsx,jsx,cjs}",
       './public/index.html',
     ],

@@ -4,6 +4,15 @@ import * as gs from "genericsuite";
 
 import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import {
+    CAMERA_COMPONENT_BUTTONS_CLASS,
+    CAMERA_COMPONENT_DIV_1_CLASS,
+    CAMERA_COMPONENT_DIV_2_CLASS,
+    CAMERA_COMPONENT_PHOTO_CLASS,
+    CAMERA_COMPONENT_VIDEO_CANVAS_CLASS,
+    CAMERA_COMPONENT_VIDEO_CLASS,
+    CAMERA_COMPONENT_VIDEO_CONTAINER_CLASS,
+} from '../../constants/class_name_constants.jsx';
+import {
     dispatchWaitAnimation,
     addMessageToConversation,
     setChatbotErrorMsg,
@@ -34,7 +43,7 @@ const dbApiService = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log = gs.loggingService.console_debug_log;
 const formatCaughtError = gs.errorAndReenter.formatCaughtError;
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+// const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 const toggleIdVisibility = gs.ui.toggleIdVisibility;
 const ModalPopUp = gs.ModalPopUp.ModalPopUp;
 
@@ -189,10 +198,10 @@ export const CameraComponent = ({
     return (
         <div
             id={id}
-            className="camera-capture"
+            className={CAMERA_COMPONENT_DIV_1_CLASS}
         >
             <div
-                className='min-w-full w-full flex items-center mr-3'
+                className={CAMERA_COMPONENT_DIV_2_CLASS}
             >
                 <button
                     onClick={() => {
@@ -205,7 +214,8 @@ export const CameraComponent = ({
                         setButtonToggle(buttonToggle ? false : true);
                         toggleIdVisibility((buttonToggle ? "on" : "off"), extControlsToShowHide);
                     }}
-                    className={`${BUTTON_LISTING_CLASS} mr-2`}
+                    // className={`${BUTTON_LISTING_CLASS} mr-2`}
+                    className={CAMERA_COMPONENT_BUTTONS_CLASS}
                     title={buttonToggle ? 'Close' : 'Start Camera'}
                 >
                     {/* <FontAwesomeIcon icon={buttonToggle ? 'times' : 'camera'} size='lg' /> */}
@@ -219,7 +229,7 @@ export const CameraComponent = ({
                     <>
                         <button
                             onClick={() => cameraOnOff(!cameraOn)}
-                            className={`${BUTTON_LISTING_CLASS} mr-2`}
+                            className={CAMERA_COMPONENT_BUTTONS_CLASS}
                             title='Start Camera'
                         >
                             {/* <FontAwesomeIcon icon='camera-retro' size='lg'/> */}
@@ -231,7 +241,7 @@ export const CameraComponent = ({
                         </button>
                         <button
                             onClick={sendPhoto}
-                            className={`${BUTTON_LISTING_CLASS} mr-2`}
+                            className={CAMERA_COMPONENT_BUTTONS_CLASS}
                             title='Send Photo'
                         >
                             {/* <FontAwesomeIcon icon='arrow-up' size='lg'/> */}
@@ -245,11 +255,13 @@ export const CameraComponent = ({
                             <img
                                 src={photo}
                                 alt="Captured"
-                                className='mr-2'
+                                className={CAMERA_COMPONENT_PHOTO_CLASS}
                                 style={{ width: '30px', height: '30px' }}
                             />)
                         }
-                        <div className="video-container">
+                        <div
+                            className={CAMERA_COMPONENT_VIDEO_CONTAINER_CLASS}
+                        >
                             {
                                 (cameraOn && (
                                     <ModalPopUp
@@ -261,13 +273,14 @@ export const CameraComponent = ({
                                         allowOnHide={false}
                                     >
                                         <video
+                                            className={CAMERA_COMPONENT_VIDEO_CLASS}
                                             ref={videoRef}
                                             autoPlay
                                             playsInline
                                         />
                                         <canvas
                                             ref={canvasRef}
-                                            className='mt-2 w-full'
+                                            className={CAMERA_COMPONENT_VIDEO_CANVAS_CLASS}
                                             style={photo ? VIDEO_ON : VIDEO_OFF } 
                                         />
                                     </ModalPopUp>

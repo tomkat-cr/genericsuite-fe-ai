@@ -1,11 +1,14 @@
 import React from 'react';
 
 import * as gs from "genericsuite";
+import {
+    CHATBOT_NEW_CONVERSATION_BUTTON_CLASS,
+} from '../../constants/class_name_constants';
 
-import './ChatBot.css';
+// import './ChatBot.css';
 
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
-// const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
+// const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+// //const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
 // const debug = false;
 
@@ -26,7 +29,8 @@ export const NewConversationButton = ({
             <button
                 key='new-conversation-button'
                 onClick={() => startNewConversation()}
-                className={`${BUTTON_LISTING_CLASS} text-xs mb-2`}
+                // className={`${BUTTON_LISTING_CLASS} text-xs mb-2`}
+                className={CHATBOT_NEW_CONVERSATION_BUTTON_CLASS}
             >
                 New Conversation
             </button>

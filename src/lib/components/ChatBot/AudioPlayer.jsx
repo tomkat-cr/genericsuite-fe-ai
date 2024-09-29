@@ -3,7 +3,13 @@ import React, { useState, useRef } from 'react';
 import * as gs from "genericsuite";
 
 import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
-import './AudioPlayer.css';
+import {
+  AUDIO_PLAYER_DIV_1_CLASS,
+  AUDIO_PLAYER_MENU_CONTENT_CLASS,
+  AUDIO_PLAYER_MENU_HOVER_CONTENT_CLASS,
+  AUDIO_PLAYER_PLAY_BUTTON_CLASS,
+} from '../../constants/class_name_constants.jsx';
+// import './AudioPlayer.css';
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import fontawesome from "@fortawesome/fontawesome";
@@ -113,17 +119,24 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
   if (browserAudioController) {
     return (
       <>
-        <audio ref={audioPlayer} src={blobUrl} controls onBeforeInput={togglePlayPause} />
+        <audio
+          ref={audioPlayer}
+          src={blobUrl}
+          controls
+          onBeforeInput={togglePlayPause}
+        />
       </>
     );
   }
 
   return (
-    <div className="audio-player">
+    <div
+      className={AUDIO_PLAYER_DIV_1_CLASS}
+    >
       <audio ref={audioPlayer} src={blobUrl} onTimeUpdate={onPlaying} />
       <button
         onClick={togglePlayPause}
-        className="play-button"
+        className={AUDIO_PLAYER_PLAY_BUTTON_CLASS}
       >
           {/* <FontAwesomeIcon icon={isPlaying ? 'stop' : 'play'} size='sm'/> */}
           <GsIcons
@@ -140,10 +153,22 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
         max={duration}
         onChange={(e) => onScrub(e.target.value)}
       />
-      <div className="menu">
-        <button onClick={() => {}}>...</button>
-        <div className="menu-content">
-          <button onClick={downloadAudio}>Download</button>
+      <div
+        className={AUDIO_PLAYER_MENU_HOVER_CONTENT_CLASS}
+      >
+        <button
+          onClick={() => {}}
+        >
+            ...
+        </button>
+        <div
+          className={AUDIO_PLAYER_MENU_CONTENT_CLASS}
+        >
+          <button
+            onClick={downloadAudio}
+          >
+              Download
+            </button>
         </div>
       </div>
     </div>

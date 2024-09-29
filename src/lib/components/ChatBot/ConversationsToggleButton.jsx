@@ -4,7 +4,7 @@ import * as gs from "genericsuite";
 
 import { setConversationListToggle } from './chatbot.general.functions.jsx';
 
-import './ChatBot.css';
+// import './ChatBot.css';
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import fontawesome from "@fortawesome/fontawesome";

@@ -6,8 +6,19 @@ import AudioPlayer from './AudioPlayer.jsx';
 import { GoToTheBottom } from './GoToTheBottom.jsx'
 import { ScrollToBottomButton } from './ScrollToBottomButton.jsx'
 import { ChatCodeBlock } from './ChatCodeBlock.jsx';
+import {
+    CHATBOT_CONVERSATION_BLOCK_DIV_1_CLASS,
+    CHATBOT_CONVERSATION_FORMAT_MESSAGE_DIV_1_CLASS,
+    CHATBOT_CONVERSATION_FORMAT_MESSAGE_DIV_2_CLASS,
+    CHATBOT_CONVERSATION_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS,
+    CHATBOT_CONVERSATION_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS,
+    CHATBOT_CONVERSATION_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS,
+    CHATBOT_MESSAGE_CLASS,
+    CHATBOT_BOT_MESSAGE_CLASS,
+    CHATBOT_USER_MESSAGE_CLASS,
+} from '../../constants/class_name_constants.jsx';
 
-import './ChatBot.css';
+// import './ChatBot.css';
 
 const console_debug_log = gs.loggingService.console_debug_log;
 const usePlainFetch = gs.responseHandlersService.usePlainFetch;
@@ -91,12 +102,12 @@ export const ConversationBlock = ({
                 <div
                     // style={{backgroundColor: 'white'}}
                     // tailwind it
-                    className="bg-white"
+                    className={CHATBOT_CONVERSATION_FORMAT_MESSAGE_DIV_1_CLASS}
                 >
                     <div
                         // style={{maxWidth: 'fit-content', border: '1px solid black', borderRadius: '5px', backgroundColor: '#f2f2f2', padding: '10px'}}
                         // tailwind it
-                        className="rounded-md p-2 shadow-sm"
+                        className={CHATBOT_CONVERSATION_FORMAT_MESSAGE_DIV_2_CLASS}
                     >
                         {hasAttachment && (
                             <a
@@ -104,7 +115,7 @@ export const ConversationBlock = ({
                                 target='_blank'
                                 rel="noreferrer"
                                 // style={{color: 'black', fontWeight: 'bold'}}
-                                className="text-black font-bold"
+                                className={CHATBOT_CONVERSATION_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS}
                             >
                                 {message+errorMsgSuffix}
                             </a>
@@ -114,9 +125,11 @@ export const ConversationBlock = ({
                         )}
                     </div>
                     {hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(getFileExtension(messageObject.attachment_url)).toLowerCase()) && (
-                            <div className='mt-2'>
+                            <div
+                                className={CHATBOT_CONVERSATION_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS}
+                            >
                                 <img
-                                    className='rounded-md'
+                                    className={CHATBOT_CONVERSATION_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS}
                                     src={messageObject.attachment_url}
                                     alt={`Attachment: ${message}`}
                                     style={{maxHeight: 'auto', width: 'fit-content', maxWidth: '100%'}}
@@ -150,8 +163,11 @@ export const ConversationBlock = ({
 
     useEffect(() => {
         setElementsToRender(state.messages.map((message, index) => (
-            <div key={index} className="message">
-                <div className={`message-content ${message.role === 'user' ? 'user-message' : 'bot-message'}`}>
+            <div key={index} className={CHATBOT_MESSAGE_CLASS}>
+                <div
+                    // className={`message-content ${message.role === 'user' ? 'user-message' : 'bot-message'}`}
+                    className={message.role === 'user' ? CHATBOT_USER_MESSAGE_CLASS : CHATBOT_BOT_MESSAGE_CLASS}
+                >
                     {formatMessage(message)}
                 </div>
             </div>
@@ -162,7 +178,7 @@ export const ConversationBlock = ({
         <>
             <div
                 id={id ? id : "conversation-block"}
-                className="conversation-block"
+                className={CHATBOT_CONVERSATION_BLOCK_DIV_1_CLASS}
             >
                 {state && !state.errorMsg && state.messages && elementsToRender}
             </div>

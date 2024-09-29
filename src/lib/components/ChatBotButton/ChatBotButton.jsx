@@ -4,6 +4,13 @@ import React, { useState } from 'react';
 
 import * as gs from "genericsuite";
 
+import {
+    CHATBOT_BUTTON_DIV_1_CLASS,
+    CHATBOT_BUTTON_DIV_2_CLASS,
+    CHATBOT_BUTTON_LLM_POPUP_DIV_1,
+    CHATBOT_BUTTON_LLM_POPUP_DIV_2,
+} from '../../constants/class_name_constants.jsx';
+
 import { ChatBot } from "../ChatBot/ChatBot.jsx"
 
 const console_debug_log = gs.loggingService.console_debug_log;
@@ -50,9 +57,11 @@ export const ChatBotButton = ({
     return (
         <>
             <div
-                className="align-middle flex"
+                className={CHATBOT_BUTTON_DIV_1_CLASS}
             >
-                <div className='ml-2'>
+                <div
+                    className={CHATBOT_BUTTON_DIV_2_CLASS}
+                >
                     <button
                         onClick={handleSparkClick}
                     >
@@ -65,8 +74,13 @@ export const ChatBotButton = ({
                 </div>
             </div>
             {showLLMPopup && (
-                <div className="mt-5">
-                    <div className="llm-popup">
+                <div
+                    className={CHATBOT_BUTTON_LLM_POPUP_DIV_1}
+                >
+                    <div
+                        // className="llm-popup"
+                        className={CHATBOT_BUTTON_LLM_POPUP_DIV_2}
+                    >
                         <ChatBot
                             userQuestion={setPrompt(chatbot_prompt, document.getElementById(valueElement).value)}
                             showSideBar={false}
