@@ -3,6 +3,7 @@ import React from 'react';
 import * as gs from "genericsuite";
 import {
     CHATBOT_NEW_CONVERSATION_BUTTON_CLASS,
+    CHATBOT_NEW_CONVERSATION_BUTTON_DIV_1_CLASS,
 } from '../../constants/class_name_constants';
 
 // import './ChatBot.css';
@@ -25,7 +26,9 @@ export const NewConversationButton = ({
     };
 
     return (
-        <>
+        <div
+            className={CHATBOT_NEW_CONVERSATION_BUTTON_DIV_1_CLASS}
+        >
             <button
                 key='new-conversation-button'
                 onClick={() => startNewConversation()}
@@ -34,6 +37,6 @@ export const NewConversationButton = ({
             >
                 New Conversation
             </button>
-        </>
+        </div>
     );
 };

@@ -4,8 +4,11 @@ import * as gs from "genericsuite";
 
 import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import {
+    SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS,
+    SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS,
+    SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS,
     SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS,
-    SCROLL_TO_BOTTOM_BUTTON_MY_FLOAT_CLASS
+    SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS
 } from '../../constants/class_name_constants.jsx';
 // import "./ScrollToBottomButton.css";
 
@@ -62,23 +65,32 @@ export const ScrollToBottomButton = ({ elementId, elementsToRender }) => {
         <div
             id='scroll-overfolw-button'
             style={{visibility: showButton(element)}}
+            className={SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS}
         >
-            <button
-                onClick={scrollToBottom}
-                className={SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS}
+            <div
+                className={SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS}
             >
-                    <i
-                        // className="a fa-plus my-float"
-                        className={SCROLL_TO_BOTTOM_BUTTON_MY_FLOAT_CLASS}
+                <div
+                    className={SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS}
+                >
+                    <button
+                        onClick={scrollToBottom}
+                        className={SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS}
                     >
-                        {/* <FontAwesomeIcon icon='arrow-down' size='lg'/> */}
-                        <GsIcons
-                            icon='arrow-down'
-                            size='lg'
-                            additionalIconsFn={iconsLibAiExtras}
-                        />
-                    </i>
-            </button>
+                        <i
+                            // className="a fa-plus my-float"
+                            className={SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS}
+                        >
+                            {/* <FontAwesomeIcon icon='arrow-down' size='lg'/> */}
+                            <GsIcons
+                                icon='arrow-down'
+                                size='lg'
+                                additionalIconsFn={iconsLibAiExtras}
+                            />
+                        </i>
+                    </button>
+                </div>
+            </div>
         </div>
     )
 }

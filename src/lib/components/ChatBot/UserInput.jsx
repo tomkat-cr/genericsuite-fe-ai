@@ -42,6 +42,7 @@ expected one of ["2xs","xs","sm","lg","xl","2xl","1x","2x","3x","4x","5x","6x","
 // );
 const GsIcons = gs.IconsLib.GsIcons;
 
+const useAppContext = gs.AppContext.useAppContext;
 const console_debug_log = gs.loggingService.console_debug_log;
 const usePlainFetch = gs.responseHandlersService.usePlainFetch;
 const growUpTextArea = gs.ui.growUpTextArea;
@@ -57,7 +58,8 @@ const responseHasFile = gs.blobFilesUtilities.responseHasFile;
 
 const debug = false;
 
-const userInputViewportHeight = 80;
+// const userInputViewportHeight = 80;
+const userInputViewportHeight = 73;
 /* <UserInput>.userInputViewportHeight must be the same as ".conversation-block.height" in ChatBot.css */
 /* 81 for 81vh, 78 for 78vh, an so on */
 const userInputMaxOffsetHeight = 200;
@@ -67,6 +69,7 @@ export const UserInput = ({
     state,
     userQuestion, // state.inputMessage
 }) => {
+    const { theme, isWide, isDarkMode } = useAppContext();
     const [inputMessage, setInputMessage] = useState(userQuestion);
     const [updateSize, setUpdateSize] = useState(false);
 
@@ -77,6 +80,10 @@ export const UserInput = ({
     useEffect(() => {
         // Adjust text area size
         resetTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight);
+        // if (user_input) {
+        //     user_input.style.height = 'auto'
+        //     user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`
+        //   }
     }, [updateSize]);
 
     // Function to handle adjust text area size on input change from external component
@@ -168,7 +175,7 @@ export const UserInput = ({
 
     return (
         <div
-            className={CHATBOT_INPUT_AREA_DIV_1_CLASS}
+            className={`${CHATBOT_INPUT_AREA_DIV_1_CLASS} ${theme.background}`}
         >
             <textarea
                 name="user_input"

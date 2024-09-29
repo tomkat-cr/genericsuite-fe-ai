@@ -19,7 +19,9 @@ import { ConversationBlock } from './ConversationBlock.jsx';
 // import './ChatBot.css';
 import {
     CHATBOT_MAIN_CONTAINER_CLASS,
-    CHATBOT_CONVERSATIONS_LIST_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_DIV_2_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS,
     CHATBOT_MESSAGE_AREA_CLASS,
 } from '../../constants/class_name_constants.jsx';
 
@@ -29,6 +31,7 @@ const isMobileDevice = gs.ui.isMobileDevice;
 const getUrlParams = gs.urlParams.getUrlParams;
 const errorAndReEnter = gs.errorAndReenter.errorAndReEnter;
 const useUser = gs.UserContext.useUser;
+const useAppContext = gs.AppContext.useAppContext;
 
 const debug = false;
 
@@ -147,6 +150,8 @@ export const ChatBot = ({
     showSideBar = !(urlParams.ssb && urlParams.ssb === "0")
 }) => {
     const { currentUser } = useUser();
+    const { theme, isWide, isDarkMode } = useAppContext();
+
     const [state, dispatch] = useReducer(chatReducer, {
         messages: [],
         conversations: [],
@@ -221,7 +226,8 @@ export const ChatBot = ({
 
     return (
         <div
-            className={CHATBOT_MAIN_CONTAINER_CLASS}
+            // className={`${CHATBOT_MAIN_CONTAINER_CLASS} ${theme.contentBg}`}
+            className={`${CHATBOT_MAIN_CONTAINER_CLASS} ${theme.background}`}
         >
             {state.errorMsg && (
                 <>
@@ -230,17 +236,26 @@ export const ChatBot = ({
             )}
             {showSideBar && state.conversationListToggle && (
                 <div
-                    className={CHATBOT_CONVERSATIONS_LIST_CLASS}
+                    // className={`${CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS} ${theme.background}`}
+                    className={CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS}
                     style={{ width: columnSizeList() }}
                 >
-                    <NewConversationButton
-                        dispatch={dispatch}
-                    />
-                    <ConversationList
-                        state={state}
-                        dispatch={dispatch}
-                        showSideBar={showSideBar}
-                    />
+                    <div
+                        className={CHATBOT_CONVERSATIONS_LIST_DIV_2_CLASS}
+                    >
+                        <div
+                            className={CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS}
+                        >
+                            <NewConversationButton
+                                dispatch={dispatch}
+                            />
+                            <ConversationList
+                                state={state}
+                                dispatch={dispatch}
+                                showSideBar={showSideBar}
+                            />
+                        </div>
+                    </div>
                 </div>
             )}
             {showSideBar && (
