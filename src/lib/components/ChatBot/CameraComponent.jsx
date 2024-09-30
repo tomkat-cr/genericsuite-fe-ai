@@ -4,7 +4,8 @@ import * as gs from "genericsuite";
 
 import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import {
-    CAMERA_COMPONENT_BUTTONS_CLASS,
+    CAMERA_COMPONENT_BUTTON_MAIN_CLASS,
+    CAMERA_COMPONENT_BUTTON_SUB_CLASS,
     CAMERA_COMPONENT_DIV_1_CLASS,
     CAMERA_COMPONENT_DIV_2_CLASS,
     CAMERA_COMPONENT_PHOTO_CLASS,
@@ -215,13 +216,14 @@ export const CameraComponent = ({
                         toggleIdVisibility((buttonToggle ? "on" : "off"), extControlsToShowHide);
                     }}
                     // className={`${BUTTON_LISTING_CLASS} mr-2`}
-                    className={CAMERA_COMPONENT_BUTTONS_CLASS}
+                    className={CAMERA_COMPONENT_BUTTON_MAIN_CLASS}
                     title={buttonToggle ? 'Close' : 'Start Camera'}
                 >
                     {/* <FontAwesomeIcon icon={buttonToggle ? 'times' : 'camera'} size='lg' /> */}
                     <GsIcons
                         icon={buttonToggle ? 'times' : 'camera'}
-                        size='lg'
+                        // size='lg'
+                        size='sm'
                         additionalIconsFn={iconsLibAiExtras}
                     />
                 </button>
@@ -229,7 +231,7 @@ export const CameraComponent = ({
                     <>
                         <button
                             onClick={() => cameraOnOff(!cameraOn)}
-                            className={CAMERA_COMPONENT_BUTTONS_CLASS}
+                            className={CAMERA_COMPONENT_BUTTON_SUB_CLASS}
                             title='Start Camera'
                         >
                             {/* <FontAwesomeIcon icon='camera-retro' size='lg'/> */}
@@ -241,7 +243,7 @@ export const CameraComponent = ({
                         </button>
                         <button
                             onClick={sendPhoto}
-                            className={CAMERA_COMPONENT_BUTTONS_CLASS}
+                            className={CAMERA_COMPONENT_BUTTON_SUB_CLASS}
                             title='Send Photo'
                         >
                             {/* <FontAwesomeIcon icon='arrow-up' size='lg'/> */}

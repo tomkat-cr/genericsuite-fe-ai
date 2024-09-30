@@ -315,7 +315,8 @@ export const VoiceMessageRecorder = ({
                 {/* <FontAwesomeIcon icon={isRecording ? 'stop' : 'microphone'} size='lg' /> */}
                 <GsIcons
                     icon={isRecording ? 'stop' : 'microphone'}
-                    size='lg'
+                    // size='lg'
+                    size='sm'
                     additionalIconsFn={iconsLibAiExtras}
                 />
             </button>

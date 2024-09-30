@@ -7,7 +7,7 @@ import { GoToTheBottom } from './GoToTheBottom.jsx'
 import { ScrollToBottomButton } from './ScrollToBottomButton.jsx'
 import { ChatCodeBlock } from './ChatCodeBlock.jsx';
 import {
-    CHATBOT_CONVERSATION_BLOCK_DIV_1_CLASS,
+    CHATBOT_MESSAGE_BLOCK_CLASS,
     CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS,
     CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS,
     CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS,
@@ -204,7 +204,7 @@ export const ConversationBlock = ({
         <>
             <div
                 id={id ? id : "conversation-block"}
-                className={`${CHATBOT_CONVERSATION_BLOCK_DIV_1_CLASS} ${theme.background}`}
+                className={`${CHATBOT_MESSAGE_BLOCK_CLASS} ${theme.background}`}
             >
                 {state && !state.errorMsg && state.messages && elementsToRender}
             </div>

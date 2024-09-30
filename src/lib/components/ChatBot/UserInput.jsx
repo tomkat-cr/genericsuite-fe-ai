@@ -12,6 +12,12 @@ import {
     CHATBOT_INPUT_AREA_BUTTON_CLASS,
     CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS,
     CHATBOT_INPUT_AREA_TEXTAREA_CLASS,
+    CHATBOT_INPUT_AREA_DIV_2_CLASS,
+    CHATBOT_INPUT_AREA_DIV_3_CLASS,
+    CHATBOT_INPUT_AREA_DIV_4_CLASS,
+    CHATBOT_INPUT_AREA_DIV_5_CLASS,
+    CHATBOT_INPUT_AREA_DIV_62_CLASS,
+    CHATBOT_INPUT_AREA_DIV_61_CLASS,
 } from '../../constants/class_name_constants.jsx';
 
 import {
@@ -78,13 +84,14 @@ export const UserInput = ({
     }, [state.inputMessage]);
 
     useEffect(() => {
-        // Adjust text area size
+        // // Adjust text area size
         resetTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight);
-        // if (user_input) {
-        //     user_input.style.height = 'auto'
-        //     user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`
-        //   }
-    }, [updateSize]);
+        const user_input = document.getElementById("user_input");
+        if (user_input) {
+            user_input.style.height = 'auto'
+            user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`
+        }
+    }, [updateSize, inputMessage]);
 
     // Function to handle adjust text area size on input change from external component
     const handleUpdateSize = () => {
@@ -177,72 +184,92 @@ export const UserInput = ({
         <div
             className={`${CHATBOT_INPUT_AREA_DIV_1_CLASS} ${theme.background}`}
         >
-            <textarea
-                name="user_input"
-                id="user_input"
-                value={inputMessage}
-                // TODO: remove INPUT_FLEXIBLE_CLASS and put the css in ChatBot.css
-                // className={`${INPUT_FLEXIBLE_CLASS} mr-2`}
-                className={CHATBOT_INPUT_AREA_TEXTAREA_CLASS}
-                aria-label="Message AI Assistant..."
-                rows="1" 
-                onChange={handleInputChange}
-                onKeyDown={(event) => {
-                    if (event.key === 'Enter') {
-                        // setInputMessage(event.target.value);
-                        sendMessage();
-                    }
-                }}
-                disabled={state && state.isApiProcessing}
-            />
-            <div>
-                <button
-                    name="user_input_submit"
-                    id="user_input_submit"
-                    onClick={() => (state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage())}
-                    // className={`${BUTTON_LISTING_CLASS} mr-2`}
-                    className={CHATBOT_INPUT_AREA_BUTTON_CLASS}
-                    title={state &&  state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'}
+            <div
+                className={CHATBOT_INPUT_AREA_DIV_2_CLASS}
+            >
+                <div
+                    className={CHATBOT_INPUT_AREA_DIV_3_CLASS}
                 >
-                    {/* <FontAwesomeIcon icon={state && state.isApiProcessing ? 'stop' : 'greater-than'} size='lg'/> */}
-                    <GsIcons
-                        icon={state && state.isApiProcessing ? 'stop' : 'greater-than'}
-                        size='lg'
-                        additionalIconsFn={iconsLibAiExtras}
-                    />
-                </button>
+                    <div
+                        className={CHATBOT_INPUT_AREA_DIV_4_CLASS}
+                    >
+                        <div
+                            className={CHATBOT_INPUT_AREA_DIV_5_CLASS}
+                        >
+                            <div
+                                className={CHATBOT_INPUT_AREA_DIV_61_CLASS}
+                            />
+                            <div
+                                className={CHATBOT_INPUT_AREA_DIV_62_CLASS}
+                            >
+                                <textarea
+                                    name="user_input"
+                                    id="user_input"
+                                    value={inputMessage}
+                                    // TODO: remove INPUT_FLEXIBLE_CLASS and put the css in ChatBot.css
+                                    // className={`${INPUT_FLEXIBLE_CLASS} mr-2`}
+                                    className={`${CHATBOT_INPUT_AREA_TEXTAREA_CLASS} ${theme.input}`}
+                                    aria-label="Message AI Assistant..."
+                                    rows="1" 
+                                    onChange={handleInputChange}
+                                    // onKeyDown={(event) => {
+                                    //     if (event.key === 'Enter') {
+                                    //         // setInputMessage(event.target.value);
+                                    //         sendMessage();
+                                    //     }
+                                    // }}
+                                    disabled={state && state.isApiProcessing}
+                                />
+                                <button
+                                    name="user_input_submit"
+                                    id="user_input_submit"
+                                    onClick={() => (state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage())}
+                                    // className={`${BUTTON_LISTING_CLASS} mr-2`}
+                                    className={CHATBOT_INPUT_AREA_BUTTON_CLASS}
+                                    title={state &&  state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'}
+                                >
+                                    {/* <FontAwesomeIcon icon={state && state.isApiProcessing ? 'stop' : 'greater-than'} size='lg'/> */}
+                                    <GsIcons
+                                        icon={state && state.isApiProcessing ? 'stop' : 'greater-than'}
+                                        size='lg'
+                                        additionalIconsFn={iconsLibAiExtras}
+                                    />
+                                </button>
+                                <VoiceMessageRecorder
+                                    id='voiceMessageRecorder'
+                                    dispatch={dispatch}
+                                    // sendMessage={sendMessage}
+                                    setExternalInputMessage={handleInputChange}
+                                    handleUpdateSize={handleUpdateSize}
+                                />
+                                <FileUploader
+                                    id='fileUploader'
+                                    question={inputMessage}
+                                    setExternalInputMessage={handleInputChange}
+                                    handleUpdateSize={handleUpdateSize}
+                                    dispatch={dispatch}
+                                    state={state}
+                                    // fileTypeFilter="image/*"
+                                />
+                                <CameraComponent
+                                    id='cameraComponent'
+                                    question={inputMessage}
+                                    setExternalInputMessage={handleInputChange}
+                                    handleUpdateSize={handleUpdateSize}
+                                    dispatch={dispatch}
+                                    state={state}
+                                />
+                                {state && state.isApiProcessing && 
+                                    <div className={CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS}><WaitAnimation /></div>
+                                }
+                                {
+                                    // growUpTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight)
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <VoiceMessageRecorder
-                id='voiceMessageRecorder'
-                dispatch={dispatch}
-                // sendMessage={sendMessage}
-                setExternalInputMessage={handleInputChange}
-                handleUpdateSize={handleUpdateSize}
-            />
-            <FileUploader
-                id='fileUploader'
-                question={inputMessage}
-                setExternalInputMessage={handleInputChange}
-                handleUpdateSize={handleUpdateSize}
-                dispatch={dispatch}
-                state={state}
-                // fileTypeFilter="image/*"
-            />
-            <CameraComponent
-                id='cameraComponent'
-                question={inputMessage}
-                setExternalInputMessage={handleInputChange}
-                handleUpdateSize={handleUpdateSize}
-                dispatch={dispatch}
-                state={state}
-            />
-            {state && state.isApiProcessing && 
-                <div className={CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS}><WaitAnimation /></div>
-            }
-            {
-                growUpTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight)
-            }
         </div>
     )
 }
-    

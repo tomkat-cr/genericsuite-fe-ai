@@ -211,7 +211,8 @@ export function FileUploader({
                     {/* <FontAwesomeIcon icon={buttonToggle ? 'times' : 'paperclip'} size='lg' /> */}
                     <GsIcons
                         icon={buttonToggle ? 'times' : 'paperclip'}
-                        size='lg'
+                        // size='lg'
+                        size='sm'
                         additionalIconsFn={iconsLibAiExtras}
                     />
                 </button>

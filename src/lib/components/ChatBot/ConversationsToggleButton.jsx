@@ -2,6 +2,9 @@ import React from 'react';
 
 import * as gs from "genericsuite";
 
+import {
+    CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS,
+} from '../../constants/class_name_constants.jsx';
 import { setConversationListToggle } from './chatbot.general.functions.jsx';
 
 // import './ChatBot.css';
@@ -46,6 +49,7 @@ export const ConversationsToggleButton = ({
             <ToggleSideBar
                 key='conversation-list-toggle-button'
                 onClick={() => setConversationListToggle(!state.conversationListToggle, dispatch)}
+                className={CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS}
             >
             </ToggleSideBar>
         </>
