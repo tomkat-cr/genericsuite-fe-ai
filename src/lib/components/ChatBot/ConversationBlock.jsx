@@ -56,7 +56,7 @@ export const ConversationBlock = ({
     const [styleClass, setStyleClass] = useState(getStyleClasses());
 
     useEffect(() => {
-        console_debug_log(`ConversationBlock | isDarkMode: ${isDarkMode}`);
+        if (debug) console_debug_log(`ConversationBlock | isDarkMode: ${isDarkMode}`);
         setStyleClass(getStyleClasses());
     }, [theme, isDarkMode]);
 

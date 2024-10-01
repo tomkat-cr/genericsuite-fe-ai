@@ -38,7 +38,7 @@ const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log = gs.loggingService.console_debug_log;
 const formatCaughtError = gs.errorAndReenter.formatCaughtError;
 const toggleIdVisibility = gs.ui.toggleIdVisibility;
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+// const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
 const debug = false;
 

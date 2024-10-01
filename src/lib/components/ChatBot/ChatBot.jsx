@@ -26,6 +26,10 @@ import {
     CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS,
     CHATBOT_MESSAGE_AREA_DIV_3_CLASS,
     CHATBOT_MESSAGE_AREA_DIV_4_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS,
+    CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS,
 } from '../../constants/class_name_constants.jsx';
 
 const convertId = gs.dbService.convertId;
@@ -37,6 +41,7 @@ const useUser = gs.UserContext.useUser;
 const useAppContext = gs.AppContext.useAppContext;
 
 const HIDDEN_CLASS = gs.classNameConstants.HIDDEN_CLASS;
+const isWindowWide = gs.ui.isWindowWide;
 
 const debug = false;
 
@@ -155,7 +160,7 @@ export const ChatBot = ({
     showSideBar = !(urlParams.ssb && urlParams.ssb === "0")
 }) => {
     const { currentUser } = useUser();
-    const { theme, isWide, isDarkMode } = useAppContext();
+    const { theme, isWide, isDarkMode, sideMenu, setIsWide } = useAppContext();
 
     const [state, dispatch] = useReducer(chatReducer, {
         messages: [],
@@ -164,17 +169,18 @@ export const ChatBot = ({
         isApiProcessing: false,
         isTyping: false,
         inputMessage: userQuestion,
-        conversationListToggle: false, // conversation sidebar off by default
-        // conversationListToggle: !isMobileDevice(),
+        // conversationListToggle: false, // conversation history sidebar off by default always
+        conversationListToggle: !isMobileDevice(), // conversation history sidebar on by default in desktop
         errorMsg: null,
         currentUser: currentUser,
     });
 
     const columnSizeList = () =>
+        // (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '80%' : '20%') : "0%")
         (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '80%' : '20%') : "0%")
 
-    const columnSizeMessages = () =>
-        (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '20%' : '80%') : "100%")
+    // const columnSizeMessages = () =>
+    //     (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '20%' : '80%') : "100%")
     
     if (debug) {
         console_debug_log("AiAssistant STATE:", state);
@@ -230,12 +236,28 @@ export const ChatBot = ({
         dispatch({ type: 'SET_CURRENT_USER', payload: currentUser });
     }, [currentUser]);
 
+    useEffect(() => {
+        if (sideMenu) {
+            // Set the side menu to "slide" as it's in mobile device mode
+            setIsWide(false);
+        } else {
+            setIsWide(isWindowWide());
+        }
+    }, [sideMenu]);
+
     return (
         <div
-            // className={`${CHATBOT_CONTAINER_DIV_1_CLASS} ${theme.contentBg}`}
             className={`${CHATBOT_CONTAINER_DIV_1_CLASS} ${theme.background}`}
         >
             {/* Conversarion list area */}
+            {!(showSideBar && state.conversationListToggle) && (
+                <ConversationsToggleButton
+                    id='conversations-toggle-button-1'
+                    className={CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS}
+                    state={state}
+                    dispatch={dispatch}
+                />
+            )}
             <div
                 className={CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS + (showSideBar && state.conversationListToggle ? '' : HIDDEN_CLASS)}
                 style={{ width: columnSizeList() }}
@@ -246,22 +268,36 @@ export const ChatBot = ({
                     <div
                         className={CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS}
                     >
-                        <NewConversationButton
-                            dispatch={dispatch}
-                        />
-                        <ConversationList
-                            state={state}
-                            dispatch={dispatch}
-                            showSideBar={showSideBar}
-                        />
+                        <div
+                            className={CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS}
+                        >
+                            <div
+                                className={CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS}
+                            >
+                                <ConversationsToggleButton
+                                    id='conversations-toggle-button-2'
+                                    className={showSideBar ? '' : HIDDEN_CLASS}
+                                    state={state}
+                                    dispatch={dispatch}
+                                />
+                                <NewConversationButton
+                                    dispatch={dispatch}
+                                />
+                            </div>
+                            <div
+                                className={CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS}
+                            >
+                                <ConversationList
+                                    state={state}
+                                    dispatch={dispatch}
+                                    showSideBar={showSideBar}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <ConversationsToggleButton
-                className={showSideBar ? '' : HIDDEN_CLASS}
-                state={state}
-                dispatch={dispatch}
-            />
+
             <div
                 className={CHATBOT_MESSAGE_AREA_DIV_1_CLASS}
             >
@@ -282,7 +318,7 @@ export const ChatBot = ({
                         <div 
                             id="message-area"
                             className={CHATBOT_MESSAGE_AREA_DIV_4_CLASS}
-                            style={{ width: columnSizeMessages() }}
+                            // style={{ width: columnSizeMessages() }}
                         >
                             <ConversationBlock
                                 id="conversation-block"

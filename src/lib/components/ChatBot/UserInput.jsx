@@ -18,6 +18,8 @@ import {
     CHATBOT_INPUT_AREA_DIV_5_CLASS,
     CHATBOT_INPUT_AREA_DIV_62_CLASS,
     CHATBOT_INPUT_AREA_DIV_61_CLASS,
+    CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS,
+    CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS,
 } from '../../constants/class_name_constants.jsx';
 
 import {
@@ -27,7 +29,6 @@ import {
 } from "./chatbot.db.operations.jsx";
 
 import {
-    // setChatbotInputMessage,
     setChatbotErrorMsg,
 } from './chatbot.general.functions.jsx';
 
@@ -60,12 +61,11 @@ const getFilenameFromContentDisposition = gs.blobFilesUtilities.getFilenameFromC
 const responseHasFile = gs.blobFilesUtilities.responseHasFile;
 
 // const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
-// //const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
 const debug = false;
 
 // const userInputViewportHeight = 80;
-const userInputViewportHeight = 73;
+const userInputViewportHeight = 75;
 /* <UserInput>.userInputViewportHeight must be the same as ".conversation-block.height" in ChatBot.css */
 /* 81 for 81vh, 78 for 78vh, an so on */
 const userInputMaxOffsetHeight = 200;
@@ -84,7 +84,7 @@ export const UserInput = ({
     }, [state.inputMessage]);
 
     useEffect(() => {
-        // // Adjust text area size
+        // Adjust text area size
         resetTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight);
         const user_input = document.getElementById("user_input");
         if (user_input) {
@@ -108,15 +108,12 @@ export const UserInput = ({
         */
         if (typeof e === "string") {
             setInputMessage(e);
-            // setExternalInputMessage(e); // Update the external input message
         } else {
             if (debug) {
                 console_debug_log(`InputBlock | handleInputChange: "${e}"`);
             }
             setInputMessage(e.target.value);
-            // setExternalInputMessage(e.target.value); // Update the external input message
         }
-        // setUpdateSize(!updateSize);
     };
 
     // Function to handle sending a message
@@ -130,8 +127,6 @@ export const UserInput = ({
             // Dispatch the message to the chat
             const userMessage = { content: newInputMessage, role: 'user' }; // Adjust structure as needed
             dispatch({ type: 'ADD_MESSAGE', payload: userMessage });
-            // // Set external (global) input message [Deprecated]
-                // setChatbotInputMessage(newInputMessage, dispatch);
             // Clear the user input
             setInputMessage('');
             // Adjust text area size
@@ -206,9 +201,7 @@ export const UserInput = ({
                                     name="user_input"
                                     id="user_input"
                                     value={inputMessage}
-                                    // TODO: remove INPUT_FLEXIBLE_CLASS and put the css in ChatBot.css
-                                    // className={`${INPUT_FLEXIBLE_CLASS} mr-2`}
-                                    className={`${CHATBOT_INPUT_AREA_TEXTAREA_CLASS} ${theme.input}`}
+                                    className={`${CHATBOT_INPUT_AREA_TEXTAREA_CLASS} ${theme.input} ${isDarkMode ? CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS : CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS}`}
                                     aria-label="Message AI Assistant..."
                                     rows="1" 
                                     onChange={handleInputChange}

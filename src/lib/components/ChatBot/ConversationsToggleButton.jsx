@@ -6,6 +6,7 @@ import {
     CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS,
 } from '../../constants/class_name_constants.jsx';
 import { setConversationListToggle } from './chatbot.general.functions.jsx';
+import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 
 // import './ChatBot.css';
 
@@ -20,12 +21,15 @@ import { setConversationListToggle } from './chatbot.general.functions.jsx';
 //     faLessThan,
 // );
 
-const ToggleSideBar = gs.NavLib.ToggleSideBar;
+const GsIcons = gs.IconsLib.GsIcons;
+// const ToggleSideBar = gs.NavLib.ToggleSideBar;
 const console_debug_log = gs.loggingService.console_debug_log;
 
 const debug = false;
 
 export const ConversationsToggleButton = ({
+    id,
+    className,
     state,
     dispatch,
 }) => {
@@ -46,12 +50,23 @@ export const ConversationsToggleButton = ({
                     style={{ color: 'lightgray' }}
                 />
             </button> */}
-            <ToggleSideBar
+            <button
+                key={id}
+                className={CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className ?? '')}
+                onClick={() => setConversationListToggle(!state.conversationListToggle, dispatch)}
+            >
+                <GsIcons
+                    icon={'conversation-list-toggle'}
+                    size='lg'
+                    additionalIconsFn={iconsLibAiExtras}
+                />
+            </button>
+            {/* <ToggleSideBar
                 key='conversation-list-toggle-button'
                 onClick={() => setConversationListToggle(!state.conversationListToggle, dispatch)}
-                className={CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS}
+                className={CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className ?? '')}
             >
-            </ToggleSideBar>
+            </ToggleSideBar> */}
         </>
     )
 }

@@ -7,8 +7,8 @@ import {
     deleteConversation,
 } from './chatbot.db.operations.jsx';
 import {
-    CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS,
-    CHATBOT_CONVERSATIONS_LIST_HEADING_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS,
     CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS,
     CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS,
     CHATBOT_CONVERSATION_ITEM_DIV_1_CLASS,
@@ -55,7 +55,7 @@ export const ConversationList = ({
         dispatch({ type: 'SET_ERROR_MSG', payload: errorMsg });
     }
 
-    const h2_class = `${CHATBOT_CONVERSATIONS_LIST_HEADING_CLASS} ${theme.isDarkMode ? CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS : CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS}`;
+    const h2_class = `${CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS} ${theme.isDarkMode ? CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS : CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS}`;
 
     // Handle load conversation
     const handleLoadConversation = async (conversationId, state, dispatch) => {
@@ -146,15 +146,25 @@ export const ConversationList = ({
                 <div
                     key={`${convId}_main_div`}
                     className={CHATBOT_CONVERSATION_ITEM_DIV_1_CLASS}
+                    onMouseOver={() => {
+                        const element = document.getElementById(`${convId}_options`)
+                        if (element) {
+                            element.style.display = 'block';
+                        }
+                    }}
+                    onMouseOut={() => {
+                        const element = document.getElementById(`${convId}_options`)
+                        if (element) {
+                            element.style.display = 'none';
+                        }
+                    }}
                 >
                     <div
                         key={`${convId}_inner_div`}
-                        // style={{ width: '95%'}}
                         className={CHATBOT_CONVERSATION_ITEM_DIV_2_CLASS}
                     >
                         <div
                             key={`${convId}_desc_outter_div`}
-                            // style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
                             className={`${CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS} ${theme.textHoverSide}`}
                         >
                             <button
@@ -164,7 +174,6 @@ export const ConversationList = ({
                             >
                                 <div
                                     key={`${convId}_desc_inner_div`}
-                                    // style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
                                     className={CHATBOT_CONVERSATION_ITEM_DESC_INNER_CLASS}
                                 >
                                     {fixTitle(conversation.title)}
@@ -173,25 +182,29 @@ export const ConversationList = ({
                         </div>
                     </div>
                     <div
-                        className={CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS}
-                    />
-                    <div
-                        key={`${convId}_delete_div`}
-                        // style={{ width: '5%'}}
-                        className={`${CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS} ${theme.textHoverSide}`}
+                        id={`${convId}_options`}
+                        className='hidden'
                     >
-                        <button
-                            key={`${convId}_delete_button`}
-                            type="button"
-                            onClick={() => confirmDeleteConversation(convId, dispatch, conversation.title)}
-                            className={CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS}
+                        <div
+                            className={CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS}
+                        />
+                        <div
+                            key={`${convId}_delete_div`}
+                            className={`${CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS} ${theme.textHoverSide}`}
                         >
-                            {/* <FontAwesomeIcon icon="trash" size='xs' /> */}
-                            <GsIcons
-                                icon="trash"
-                                size='xs'
-                            />
-                        </button>
+                            <button
+                                key={`${convId}_delete_button`}
+                                type="button"
+                                onClick={() => confirmDeleteConversation(convId, dispatch, conversation.title)}
+                                className={CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS}
+                            >
+                                {/* <FontAwesomeIcon icon="trash" size='xs' /> */}
+                                <GsIcons
+                                    icon="trash"
+                                    size='xs'
+                                />
+                            </button>
+                        </div>
                     </div>
                 </div>
             );
@@ -212,7 +225,7 @@ export const ConversationList = ({
             {groupedConversations.today.length > 0 && (
                 <div
                     key="today"
-                    className={CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS}
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
                 >
                     <h2
                         className={h2_class}
@@ -225,7 +238,7 @@ export const ConversationList = ({
             {groupedConversations.yesterday.length > 0 && (
                 <div
                     key="yesterday"
-                    className={CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS}
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
                 >
                     <h2
                         className={h2_class}
@@ -238,7 +251,7 @@ export const ConversationList = ({
             {groupedConversations.lastSevenDays.length > 0 && (
                 <div
                     key="lastSevenDays"
-                    className={CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS}
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
                 >
                     <h2
                         className={h2_class}
@@ -251,7 +264,7 @@ export const ConversationList = ({
             {groupedConversations.lastMonth.length > 0 && (
                 <div
                     key="lastMonth"
-                    className={CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS}
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
                 >
                     <h2
                         className={h2_class}
@@ -264,7 +277,7 @@ export const ConversationList = ({
             {Object.keys(groupedConversations.older).map(monthYear => (
                 <div
                     key={"month_year_" + monthYear}
-                    className={CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS}
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
                 >
                     <h2
                         className={h2_class}
