@@ -4,23 +4,27 @@ const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
 // ChatBot.css
 
-export const CHATBOT_CONTAINER_DIV_1_CLASS = "relative flex h-[80vh] w-full overflow-hidden transition-colors 1-z-0 chatbot-container-div-1-class";
+// export const CHATBOT_CONTAINER_DIV_1_CLASS = "relative flex h-[76vh] w-full overflow-hidden transition-colors z-0 chatbot-container-div-1-class";
+export const CHATBOT_CONTAINER_DIV_1_CLASS = "relative flex w-full overflow-hidden transition-colors z-0 chatbot-container-div-1-class";
 
 // Conversation List column
 
-export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "1-w-[20%] flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
+// export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "1-w-[20%] flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
+export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "h-full flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_2_CLASS = "w-[260px] h-full chatbot-conversations-list-div-2-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS = "draggable relative h-full w-full flex-1 items-start border-white/20 chatbot-conversations-list-div-3-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS = "flex h-full w-full flex-col 1-px-3 chatbot-conversations-list-div-4-class";
 
-
-export const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[60px] pb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
+// export const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[60px] pb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
+// export const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[10%] pb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
+export const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[40px] mt-2 mb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
 
 export const CHATBOT_NEW_CONVERSATION_BUTTON_DIV_1_CLASS = "flex chatbot-new-conversation-button-div-1-class";
 export const CHATBOT_NEW_CONVERSATION_BUTTON_SPAN_CLASS = "flex chatbot-new-conversation-button-span-class";
 export const CHATBOT_NEW_CONVERSATION_BUTTON_CLASS = `text-xs chatbot-new-conversation-button-class`;
 
-export const CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS = "flex-col flex-1 transition-opacity duration-500 relative -mr-2 pr-2 overflow-y-auto chatbot-conversations-list-row-2-div-1-class";
+// export const CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS = "flex-col flex-1 transition-opacity duration-500 relative -mr-2 pr-2 overflow-y-auto chatbot-conversations-list-row-2-div-1-class";
+export const CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS = "flex-col flex-1 h-[90%] transition-opacity duration-500 relative -mr-2 pr-2 overflow-y-auto chatbot-conversations-list-row-2-div-1-class";
 
 export const CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS = "space-y-1 chatbot-conversations-list-heading-div-1-class";
 export const CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS = "mb-2 text-sm chatbot-conversations-list-heading-div-2-class";
@@ -38,7 +42,7 @@ export const CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS = "w-[5%] p-1 rounded ch
 export const CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS = "chatbot-conversation-item-delete-button-class"
 
 export const CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS = "flex justify-start chatbot-conversations-toggle-button-class";
-export const CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS = "mt-3 chatbot-conversations-hidden-toggle-button-class";
+export const CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS = "mt-2 chatbot-conversations-hidden-toggle-button-class";
 
 // Conversation messages column
 
@@ -50,7 +54,7 @@ export const CHATBOT_MESSAGE_AREA_DIV_4_CLASS = "relative h-full chatbot-message
 
 // Conversation messages row
 
-export const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 overflow-y-auto chatbot-message-block-class";
+export const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto chatbot-message-block-class";
 
 export const CHATBOT_MESSAGE_CLASS = "p-2 flex chatbot-message-class";
 export const CHATBOT_USER_MESSAGE_CONTAINER_CLASS = "justify-end chatbot-user-message-container-class";
@@ -122,7 +126,7 @@ export const FILE_UPLOADER_INPUT_AREA_INPUT_CLASS = "p-0 m-0 file-uploader-input
 
 // VoiceMessageRecorder
 export const VOICE_MESSAGE_RECORDER_DIV_1_CLASS = "voice-message-recorder-div-1-class";
-export const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = `border-none mr-2 voice-message-recorder-button-class`;
+export const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = `border-none mr-1 mt-1 voice-message-recorder-button-class`;
 
 // ChatBotButton
 export const CHATBOT_BUTTON_DIV_1_CLASS = "align-middle flex chatbot-button-div-1-class";

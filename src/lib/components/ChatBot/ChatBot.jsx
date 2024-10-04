@@ -213,7 +213,7 @@ export const ChatBot = ({
                 setChatbotInputMessage(lastUserMessage.content, dispatch);
             }
         }
-        setChatbotErrorMsg(null, dispatch)
+        setChatbotErrorMsg(null, dispatch);
     };
     
     // Load conversations
@@ -247,9 +247,16 @@ export const ChatBot = ({
 
     return (
         <div
+            id='chatbot-container'
             className={`${CHATBOT_CONTAINER_DIV_1_CLASS} ${theme.background}`}
         >
-            {/* Conversarion list area */}
+            {/* Error message */}
+            {state.errorMsg && (
+                <>
+                    {errorAndReEnter(state.errorMsg, null, null, handleRetry, null, false, false)}
+                </>
+            )}
+            {/* Conversarion toggle button (when the conversation list is not visible) */}
             {!(showSideBar && state.conversationListToggle) && (
                 <ConversationsToggleButton
                     id='conversations-toggle-button-1'
@@ -258,6 +265,7 @@ export const ChatBot = ({
                     dispatch={dispatch}
                 />
             )}
+            {/* Conversarion list area */}
             <div
                 className={CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS + (showSideBar && state.conversationListToggle ? '' : HIDDEN_CLASS)}
                 style={{ width: columnSizeList() }}
@@ -298,6 +306,7 @@ export const ChatBot = ({
                 </div>
             </div>
 
+            {/* Conversation messages area */}
             <div
                 className={CHATBOT_MESSAGE_AREA_DIV_1_CLASS}
             >
@@ -309,12 +318,11 @@ export const ChatBot = ({
                         className={CHATBOT_MESSAGE_AREA_DIV_3_CLASS}
                     >
                         {/* Error message */}
-                        {state.errorMsg && (
+                        {/* {state.errorMsg && (
                             <>
                                 {errorAndReEnter(state.errorMsg, null, null, handleRetry)}
                             </>
-                        )}
-                        {/* Conversation messages area */}
+                        )} */}
                         <div 
                             id="message-area"
                             className={CHATBOT_MESSAGE_AREA_DIV_4_CLASS}

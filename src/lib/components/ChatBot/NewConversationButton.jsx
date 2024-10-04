@@ -5,7 +5,7 @@ import {
     CHATBOT_NEW_CONVERSATION_BUTTON_CLASS,
     CHATBOT_NEW_CONVERSATION_BUTTON_DIV_1_CLASS,
     CHATBOT_NEW_CONVERSATION_BUTTON_SPAN_CLASS,
-} from '../../constants/class_name_constants';
+} from '../../constants/class_name_constants.jsx';
 import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 
 // import './ChatBot.css';

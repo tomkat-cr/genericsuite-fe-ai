@@ -209,11 +209,11 @@ export const ConversationBlock = ({
                 {state && !state.errorMsg && state.messages && elementsToRender}
             </div>
             <ScrollToBottomButton
-                elementId='conversation-block'
+                elementId={id ? id : "conversation-block"}
                 elementsToRender={elementsToRender}
             />
             <GoToTheBottom
-                elementId='conversation-block'
+                elementId={id ? id : "conversation-block"}
                 elementsToRender={elementsToRender}
             />
         </>

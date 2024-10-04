@@ -223,7 +223,7 @@ export const CameraComponent = ({
                     <GsIcons
                         icon={buttonToggle ? 'times' : 'camera'}
                         // size='lg'
-                        size='sm'
+                        size='m'
                         additionalIconsFn={iconsLibAiExtras}
                     />
                 </button>

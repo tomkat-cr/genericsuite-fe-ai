@@ -166,10 +166,10 @@ export const ConversationList = ({
                         <div
                             key={`${convId}_desc_outter_div`}
                             className={`${CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS} ${theme.textHoverSide}`}
+                            onClick={() => handleLoadConversation(convId, state, dispatch)}
                         >
                             <button
                                 key={`${convId}_desc_button`}
-                                onClick={() => handleLoadConversation(convId, state, dispatch)}
                                 title={timestampToDate(conversation[dateColumn], true, " ", false)}
                             >
                                 <div
@@ -190,13 +190,15 @@ export const ConversationList = ({
                         />
                         <div
                             key={`${convId}_delete_div`}
-                            className={`${CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS} ${theme.textHoverSide}`}
+                            // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS} ${theme.textHoverSide}`}
+                            className={CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS}
                         >
                             <button
                                 key={`${convId}_delete_button`}
                                 type="button"
                                 onClick={() => confirmDeleteConversation(convId, dispatch, conversation.title)}
                                 className={CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS}
+                                // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS} ${theme.textHoverSide}`}
                             >
                                 {/* <FontAwesomeIcon icon="trash" size='xs' /> */}
                                 <GsIcons

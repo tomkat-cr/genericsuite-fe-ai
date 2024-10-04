@@ -17,7 +17,7 @@ export const HomePage = ({ children }) => {
                     (<p><a href="/#/login">Please Sign-in</a></p>)
                 }
                 {currentUser &&
-                    (<p>Hi {currentUser.firstName}! Welcome to the GenericSuite AI (frontend version)</p>)
+                    (<p>Hi {currentUser.firstName}! Welcome to the GenericSuite FE AI (frontend version)</p>)
                 }
             </>
             {children}

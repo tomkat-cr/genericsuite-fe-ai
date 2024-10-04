@@ -97,6 +97,7 @@ run_lib: config_lib
 
 pre-publish:
 	# sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
+	# npm run test
 	npm install --package-lock-only
 	npm run build
 

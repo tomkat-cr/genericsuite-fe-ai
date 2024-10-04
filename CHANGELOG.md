@@ -26,10 +26,16 @@ New "GsIcons" library replaces FontAwesome [GS-115].
 ### Changes
 Update GS FE AI with GS FE Core Tailwind conversion and new contexts [GS-129].
 <HashRouter> was replaced by <RouterProvider> and createBrowserRouter() [GS-112].
+Chatbot camera, voice and clip icons changed to "m" size [GS-129].
+Chatbot design enhanced and responsive behavior fixed [GS-129].
+Delete button in the Chatbot conversation list shows only when the mouse pointer is over the conversation [GS-129].
 
 ### Fixes
 Fix missing classes in the new output.css of Tailwind v3.4.9 [GS-63].
 Fix the %PUBLIC_URL% issue in public/index.html file running the app with webpack [GS-116].
+Fix when Chatbot send an error and Close button is clicked, no further info is displayed in the message area [GS-129].
+Fix click in Chatbot conversation list item only works if the text is clicked, not the padding area [GS-129].
+Fix Chatbot <UserInput> location is wrong with the new GS FE Core and pure Tailwind, also should work when the <NoDesignComponent> template is used [GS-129].
 
 ### Breaks
 Bootstrap CSS is not longer used [GS-63].

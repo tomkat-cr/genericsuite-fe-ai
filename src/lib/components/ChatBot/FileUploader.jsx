@@ -212,7 +212,7 @@ export function FileUploader({
                     <GsIcons
                         icon={buttonToggle ? 'times' : 'paperclip'}
                         // size='lg'
-                        size='sm'
+                        size='m'
                         additionalIconsFn={iconsLibAiExtras}
                     />
                 </button>

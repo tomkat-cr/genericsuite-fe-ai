@@ -50,7 +50,10 @@ expected one of ["2xs","xs","sm","lg","xl","2xl","1x","2x","3x","4x","5x","6x","
 const GsIcons = gs.IconsLib.GsIcons;
 
 const useAppContext = gs.AppContext.useAppContext;
+const resizeManager = gs.ui.resizeManager;
+
 const console_debug_log = gs.loggingService.console_debug_log;
+
 const usePlainFetch = gs.responseHandlersService.usePlainFetch;
 const growUpTextArea = gs.ui.growUpTextArea;
 const resetTextArea = gs.ui.resetTextArea;
@@ -64,8 +67,9 @@ const responseHasFile = gs.blobFilesUtilities.responseHasFile;
 
 const debug = false;
 
+const useResetTextArea = false;
 // const userInputViewportHeight = 80;
-const userInputViewportHeight = 75;
+const userInputViewportHeight = 66;
 /* <UserInput>.userInputViewportHeight must be the same as ".conversation-block.height" in ChatBot.css */
 /* 81 for 81vh, 78 for 78vh, an so on */
 const userInputMaxOffsetHeight = 200;
@@ -79,18 +83,81 @@ export const UserInput = ({
     const [inputMessage, setInputMessage] = useState(userQuestion);
     const [updateSize, setUpdateSize] = useState(false);
 
+    const setConversationBlockHeight = () => {
+        // Get the conversation block element
+        const conversationBlockObj = document.getElementById('conversation-block');
+        // Get the chatbot main container element
+        const chatbotContainerObj = document.getElementById('chatbot-container');
+        // Get the input area container element
+        const chatbotInputAreaObj = document.getElementById('chatbot-input-area');
+        // Assign the height of the main container to the chatbot container
+        if (chatbotInputAreaObj) {
+            conversationBlockObj.style.height = `${chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10}px`;
+        }
+    }
+
+    const getWindowMaxHeight = () => {
+        const windowHeight = (window.screen.availHeight - (window.outerHeight - window.innerHeight));
+        return windowHeight;
+    }
+
+    const setChatBotContainerHeight = () => {
+        const debug = true;
+        // Get the chatbot main container element
+        const chatbotContainerObj = document.getElementById('chatbot-container');
+        // Get the <main /> tag element
+        const mainContainerObj = chatbotContainerObj.parentElement;
+        const mainContainerHeight = mainContainerObj ? (mainContainerObj.id === "root" ? getWindowMaxHeight() : mainContainerObj.offsetHeight) : getWindowMaxHeight();
+        // Get the <footer /> html tag element
+        const footerObj = document.getElementsByTagName('footer');
+        const footerHeight = footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0;
+        // Assign the height of the chatbot container to the main container minus the footer height
+        chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
+        if (debug) {
+            console_debug_log("|| mainContainerObj:", mainContainerObj, 'mainContainerHeight:', mainContainerHeight, 'chatbotContainerObj:', chatbotContainerObj, 'chatbotContainerObj.offsetHeight:', chatbotContainerObj ? chatbotContainerObj.offsetHeight : -111);
+            console_debug_log("footerObj:", footerObj, 'footerHeight:', footerHeight);
+            console_debug_log("NEW chatbotContainerObj.style.height (offsetHeight):", chatbotContainerObj ? chatbotContainerObj.offsetHeight : -111);
+        }
+    }
+
+    const setTextAreaHeight = () => {
+        // Adjust text area size
+        if (useResetTextArea) {
+            resetTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight);
+        } else {
+            const user_input = document.getElementById("user_input");
+            if (user_input) {
+                user_input.style.height = 'auto'
+                user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`
+            }
+        }
+    }
+    
+    const resizeAll = () => {
+        setChatBotContainerHeight();
+        setTextAreaHeight();
+        setConversationBlockHeight();
+    }
+
+    useEffect(() => {
+        // setChatBotContainerHeight();
+        resizeAll();
+    }, []);
+
+    useEffect(() => {
+        const resizer = resizeManager(() => {
+            resizeAll();
+        })
+        resizer.addListener();
+        return () => resizer.removeListener();
+    }, [])
+
     useEffect(() => {
         setInputMessage(state.inputMessage);
     }, [state.inputMessage]);
 
     useEffect(() => {
-        // Adjust text area size
-        resetTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight);
-        const user_input = document.getElementById("user_input");
-        if (user_input) {
-            user_input.style.height = 'auto'
-            user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`
-        }
+        setTextAreaHeight();
     }, [updateSize, inputMessage]);
 
     // Function to handle adjust text area size on input change from external component
@@ -177,6 +244,7 @@ export const UserInput = ({
 
     return (
         <div
+            id="chatbot-input-area"
             className={`${CHATBOT_INPUT_AREA_DIV_1_CLASS} ${theme.background}`}
         >
             <div
@@ -256,7 +324,11 @@ export const UserInput = ({
                                     <div className={CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS}><WaitAnimation /></div>
                                 }
                                 {
-                                    // growUpTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight)
+                                    (useResetTextArea ?
+                                        growUpTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight)
+                                            :
+                                        setConversationBlockHeight()
+                                    )
                                 }
                             </div>
                         </div>
