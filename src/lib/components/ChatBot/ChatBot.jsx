@@ -176,7 +176,6 @@ export const ChatBot = ({
     });
 
     const columnSizeList = () =>
-        // (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '80%' : '20%') : "0%")
         (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '80%' : '20%') : "0%")
 
     // const columnSizeMessages = () =>
@@ -230,6 +229,13 @@ export const ChatBot = ({
                 },
                 error => setChatbotErrorMsg(error, dispatch)
             );
+        return () => {
+            // Cleanup
+            if (sideMenu) {
+                // Restore the side menu "slide" condition
+                setIsWide(isWindowWide());
+            }
+        };
     }, []);
 
     useEffect(() => {
@@ -311,7 +317,7 @@ export const ChatBot = ({
                 className={CHATBOT_MESSAGE_AREA_DIV_1_CLASS}
             >
                 <div
-                    role="presentarion"
+                    role="presentation"
                     className={CHATBOT_MESSAGE_AREA_DIV_2_CLASS}
                 >
                     <div

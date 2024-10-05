@@ -281,7 +281,7 @@ const CHATBOT_CONTAINER_DIV_1_CLASS = "relative flex w-full overflow-hidden tran
 // Conversation List column
 
 // export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "1-w-[20%] flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
-const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "h-full flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
+const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "ml-2 h-full flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_DIV_2_CLASS = "w-[260px] h-full chatbot-conversations-list-div-2-class";
 const CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS = "draggable relative h-full w-full flex-1 items-start border-white/20 chatbot-conversations-list-div-3-class";
 const CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS = "flex h-full w-full flex-col 1-px-3 chatbot-conversations-list-div-4-class";
@@ -307,7 +307,7 @@ const CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS = "w-[2%] chatbot-conversation-i
 const CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS = "w-[5%] p-1 rounded chatbot-conversation-item-delete-div-class";
 const CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS = "chatbot-conversation-item-delete-button-class";
 const CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS = "flex justify-start chatbot-conversations-toggle-button-class";
-const CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS = "mt-2 chatbot-conversations-hidden-toggle-button-class";
+const CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS = "ml-2 mt-4 chatbot-conversations-hidden-toggle-button-class";
 
 // Conversation messages column
 
@@ -321,7 +321,8 @@ const CHATBOT_MESSAGE_AREA_DIV_4_CLASS = "relative h-full chatbot-message-area-d
 const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto chatbot-message-block-class";
 const CHATBOT_MESSAGE_CLASS = "p-2 flex chatbot-message-class";
 const CHATBOT_USER_MESSAGE_CONTAINER_CLASS = "justify-end chatbot-user-message-container-class";
-const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-full w-auto chatbot-user-message-class";
+// export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-full w-auto chatbot-user-message-class";
+const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-xl w-auto chatbot-user-message-class";
 const CHATBOT_USER_MESSAGE_LM_CLASS = "bg-gray-300 chatbot-user-message-lm-class";
 const CHATBOT_USER_MESSAGE_DM_CLASS = "bg-gray-500 chatbot-user-message-dm-class";
 const CHATBOT_BOT_MESSAGE_CONTAINER_CLASS = "justify-start chatbot-bot-message-container-class";
@@ -361,7 +362,7 @@ const CAMERA_COMPONENT_VIDEO_CANVAS_CLASS = "mt-2 w-full camera-component-video-
 
 // ScrollToBottomButton.css
 const SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS = "relative flex flex-col justify-end items-center overflow-hidden 1-justify-center scroll-to-bottom-button-div-1-class";
-const SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS = 'absolute pb-10 scroll-to-bottom-button-div-2-class';
+const SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS = 'absolute pb-10 mb-2 scroll-to-bottom-button-div-2-class';
 const SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS = "fixed mx-auto w-full max-w-md scroll-to-bottom-button-div-3-class";
 const SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS = "w-10 h-10 flex items-center justify-center rounded-full shadow-md bg-gray-300 text-white scroll-to-bottom-button-float-class";
 const SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS = "1-mt-3 text-center scroll-to-bottom-button-icon-class";
@@ -397,7 +398,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 const GsIcons$8 = gs.IconsLib.GsIcons;
 const dbApiService$3 = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER$2 = gs.dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log$2 = gs.loggingService.console_debug_log;
+const console_debug_log$1 = gs.loggingService.console_debug_log;
 const formatCaughtError$4 = gs.errorAndReenter.formatCaughtError;
 const toggleIdVisibility$3 = gs.ui.toggleIdVisibility;
 const getMediaTypeToRecord = gs.media.getMediaTypeToRecord;
@@ -609,7 +610,7 @@ const VoiceMessageRecorder = _ref => {
 const formatCaughtError$3 = gs.errorAndReenter.formatCaughtError;
 const dbApiService$2 = gs.dbService.dbApiService;
 const defaultValue = gs.genericEditorUtilities.defaultValue;
-const console_debug_log$1 = gs.loggingService.console_debug_log;
+const console_debug_log = gs.loggingService.console_debug_log;
 
 // Current user
 
@@ -778,8 +779,8 @@ const ApiCall = async (dispatch, params) => {
     response.operationMessage = `${the} ${operationDescription} ${ActionDescription} ${was_successful}`;
   } else {
     response.operationMessage = `${error_in_the} ${operationDescription} ${ActionDescription}`;
-    console_debug_log$1('ApiCall ERROR:');
-    console_debug_log$1(response.operationMessage);
+    console_debug_log('ApiCall ERROR:');
+    console_debug_log(response.operationMessage);
   }
   dispatch({
     type: 'API_PROCESSING_STATUS',
@@ -1413,7 +1414,7 @@ expected one of ["2xs","xs","sm","lg","xl","2xl","1x","2x","3x","4x","5x","6x","
 const GsIcons$5 = gs.IconsLib.GsIcons;
 const useAppContext$3 = gs.AppContext.useAppContext;
 const resizeManager = gs.ui.resizeManager;
-const console_debug_log = gs.loggingService.console_debug_log;
+gs.loggingService.console_debug_log;
 const usePlainFetch$1 = gs.responseHandlersService.usePlainFetch;
 gs.ui.growUpTextArea;
 gs.ui.resetTextArea;
@@ -1434,7 +1435,8 @@ const UserInput = _ref => {
   const {
     theme,
     isWide,
-    isDarkMode
+    isDarkMode,
+    sideMenu
   } = useAppContext$3();
   const [inputMessage, setInputMessage] = useState(userQuestion);
   const [updateSize, setUpdateSize] = useState(false);
@@ -1457,19 +1459,18 @@ const UserInput = _ref => {
   const setChatBotContainerHeight = () => {
     // Get the chatbot main container element
     const chatbotContainerObj = document.getElementById('chatbot-container');
+    if (!chatbotContainerObj || typeof chatbotContainerObj["parentElement"] === "undefined") {
+      return;
+    }
     // Get the <main /> tag element
     const mainContainerObj = chatbotContainerObj.parentElement;
     const mainContainerHeight = mainContainerObj ? mainContainerObj.id === "root" ? getWindowMaxHeight() : mainContainerObj.offsetHeight : getWindowMaxHeight();
     // Get the <footer /> html tag element
-    const footerObj = document.getElementsByTagName('footer');
-    const footerHeight = footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0;
+    document.getElementsByTagName('footer');
+    // const footerHeight = (sideMenu ? (footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0) : 5);
+    const footerHeight = 5;
     // Assign the height of the chatbot container to the main container minus the footer height
     chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
-    {
-      console_debug_log("|| mainContainerObj:", mainContainerObj, 'mainContainerHeight:', mainContainerHeight, 'chatbotContainerObj:', chatbotContainerObj, 'chatbotContainerObj.offsetHeight:', chatbotContainerObj ? chatbotContainerObj.offsetHeight : -111);
-      console_debug_log("footerObj:", footerObj, 'footerHeight:', footerHeight);
-      console_debug_log("NEW chatbotContainerObj.style.height (offsetHeight):", chatbotContainerObj ? chatbotContainerObj.offsetHeight : -111);
-    }
   };
   const setTextAreaHeight = () => {
     // Adjust text area size
@@ -1487,7 +1488,6 @@ const UserInput = _ref => {
     setConversationBlockHeight();
   };
   useEffect(() => {
-    // setChatBotContainerHeight();
     resizeAll();
   }, []);
   useEffect(() => {
@@ -1636,8 +1636,10 @@ const UserInput = _ref => {
     ,
     className: CHATBOT_INPUT_AREA_BUTTON_CLASS,
     title: state && state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'
-  }, /*#__PURE__*/React.createElement(GsIcons$5, {
-    icon: state && state.isApiProcessing ? 'stop' : 'greater-than',
+  }, /*#__PURE__*/React.createElement(GsIcons$5
+  // icon={state && state.isApiProcessing ? 'stop' : 'greater-than'}
+  , {
+    icon: state && state.isApiProcessing ? 'stop' : 'arrow-up',
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
   })), /*#__PURE__*/React.createElement(VoiceMessageRecorder, {
@@ -1664,7 +1666,7 @@ const UserInput = _ref => {
     state: state
   }), state && state.isApiProcessing && /*#__PURE__*/React.createElement("div", {
     className: CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS
-  }, /*#__PURE__*/React.createElement(WaitAnimation, null)), setConversationBlockHeight()))))));
+  }, /*#__PURE__*/React.createElement(WaitAnimation, null)), resizeAll()))))));
 };
 
 // import './ChatBot.css';
@@ -1975,13 +1977,12 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   useState(0);
   useState(0);
@@ -2447,9 +2448,7 @@ const ChatBot = _ref => {
     errorMsg: null,
     currentUser: currentUser
   });
-  const columnSizeList = () =>
-  // (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '80%' : '20%') : "0%")
-  showSideBar && state.conversationListToggle ? isMobileDevice() ? '80%' : '20%' : "0%";
+  const columnSizeList = () => showSideBar && state.conversationListToggle ? isMobileDevice() ? '80%' : '20%' : "0%";
 
   // If there's an initial UserQuestion, send it inmediatelly to the LLM
   // useEffect(() => {
@@ -2475,6 +2474,13 @@ const ChatBot = _ref => {
         setChatbotErrorMsg(apiResponse.errorMessage, dispatch);
       }
     }, error => setChatbotErrorMsg(error, dispatch));
+    return () => {
+      // Cleanup
+      if (sideMenu) {
+        // Restore the side menu "slide" condition
+        setIsWide(isWindowWide());
+      }
+    };
   }, []);
   useEffect(() => {
     dispatch({
@@ -2527,7 +2533,7 @@ const ChatBot = _ref => {
   })))))), /*#__PURE__*/React.createElement("div", {
     className: CHATBOT_MESSAGE_AREA_DIV_1_CLASS
   }, /*#__PURE__*/React.createElement("div", {
-    role: "presentarion",
+    role: "presentation",
     className: CHATBOT_MESSAGE_AREA_DIV_2_CLASS
   }, /*#__PURE__*/React.createElement("div", {
     className: CHATBOT_MESSAGE_AREA_DIV_3_CLASS

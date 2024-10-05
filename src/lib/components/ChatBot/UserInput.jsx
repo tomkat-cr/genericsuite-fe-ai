@@ -79,7 +79,7 @@ export const UserInput = ({
     state,
     userQuestion, // state.inputMessage
 }) => {
-    const { theme, isWide, isDarkMode } = useAppContext();
+    const { theme, isWide, isDarkMode, sideMenu } = useAppContext();
     const [inputMessage, setInputMessage] = useState(userQuestion);
     const [updateSize, setUpdateSize] = useState(false);
 
@@ -93,6 +93,9 @@ export const UserInput = ({
         // Assign the height of the main container to the chatbot container
         if (chatbotInputAreaObj) {
             conversationBlockObj.style.height = `${chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10}px`;
+            if (debug) {
+                console_debug_log("conversationBlockObj.style.height:", conversationBlockObj.style.height);
+            }
         }
     }
 
@@ -102,15 +105,18 @@ export const UserInput = ({
     }
 
     const setChatBotContainerHeight = () => {
-        const debug = true;
         // Get the chatbot main container element
         const chatbotContainerObj = document.getElementById('chatbot-container');
+        if (!chatbotContainerObj || typeof chatbotContainerObj["parentElement"] === "undefined") {
+            return;
+        }
         // Get the <main /> tag element
         const mainContainerObj = chatbotContainerObj.parentElement;
         const mainContainerHeight = mainContainerObj ? (mainContainerObj.id === "root" ? getWindowMaxHeight() : mainContainerObj.offsetHeight) : getWindowMaxHeight();
         // Get the <footer /> html tag element
         const footerObj = document.getElementsByTagName('footer');
-        const footerHeight = footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0;
+        // const footerHeight = (sideMenu ? (footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0) : 5);
+        const footerHeight = 5;
         // Assign the height of the chatbot container to the main container minus the footer height
         chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
         if (debug) {
@@ -140,7 +146,6 @@ export const UserInput = ({
     }
 
     useEffect(() => {
-        // setChatBotContainerHeight();
         resizeAll();
     }, []);
 
@@ -291,7 +296,8 @@ export const UserInput = ({
                                 >
                                     {/* <FontAwesomeIcon icon={state && state.isApiProcessing ? 'stop' : 'greater-than'} size='lg'/> */}
                                     <GsIcons
-                                        icon={state && state.isApiProcessing ? 'stop' : 'greater-than'}
+                                        // icon={state && state.isApiProcessing ? 'stop' : 'greater-than'}
+                                        icon={state && state.isApiProcessing ? 'stop' : 'arrow-up'}
                                         size='lg'
                                         additionalIconsFn={iconsLibAiExtras}
                                     />
@@ -327,7 +333,7 @@ export const UserInput = ({
                                     (useResetTextArea ?
                                         growUpTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight)
                                             :
-                                        setConversationBlockHeight()
+                                        resizeAll()
                                     )
                                 }
                             </div>

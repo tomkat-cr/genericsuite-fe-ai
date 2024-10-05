@@ -10,7 +10,7 @@ export const CHATBOT_CONTAINER_DIV_1_CLASS = "relative flex w-full overflow-hidd
 // Conversation List column
 
 // export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "1-w-[20%] flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
-export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "h-full flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
+export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "ml-2 h-full flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_2_CLASS = "w-[260px] h-full chatbot-conversations-list-div-2-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS = "draggable relative h-full w-full flex-1 items-start border-white/20 chatbot-conversations-list-div-3-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS = "flex h-full w-full flex-col 1-px-3 chatbot-conversations-list-div-4-class";
@@ -42,7 +42,7 @@ export const CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS = "w-[5%] p-1 rounded ch
 export const CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS = "chatbot-conversation-item-delete-button-class"
 
 export const CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS = "flex justify-start chatbot-conversations-toggle-button-class";
-export const CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS = "mt-2 chatbot-conversations-hidden-toggle-button-class";
+export const CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS = "ml-2 mt-4 chatbot-conversations-hidden-toggle-button-class";
 
 // Conversation messages column
 
@@ -58,7 +58,8 @@ export const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto chat
 
 export const CHATBOT_MESSAGE_CLASS = "p-2 flex chatbot-message-class";
 export const CHATBOT_USER_MESSAGE_CONTAINER_CLASS = "justify-end chatbot-user-message-container-class";
-export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-full w-auto chatbot-user-message-class";
+// export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-full w-auto chatbot-user-message-class";
+export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-xl w-auto chatbot-user-message-class";
 export const CHATBOT_USER_MESSAGE_LM_CLASS = "bg-gray-300 chatbot-user-message-lm-class";
 export const CHATBOT_USER_MESSAGE_DM_CLASS = "bg-gray-500 chatbot-user-message-dm-class";
 export const CHATBOT_BOT_MESSAGE_CONTAINER_CLASS = "justify-start chatbot-bot-message-container-class";
@@ -111,7 +112,7 @@ export const CAMERA_COMPONENT_OVERLAY_BUTTON_CLASS = "py-2.5 px-5 text-base bg-b
 
 // ScrollToBottomButton.css
 export const SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS = "relative flex flex-col justify-end items-center overflow-hidden 1-justify-center scroll-to-bottom-button-div-1-class";
-export const SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS = 'absolute pb-10 scroll-to-bottom-button-div-2-class';
+export const SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS = 'absolute pb-10 mb-2 scroll-to-bottom-button-div-2-class';
 export const SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS = "fixed mx-auto w-full max-w-md scroll-to-bottom-button-div-3-class";
 export const SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS = "w-10 h-10 flex items-center justify-center rounded-full shadow-md bg-gray-300 text-white scroll-to-bottom-button-float-class";
 export const SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS = "1-mt-3 text-center scroll-to-bottom-button-icon-class";
