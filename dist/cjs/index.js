@@ -415,7 +415,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 //     faMicrophone,
 //     faStop,
 // );
-const GsIcons$7 = gs__namespace.IconsLib.GsIcons;
+const GsIcons$8 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$3 = gs__namespace.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER$2 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log$2 = gs__namespace.loggingService.console_debug_log;
@@ -618,7 +618,7 @@ const VoiceMessageRecorder = _ref => {
     onClick: isRecording ? stopRecording : startRecording,
     className: VOICE_MESSAGE_RECORDER_BUTTON_CLASS,
     title: isRecording ? 'Stop Recording' : 'Start Recording'
-  }, /*#__PURE__*/React.createElement(GsIcons$7, {
+  }, /*#__PURE__*/React.createElement(GsIcons$8, {
     icon: isRecording ? 'stop' : 'microphone'
     // size='lg'
     ,
@@ -1001,7 +1001,7 @@ const handleCancelProcessing = dispatch => {
 //     faTimes, // Close
 //     faPaperclip, // Added clip icon
 // );
-const GsIcons$6 = gs__namespace.IconsLib.GsIcons;
+const GsIcons$7 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$1 = gs__namespace.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER$1 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
 gs__namespace.loggingService.console_debug_log;
@@ -1134,7 +1134,7 @@ function FileUploader(_ref) {
     ,
     className: FILE_UPLOADER_BUTTON_CLASS,
     title: buttonToggle ? 'Close' : 'Select File'
-  }, /*#__PURE__*/React.createElement(GsIcons$6, {
+  }, /*#__PURE__*/React.createElement(GsIcons$7, {
     icon: buttonToggle ? 'times' : 'paperclip'
     // size='lg'
     ,
@@ -1153,7 +1153,7 @@ function FileUploader(_ref) {
     ,
     className: FILE_UPLOADER_BASE_BUTTON_CLASS,
     title: "Submit"
-  }, /*#__PURE__*/React.createElement(GsIcons$6, {
+  }, /*#__PURE__*/React.createElement(GsIcons$7, {
     icon: "arrow-up",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1206,7 +1206,7 @@ styleInject(css_248z);
 //     faCameraRetro, // Icon for taking the photo
 //     faExchangeAlt, // Icon for interchange
 // );
-const GsIcons$5 = gs__namespace.IconsLib.GsIcons;
+const GsIcons$6 = gs__namespace.IconsLib.GsIcons;
 const dbApiService = gs__namespace.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
 gs__namespace.loggingService.console_debug_log;
@@ -1365,7 +1365,7 @@ const CameraComponent = _ref => {
     ,
     className: CAMERA_COMPONENT_BUTTON_MAIN_CLASS,
     title: buttonToggle ? 'Close' : 'Start Camera'
-  }, /*#__PURE__*/React.createElement(GsIcons$5, {
+  }, /*#__PURE__*/React.createElement(GsIcons$6, {
     icon: buttonToggle ? 'times' : 'camera'
     // size='lg'
     ,
@@ -1375,7 +1375,7 @@ const CameraComponent = _ref => {
     onClick: () => cameraOnOff(!cameraOn),
     className: CAMERA_COMPONENT_BUTTON_SUB_CLASS,
     title: "Start Camera"
-  }, /*#__PURE__*/React.createElement(GsIcons$5, {
+  }, /*#__PURE__*/React.createElement(GsIcons$6, {
     icon: "camera-retro",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1383,7 +1383,7 @@ const CameraComponent = _ref => {
     onClick: sendPhoto,
     className: CAMERA_COMPONENT_BUTTON_SUB_CLASS,
     title: "Send Photo"
-  }, /*#__PURE__*/React.createElement(GsIcons$5, {
+  }, /*#__PURE__*/React.createElement(GsIcons$6, {
     icon: "arrow-up",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1431,7 +1431,7 @@ expected one of ["2xs","xs","sm","lg","xl","2xl","1x","2x","3x","4x","5x","6x","
 //     faGreaterThan,
 //     faStop,
 // );
-const GsIcons$4 = gs__namespace.IconsLib.GsIcons;
+const GsIcons$5 = gs__namespace.IconsLib.GsIcons;
 const useAppContext$3 = gs__namespace.AppContext.useAppContext;
 const resizeManager = gs__namespace.ui.resizeManager;
 const console_debug_log = gs__namespace.loggingService.console_debug_log;
@@ -1657,7 +1657,7 @@ const UserInput = _ref => {
     ,
     className: CHATBOT_INPUT_AREA_BUTTON_CLASS,
     title: state && state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'
-  }, /*#__PURE__*/React.createElement(GsIcons$4, {
+  }, /*#__PURE__*/React.createElement(GsIcons$5, {
     icon: state && state.isApiProcessing ? 'stop' : 'greater-than',
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1693,7 +1693,7 @@ const UserInput = _ref => {
 // const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 // //const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
-const GsIcons$3 = gs__namespace.IconsLib.GsIcons;
+const GsIcons$4 = gs__namespace.IconsLib.GsIcons;
 
 // const debug = false;
 
@@ -1723,7 +1723,7 @@ const NewConversationButton = _ref => {
     // className={`${BUTTON_LISTING_CLASS} text-xs mb-2`}
     ,
     className: CHATBOT_NEW_CONVERSATION_BUTTON_CLASS
-  }, /*#__PURE__*/React.createElement(GsIcons$3, {
+  }, /*#__PURE__*/React.createElement(GsIcons$4, {
     icon: 'new-conversation',
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1740,7 +1740,7 @@ const NewConversationButton = _ref => {
 // fontawesome.library.add(
 //     faTrash,
 // );
-const GsIcons$2 = gs__namespace.IconsLib.GsIcons;
+const GsIcons$3 = gs__namespace.IconsLib.GsIcons;
 const convertId$1 = gs__namespace.dbService.convertId;
 gs__namespace.loggingService.console_debug_log;
 const timestampToDate = gs__namespace.dateTimestamp.timestampToDate;
@@ -1902,7 +1902,7 @@ const ConversationList = _ref => {
         onClick: () => confirmDeleteConversation(convId, dispatch, conversation.title),
         className: CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS
         // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS} ${theme.textHoverSide}`}
-      }, /*#__PURE__*/React.createElement(GsIcons$2, {
+      }, /*#__PURE__*/React.createElement(GsIcons$3, {
         icon: "trash",
         size: "xs"
       })))));
@@ -1958,7 +1958,7 @@ const ConversationList = _ref => {
 //     faLessThan,
 // );
 
-const GsIcons$1 = gs__namespace.IconsLib.GsIcons;
+const GsIcons$2 = gs__namespace.IconsLib.GsIcons;
 // const ToggleSideBar = gs.NavLib.ToggleSideBar;
 gs__namespace.loggingService.console_debug_log;
 const ConversationsToggleButton = _ref => {
@@ -1972,7 +1972,7 @@ const ConversationsToggleButton = _ref => {
     key: id,
     className: CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className ?? ''),
     onClick: () => setConversationListToggle(!state.conversationListToggle, dispatch)
-  }, /*#__PURE__*/React.createElement(GsIcons$1, {
+  }, /*#__PURE__*/React.createElement(GsIcons$2, {
     icon: 'conversation-list-toggle',
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -2089,7 +2089,7 @@ const GoToTheBottom = _ref => {
 //     faArrowDown,
 // );
 
-const GsIcons = gs__namespace.IconsLib.GsIcons;
+const GsIcons$1 = gs__namespace.IconsLib.GsIcons;
 gs__namespace.loggingService.console_debug_log;
 const ScrollToBottomButton = _ref => {
   let {
@@ -2128,7 +2128,7 @@ const ScrollToBottomButton = _ref => {
   }, /*#__PURE__*/React.createElement("i", {
     // className="a fa-plus my-float"
     className: SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS
-  }, /*#__PURE__*/React.createElement(GsIcons, {
+  }, /*#__PURE__*/React.createElement(GsIcons$1, {
     icon: "arrow-down",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -2595,7 +2595,7 @@ gs__namespace.loggingService.console_debug_log;
 // const sparkIcon = gs.spark;
 // Does not work:
 // import SparkIcon from "../../images/spark.svg";
-gs__namespace.IconsLib.GsIcons;
+const GsIcons = gs__namespace.IconsLib.GsIcons;
 const ChatBotButton = _ref => {
   let {
     valueElement,
@@ -2620,7 +2620,7 @@ const ChatBotButton = _ref => {
     className: CHATBOT_BUTTON_DIV_2_CLASS
   }, /*#__PURE__*/React.createElement("button", {
     onClick: handleSparkClick
-  }, /*#__PURE__*/React.createElement(GsIcon, {
+  }, /*#__PURE__*/React.createElement(GsIcons, {
     icon: "spark",
     alt: "Open AI Assistant"
   })))), showLLMPopup && /*#__PURE__*/React.createElement("div", {

@@ -66,7 +66,7 @@ export const ChatBotButton = ({
                         onClick={handleSparkClick}
                     >
                         {/* <img src={imageDirectory + sparkIcon} alt="Open AI Chat" /> */}
-                        <GsIcon
+                        <GsIcons
                             icon="spark"
                             alt="Open AI Assistant"
                         />

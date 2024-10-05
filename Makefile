@@ -9,6 +9,10 @@ help:
 install:
 	npm install
 
+update:
+	npm update
+	npm audit fix
+
 lock:
 	npm install --package-lock-only
 
@@ -97,7 +101,7 @@ run_lib: config_lib
 
 pre-publish:
 	# sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
-	# npm run test
+	npm run test
 	npm install --package-lock-only
 	npm run build
 

@@ -36,6 +36,7 @@ Fix the %PUBLIC_URL% issue in public/index.html file running the app with webpac
 Fix when Chatbot send an error and Close button is clicked, no further info is displayed in the message area [GS-129].
 Fix click in Chatbot conversation list item only works if the text is clicked, not the padding area [GS-129].
 Fix Chatbot <UserInput> location is wrong with the new GS FE Core and pure Tailwind, also should work when the <NoDesignComponent> template is used [GS-129].
+Fix all test adapted to new GS FE Core contexts and constants [GS-112] [GS-129].
 
 ### Breaks
 Bootstrap CSS is not longer used [GS-63].

@@ -1,21 +1,21 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
-import { act } from "react-dom/test-utils";
+
+import renderer from 'react-test-renderer';
+
+import { mockGenericsuite } from '../../test-helpers/mock-fetch'
+jest.mock('genericsuite', () => {
+  const mockGs = mockGenericsuite(); 
+  return mockGs;
+});
 
 import { ChatBot } from "./ChatBot.jsx";
-import { mockFetch } from '../../test-helpers/mock-fetch'
 
-describe("ChatBot", () => {
-    const mockFetchResponse = {
-        error: false,
-        error_message: '',
-        resultset: []
-    };
-    window.fetch = mockFetch(mockFetchResponse);
-    test("renders the ChatBot component", () =>
-        act(() => {
-            render(<MemoryRouter><ChatBot /></MemoryRouter>);
-        })
-    )
+it("renders the ChatBot component", () => {
+    const component = renderer.create(
+        <>
+            <ChatBot/>
+        </>
+    );
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
 });

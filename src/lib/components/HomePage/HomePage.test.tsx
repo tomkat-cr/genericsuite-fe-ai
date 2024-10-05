@@ -25,56 +25,12 @@ import renderer from 'react-test-renderer';
 
 // This is the right way to mock one genericsuite library property or method.
 // All of the involved ones on this test must be mocked...
-jest.mock('genericsuite', () => ({
-    // Emulate a logged-in user
-    authenticationService: {
-        currentUserValue: {
-          token: 'Mocked token',
-        }
-    },
-    // To fix the error: "TypeError: (0 , _authenticationService.getUserData) is not a function"
-    getUserData: () => Promise.resolve({
-        error: false,
-        error_message: null,
-        resultset: {
-            _id: 'mockedUserId',
-            first_name: 'Mocked firstName',
-            last_name: 'Mocked lastName',
-            superuser: 0,
-        }
-    }),
-    getCurrentUserData: () => Promise.resolve({resultset: {
-        error: false,
-        error_message: null,
-        resultset: {
-            _id: 'mockedUserId',
-            first_name: 'Mocked firstName',
-            last_name: 'Mocked lastName',
-            superuser: 0,
-        }
-    }}),
-    // Emulate console_debug_log
-    loggingService: {
-        console_debug_log: jest.fn(),
-    },
-    // Emulate images handling
-    generalConstants: {
-        imageDirectory: '/mocked/image/directory/',
-    },
-    spark: 'mockedSparkIcon.svg',
-    // Emulate genericsuite's HomePage componnent
-    HomePage: jest.fn().mockImplementation(({ children }) => (
-        <div>{children}</div>
-    )),
-    UserContext: {
-        useUser: () => ({
-            currentUser: {
-                firstName: 'Mocked firstName',
-                lastName: 'Mocked lastName',
-            },
-        })
-    },
-}));
+// The function name that returns the array of mocked objects should begin with "mock", and must be a function, not a constant.
+import { mockGenericsuite } from '../../test-helpers/mock-fetch'
+jest.mock('genericsuite', () => {
+  const mockGs = mockGenericsuite(); 
+  return mockGs;
+});
 
 // import { App } from "../App/App.jsx";
 import { HomePage } from "./HomePage.jsx";
@@ -88,7 +44,6 @@ import { HomePage } from "./HomePage.jsx";
 //         </HomePage>
 //     )
 // }
-
 
 it("renders the HomePage component with the children text", () => {
     // const mockFetchResponse = [{}];
