@@ -1977,12 +1977,13 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = ({
-  blobUrl,
-  filename,
-  expired,
-  errorMsgSuffix
-}) => {
+const AudioPlayer = _ref => {
+  let {
+    blobUrl,
+    filename,
+    expired,
+    errorMsgSuffix
+  } = _ref;
   const [isPlaying, setIsPlaying] = useState(false);
   useState(0);
   useState(0);
@@ -2595,7 +2596,7 @@ const ChatBotButton = _ref => {
     const inputValue = document.getElementById(valueElement).value;
     if (inputValue !== "") {
       {
-        window.open(window.location.origin + '/#/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue), 'AppChatbotPopUp', 'height=600,width=400');
+        window.open(window.location.origin + '/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue), 'AppChatbotPopUp', 'height=600,width=400');
       }
     }
   };

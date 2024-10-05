@@ -10,13 +10,15 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "src",
     "Makefile",
     "webpack.config.js",
     "config-overrides.js",
     ".env.example",
     "CHANGELOG.md",
-    "src/lib/images"
+    "src/lib/images",
+    "src/lib/helpers/iconsLibAiExtras.jsx",
+    "src/lib/constants/class_name_constants.jsx",
+    "src/lib/test-helpers"
   ],
   "repository": {
     "type": "git",

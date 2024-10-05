@@ -44,7 +44,7 @@ export const ChatBotButton = ({
         if (inputValue !== "") {
             if (sparkClickOpenWindow) {
                 window.open(
-                    window.location.origin + '/#/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue),
+                    window.location.origin + '/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue),
                     'AppChatbotPopUp',
                     'height=600,width=400'
                 );
