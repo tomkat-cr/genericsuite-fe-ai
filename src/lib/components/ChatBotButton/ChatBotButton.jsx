@@ -4,13 +4,22 @@ import React, { useState } from 'react';
 
 import * as gs from "genericsuite";
 
+import {
+    CHATBOT_BUTTON_DIV_1_CLASS,
+    CHATBOT_BUTTON_DIV_2_CLASS,
+    CHATBOT_BUTTON_LLM_POPUP_DIV_1,
+    CHATBOT_BUTTON_LLM_POPUP_DIV_2,
+} from '../../constants/class_name_constants.jsx';
+
 import { ChatBot } from "../ChatBot/ChatBot.jsx"
 
 const console_debug_log = gs.loggingService.console_debug_log;
 
-const imageDirectory = gs.generalConstants.imageDirectory;
-const sparkIcon = gs.spark;
+// const imageDirectory = gs.generalConstants.imageDirectory;
+// const sparkIcon = gs.spark;
+// Does not work:
 // import SparkIcon from "../../images/spark.svg";
+const GsIcons = gs.IconsLib.GsIcons;
 
 const debug = false;
 const sparkClickOpenWindow = true;
@@ -35,7 +44,7 @@ export const ChatBotButton = ({
         if (inputValue !== "") {
             if (sparkClickOpenWindow) {
                 window.open(
-                    window.location.origin + '/#/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue),
+                    window.location.origin + '/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue),
                     'AppChatbotPopUp',
                     'height=600,width=400'
                 );
@@ -48,19 +57,30 @@ export const ChatBotButton = ({
     return (
         <>
             <div
-                className="align-middle flex"
+                className={CHATBOT_BUTTON_DIV_1_CLASS}
             >
-                <div className='ml-2'>
+                <div
+                    className={CHATBOT_BUTTON_DIV_2_CLASS}
+                >
                     <button
                         onClick={handleSparkClick}
                     >
-                        <img src={imageDirectory + sparkIcon} alt="Open AI Chat" />
+                        {/* <img src={imageDirectory + sparkIcon} alt="Open AI Chat" /> */}
+                        <GsIcons
+                            icon="spark"
+                            alt="Open AI Assistant"
+                        />
                     </button>
                 </div>
             </div>
             {showLLMPopup && (
-                <div className="mt-5">
-                    <div className="llm-popup">
+                <div
+                    className={CHATBOT_BUTTON_LLM_POPUP_DIV_1}
+                >
+                    <div
+                        // className="llm-popup"
+                        className={CHATBOT_BUTTON_LLM_POPUP_DIV_2}
+                    >
                         <ChatBot
                             userQuestion={setPrompt(chatbot_prompt, document.getElementById(valueElement).value)}
                             showSideBar={false}

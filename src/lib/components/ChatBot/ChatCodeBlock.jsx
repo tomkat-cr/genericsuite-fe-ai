@@ -27,7 +27,7 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
     const parts = children.split(codeRegex);
 
     return (
-        <div>
+        <>
             {parts.map((part, index) => {
                 if (index % 2 === 0) {
                     // Render non-code parts as regular text
@@ -45,8 +45,12 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
                     const language = content.split('\n')[0];
                     content = content.substring(language.length + 1).trim();
                     return (
-                        <>
-                            <div style={{ position: 'relative' }}>
+                        <div
+                            key={`${index}-content-wrapper`}
+                        >
+                            <div
+                                style={{ position: 'relative' }}
+                            >
                                 <div
                                     key={`${index}-language`}
                                     style={{
@@ -84,10 +88,10 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
                                     <CopyButton text={content} />
                                 </div>
                             </div>
-                        </>
+                        </div>
                     );
                 }
             })}
-        </div>
+        </>
     );
 };

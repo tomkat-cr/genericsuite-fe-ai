@@ -1,7 +1,6 @@
 import * as gs from "genericsuite";
 
 const formatCaughtError = gs.errorAndReenter.formatCaughtError;
-const authenticationService = gs.authenticationService.authenticationService;
 const dbApiService = gs.dbService.dbApiService;
 const defaultValue = gs.genericEditorUtilities.defaultValue;
 const console_debug_log = gs.loggingService.console_debug_log;
@@ -13,24 +12,15 @@ const debug = false;
 
 // Current user
 
-export const getCurrentUser = () => {
-    let currentUser;
-    const setCurrentUser = (x) => {
-        currentUser = x;
+export const getCurrentUserId = (state, dispach) => {
+    if (debug) {
+        console_debug_log(">>--> getCurrentUserId | state:", state);
     }
-    if (authenticationService.currentUser) {
-        const subscription = authenticationService.currentUser.subscribe(
-            x => (setCurrentUser(x))
-        );
-        subscription.unsubscribe();
-    }
-    if (typeof currentUser !== "undefined" && currentUser !== null) {
-        return currentUser.id;
+    if (typeof state !== "undefined" && state !== null) {
+        return state.currentUser.id;
     }
     return null;
 }
-
-export const currentUser = getCurrentUser();
 
 // DB: generic calls
 
@@ -242,9 +232,9 @@ export const ApiCall = async (
 export const checkConversationIdChange = async (state, dispatch, externalApiResponse) => {
     let cid = state.currentConversationId;
     let apiResponse;
-    // if (debug) {
+    if (debug) {
         console_debug_log(`>> checkConversationIdChange | cid: ${cid} | externalApiResponse:`, externalApiResponse);
-    // }
+    }
     if (typeof externalApiResponse['cid'] !== 'undefined' && 
         state.currentConversationId !== externalApiResponse['cid']
     ) {
@@ -252,7 +242,7 @@ export const checkConversationIdChange = async (state, dispatch, externalApiResp
         // dispatch({ type: 'SET_CONVERSATION_ID', payload: cid });
         //
         // Reload and refresh conversation list
-        apiResponse = await fetchConversations(dispatch);
+        apiResponse = await fetchConversations(state, dispatch);
         if (!apiResponse.ok) {
             console.error("ERROR in checkConversationIdChange > fetchConversations");
             console.error(apiResponse.operationMessage);
@@ -264,7 +254,7 @@ export const checkConversationIdChange = async (state, dispatch, externalApiResp
         console_debug_log(`checkConversationIdChange | REFRESH CURRENT CONVERSATION`);
     }
     if (cid !== null) {
-        apiResponse = await fetchOneConversation(cid, dispatch);
+        apiResponse = await fetchOneConversation(cid, state, dispatch);
         if (!apiResponse.ok) {
             console.error("ERROR in checkConversationIdChange > fetchOneConversation");
             console.error(apiResponse);
@@ -275,7 +265,8 @@ export const checkConversationIdChange = async (state, dispatch, externalApiResp
     return cid;
 }
 
-export const loadConversationList = async (dispatch) => {
+export const loadConversationList = async (state, dispatch) => {
+    const currentUserId = getCurrentUserId(state, dispatch);
     const response = ApiCall(
         dispatch,
         {
@@ -284,23 +275,23 @@ export const loadConversationList = async (dispatch) => {
             operationType: "getAll",
             endpointUrl: "ai_chatbot_conversations",
             query: {
-                user_id: currentUser,
+                user_id: currentUserId,
             }
         }
     );
     return response;
 };
 
-export const fetchConversations = async (dispatch) => {
-    const apiResponse = await loadConversationList(dispatch);
+export const fetchConversations = async (state, dispatch) => {
+    const apiResponse = await loadConversationList(state, dispatch);
     if (apiResponse.ok) {
         dispatch({ type: 'SET_CONVERSATIONS', payload: apiResponse.response });
     }
     return apiResponse;
 };
 
-const fetchOneConversation = async (conversationId, dispatch) => {
-    const apiResponse = await loadConversation(conversationId, dispatch);
+const fetchOneConversation = async (conversationId, state, dispatch) => {
+    const apiResponse = await loadConversation(conversationId, state, dispatch);
     if (debug) {
         console_debug_log(`fetchOneConversation | conversationId: ${conversationId} | apiResponse:`, apiResponse);
     }
@@ -309,7 +300,7 @@ const fetchOneConversation = async (conversationId, dispatch) => {
             conversationId: conversationId,
             messages: apiResponse.response.messages,
         }
-        dispatch({ type: 'GET_MESSAGES', payload: data });
+        dispatch({ type: 'SET_MESSAGES', payload: data });
     }
     return apiResponse;
 };
@@ -317,7 +308,7 @@ const fetchOneConversation = async (conversationId, dispatch) => {
 // DB: Conversations
 
 // const saveConversation = async (conversationId, conversation, dispatch) => {
-//     const conversationAddition = {user_id: currentUser}
+//     const conversationAddition = {user_id: currentUserId}
 //     const response = ApiCall(
 //         dispatch,
 //         {
@@ -332,7 +323,8 @@ const fetchOneConversation = async (conversationId, dispatch) => {
 //     return response;
 // };
 
-export const loadConversation = async (conversationId, dispatch) => {
+export const loadConversation = async (conversationId, state, dispatch) => {
+    const currentUserId = getCurrentUserId(state, dispatch);
     const response = ApiCall(
         dispatch,
         {
@@ -341,7 +333,7 @@ export const loadConversation = async (conversationId, dispatch) => {
             operationType: "getOne",
             endpointUrl: "ai_chatbot_conversations",
             query: {
-                user_id: currentUser,
+                user_id: currentUserId,
                 id: conversationId,
             }
         }
@@ -349,7 +341,8 @@ export const loadConversation = async (conversationId, dispatch) => {
     return response;
 };
 
-export const deleteConversation = async (conversationId, dispatch) => {
+export const deleteConversation = async (conversationId, state, dispatch) => {
+    const currentUserId = getCurrentUserId(state, dispatch);
     const response = ApiCall(
         dispatch,
         {
@@ -359,7 +352,7 @@ export const deleteConversation = async (conversationId, dispatch) => {
             id: conversationId,
             endpointUrl: "ai_chatbot_conversations",
             query: {
-                user_id: currentUser,
+                user_id: currentUserId,
             }
         }
     );

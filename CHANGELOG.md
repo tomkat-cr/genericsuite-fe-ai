@@ -16,6 +16,37 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.20 (2024-10-07)
+---
+
+### New
+New Genericsuite Core 1.0.22.
+New "GsIcons" library replaces FontAwesome [GS-115].
+
+### Changes
+Update GS FE AI with GS FE Core Tailwind conversion and new contexts [GS-129].
+<HashRouter> was replaced by <RouterProvider> and createBrowserRouter() [GS-112].
+Chatbot camera, voice and clip icons changed to "m" size [GS-129].
+Chatbot design enhanced and responsive behavior fixed [GS-129].
+Delete button in the Chatbot conversation list shows only when the mouse pointer is over the conversation [GS-129].
+
+### Fixes
+Fix missing classes in the new output.css of Tailwind v3.4.9 [GS-63].
+Fix the %PUBLIC_URL% issue in public/index.html file running the app with webpack [GS-116].
+Fix when Chatbot send an error and Close button is clicked, no further info is displayed in the message area [GS-129].
+Fix click in Chatbot conversation list item only works if the text is clicked, not the padding area [GS-129].
+Fix Chatbot <UserInput> location is wrong with the new GS FE Core and pure Tailwind, also should work when the <NoDesignComponent> template is used [GS-129].
+Fix all test to be compatible with new GS FE Core contexts and constants [GS-112] [GS-129].
+Remove all links references to "/#" [GS-112].
+Restrict the source code exported to dist in "make publish".
+Formik version fixed to 2.4.5 in package.json to avoid GCE_RFC warning when the +New button is clicked [GS-112].
+
+### Breaks
+Bootstrap CSS is not longer used [GS-63].
+FontAwesome is not longer used [GS-115].
+SVG images removed and included in the "GsIcons" library [GS-115].
+
+
 ## 1.0.19 (2024-07-27)
 
 ### New

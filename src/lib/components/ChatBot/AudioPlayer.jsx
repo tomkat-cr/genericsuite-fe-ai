@@ -2,18 +2,26 @@ import React, { useState, useRef } from 'react';
 
 import * as gs from "genericsuite";
 
-import './AudioPlayer.css';
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
+import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
 import {
-    faPlay,
-    faStop,
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faPlay,
-    faStop,
-);
+  AUDIO_PLAYER_DIV_1_CLASS,
+  AUDIO_PLAYER_MENU_CONTENT_CLASS,
+  AUDIO_PLAYER_MENU_HOVER_CONTENT_CLASS,
+  AUDIO_PLAYER_PLAY_BUTTON_CLASS,
+} from '../../constants/class_name_constants.jsx';
+// import './AudioPlayer.css';
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faPlay,
+//     faStop,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faPlay,
+//     faStop,
+// );
+const GsIcons = gs.IconsLib.GsIcons;
 
 const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 const defaultFilenametoDownload = gs.blobFilesUtilities.defaultFilenametoDownload;
@@ -111,19 +119,31 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
   if (browserAudioController) {
     return (
       <>
-        <audio ref={audioPlayer} src={blobUrl} controls onBeforeInput={togglePlayPause} />
+        <audio
+          ref={audioPlayer}
+          src={blobUrl}
+          controls
+          onBeforeInput={togglePlayPause}
+        />
       </>
     );
   }
 
   return (
-    <div className="audio-player">
+    <div
+      className={AUDIO_PLAYER_DIV_1_CLASS}
+    >
       <audio ref={audioPlayer} src={blobUrl} onTimeUpdate={onPlaying} />
       <button
         onClick={togglePlayPause}
-        className="play-button"
+        className={AUDIO_PLAYER_PLAY_BUTTON_CLASS}
       >
-          <FontAwesomeIcon icon={isPlaying ? 'stop' : 'play'} size='sm'/>
+          {/* <FontAwesomeIcon icon={isPlaying ? 'stop' : 'play'} size='sm'/> */}
+          <GsIcons
+            icon={isPlaying ? 'stop' : 'play'}
+            size='sm'
+            additionalIconsFn={iconsLibAiExtras}
+          />
       </button>
       <input
         type="range"
@@ -133,10 +153,22 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
         max={duration}
         onChange={(e) => onScrub(e.target.value)}
       />
-      <div className="menu">
-        <button onClick={() => {}}>...</button>
-        <div className="menu-content">
-          <button onClick={downloadAudio}>Download</button>
+      <div
+        className={AUDIO_PLAYER_MENU_HOVER_CONTENT_CLASS}
+      >
+        <button
+          onClick={() => {}}
+        >
+            ...
+        </button>
+        <div
+          className={AUDIO_PLAYER_MENU_CONTENT_CLASS}
+        >
+          <button
+            onClick={downloadAudio}
+          >
+              Download
+            </button>
         </div>
       </div>
     </div>

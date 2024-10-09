@@ -3,6 +3,15 @@ import axios from 'axios';
 
 import * as gs from "genericsuite";
 
+import { iconsLibAiExtras } from '../../helpers/iconsLibAiExtras.jsx';
+import {
+    FILE_UPLOADER_BASE_BUTTON_CLASS,
+    FILE_UPLOADER_BUTTON_CLASS,
+    FILE_UPLOADER_DIV_1_CLASS,
+    FILE_UPLOADER_DIV_2_CLASS,
+    FILE_UPLOADER_INPUT_AREA_CONTAINER_CLASS,
+    FILE_UPLOADER_INPUT_AREA_INPUT_CLASS,
+} from '../../constants/class_name_constants.jsx';
 import {
     setChatbotErrorMsg,
     addMessageToConversation,
@@ -10,28 +19,28 @@ import {
 } from './chatbot.general.functions.jsx';
 import { checkConversationIdChange } from './chatbot.db.operations.jsx';
 
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
-import {
-    faArrowUp,
-    faTimes,
-    faPaperclip, // Added clip icon
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faArrowUp, // Select file + Upload
-    faTimes, // Close
-    faPaperclip, // Added clip icon
-);
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faArrowUp,
+//     faTimes,
+//     faPaperclip, // Added clip icon
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faArrowUp, // Select file + Upload
+//     faTimes, // Close
+//     faPaperclip, // Added clip icon
+// );
+const GsIcons = gs.IconsLib.GsIcons;
 
 const dbApiService = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log = gs.loggingService.console_debug_log;
 const formatCaughtError = gs.errorAndReenter.formatCaughtError;
 const toggleIdVisibility = gs.ui.toggleIdVisibility;
-const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
+// const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
-const debug = true;
+const debug = false;
 
 const useAxios = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 
@@ -188,32 +197,46 @@ export function FileUploader({
     return (
         <div
             id={id}
-            className="file-uploader"
+            className={FILE_UPLOADER_DIV_1_CLASS}
         >
             <div
-                className="flex items-center"
+                className={FILE_UPLOADER_DIV_2_CLASS}
             >
                 <button
                     onClick={() => setButtonToggle(buttonToggle ? false : true)}
-                    className={`${BUTTON_LISTING_CLASS} mr-2`}
+                    className={FILE_UPLOADER_BUTTON_CLASS}
                     title={buttonToggle ? 'Close' : 'Select File'}
                 >
-                    <FontAwesomeIcon icon={buttonToggle ? 'times' : 'paperclip'} size='lg' />
+                    {/* <FontAwesomeIcon icon={buttonToggle ? 'times' : 'paperclip'} size='lg' /> */}
+                    <GsIcons
+                        icon={buttonToggle ? 'times' : 'paperclip'}
+                        // size='lg'
+                        size='m'
+                        additionalIconsFn={iconsLibAiExtras}
+                    />
                 </button>
                 {buttonToggle && (
-                    <div className='flex items-center'>
+                    <div
+                        className={FILE_UPLOADER_INPUT_AREA_CONTAINER_CLASS}
+                    >
                         <input
                             type="file"
                             accept={fileTypeFilter ? fileTypeFilter : "*"}
                             onChange={handleFileChange}
-                            className='p-0 m-0'
+                            className={FILE_UPLOADER_INPUT_AREA_INPUT_CLASS}
                         />
                         <button
                             onClick={handleUpload}
-                            className={`${BUTTON_LISTING_CLASS}`}
+                            // className={`${BUTTON_LISTING_CLASS}`}
+                            className={FILE_UPLOADER_BASE_BUTTON_CLASS}
                             title='Submit'
                         >
-                            <FontAwesomeIcon icon='arrow-up' size='lg'/>
+                            {/* <FontAwesomeIcon icon='arrow-up' size='lg'/> */}
+                            <GsIcons
+                                icon='arrow-up'
+                                size='lg'
+                                additionalIconsFn={iconsLibAiExtras}
+                            />
                         </button>
                     </div>
                 )}

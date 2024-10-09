@@ -6,21 +6,38 @@ import {
     loadConversation,
     deleteConversation,
 } from './chatbot.db.operations.jsx';
-
-import './ChatBot.css';
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import fontawesome from "@fortawesome/fontawesome";
 import {
-    faTrash,
-} from "@fortawesome/fontawesome-free-solid";
-fontawesome.library.add(
-    faTrash,
-);
+    CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS,
+    CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DIV_1_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DIV_2_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DESC_INNER_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS,
+    CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS,
+    CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS,
+} from '../../constants/class_name_constants.jsx';
+
+// import './ChatBot.css';
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faTrash,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faTrash,
+// );
+const GsIcons = gs.IconsLib.GsIcons;
 
 const convertId = gs.dbService.convertId;
 const console_debug_log = gs.loggingService.console_debug_log;
 const timestampToDate = gs.dateTimestamp.timestampToDate;
+const useAppContext = gs.AppContext.useAppContext;
+
+const HIDDEN_CLASS = gs.classNameConstants.HIDDEN_CLASS;
 
 const debug = false;
 
@@ -32,23 +49,27 @@ export const ConversationList = ({
     dispatch,
     showSideBar,
 }) => {
+    const { theme, isWide, isDarkMode } = useAppContext();
+
     const setErrorMsg = (errorMsg) => {
         dispatch({ type: 'SET_ERROR_MSG', payload: errorMsg });
     }
 
+    const h2_class = `${CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS} ${theme.isDarkMode ? CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS : CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS}`;
+
     // Handle load conversation
-    const handleLoadConversation = async (conversationId, dispatch) => {
+    const handleLoadConversation = async (conversationId, state, dispatch) => {
         if (!showSideBar) {
             return;
         }
-        const apiResponse = await loadConversation(conversationId, dispatch);
+        const apiResponse = await loadConversation(conversationId, state, dispatch);
         if (debug) console_debug_log('handleLoadConversation | apiResponse:', apiResponse);
         if (apiResponse.ok) {
             const data = {
                 conversationId: conversationId,
                 messages: apiResponse.response.messages,
             }
-            dispatch({ type: 'GET_MESSAGES', payload: data });
+            dispatch({ type: 'SET_MESSAGES', payload: data });
         } else {
             setErrorMsg(apiResponse.errorMessage);
         }
@@ -63,7 +84,7 @@ export const ConversationList = ({
     // Handle delete conversation
     const handleDeleteConversation = async (conversationId, dispatch) => {
         const startNew = (conversationId === state.currentConversationId);
-        const apiResponse = await deleteConversation(conversationId, dispatch);
+        const apiResponse = await deleteConversation(conversationId, state, dispatch);
         if (debug) {
             console_debug_log(`handleDeleteConversation | conversationId: ${conversationId} | state.currentConversationId: ${state.currentConversationId} | startNew: ${startNew} | apiResponse:`, apiResponse);
         }
@@ -124,24 +145,36 @@ export const ConversationList = ({
             return (
                 <div
                     key={`${convId}_main_div`}
-                    className="conversation-item align-middle flex"
+                    className={CHATBOT_CONVERSATION_ITEM_DIV_1_CLASS}
+                    onMouseOver={() => {
+                        const element = document.getElementById(`${convId}_options`)
+                        if (element) {
+                            element.style.display = 'block';
+                        }
+                    }}
+                    onMouseOut={() => {
+                        const element = document.getElementById(`${convId}_options`)
+                        if (element) {
+                            element.style.display = 'none';
+                        }
+                    }}
                 >
                     <div
                         key={`${convId}_inner_div`}
-                        style={{ width: '95%'}}
+                        className={CHATBOT_CONVERSATION_ITEM_DIV_2_CLASS}
                     >
                         <div
                             key={`${convId}_desc_outter_div`}
-                            style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                            className={`${CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS} ${theme.textHoverSide}`}
+                            onClick={() => handleLoadConversation(convId, state, dispatch)}
                         >
                             <button
                                 key={`${convId}_desc_button`}
-                                onClick={() => handleLoadConversation(convId, dispatch)}
                                 title={timestampToDate(conversation[dateColumn], true, " ", false)}
                             >
                                 <div
                                     key={`${convId}_desc_inner_div`}
-                                    style={{ maxWidth: '100%', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+                                    className={CHATBOT_CONVERSATION_ITEM_DESC_INNER_CLASS}
                                 >
                                     {fixTitle(conversation.title)}
                                 </div>
@@ -149,17 +182,31 @@ export const ConversationList = ({
                         </div>
                     </div>
                     <div
-                        key={`${convId}_delete_div`}
-                        style={{ width: '5%'}}
+                        id={`${convId}_options`}
+                        className={HIDDEN_CLASS}
                     >
-                        <button
-                            key={`${convId}_delete_button`}
-                            type="button"
-                            onClick={() => confirmDeleteConversation(convId, dispatch, conversation.title)}
-                            className="ml-2 mb-1 bg-blue-500 text-white p-0 rounded close"
+                        <div
+                            className={CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS}
+                        />
+                        <div
+                            key={`${convId}_delete_div`}
+                            // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS} ${theme.textHoverSide}`}
+                            className={CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS}
                         >
-                            <FontAwesomeIcon icon="trash" size='xs' />
-                        </button>
+                            <button
+                                key={`${convId}_delete_button`}
+                                type="button"
+                                onClick={() => confirmDeleteConversation(convId, dispatch, conversation.title)}
+                                className={CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS}
+                                // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS} ${theme.textHoverSide}`}
+                            >
+                                {/* <FontAwesomeIcon icon="trash" size='xs' /> */}
+                                <GsIcons
+                                    icon="trash"
+                                    size='xs'
+                                />
+                            </button>
+                        </div>
                     </div>
                 </div>
             );
@@ -174,35 +221,71 @@ export const ConversationList = ({
     return (
         <div
             key='conversation_list_main_div'
-            style={{ display: (state.conversationListToggle ? '' : 'none') }}
+            // style={{ display: (state.conversationListToggle ? '' : 'none') }}
+            className={(state.conversationListToggle ? '' : HIDDEN_CLASS)}
         >
             {groupedConversations.today.length > 0 && (
-                <div key="today">
-                    <h2>Today</h2>
+                <div
+                    key="today"
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
+                >
+                    <h2
+                        className={h2_class}
+                    >
+                        Today
+                    </h2>
                     {renderConversations(groupedConversations.today)}
                 </div>
             )}
             {groupedConversations.yesterday.length > 0 && (
-                <div key="yesterday">
-                    <h2>Yesterday</h2>
+                <div
+                    key="yesterday"
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
+                >
+                    <h2
+                        className={h2_class}
+                    >
+                        Yesterday
+                    </h2>
                     {renderConversations(groupedConversations.yesterday)}
                 </div>
             )}
             {groupedConversations.lastSevenDays.length > 0 && (
-                <div key="lastSevenDays">
-                    <h2>Last 7 Days</h2>
+                <div
+                    key="lastSevenDays"
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
+                >
+                    <h2
+                        className={h2_class}
+                    >
+                        Last 7 Days
+                    </h2>
                     {renderConversations(groupedConversations.lastSevenDays)}
                 </div>
             )}
             {groupedConversations.lastMonth.length > 0 && (
-                <div key="lastMonth">
-                    <h2>Last Month</h2>
+                <div
+                    key="lastMonth"
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
+                >
+                    <h2
+                        className={h2_class}
+                    >
+                        Last Month
+                    </h2>
                     {renderConversations(groupedConversations.lastMonth)}
                 </div>
             )}
             {Object.keys(groupedConversations.older).map(monthYear => (
-                <div key={"month_year_" + monthYear}>
-                    <h2>{monthYear}</h2>
+                <div
+                    key={"month_year_" + monthYear}
+                    className={CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS}
+                >
+                    <h2
+                        className={h2_class}
+                    >
+                        {monthYear}
+                    </h2>
                     {renderConversations(groupedConversations.older[monthYear])}
                 </div>
             ))}

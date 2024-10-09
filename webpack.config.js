@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const InterpolateHtmlPlugin = require('interpolate-html-plugin');
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
@@ -105,6 +106,10 @@ module.exports = {
         new webpack.ProvidePlugin({
             process: 'process/browser',
         }), 
+        // This solves the %PUBLIC_URL% issue in public/index.html file...
+        new InterpolateHtmlPlugin({
+            PUBLIC_URL: '',
+        }),
     ],
     devServer: devServerConfig,
     output: {
