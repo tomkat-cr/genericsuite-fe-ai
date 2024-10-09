@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ---
 
 ### New
+New Genericsuite Core 1.0.22.
 New "GsIcons" library replaces FontAwesome [GS-115].
 
 ### Changes

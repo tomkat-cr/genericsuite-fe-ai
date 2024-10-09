@@ -204,7 +204,6 @@ export function FileUploader({
             >
                 <button
                     onClick={() => setButtonToggle(buttonToggle ? false : true)}
-                    // className={`${BUTTON_LISTING_CLASS} mr-2`}
                     className={FILE_UPLOADER_BUTTON_CLASS}
                     title={buttonToggle ? 'Close' : 'Select File'}
                 >

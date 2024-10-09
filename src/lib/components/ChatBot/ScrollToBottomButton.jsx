@@ -96,6 +96,7 @@ export const ScrollToBottomButton = ({ elementId, elementsToRender }) => {
 }
 
 const showButton = (element) => (
+    // 'visible' and 'hidden' cannot be VISIBLE_CLASS and HIDDEN_CLASS constants, should remain as those fixed strings...
     ((element && element.scrollHeight > element.scrollTop+element.clientHeight) ? 'visible' : 'hidden')
 );
 

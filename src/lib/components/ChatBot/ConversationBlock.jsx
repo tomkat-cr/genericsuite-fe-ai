@@ -123,13 +123,9 @@ export const ConversationBlock = ({
             }
             return (
                 <div
-                    // style={{backgroundColor: 'white'}}
-                    // tailwind it
                     className={CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS}
                 >
                     <div
-                        // style={{maxWidth: 'fit-content', border: '1px solid black', borderRadius: '5px', backgroundColor: '#f2f2f2', padding: '10px'}}
-                        // tailwind it
                         className={CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS}
                     >
                         {hasAttachment && (
@@ -137,7 +133,6 @@ export const ConversationBlock = ({
                                 href={messageObject.attachment_url}
                                 target='_blank'
                                 rel="noreferrer"
-                                // style={{color: 'black', fontWeight: 'bold'}}
                                 className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS}
                             >
                                 {message+errorMsgSuffix}
@@ -191,7 +186,6 @@ export const ConversationBlock = ({
                 className={`${CHATBOT_MESSAGE_CLASS} ${message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer}`}
             >
                 <div
-                    // className={`message-content ${message.role === 'user' ? 'user-message' : 'bot-message'}`}
                     className={message.role === 'user' ? styleClass.userMessage : styleClass.botMessage}
                 >
                     {formatMessage(message)}

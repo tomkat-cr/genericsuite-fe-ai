@@ -290,7 +290,6 @@ export const UserInput = ({
                                     name="user_input_submit"
                                     id="user_input_submit"
                                     onClick={() => (state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage())}
-                                    // className={`${BUTTON_LISTING_CLASS} mr-2`}
                                     className={CHATBOT_INPUT_AREA_BUTTON_CLASS}
                                     title={state &&  state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'}
                                 >

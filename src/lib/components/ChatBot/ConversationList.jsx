@@ -183,7 +183,7 @@ export const ConversationList = ({
                     </div>
                     <div
                         id={`${convId}_options`}
-                        className='hidden'
+                        className={HIDDEN_CLASS}
                     >
                         <div
                             className={CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS}

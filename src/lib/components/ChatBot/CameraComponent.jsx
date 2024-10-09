@@ -215,7 +215,6 @@ export const CameraComponent = ({
                         setButtonToggle(buttonToggle ? false : true);
                         toggleIdVisibility((buttonToggle ? "on" : "off"), extControlsToShowHide);
                     }}
-                    // className={`${BUTTON_LISTING_CLASS} mr-2`}
                     className={CAMERA_COMPONENT_BUTTON_MAIN_CLASS}
                     title={buttonToggle ? 'Close' : 'Start Camera'}
                 >

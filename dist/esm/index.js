@@ -1109,9 +1109,7 @@ function FileUploader(_ref) {
   }, /*#__PURE__*/React.createElement("div", {
     className: FILE_UPLOADER_DIV_2_CLASS
   }, /*#__PURE__*/React.createElement("button", {
-    onClick: () => setButtonToggle(buttonToggle ? false : true)
-    // className={`${BUTTON_LISTING_CLASS} mr-2`}
-    ,
+    onClick: () => setButtonToggle(buttonToggle ? false : true),
     className: FILE_UPLOADER_BUTTON_CLASS,
     title: buttonToggle ? 'Close' : 'Select File'
   }, /*#__PURE__*/React.createElement(GsIcons$7, {
@@ -1340,9 +1338,7 @@ const CameraComponent = _ref => {
       }
       setButtonToggle(buttonToggle ? false : true);
       toggleIdVisibility$1(buttonToggle ? "on" : "off", extControlsToShowHide);
-    }
-    // className={`${BUTTON_LISTING_CLASS} mr-2`}
-    ,
+    },
     className: CAMERA_COMPONENT_BUTTON_MAIN_CLASS,
     title: buttonToggle ? 'Close' : 'Start Camera'
   }, /*#__PURE__*/React.createElement(GsIcons$6, {
@@ -1631,9 +1627,7 @@ const UserInput = _ref => {
   }), /*#__PURE__*/React.createElement("button", {
     name: "user_input_submit",
     id: "user_input_submit",
-    onClick: () => state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage()
-    // className={`${BUTTON_LISTING_CLASS} mr-2`}
-    ,
+    onClick: () => state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage(),
     className: CHATBOT_INPUT_AREA_BUTTON_CLASS,
     title: state && state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'
   }, /*#__PURE__*/React.createElement(GsIcons$5
@@ -1869,7 +1863,7 @@ const ConversationList = _ref => {
         className: CHATBOT_CONVERSATION_ITEM_DESC_INNER_CLASS
       }, fixTitle(conversation.title))))), /*#__PURE__*/React.createElement("div", {
         id: `${convId}_options`,
-        className: "hidden"
+        className: HIDDEN_CLASS$1
       }, /*#__PURE__*/React.createElement("div", {
         className: CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS
       }), /*#__PURE__*/React.createElement("div", {
@@ -2042,11 +2036,10 @@ const AudioPlayer = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const GoToTheBottom = ({
+  elementId,
+  elementsToRender
+}) => {
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -2072,10 +2065,11 @@ const GoToTheBottom = _ref => {
 
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
-const ScrollToBottomButton = ({
-  elementId,
-  elementsToRender
-}) => {
+const ScrollToBottomButton = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
@@ -2114,7 +2108,9 @@ const ScrollToBottomButton = ({
     additionalIconsFn: iconsLibAiExtras
   }))))));
 };
-const showButton = element => element && element.scrollHeight > element.scrollTop + element.clientHeight ? 'visible' : 'hidden';
+const showButton = element =>
+// 'visible' and 'hidden' cannot be VISIBLE_CLASS and HIDDEN_CLASS constants, should remain as those fixed strings...
+element && element.scrollHeight > element.scrollTop + element.clientHeight ? 'visible' : 'hidden';
 
 const LinkifyText = gs.ui.LinkifyText;
 const CopyButton = gs.ui.CopyButton;
@@ -2253,19 +2249,13 @@ const ConversationBlock = _ref => {
         message = filename;
       }
       return /*#__PURE__*/React.createElement("div", {
-        // style={{backgroundColor: 'white'}}
-        // tailwind it
         className: CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS
       }, /*#__PURE__*/React.createElement("div", {
-        // style={{maxWidth: 'fit-content', border: '1px solid black', borderRadius: '5px', backgroundColor: '#f2f2f2', padding: '10px'}}
-        // tailwind it
         className: CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS
       }, hasAttachment && /*#__PURE__*/React.createElement("a", {
         href: messageObject.attachment_url,
         target: "_blank",
-        rel: "noreferrer"
-        // style={{color: 'black', fontWeight: 'bold'}}
-        ,
+        rel: "noreferrer",
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS
       }, message + errorMsgSuffix), !hasAttachment && /*#__PURE__*/React.createElement(React.Fragment, null, message + errorMsgSuffix)), hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(getFileExtension(messageObject.attachment_url)).toLowerCase()) && /*#__PURE__*/React.createElement("div", {
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS
@@ -2299,7 +2289,6 @@ const ConversationBlock = _ref => {
       key: index,
       className: `${CHATBOT_MESSAGE_CLASS} ${message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer}`
     }, /*#__PURE__*/React.createElement("div", {
-      // className={`message-content ${message.role === 'user' ? 'user-message' : 'bot-message'}`}
       className: message.role === 'user' ? styleClass.userMessage : styleClass.botMessage
     }, formatMessage(message)))));
   }, [state.messages]);
