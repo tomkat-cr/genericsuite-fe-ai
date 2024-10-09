@@ -16,8 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
-## Unreleased
-## 1.0.20 (2024-09-14)
+## 1.0.20 (2024-10-07)
 ---
 
 ### New
@@ -39,6 +38,7 @@ Fix Chatbot <UserInput> location is wrong with the new GS FE Core and pure Tailw
 Fix all test to be compatible with new GS FE Core contexts and constants [GS-112] [GS-129].
 Remove all links references to "/#" [GS-112].
 Restrict the source code exported to dist in "make publish".
+Formik version fixed to 2.4.5 in package.json to avoid GCE_RFC warning when the +New button is clicked [GS-112].
 
 ### Breaks
 Bootstrap CSS is not longer used [GS-63].
