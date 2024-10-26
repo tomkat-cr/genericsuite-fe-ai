@@ -18,6 +18,7 @@ import * as gs from "genericsuite";
 
 const LinkifyText = gs.ui.LinkifyText;
 const CopyButton = gs.ui.CopyButton;
+const renderMarkdownContent = gs.ui.renderMarkdownContent;
 
 export const ChatCodeBlock = ({ children, shType = "prism" }) => {
     // Regular expression to match code blocks enclosed in ```
@@ -30,27 +31,40 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
         <>
             {parts.map((part, index) => {
                 if (index % 2 === 0) {
-                    // Render non-code parts as regular text
-                    // return <span key={index}>{part}</span>;
+                    // Render non-code parts as markdown text
+                    // If part constains [] and (), return <LinkifyText ... />, else, call renderMarkdownContent()
+                    // if (part.includes('[') && part.includes(']') && part.includes('(') && part.includes(')')) {
+                    //     return (
+                    //         <LinkifyText key={`${index}-other`}>
+                    //             <i>{part}</i>
+                    //         </LinkifyText>
+                    //     );
+                    // }
                     return (
-                        <LinkifyText
-                            key={`${index}-other`}
-                        >
-                            {part}
-                        </LinkifyText>
+                        <>
+                            {renderMarkdownContent(part)}
+                        </>
                     );
                 } else {
-                    // Render code blocks with specified styles
-                    let content = part.trim()
-                    const language = content.split('\n')[0];
+                    // Handle code blocks
+                    let content = part.trim();
+                    let language = content.split('\n')[0];
+                    
+                    // Special handling for plaintext
+                    if (language === 'plaintext') {
+                        content = content.substring(language.length + 1).trim();
+                        return (
+                            <div key={`${index}-plaintext`}>
+                                {renderMarkdownContent(content)}
+                            </div>
+                        );
+                    }
+
                     content = content.substring(language.length + 1).trim();
+                    
                     return (
-                        <div
-                            key={`${index}-content-wrapper`}
-                        >
-                            <div
-                                style={{ position: 'relative' }}
-                            >
+                        <div key={`${index}-content-wrapper`}>
+                            <div style={{ position: 'relative' }}>
                                 <div
                                     key={`${index}-language`}
                                     style={{
@@ -58,33 +72,29 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
                                         color: 'wheat',
                                         marginTop: '10px',
                                         padding: '10px',
-                                        // borderRadius: '5px',
                                         overflowX: 'auto',
                                     }}
                                 >
                                     {language}
                                 </div>
-                                <div
-                                    key={`${index}-content`}
-                                >
-                                    {shType==="prism" && (
+                                <div key={`${index}-content`}>
+                                    {shType === "prism" ? (
                                         <Prism
-                                            language={language} 
+                                            language={language}
                                             style={shStyleforPrism}
                                             wrapLongLines={true}
                                         >
                                             {content}
                                         </Prism>
-                                    )}   
-                                    {shType!=="prism" && (
+                                    ) : (
                                         <Light
-                                            language={language} 
+                                            language={language}
                                             style={shStyleForLight}
                                             wrapLongLines={true}
                                         >
                                             {content}
                                         </Light>
-                                    )}   
+                                    )}
                                     <CopyButton text={content} />
                                 </div>
                             </div>

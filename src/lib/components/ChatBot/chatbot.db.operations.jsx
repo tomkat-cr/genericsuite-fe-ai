@@ -290,7 +290,7 @@ export const fetchConversations = async (state, dispatch) => {
     return apiResponse;
 };
 
-const fetchOneConversation = async (conversationId, state, dispatch) => {
+export const fetchOneConversation = async (conversationId, state, dispatch) => {
     const apiResponse = await loadConversation(conversationId, state, dispatch);
     if (debug) {
         console_debug_log(`fetchOneConversation | conversationId: ${conversationId} | apiResponse:`, apiResponse);

@@ -275,25 +275,18 @@ const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 
 // ChatBot.css
 
-// export const CHATBOT_CONTAINER_DIV_1_CLASS = "relative flex h-[76vh] w-full overflow-hidden transition-colors z-0 chatbot-container-div-1-class";
 const CHATBOT_CONTAINER_DIV_1_CLASS = "relative flex w-full overflow-hidden transition-colors z-0 chatbot-container-div-1-class";
 
 // Conversation List column
 
-// export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "1-w-[20%] flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
-const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "ml-2 h-full flex-shrink-0 overflow-x-hidden max-md:!w-0 chatbot-conversations-list-div-1-class";
+const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "ml-2 h-full flex-shrink-0 overflow-x-hidden 1-max-md:!w-0 chatbot-conversations-list-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_DIV_2_CLASS = "w-[260px] h-full chatbot-conversations-list-div-2-class";
 const CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS = "draggable relative h-full w-full flex-1 items-start border-white/20 chatbot-conversations-list-div-3-class";
 const CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS = "flex h-full w-full flex-col 1-px-3 chatbot-conversations-list-div-4-class";
-
-// export const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[60px] pb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
-// export const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[10%] pb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[40px] mt-2 mb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
 const CHATBOT_NEW_CONVERSATION_BUTTON_DIV_1_CLASS = "flex chatbot-new-conversation-button-div-1-class";
 const CHATBOT_NEW_CONVERSATION_BUTTON_SPAN_CLASS = "flex chatbot-new-conversation-button-span-class";
 const CHATBOT_NEW_CONVERSATION_BUTTON_CLASS = `text-xs chatbot-new-conversation-button-class`;
-
-// export const CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS = "flex-col flex-1 transition-opacity duration-500 relative -mr-2 pr-2 overflow-y-auto chatbot-conversations-list-row-2-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS = "flex-col flex-1 h-[90%] transition-opacity duration-500 relative -mr-2 pr-2 overflow-y-auto chatbot-conversations-list-row-2-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS = "space-y-1 chatbot-conversations-list-heading-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS = "mb-2 text-sm chatbot-conversations-list-heading-div-2-class";
@@ -344,13 +337,16 @@ const CHATBOT_INPUT_AREA_DIV_4_CLASS = "mx-auto flex flex-1 gap-4 text-base md:g
 const CHATBOT_INPUT_AREA_DIV_5_CLASS = "relative flex h-full max-w-full flex-1 flex-col chatbot-input-area-div-5-class";
 const CHATBOT_INPUT_AREA_DIV_61_CLASS = "absolute bottom-full left-0 right-0 z-20 chatbot-input-area-div-61-class";
 const CHATBOT_INPUT_AREA_DIV_62_CLASS = "group relative flex w-full items-center chatbot-input-area-div-62-class";
-const CHATBOT_INPUT_AREA_TEXTAREA_CLASS = "p-2 mr-2 rounded-xl w-full resize-none max-h-[200px] overflow-y-hidden chatbot-input-area-textarea-class";
+
+// export const CHATBOT_INPUT_AREA_TEXTAREA_CLASS = "p-2 mr-2 rounded-xl w-full resize-none max-h-[200px] overflow-y-hidden chatbot-input-area-textarea-class";
+const CHATBOT_INPUT_AREA_TEXTAREA_CLASS = "p-2 mr-2 rounded-xl w-full resize-none max-h-[200px] overflow-y-auto chatbot-input-area-textarea-class";
 const CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS = "bg-gray-300 chatbot-input-area-textarea-lm-class";
 const CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS = "chatbot-input-area-textarea-dm-class";
 const CHATBOT_INPUT_AREA_BUTTON_CLASS = `${BUTTON_LISTING_CLASS} mr-2 chatbot-input-area-button-class`;
 const CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS = "ml-2 flex items-center chatbot-input-area-wait-animation-class";
 
 // CameraComponent.css
+
 const CAMERA_COMPONENT_DIV_1_CLASS = "camera-component-div-1-class";
 const CAMERA_COMPONENT_DIV_2_CLASS = "min-w-full w-full flex items-center mr-3 camera-component-div-2-class";
 const CAMERA_COMPONENT_BUTTON_SUB_CLASS = `${BUTTON_LISTING_CLASS} mr-2 camera-component-button-sub-class`;
@@ -361,6 +357,7 @@ const CAMERA_COMPONENT_VIDEO_CLASS = "w-full h-auto .video-container camera-comp
 const CAMERA_COMPONENT_VIDEO_CANVAS_CLASS = "mt-2 w-full camera-component-video-canvas-class";
 
 // ScrollToBottomButton.css
+
 const SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS = "relative flex flex-col justify-end items-center overflow-hidden 1-justify-center scroll-to-bottom-button-div-1-class";
 const SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS = 'absolute pb-10 mb-2 scroll-to-bottom-button-div-2-class';
 const SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS = "fixed mx-auto w-full max-w-md scroll-to-bottom-button-div-3-class";
@@ -368,6 +365,7 @@ const SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS = "w-10 h-10 flex items-center justify
 const SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS = "1-mt-3 text-center scroll-to-bottom-button-icon-class";
 
 // FileUploader
+
 const FILE_UPLOADER_DIV_1_CLASS = "file-uploader-div-1-class";
 const FILE_UPLOADER_DIV_2_CLASS = "flex items-center file-uploader-div-1-class";
 const FILE_UPLOADER_BASE_BUTTON_CLASS = `${BUTTON_LISTING_CLASS} file-uploader-base-button-class`;
@@ -376,10 +374,12 @@ const FILE_UPLOADER_INPUT_AREA_CONTAINER_CLASS = "flex items-center file-uploade
 const FILE_UPLOADER_INPUT_AREA_INPUT_CLASS = "p-0 m-0 file-uploader-input-area-input-class";
 
 // VoiceMessageRecorder
+
 const VOICE_MESSAGE_RECORDER_DIV_1_CLASS = "voice-message-recorder-div-1-class";
 const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = `border-none mr-1 mt-1 voice-message-recorder-button-class`;
 
 // ChatBotButton
+
 const CHATBOT_BUTTON_DIV_1_CLASS = "align-middle flex chatbot-button-div-1-class";
 const CHATBOT_BUTTON_DIV_2_CLASS = "ml-2 chatbot-button-div-2-class";
 const CHATBOT_BUTTON_LLM_POPUP_DIV_1 = "mt-5 chatbot-button-llm-popup-div-1-class";
@@ -1026,7 +1026,7 @@ function FileUploader(_ref) {
       });
       dispatchWaitAnimation(false, dispatch);
       checkConversationIdChange(state, dispatch, response.data).then(() => {
-        // Current conversation updated sucssesfuly
+        // Current conversation updated successfully
       }, error => {
         error = formatCaughtError$2(error);
         setChatbotErrorMsg(error.message, dispatch);
@@ -1079,7 +1079,7 @@ function FileUploader(_ref) {
           dispatchWaitAnimation(false, dispatch);
           // addMessageToConversation(data.response, "assistant", dispatch);
           checkConversationIdChange(state, dispatch, data).then(() => {
-            // Current conversation updated sucssesfuly
+            // Current conversation updated successfully
           }, error => {
             error = formatCaughtError$2(error);
             setChatbotErrorMsg(error.message, dispatch);
@@ -1304,7 +1304,7 @@ const CameraComponent = _ref => {
       dispatchWaitAnimation(false, dispatch);
       // addMessageToConversation(data.response, "assistant", dispatch);
       checkConversationIdChange(state, dispatch, data).then(() => {
-        // Current conversation updated sucssesfuly
+        // Current conversation updated successfully
       }, error => {
         error = formatCaughtError$1(error);
         setChatbotErrorMsg(error.message, dispatch);
@@ -1411,6 +1411,7 @@ const GsIcons$5 = gs.IconsLib.GsIcons;
 const useAppContext$3 = gs.AppContext.useAppContext;
 const resizeManager = gs.ui.resizeManager;
 gs.loggingService.console_debug_log;
+const convertId$2 = gs.dbService.convertId;
 const usePlainFetch$1 = gs.responseHandlersService.usePlainFetch;
 gs.ui.growUpTextArea;
 gs.ui.resetTextArea;
@@ -1422,6 +1423,53 @@ const responseHasFile = gs.blobFilesUtilities.responseHasFile;
 /* <UserInput>.userInputViewportHeight must be the same as ".conversation-block.height" in ChatBot.css */
 /* 81 for 81vh, 78 for 78vh, an so on */
 const userInputMaxOffsetHeight = 200;
+const setConversationBlockHeight = () => {
+  // Get the conversation block element
+  const conversationBlockObj = document.getElementById('conversation-block');
+  // Get the chatbot main container element
+  const chatbotContainerObj = document.getElementById('chatbot-container');
+  // Get the input area container element
+  const chatbotInputAreaObj = document.getElementById('chatbot-input-area');
+  // Assign the height of the main container to the chatbot container
+  if (chatbotInputAreaObj) {
+    conversationBlockObj.style.height = `${chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10}px`;
+  }
+};
+const getWindowMaxHeight = () => {
+  const windowHeight = window.screen.availHeight - (window.outerHeight - window.innerHeight);
+  return windowHeight;
+};
+const setChatBotContainerHeight = () => {
+  // Get the chatbot main container element
+  const chatbotContainerObj = document.getElementById('chatbot-container');
+  if (!chatbotContainerObj || typeof chatbotContainerObj["parentElement"] === "undefined") {
+    return;
+  }
+  // Get the <main /> tag element
+  const mainContainerObj = chatbotContainerObj.parentElement;
+  const mainContainerHeight = mainContainerObj ? mainContainerObj.id === "root" ? getWindowMaxHeight() : mainContainerObj.offsetHeight : getWindowMaxHeight();
+  // Get the <footer /> html tag element
+  document.getElementsByTagName('footer');
+  // const footerHeight = (sideMenu ? (footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0) : 5);
+  const footerHeight = 5;
+  // Assign the height of the chatbot container to the main container minus the footer height
+  chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
+};
+const setTextAreaHeight = () => {
+  // Adjust text area size
+  {
+    const user_input = document.getElementById("user_input");
+    if (user_input) {
+      user_input.style.height = 'auto';
+      user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`;
+    }
+  }
+};
+const resizeAll = () => {
+  setChatBotContainerHeight();
+  setTextAreaHeight();
+  setConversationBlockHeight();
+};
 const UserInput = _ref => {
   let {
     dispatch,
@@ -1436,53 +1484,6 @@ const UserInput = _ref => {
   } = useAppContext$3();
   const [inputMessage, setInputMessage] = useState(userQuestion);
   const [updateSize, setUpdateSize] = useState(false);
-  const setConversationBlockHeight = () => {
-    // Get the conversation block element
-    const conversationBlockObj = document.getElementById('conversation-block');
-    // Get the chatbot main container element
-    const chatbotContainerObj = document.getElementById('chatbot-container');
-    // Get the input area container element
-    const chatbotInputAreaObj = document.getElementById('chatbot-input-area');
-    // Assign the height of the main container to the chatbot container
-    if (chatbotInputAreaObj) {
-      conversationBlockObj.style.height = `${chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10}px`;
-    }
-  };
-  const getWindowMaxHeight = () => {
-    const windowHeight = window.screen.availHeight - (window.outerHeight - window.innerHeight);
-    return windowHeight;
-  };
-  const setChatBotContainerHeight = () => {
-    // Get the chatbot main container element
-    const chatbotContainerObj = document.getElementById('chatbot-container');
-    if (!chatbotContainerObj || typeof chatbotContainerObj["parentElement"] === "undefined") {
-      return;
-    }
-    // Get the <main /> tag element
-    const mainContainerObj = chatbotContainerObj.parentElement;
-    const mainContainerHeight = mainContainerObj ? mainContainerObj.id === "root" ? getWindowMaxHeight() : mainContainerObj.offsetHeight : getWindowMaxHeight();
-    // Get the <footer /> html tag element
-    document.getElementsByTagName('footer');
-    // const footerHeight = (sideMenu ? (footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0) : 5);
-    const footerHeight = 5;
-    // Assign the height of the chatbot container to the main container minus the footer height
-    chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
-  };
-  const setTextAreaHeight = () => {
-    // Adjust text area size
-    {
-      const user_input = document.getElementById("user_input");
-      if (user_input) {
-        user_input.style.height = 'auto';
-        user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`;
-      }
-    }
-  };
-  const resizeAll = () => {
-    setChatBotContainerHeight();
-    setTextAreaHeight();
-    setConversationBlockHeight();
-  };
   useEffect(() => {
     resizeAll();
   }, []);
@@ -1579,16 +1580,55 @@ const UserInput = _ref => {
           }
           // Read current conversation from the database to refresh the chat space
           checkConversationIdChange(state, dispatch, botReply.response).then(() => {
-            // Current conversation updated sucssesfuly
+            // Current conversation updated successfully
           }, error => {
+            console.error('>> Error updating current conversation:', error);
             error = formatCaughtError(error);
-            console.error('>> Error updating current conversation:', botReply.errorMessage);
             setChatbotErrorMsg(error.message, dispatch);
           });
         }
       } else {
-        console.error('>> Error communicating with the bot:', botReply.errorMessage);
-        setChatbotErrorMsg(botReply.errorMessage, dispatch);
+        // botReply.ok is not OK...
+        let errorToReport = botReply.errorMessage;
+        console.error('>> Error communicating with the bot:', errorToReport);
+
+        // Refresh the conversation list on any error...
+        fetchConversations(state, dispatch).then(apiResponse => {
+          if (!apiResponse.ok) {
+            errorToReport = `\n\nAditionally, refreshing the conversations list: ${apiResponse.errorMessage}`;
+          } else {
+            // Try to refresh current conversation from botReply.response
+            let cid = state.currentConversationId;
+            if (cid === null) {
+              // New conversation... try to get the first element of the refreshed conversation list
+              if (state.conversations.length > 0) {
+                // There are conversations in the list...
+                if (apiResponse.response[0].title === newInputMessage) {
+                  // Now we are sure the 1st conversation corresponds to the updated current conversation
+                  // because the 1st conversation title is the same as the 1st message content
+                  cid = convertId$2(apiResponse.response[0]._id);
+                  dispatch({
+                    type: 'SET_CONVERSATION_ID',
+                    payload: cid
+                  });
+                }
+              }
+            }
+            if (cid !== null) {
+              fetchOneConversation(cid, state, dispatch).then(() => {
+                // Current conversation updated successfully
+                resizeAll();
+              }, error => {
+                error = formatCaughtError(error);
+                console.error('>> UserInput current conversation update error:', error);
+                errorToReport = `\n\nAditionally, reading current conversation: ${error}`;
+              });
+            }
+          }
+        }, error => {
+          errorToReport = `\n\nAditionally: ${error}`;
+        });
+        setChatbotErrorMsg(errorToReport, dispatch);
       }
       toggleIdVisibility("on", extControlsToShowHide);
     }
@@ -2036,10 +2076,11 @@ const AudioPlayer = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = ({
-  elementId,
-  elementsToRender
-}) => {
+const GoToTheBottom = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -2112,8 +2153,9 @@ const showButton = element =>
 // 'visible' and 'hidden' cannot be VISIBLE_CLASS and HIDDEN_CLASS constants, should remain as those fixed strings...
 element && element.scrollHeight > element.scrollTop + element.clientHeight ? 'visible' : 'hidden';
 
-const LinkifyText = gs.ui.LinkifyText;
+gs.ui.LinkifyText;
 const CopyButton = gs.ui.CopyButton;
+const renderMarkdownContent = gs.ui.renderMarkdownContent;
 const ChatCodeBlock = _ref => {
   let {
     children,
@@ -2126,15 +2168,28 @@ const ChatCodeBlock = _ref => {
   const parts = children.split(codeRegex);
   return /*#__PURE__*/React.createElement(React.Fragment, null, parts.map((part, index) => {
     if (index % 2 === 0) {
-      // Render non-code parts as regular text
-      // return <span key={index}>{part}</span>;
-      return /*#__PURE__*/React.createElement(LinkifyText, {
-        key: `${index}-other`
-      }, part);
+      // Render non-code parts as markdown text
+      // If part constains [] and (), return <LinkifyText ... />, else, call renderMarkdownContent()
+      // if (part.includes('[') && part.includes(']') && part.includes('(') && part.includes(')')) {
+      //     return (
+      //         <LinkifyText key={`${index}-other`}>
+      //             <i>{part}</i>
+      //         </LinkifyText>
+      //     );
+      // }
+      return /*#__PURE__*/React.createElement(React.Fragment, null, renderMarkdownContent(part));
     } else {
-      // Render code blocks with specified styles
+      // Handle code blocks
       let content = part.trim();
-      const language = content.split('\n')[0];
+      let language = content.split('\n')[0];
+
+      // Special handling for plaintext
+      if (language === 'plaintext') {
+        content = content.substring(language.length + 1).trim();
+        return /*#__PURE__*/React.createElement("div", {
+          key: `${index}-plaintext`
+        }, renderMarkdownContent(content));
+      }
       content = content.substring(language.length + 1).trim();
       return /*#__PURE__*/React.createElement("div", {
         key: `${index}-content-wrapper`
@@ -2149,16 +2204,15 @@ const ChatCodeBlock = _ref => {
           color: 'wheat',
           marginTop: '10px',
           padding: '10px',
-          // borderRadius: '5px',
           overflowX: 'auto'
         }
       }, language), /*#__PURE__*/React.createElement("div", {
         key: `${index}-content`
-      }, shType === "prism" && /*#__PURE__*/React.createElement(Prism, {
+      }, shType === "prism" ? /*#__PURE__*/React.createElement(Prism, {
         language: language,
         style: vscDarkPlus,
         wrapLongLines: true
-      }, content), shType !== "prism" && /*#__PURE__*/React.createElement(Light, {
+      }, content) : /*#__PURE__*/React.createElement(Light, {
         language: language,
         style: grayscale,
         wrapLongLines: true
@@ -2279,10 +2333,19 @@ const ConversationBlock = _ref => {
     // }
     if (message.includes('```plaintext```')) {
       shType = "hljs";
+      // Remove the plaintext markers if they're at the start/end of the message
+      if (message.startsWith('```plaintext```')) {
+        message = message.substring('```plaintext```'.length);
+      }
     }
-    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement(ChatCodeBlock, {
+
+    // If there are no code blocks, wrap the content in plaintext markers
+    if (!message.includes('```')) {
+      message = '```plaintext\n' + message + '\n```';
+    }
+    return /*#__PURE__*/React.createElement(ChatCodeBlock, {
       shType: shType
-    }, message));
+    }, message);
   };
   useEffect(() => {
     setElementsToRender(state.messages.map((message, index) => /*#__PURE__*/React.createElement("div", {
@@ -2437,7 +2500,7 @@ const ChatBot = _ref => {
     errorMsg: null,
     currentUser: currentUser
   });
-  const columnSizeList = () => showSideBar && state.conversationListToggle ? isMobileDevice() ? '80%' : '20%' : "0%";
+  const columnSizeList = () => showSideBar && state.conversationListToggle ? isMobileDevice() ? '60%' : '20%' : "0%";
 
   // If there's an initial UserQuestion, send it inmediatelly to the LLM
   // useEffect(() => {
@@ -2446,6 +2509,10 @@ const ChatBot = _ref => {
   //     }
   // }, [userQuestion, sendMessage]);
 
+  const handleClose = e => {
+    setChatbotErrorMsg(null, dispatch);
+    resizeAll();
+  };
   const handleRetry = e => {
     if (state && state.messages) {
       const lastUserMessage = state.messages.slice().reverse().find(message => message.role === 'user' && message.content !== '');
@@ -2454,10 +2521,12 @@ const ChatBot = _ref => {
       }
     }
     setChatbotErrorMsg(null, dispatch);
+    resizeAll();
   };
 
   // Load conversations
   useEffect(() => {
+    resizeAll();
     fetchConversations(state, dispatch).then(apiResponse => {
       if (!apiResponse.ok) {
         setChatbotErrorMsg(apiResponse.errorMessage, dispatch);
@@ -2488,7 +2557,7 @@ const ChatBot = _ref => {
   return /*#__PURE__*/React.createElement("div", {
     id: "chatbot-container",
     className: `${CHATBOT_CONTAINER_DIV_1_CLASS} ${theme.background}`
-  }, state.errorMsg && /*#__PURE__*/React.createElement(React.Fragment, null, errorAndReEnter(state.errorMsg, null, null, handleRetry, null, false, false)), !(showSideBar && state.conversationListToggle) && /*#__PURE__*/React.createElement(ConversationsToggleButton, {
+  }, state.errorMsg && /*#__PURE__*/React.createElement(React.Fragment, null, errorAndReEnter(state.errorMsg, null, null, handleRetry, null, false, true, handleClose)), !(showSideBar && state.conversationListToggle) && /*#__PURE__*/React.createElement(ConversationsToggleButton, {
     id: "conversations-toggle-button-1",
     className: CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS,
     state: state,

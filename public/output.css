@@ -107,7 +107,7 @@
 }
 
 /*
-! tailwindcss v3.4.13 | MIT License | https://tailwindcss.com
+! tailwindcss v3.4.14 | MIT License | https://tailwindcss.com
 */
 
 /*
@@ -541,7 +541,7 @@ video {
 
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
-[hidden] {
+[hidden]:where(:not([hidden="until-found"])) {
   display: none;
 }
 
@@ -662,6 +662,11 @@ video {
   margin-bottom: 0px;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .-mr-2 {
   margin-right: -0.5rem;
 }
@@ -754,20 +759,8 @@ video {
   height: 2rem;
 }
 
-.h-\[10\%\] {
-  height: 10%;
-}
-
 .h-\[40px\] {
   height: 40px;
-}
-
-.h-\[60px\] {
-  height: 60px;
-}
-
-.h-\[76vh\] {
-  height: 76vh;
 }
 
 .h-\[90\%\] {
@@ -780,6 +773,10 @@ video {
 
 .h-full {
   height: 100%;
+}
+
+.max-h-80 {
+  max-height: 20rem;
 }
 
 .max-h-\[200px\] {
@@ -1379,6 +1376,10 @@ video {
   font-weight: 600;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .text-black {
   --tw-text-opacity: 1;
   color: rgb(0 0 0 / var(--tw-text-opacity));
@@ -1442,6 +1443,10 @@ video {
 .text-yellow-800 {
   --tw-text-opacity: 1;
   color: rgb(133 77 14 / var(--tw-text-opacity));
+}
+
+.underline {
+  text-decoration-line: underline;
 }
 
 .opacity-50 {
@@ -1628,10 +1633,6 @@ video {
 @media not all and (min-width: 768px) {
   .max-md\:hidden {
     display: none;
-  }
-
-  .max-md\:\!w-0 {
-    width: 0px !important;
   }
 }
 

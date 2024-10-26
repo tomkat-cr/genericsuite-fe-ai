@@ -167,15 +167,22 @@ export const ConversationBlock = ({
         // }
         if (message.includes('```plaintext```')) {
             shType = "hljs";
+            // Remove the plaintext markers if they're at the start/end of the message
+            if (message.startsWith('```plaintext```')) {
+                message = message.substring('```plaintext```'.length);
+            }
+        }
+        
+        // If there are no code blocks, wrap the content in plaintext markers
+        if (!message.includes('```')) {
+            message = '```plaintext\n' + message + '\n```';
         }
         return (
-            <>
-                <ChatCodeBlock
-                    shType={shType}
-                >
-                    {message}
-                </ChatCodeBlock>
-            </>
+            <ChatCodeBlock
+                shType={shType}
+            >
+                {message}
+            </ChatCodeBlock>
         );
     }
 

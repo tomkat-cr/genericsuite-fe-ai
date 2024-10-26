@@ -7,7 +7,7 @@ import {
     setChatbotErrorMsg,
 } from './chatbot.general.functions.jsx';
 
-import { UserInput } from './UserInput.jsx';
+import { UserInput, resizeAll } from './UserInput.jsx';
 import {
     fetchConversations,
 } from './chatbot.db.operations.jsx';
@@ -176,7 +176,7 @@ export const ChatBot = ({
     });
 
     const columnSizeList = () =>
-        (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '80%' : '20%') : "0%")
+        (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '60%' : '20%') : "0%")
 
     // const columnSizeMessages = () =>
     //     (showSideBar && state.conversationListToggle ? (isMobileDevice() ? '20%' : '80%') : "100%")
@@ -192,6 +192,11 @@ export const ChatBot = ({
     //         sendMessage(userQuestion);
     //     }
     // }, [userQuestion, sendMessage]);
+
+    const handleClose = (e) => {
+        setChatbotErrorMsg(null, dispatch);
+        resizeAll();
+    }
 
     const handleRetry = (e) => {
         if (state && state.messages) {
@@ -213,10 +218,12 @@ export const ChatBot = ({
             }
         }
         setChatbotErrorMsg(null, dispatch);
+        resizeAll();
     };
     
     // Load conversations
     useEffect(() => {
+        resizeAll();
         fetchConversations(state, dispatch)
             .then(
                 apiResponse => {
@@ -259,7 +266,7 @@ export const ChatBot = ({
             {/* Error message */}
             {state.errorMsg && (
                 <>
-                    {errorAndReEnter(state.errorMsg, null, null, handleRetry, null, false, false)}
+                    {errorAndReEnter(state.errorMsg, null, null, handleRetry, null, false, true, handleClose)}
                 </>
             )}
             {/* Conversarion toggle button (when the conversation list is not visible) */}
