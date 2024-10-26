@@ -22,7 +22,6 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changes
 GenericSuite FE core upgraded to v1.0.23.
 
-
 ### Fixes
 Fix Markdown formatting in AI Assistant conversation [GS-145].
 Fix copy button in non-secure http connection [GS-144].
