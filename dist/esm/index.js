@@ -2011,13 +2011,12 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   useState(0);
   useState(0);
