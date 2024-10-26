@@ -26,6 +26,8 @@ import {
     handleCancelProcessing,
     sendMessageToBot,
     checkConversationIdChange,
+    fetchConversations,
+    fetchOneConversation,
 } from "./chatbot.db.operations.jsx";
 
 import {
@@ -53,6 +55,7 @@ const useAppContext = gs.AppContext.useAppContext;
 const resizeManager = gs.ui.resizeManager;
 
 const console_debug_log = gs.loggingService.console_debug_log;
+const convertId = gs.dbService.convertId;
 
 const usePlainFetch = gs.responseHandlersService.usePlainFetch;
 const growUpTextArea = gs.ui.growUpTextArea;
@@ -74,6 +77,68 @@ const userInputViewportHeight = 66;
 /* 81 for 81vh, 78 for 78vh, an so on */
 const userInputMaxOffsetHeight = 200;
 
+const setConversationBlockHeight = () => {
+    // Get the conversation block element
+    const conversationBlockObj = document.getElementById('conversation-block');
+    // Get the chatbot main container element
+    const chatbotContainerObj = document.getElementById('chatbot-container');
+    // Get the input area container element
+    const chatbotInputAreaObj = document.getElementById('chatbot-input-area');
+    // Assign the height of the main container to the chatbot container
+    if (chatbotInputAreaObj) {
+        conversationBlockObj.style.height = `${chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10}px`;
+        if (debug) {
+            console_debug_log("conversationBlockObj.style.height:", conversationBlockObj.style.height);
+        }
+    }
+}
+
+const getWindowMaxHeight = () => {
+    const windowHeight = (window.screen.availHeight - (window.outerHeight - window.innerHeight));
+    return windowHeight;
+}
+
+const setChatBotContainerHeight = () => {
+    // Get the chatbot main container element
+    const chatbotContainerObj = document.getElementById('chatbot-container');
+    if (!chatbotContainerObj || typeof chatbotContainerObj["parentElement"] === "undefined") {
+        return;
+    }
+    // Get the <main /> tag element
+    const mainContainerObj = chatbotContainerObj.parentElement;
+    const mainContainerHeight = mainContainerObj ? (mainContainerObj.id === "root" ? getWindowMaxHeight() : mainContainerObj.offsetHeight) : getWindowMaxHeight();
+    // Get the <footer /> html tag element
+    const footerObj = document.getElementsByTagName('footer');
+    // const footerHeight = (sideMenu ? (footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0) : 5);
+    const footerHeight = 5;
+    // Assign the height of the chatbot container to the main container minus the footer height
+    chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
+    if (debug) {
+        console_debug_log("|| mainContainerObj:", mainContainerObj, 'mainContainerHeight:', mainContainerHeight, 'chatbotContainerObj:', chatbotContainerObj, 'chatbotContainerObj.offsetHeight:', chatbotContainerObj ? chatbotContainerObj.offsetHeight : -111);
+        console_debug_log("footerObj:", footerObj, 'footerHeight:', footerHeight);
+        console_debug_log("NEW chatbotContainerObj.style.height (offsetHeight):", chatbotContainerObj ? chatbotContainerObj.offsetHeight : -111);
+    }
+}
+
+const setTextAreaHeight = () => {
+    // Adjust text area size
+    if (useResetTextArea) {
+        resetTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight);
+    } else {
+        const user_input = document.getElementById("user_input");
+        if (user_input) {
+            user_input.style.height = 'auto'
+            user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`
+        }
+    }
+}
+
+export const resizeAll = () => {
+    setChatBotContainerHeight();
+    setTextAreaHeight();
+    setConversationBlockHeight();
+}
+
 export const UserInput = ({
     dispatch,
     state,
@@ -83,72 +148,10 @@ export const UserInput = ({
     const [inputMessage, setInputMessage] = useState(userQuestion);
     const [updateSize, setUpdateSize] = useState(false);
 
-    const setConversationBlockHeight = () => {
-        // Get the conversation block element
-        const conversationBlockObj = document.getElementById('conversation-block');
-        // Get the chatbot main container element
-        const chatbotContainerObj = document.getElementById('chatbot-container');
-        // Get the input area container element
-        const chatbotInputAreaObj = document.getElementById('chatbot-input-area');
-        // Assign the height of the main container to the chatbot container
-        if (chatbotInputAreaObj) {
-            conversationBlockObj.style.height = `${chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10}px`;
-            if (debug) {
-                console_debug_log("conversationBlockObj.style.height:", conversationBlockObj.style.height);
-            }
-        }
-    }
-
-    const getWindowMaxHeight = () => {
-        const windowHeight = (window.screen.availHeight - (window.outerHeight - window.innerHeight));
-        return windowHeight;
-    }
-
-    const setChatBotContainerHeight = () => {
-        // Get the chatbot main container element
-        const chatbotContainerObj = document.getElementById('chatbot-container');
-        if (!chatbotContainerObj || typeof chatbotContainerObj["parentElement"] === "undefined") {
-            return;
-        }
-        // Get the <main /> tag element
-        const mainContainerObj = chatbotContainerObj.parentElement;
-        const mainContainerHeight = mainContainerObj ? (mainContainerObj.id === "root" ? getWindowMaxHeight() : mainContainerObj.offsetHeight) : getWindowMaxHeight();
-        // Get the <footer /> html tag element
-        const footerObj = document.getElementsByTagName('footer');
-        // const footerHeight = (sideMenu ? (footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0) : 5);
-        const footerHeight = 5;
-        // Assign the height of the chatbot container to the main container minus the footer height
-        chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
-        if (debug) {
-            console_debug_log("|| mainContainerObj:", mainContainerObj, 'mainContainerHeight:', mainContainerHeight, 'chatbotContainerObj:', chatbotContainerObj, 'chatbotContainerObj.offsetHeight:', chatbotContainerObj ? chatbotContainerObj.offsetHeight : -111);
-            console_debug_log("footerObj:", footerObj, 'footerHeight:', footerHeight);
-            console_debug_log("NEW chatbotContainerObj.style.height (offsetHeight):", chatbotContainerObj ? chatbotContainerObj.offsetHeight : -111);
-        }
-    }
-
-    const setTextAreaHeight = () => {
-        // Adjust text area size
-        if (useResetTextArea) {
-            resetTextArea("user_input", "conversation-block", userInputViewportHeight, userInputMaxOffsetHeight);
-        } else {
-            const user_input = document.getElementById("user_input");
-            if (user_input) {
-                user_input.style.height = 'auto'
-                user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`
-            }
-        }
-    }
-    
-    const resizeAll = () => {
-        setChatBotContainerHeight();
-        setTextAreaHeight();
-        setConversationBlockHeight();
-    }
-
     useEffect(() => {
         resizeAll();
     }, []);
-
+    
     useEffect(() => {
         const resizer = resizeManager(() => {
             resizeAll();
@@ -230,18 +233,66 @@ export const UserInput = ({
                     // Read current conversation from the database to refresh the chat space
                     checkConversationIdChange(state, dispatch, botReply.response).then(
                         () => {
-                            // Current conversation updated sucssesfuly
+                            // Current conversation updated successfully
                         },
                         error => {
+                            console.error('>> Error updating current conversation:', error);
                             error = formatCaughtError(error);
-                            console.error('>> Error updating current conversation:', botReply.errorMessage);
                             setChatbotErrorMsg(error.message, dispatch);
                         }
                     );
                 }
             } else {
-                console.error('>> Error communicating with the bot:', botReply.errorMessage);
-                setChatbotErrorMsg(botReply.errorMessage, dispatch);
+                // botReply.ok is not OK...
+                let errorToReport = botReply.errorMessage;
+
+                console.error('>> Error communicating with the bot:', errorToReport);
+
+                // Refresh the conversation list on any error...
+                fetchConversations(state, dispatch)
+                    .then(
+                        apiResponse => {
+                            if (debug) {
+                                console_debug_log(`>>> UserInput converstion list refresh error | apiResponse:`, apiResponse);
+                            }
+                            if (!apiResponse.ok) {
+                                errorToReport = `\n\nAditionally, refreshing the conversations list: ${apiResponse.errorMessage}`;
+                            } else {
+                                // Try to refresh current conversation from botReply.response
+                                let cid = state.currentConversationId;
+                                if (cid === null) {
+                                    // New conversation... try to get the first element of the refreshed conversation list
+                                    if (state.conversations.length > 0) {
+                                        // There are conversations in the list...
+                                        if (apiResponse.response[0].title === newInputMessage) {
+                                            // Now we are sure the 1st conversation corresponds to the updated current conversation
+                                            // because the 1st conversation title is the same as the 1st message content
+                                            cid = convertId(apiResponse.response[0]._id);
+                                            dispatch({ type: 'SET_CONVERSATION_ID', payload: cid });
+                                        }
+                                    }
+                                }
+                                if (cid !== null) {
+                                    fetchOneConversation(cid, state, dispatch).then(
+                                        () => {
+                                            // Current conversation updated successfully
+                                            resizeAll();
+                                        },
+                                        error => {
+                                            error = formatCaughtError(error);
+                                            console.error('>> UserInput current conversation update error:', error);
+                                            errorToReport = `\n\nAditionally, reading current conversation: ${error}`;
+                                        }
+                                    );
+                                }
+                            }
+                        },
+                        error => {
+                            errorToReport = `\n\nAditionally: ${error}`;
+                        }
+                    );
+    
+                setChatbotErrorMsg(errorToReport, dispatch);
             }
             toggleIdVisibility(("on"), extControlsToShowHide);
         }

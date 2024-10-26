@@ -166,7 +166,7 @@ export const CameraComponent = ({
                 // addMessageToConversation(data.response, "assistant", dispatch);
                 checkConversationIdChange(state, dispatch, data).then(
                     () => {
-                        // Current conversation updated sucssesfuly
+                        // Current conversation updated successfully
                     },
                     error => {
                         error = formatCaughtError(error);

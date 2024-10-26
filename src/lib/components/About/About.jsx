@@ -8,10 +8,12 @@ const console_debug_log = gs.loggingService.console_debug_log;
 
 const debug = false;
 
-export const AboutBody = ({ children }) => {
+export const AboutBody = ({ children, modalPopUpTest = true }) => {
     if (debug) console_debug_log('>>>> genericsuite-fe-ai AboutBody <<<<');
     return (
-        <GsAboutBody>
+        <GsAboutBody
+            modalPopUpTest={modalPopUpTest}
+        >
             <>
                 <p>
                     Welcome to GenericSuite AI, a comprehensive software solution designed to enhance your productivity and streamline your workflows. This repository contains the frontend part of GenericSuite AI, equipped with AI ChatBot tools, a customizable CRUD editor, login interface and a suite of tools to kickstart your development process.

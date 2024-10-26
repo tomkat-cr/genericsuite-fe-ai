@@ -87,7 +87,7 @@ export function FileUploader({
             dispatchWaitAnimation(false, dispatch);
             checkConversationIdChange(state, dispatch, response.data).then(
                 () => {
-                    // Current conversation updated sucssesfuly
+                    // Current conversation updated successfully
                 },
                 error => {
                     error = formatCaughtError(error);
@@ -155,7 +155,7 @@ export function FileUploader({
                         // addMessageToConversation(data.response, "assistant", dispatch);
                         checkConversationIdChange(state, dispatch, data).then(
                             () => {
-                                // Current conversation updated sucssesfuly
+                                // Current conversation updated successfully
                             },
                             error => {
                                 error = formatCaughtError(error);

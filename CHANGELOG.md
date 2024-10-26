@@ -16,6 +16,20 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.21 (2024-10-25)
+---
+
+### Changes
+GenericSuite FE core upgraded to v1.0.23.
+
+### Fixes
+Fix Markdown formatting in AI Assistant conversation [GS-145].
+Fix copy button in non-secure http connection [GS-144].
+Fix conversation list reload when any error occurs.
+Fix show vertical scroll bar in the chatbot input area when the content is too long.
+Fix AI Assistant in mobile devices.
+
+
 ## 1.0.20 (2024-10-07)
 ---
 
@@ -39,7 +53,7 @@ Fix Chatbot <UserInput> location is wrong with the new GS FE Core and pure Tailw
 Fix all test to be compatible with new GS FE Core contexts and constants [GS-112] [GS-129].
 Remove all links references to "/#" [GS-112].
 Restrict the source code exported to dist in "make publish".
-Formik version fixed to 2.4.5 in package.json to avoid GCE_RFC warning when the +New button is clicked [GS-112].
+Formik version fixed to 2.4.5 in package.json to avoid GCE_RFC warning when the +New button is clicked [GS-25] [GS-112].
 
 ### Breaks
 Bootstrap CSS is not longer used [GS-63].
