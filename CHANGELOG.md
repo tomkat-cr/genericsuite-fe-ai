@@ -16,6 +16,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.22 (2025-02-19)
+---
+
+### Changes
+GenericSuite FE core upgraded to v1.0.24.
+
+
 ## 1.0.21 (2024-10-25)
 ---
 
