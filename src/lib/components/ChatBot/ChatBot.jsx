@@ -32,7 +32,9 @@ import {
     CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS,
 } from '../../constants/class_name_constants.jsx';
 
-const convertId = gs.dbService.convertId;
+// const convertId = gs.dbService.convertId;
+const convertId = gs.idUtilities.convertId;
+
 const console_debug_log = gs.loggingService.console_debug_log;
 const isMobileDevice = gs.ui.isMobileDevice;
 const getUrlParams = gs.urlParams.getUrlParams;

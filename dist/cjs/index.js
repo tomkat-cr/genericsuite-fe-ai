@@ -419,7 +419,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 const GsIcons$8 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$3 = gs__namespace.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER$2 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log$1 = gs__namespace.loggingService.console_debug_log;
+const console_debug_log$2 = gs__namespace.loggingService.console_debug_log;
 const formatCaughtError$4 = gs__namespace.errorAndReenter.formatCaughtError;
 const toggleIdVisibility$3 = gs__namespace.ui.toggleIdVisibility;
 const getMediaTypeToRecord = gs__namespace.media.getMediaTypeToRecord;
@@ -629,9 +629,13 @@ const VoiceMessageRecorder = _ref => {
 };
 
 const formatCaughtError$3 = gs__namespace.errorAndReenter.formatCaughtError;
+const getErrorDetail = gs__namespace.errorAndReenter.getErrorDetail;
 const dbApiService$2 = gs__namespace.dbService.dbApiService;
 const defaultValue = gs__namespace.genericEditorUtilities.defaultValue;
-const console_debug_log = gs__namespace.loggingService.console_debug_log;
+
+// const getUuidV4 = gs.idUtilities.getUuidV4;
+
+const console_debug_log$1 = gs__namespace.loggingService.console_debug_log;
 
 // Current user
 
@@ -707,9 +711,11 @@ const ApiCall = async (dispatch, params) => {
   };
   const processErrorResponse = errorRaw => {
     const error = formatCaughtError$3(errorRaw);
+    const errorDetails = getErrorDetail(errorRaw);
     return {
       ok: false,
-      errorMessage: error.message
+      errorMessage: error.message,
+      errorDetails: errorDetails
     };
   };
   const verifyId = id => {
@@ -787,21 +793,23 @@ const ApiCall = async (dispatch, params) => {
       default:
         response = {
           ok: false,
-          errorMessage: `Invalid operation type: "${operationType}"`
+          errorMessage: `Invalid operation type: "${operationType}"`,
+          errorDetails: null
         };
     }
   } catch (error) {
     response = {
       ok: false,
-      errorMessage: error.message
+      errorMessage: error.message,
+      errorDetails: getErrorDetail(error)
     };
   }
   if (response.ok) {
     response.operationMessage = `${the} ${operationDescription} ${ActionDescription} ${was_successful}`;
   } else {
     response.operationMessage = `${error_in_the} ${operationDescription} ${ActionDescription}`;
-    console_debug_log('ApiCall ERROR:');
-    console_debug_log(response.operationMessage);
+    console_debug_log$1('ApiCall ERROR:');
+    console_debug_log$1(response.operationMessage);
   }
   dispatch({
     type: 'API_PROCESSING_STATUS',
@@ -833,8 +841,8 @@ const ApiCall = async (dispatch, params) => {
 
 // DB: Conversation List
 
-// const generateNewConversationId = () => {
-//     return crypto.randomUUID();
+// export const generateNewConversationId = () => {
+//     return getUuidV4();
 // };
 
 const checkConversationIdChange = async (state, dispatch, externalApiResponse) => {
@@ -1432,7 +1440,9 @@ const GsIcons$5 = gs__namespace.IconsLib.GsIcons;
 const useAppContext$3 = gs__namespace.AppContext.useAppContext;
 const resizeManager = gs__namespace.ui.resizeManager;
 gs__namespace.loggingService.console_debug_log;
-const convertId$2 = gs__namespace.dbService.convertId;
+
+// const convertId = gs.dbService.convertId;
+const convertId$2 = gs__namespace.idUtilities.convertId;
 const usePlainFetch$1 = gs__namespace.responseHandlersService.usePlainFetch;
 gs__namespace.ui.growUpTextArea;
 gs__namespace.ui.resetTextArea;
@@ -1612,6 +1622,7 @@ const UserInput = _ref => {
         // botReply.ok is not OK...
         let errorToReport = botReply.errorMessage;
         console.error('>> Error communicating with the bot:', errorToReport);
+        console.error('>> botReply:', botReply);
 
         // Refresh the conversation list on any error...
         fetchConversations(state, dispatch).then(apiResponse => {
@@ -1777,7 +1788,9 @@ const NewConversationButton = _ref => {
 //     faTrash,
 // );
 const GsIcons$3 = gs__namespace.IconsLib.GsIcons;
-const convertId$1 = gs__namespace.dbService.convertId;
+
+// const convertId = gs.dbService.convertId;
+const convertId$1 = gs__namespace.idUtilities.convertId;
 gs__namespace.loggingService.console_debug_log;
 const timestampToDate = gs__namespace.dateTimestamp.timestampToDate;
 const useAppContext$2 = gs__namespace.AppContext.useAppContext;
@@ -2031,7 +2044,7 @@ gs__namespace.IconsLib.GsIcons;
 const WARNING_MSG_CLASS$1 = gs__namespace.classNameConstants.WARNING_MSG_CLASS;
 gs__namespace.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs__namespace.blobFilesUtilities.decodeBlob;
-gs__namespace.loggingService.console_debug_log;
+const console_debug_log = gs__namespace.loggingService.console_debug_log;
 const AudioPlayer = _ref => {
   let {
     blobUrl,
@@ -2046,6 +2059,7 @@ const AudioPlayer = _ref => {
 
   const fixBlob = () => {
     if (!blobUrl) {
+      console_debug_log("AudioPlayer | fixBlob | blobUrl is empty");
       return;
     }
     fetch(blobUrl).then(r => {
@@ -2057,6 +2071,7 @@ const AudioPlayer = _ref => {
           const newBlobUrl = decodeBlob(reader.result, filename);
           audioPlayer.current.src = newBlobUrl;
           audioPlayer.current.play();
+          console_debug_log("AudioPlayer | fixBlob | newBlobUrl:", newBlobUrl);
         };
       });
     });
@@ -2068,6 +2083,7 @@ const AudioPlayer = _ref => {
     setIsPlaying(!prevValue);
     if (!prevValue) {
       audioPlayer.current.play().catch(error => {
+        console_debug_log("AudioPlayer | togglePlayPause | error:", error, 'error.message:', error.message);
         const errorMsgs = ["Failed to load because no supported source was found.", "The element has no supported sources."];
         if (Object.values(errorMsgs).some(msg => error.message.includes(msg))) {
           // Probably the data comes from AWS API Gateway in Base64 format
@@ -2087,6 +2103,7 @@ const AudioPlayer = _ref => {
     }, `Audio file expired${errorMsgSuffix}`);
   }
   {
+    console_debug_log("AudioPlayer | browserAudioController | blobUrl:", blobUrl);
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
       ref: audioPlayer,
       src: blobUrl,
@@ -2127,11 +2144,10 @@ const GoToTheBottom = _ref => {
 
 const GsIcons$1 = gs__namespace.IconsLib.GsIcons;
 gs__namespace.loggingService.console_debug_log;
-const ScrollToBottomButton = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const ScrollToBottomButton = ({
+  elementId,
+  elementsToRender
+}) => {
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
@@ -2198,7 +2214,9 @@ const ChatCodeBlock = _ref => {
       //         </LinkifyText>
       //     );
       // }
-      return /*#__PURE__*/React.createElement(React.Fragment, null, renderMarkdownContent(part));
+      return /*#__PURE__*/React.createElement("div", {
+        key: `${index}-other`
+      }, renderMarkdownContent(part));
     } else {
       // Handle code blocks
       let content = part.trim();
@@ -2388,7 +2406,8 @@ const ConversationBlock = _ref => {
   }));
 };
 
-const convertId = gs__namespace.dbService.convertId;
+// const convertId = gs.dbService.convertId;
+const convertId = gs__namespace.idUtilities.convertId;
 gs__namespace.loggingService.console_debug_log;
 const isMobileDevice = gs__namespace.ui.isMobileDevice;
 const getUrlParams = gs__namespace.urlParams.getUrlParams;

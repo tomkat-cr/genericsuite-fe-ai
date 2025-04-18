@@ -16,6 +16,21 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## Unreleased
+## 1.0.23 (2025-03-13)
+---
+
+### Changes
+GenericSuite FE core upgraded to v1.0.25.
+convertId() function moved from db.service.jsx to id.utilities.jsx in GenericSuite FE [GS-185].
+  Before: const convertId = gs.dbService.convertId; ... or editor.db.convertId(...)
+  Now: const convertId = gs.idUtilities.convertId;
+Implement axios in all API calls to handle Flask backend files retrieval with all required headers [GS-15].
+
+### Fixes
+Fix "Warning: Each child in a list should have a unique "key" prop. Check the render method of `ChatCodeBlock`" warning.
+
+
 ## 1.0.22 (2025-02-19)
 ---
 

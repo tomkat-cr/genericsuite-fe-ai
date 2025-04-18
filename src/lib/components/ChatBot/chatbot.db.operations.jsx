@@ -1,8 +1,12 @@
 import * as gs from "genericsuite";
 
 const formatCaughtError = gs.errorAndReenter.formatCaughtError;
+const getErrorDetail = gs.errorAndReenter.getErrorDetail;
 const dbApiService = gs.dbService.dbApiService;
 const defaultValue = gs.genericEditorUtilities.defaultValue;
+
+// const getUuidV4 = gs.idUtilities.getUuidV4;
+
 const console_debug_log = gs.loggingService.console_debug_log;
 
 // Ensure to install the crypto library with: npm install crypto
@@ -96,12 +100,16 @@ export const ApiCall = async (
 
     const processErrorResponse = (errorRaw) => {
         const error = formatCaughtError(errorRaw);
+        const errorDetails = getErrorDetail(errorRaw);
         if (debug) {
             console_debug_log(`AiAssistant | ${operationName} | ERROR:`, error);
+            console_debug_log(`AiAssistant | ${operationName} | ERROR errorRaw:`, errorRaw);
+            console_debug_log(`AiAssistant | ${operationName} | ERROR errorDetails:`, errorDetails);
         }
         return {
             ok: false,
             errorMessage: error.message,
+            errorDetails: errorDetails,
         }
     }
 
@@ -180,12 +188,14 @@ export const ApiCall = async (
                 response = {
                     ok: false,
                     errorMessage: `Invalid operation type: "${operationType}"`,
+                    errorDetails: null,
                 }
         }
     } catch (error) {
         response = {
             ok: false,
             errorMessage: error.message,
+            errorDetails: getErrorDetail(error),
         }
     }
     if (response.ok) {
@@ -225,8 +235,8 @@ export const ApiCall = async (
 
 // DB: Conversation List
 
-// const generateNewConversationId = () => {
-//     return crypto.randomUUID();
+// export const generateNewConversationId = () => {
+//     return getUuidV4();
 // };
 
 export const checkConversationIdChange = async (state, dispatch, externalApiResponse) => {

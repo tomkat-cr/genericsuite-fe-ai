@@ -28,7 +28,8 @@ const defaultFilenametoDownload = gs.blobFilesUtilities.defaultFilenametoDownloa
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 const console_debug_log = gs.loggingService.console_debug_log;
 
-const debug = false;
+const debug = true;
+
 const browserAudioController = true;
 
 const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
@@ -39,6 +40,7 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
 
   const fixBlob = () => {
     if (!blobUrl) {
+      if (debug) console_debug_log("AudioPlayer | fixBlob | blobUrl is empty");
       return;
     }
     fetch(blobUrl).then(r => {
@@ -50,6 +52,7 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
           const newBlobUrl = decodeBlob(reader.result, filename);
           audioPlayer.current.src = newBlobUrl;
           audioPlayer.current.play();
+          if (debug) console_debug_log("AudioPlayer | fixBlob | newBlobUrl:", newBlobUrl);
         }
       });
     });
@@ -117,6 +120,7 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
   }
 
   if (browserAudioController) {
+    if (debug) console_debug_log("AudioPlayer | browserAudioController | blobUrl:", blobUrl);
     return (
       <>
         <audio
@@ -129,6 +133,7 @@ const AudioPlayer = ({ blobUrl, filename, expired, errorMsgSuffix }) => {
     );
   }
 
+  if (debug) console_debug_log("AudioPlayer | Not browser audio controller | blobUrl:", blobUrl);
   return (
     <div
       className={AUDIO_PLAYER_DIV_1_CLASS}

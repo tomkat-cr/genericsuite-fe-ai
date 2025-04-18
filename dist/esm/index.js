@@ -398,7 +398,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 const GsIcons$8 = gs.IconsLib.GsIcons;
 const dbApiService$3 = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER$2 = gs.dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log$1 = gs.loggingService.console_debug_log;
+const console_debug_log$2 = gs.loggingService.console_debug_log;
 const formatCaughtError$4 = gs.errorAndReenter.formatCaughtError;
 const toggleIdVisibility$3 = gs.ui.toggleIdVisibility;
 const getMediaTypeToRecord = gs.media.getMediaTypeToRecord;
@@ -608,9 +608,13 @@ const VoiceMessageRecorder = _ref => {
 };
 
 const formatCaughtError$3 = gs.errorAndReenter.formatCaughtError;
+const getErrorDetail = gs.errorAndReenter.getErrorDetail;
 const dbApiService$2 = gs.dbService.dbApiService;
 const defaultValue = gs.genericEditorUtilities.defaultValue;
-const console_debug_log = gs.loggingService.console_debug_log;
+
+// const getUuidV4 = gs.idUtilities.getUuidV4;
+
+const console_debug_log$1 = gs.loggingService.console_debug_log;
 
 // Current user
 
@@ -686,9 +690,11 @@ const ApiCall = async (dispatch, params) => {
   };
   const processErrorResponse = errorRaw => {
     const error = formatCaughtError$3(errorRaw);
+    const errorDetails = getErrorDetail(errorRaw);
     return {
       ok: false,
-      errorMessage: error.message
+      errorMessage: error.message,
+      errorDetails: errorDetails
     };
   };
   const verifyId = id => {
@@ -766,21 +772,23 @@ const ApiCall = async (dispatch, params) => {
       default:
         response = {
           ok: false,
-          errorMessage: `Invalid operation type: "${operationType}"`
+          errorMessage: `Invalid operation type: "${operationType}"`,
+          errorDetails: null
         };
     }
   } catch (error) {
     response = {
       ok: false,
-      errorMessage: error.message
+      errorMessage: error.message,
+      errorDetails: getErrorDetail(error)
     };
   }
   if (response.ok) {
     response.operationMessage = `${the} ${operationDescription} ${ActionDescription} ${was_successful}`;
   } else {
     response.operationMessage = `${error_in_the} ${operationDescription} ${ActionDescription}`;
-    console_debug_log('ApiCall ERROR:');
-    console_debug_log(response.operationMessage);
+    console_debug_log$1('ApiCall ERROR:');
+    console_debug_log$1(response.operationMessage);
   }
   dispatch({
     type: 'API_PROCESSING_STATUS',
@@ -812,8 +820,8 @@ const ApiCall = async (dispatch, params) => {
 
 // DB: Conversation List
 
-// const generateNewConversationId = () => {
-//     return crypto.randomUUID();
+// export const generateNewConversationId = () => {
+//     return getUuidV4();
 // };
 
 const checkConversationIdChange = async (state, dispatch, externalApiResponse) => {
@@ -1411,7 +1419,9 @@ const GsIcons$5 = gs.IconsLib.GsIcons;
 const useAppContext$3 = gs.AppContext.useAppContext;
 const resizeManager = gs.ui.resizeManager;
 gs.loggingService.console_debug_log;
-const convertId$2 = gs.dbService.convertId;
+
+// const convertId = gs.dbService.convertId;
+const convertId$2 = gs.idUtilities.convertId;
 const usePlainFetch$1 = gs.responseHandlersService.usePlainFetch;
 gs.ui.growUpTextArea;
 gs.ui.resetTextArea;
@@ -1591,6 +1601,7 @@ const UserInput = _ref => {
         // botReply.ok is not OK...
         let errorToReport = botReply.errorMessage;
         console.error('>> Error communicating with the bot:', errorToReport);
+        console.error('>> botReply:', botReply);
 
         // Refresh the conversation list on any error...
         fetchConversations(state, dispatch).then(apiResponse => {
@@ -1756,7 +1767,9 @@ const NewConversationButton = _ref => {
 //     faTrash,
 // );
 const GsIcons$3 = gs.IconsLib.GsIcons;
-const convertId$1 = gs.dbService.convertId;
+
+// const convertId = gs.dbService.convertId;
+const convertId$1 = gs.idUtilities.convertId;
 gs.loggingService.console_debug_log;
 const timestampToDate = gs.dateTimestamp.timestampToDate;
 const useAppContext$2 = gs.AppContext.useAppContext;
@@ -2010,7 +2023,7 @@ gs.IconsLib.GsIcons;
 const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
-gs.loggingService.console_debug_log;
+const console_debug_log = gs.loggingService.console_debug_log;
 const AudioPlayer = _ref => {
   let {
     blobUrl,
@@ -2025,6 +2038,7 @@ const AudioPlayer = _ref => {
 
   const fixBlob = () => {
     if (!blobUrl) {
+      console_debug_log("AudioPlayer | fixBlob | blobUrl is empty");
       return;
     }
     fetch(blobUrl).then(r => {
@@ -2036,6 +2050,7 @@ const AudioPlayer = _ref => {
           const newBlobUrl = decodeBlob(reader.result, filename);
           audioPlayer.current.src = newBlobUrl;
           audioPlayer.current.play();
+          console_debug_log("AudioPlayer | fixBlob | newBlobUrl:", newBlobUrl);
         };
       });
     });
@@ -2047,6 +2062,7 @@ const AudioPlayer = _ref => {
     setIsPlaying(!prevValue);
     if (!prevValue) {
       audioPlayer.current.play().catch(error => {
+        console_debug_log("AudioPlayer | togglePlayPause | error:", error, 'error.message:', error.message);
         const errorMsgs = ["Failed to load because no supported source was found.", "The element has no supported sources."];
         if (Object.values(errorMsgs).some(msg => error.message.includes(msg))) {
           // Probably the data comes from AWS API Gateway in Base64 format
@@ -2066,6 +2082,7 @@ const AudioPlayer = _ref => {
     }, `Audio file expired${errorMsgSuffix}`);
   }
   {
+    console_debug_log("AudioPlayer | browserAudioController | blobUrl:", blobUrl);
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
       ref: audioPlayer,
       src: blobUrl,
@@ -2106,11 +2123,10 @@ const GoToTheBottom = _ref => {
 
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
-const ScrollToBottomButton = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const ScrollToBottomButton = ({
+  elementId,
+  elementsToRender
+}) => {
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
@@ -2177,7 +2193,9 @@ const ChatCodeBlock = _ref => {
       //         </LinkifyText>
       //     );
       // }
-      return /*#__PURE__*/React.createElement(React.Fragment, null, renderMarkdownContent(part));
+      return /*#__PURE__*/React.createElement("div", {
+        key: `${index}-other`
+      }, renderMarkdownContent(part));
     } else {
       // Handle code blocks
       let content = part.trim();
@@ -2367,7 +2385,8 @@ const ConversationBlock = _ref => {
   }));
 };
 
-const convertId = gs.dbService.convertId;
+// const convertId = gs.dbService.convertId;
+const convertId = gs.idUtilities.convertId;
 gs.loggingService.console_debug_log;
 const isMobileDevice = gs.ui.isMobileDevice;
 const getUrlParams = gs.urlParams.getUrlParams;

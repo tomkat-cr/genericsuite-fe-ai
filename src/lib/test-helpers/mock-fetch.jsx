@@ -139,5 +139,9 @@ export function mockGenericsuite() {
         dictUtilities: {
             mergeDicts: jest.fn(),
         },
+        idUtilities: {
+            getUuidV4: jest.fn(),
+            convertId: jest.fn(),
+        },
     };
 };

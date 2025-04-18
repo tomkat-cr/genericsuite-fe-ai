@@ -55,7 +55,9 @@ const useAppContext = gs.AppContext.useAppContext;
 const resizeManager = gs.ui.resizeManager;
 
 const console_debug_log = gs.loggingService.console_debug_log;
-const convertId = gs.dbService.convertId;
+
+// const convertId = gs.dbService.convertId;
+const convertId = gs.idUtilities.convertId;
 
 const usePlainFetch = gs.responseHandlersService.usePlainFetch;
 const growUpTextArea = gs.ui.growUpTextArea;
@@ -247,6 +249,7 @@ export const UserInput = ({
                 let errorToReport = botReply.errorMessage;
 
                 console.error('>> Error communicating with the bot:', errorToReport);
+                console.error('>> botReply:', botReply);
 
                 // Refresh the conversation list on any error...
                 fetchConversations(state, dispatch)
