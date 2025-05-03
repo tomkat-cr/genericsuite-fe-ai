@@ -26,8 +26,12 @@ convertId() function moved from db.service.jsx to id.utilities.jsx in GenericSui
   Before: const convertId = gs.dbService.convertId; ... or editor.db.convertId(...)
   Now: const convertId = gs.idUtilities.convertId;
 Implement axios in all API calls to handle Flask backend files retrieval with all required headers [GS-15].
+Add Vite as alternative to webpack [GS-195].
+Add setupTests.js to fix jest test with "react-router-dom" to v7 [GS-199].
 
 ### Fixes
+Fix the net:ERR_CERT_AUTHORITY_INVALID error in GenericSuite FE/BE using the https protocol [GS-198].
+Fix the React Router v7 Future Flag Warning by upgrading "react-router-dom" to v7 [GS-199].
 Fix "Warning: Each child in a list should have a unique "key" prop. Check the render method of `ChatCodeBlock`" warning.
 
 
