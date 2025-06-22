@@ -1,6 +1,7 @@
 /* vite.config.js | Vite */
 
 import { defineConfig } from 'vite';
+import tailwindcss from "@tailwindcss/vite";
 import react from '@vitejs/plugin-react';
 import vitePluginRequire from 'vite-plugin-require';
 import { resolve } from 'path';
@@ -68,7 +69,8 @@ export default defineConfig(({ mode }) => {
     return {
         plugins: [
             react(),
-            vitePluginRequire()
+            vitePluginRequire,
+            tailwindcss(),
         ],
         server: serverConfig,
         resolve: {
