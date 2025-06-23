@@ -30,6 +30,7 @@ Add Vite as alternative to webpack [GS-195].
 Tailwind CSS updated from "^v3.4.9" to "^v4.1.5" [GS-112].
 Add setupTests.js to fix jest test with "react-router-dom" to v7 [GS-199].
 Default node version upgraded to 20 in ".nvmrc" [GS-199].
+Add "@types/node" to resolve paths without error using "@/" prefix [GS-112] [PC-2].
 
 ### Fixes
 Fix the net:ERR_CERT_AUTHORITY_INVALID error in GenericSuite FE/BE using the https protocol [GS-198].
