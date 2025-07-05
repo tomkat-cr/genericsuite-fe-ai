@@ -2068,13 +2068,12 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 const console_debug_log = gs.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -2123,7 +2122,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     console_debug_log("AudioPlayer | browserAudioController | blobUrl:", blobUrl);
@@ -2673,11 +2672,13 @@ const defaultComponentMap = {
 const App = _ref => {
   let {
     componentMap = {},
-    appLogo = null
+    appLogo = null,
+    appLogoHeader = null
   } = _ref;
   const componentMapFinal = mergeDicts(componentMap, defaultComponentMap);
   return /*#__PURE__*/React.createElement(gs.App, {
     appLogo: appLogo === null ? 'gs_ai_logo_circle.svg' : appLogo,
+    appLogoHeader: appLogoHeader,
     componentMap: componentMapFinal
   });
 };

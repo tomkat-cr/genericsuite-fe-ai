@@ -16,9 +16,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
-## Unreleased
-## 1.0.23 (2025-03-13)
+## 1.0.23 (2025-07-05)
 ---
+
+### New
+Add landscape logo to the App header (appLogoHeader) [GS-63].
 
 ### Changes
 GenericSuite FE core upgraded to v1.0.25.
