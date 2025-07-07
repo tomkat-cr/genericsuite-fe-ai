@@ -16,7 +16,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
-## 1.0.23 (2025-07-05)
+## 1.0.23 (2025-07-07)
 ---
 
 ### New
@@ -38,6 +38,7 @@ Add "@types/node" to resolve paths without error using "@/" prefix [GS-112] [PC-
 Fix the net:ERR_CERT_AUTHORITY_INVALID error in GenericSuite FE/BE using the https protocol [GS-198].
 Fix the React Router v7 Future Flag Warning by upgrading "react-router-dom" to v7 [GS-199].
 Fix "Warning: Each child in a list should have a unique "key" prop. Check the render method of `ChatCodeBlock`" warning.
+Update "webpack.config.js" to fix the error "Can't resolve 'process/browser'" [GS-198] [GS-195].
 
 
 ## 1.0.22 (2025-02-19)
