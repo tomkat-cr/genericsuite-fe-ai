@@ -41,9 +41,9 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
                     //     );
                     // }
                     return (
-                        <>
+                        <div key={`${index}-other`}>
                             {renderMarkdownContent(part)}
-                        </>
+                        </div>
                     );
                 } else {
                     // Handle code blocks

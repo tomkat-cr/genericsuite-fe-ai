@@ -14,12 +14,13 @@ const defaultComponentMap = {
     // "ChatBotButton": ChatBotButton,
 };
 
-export const App = ({componentMap = {}, appLogo = null}) => {
+export const App = ({componentMap = {}, appLogo = null, appLogoHeader = null }) => {
     const componentMapFinal = mergeDicts(componentMap, defaultComponentMap);
     if (debug) console_debug_log("GS_AI App | componentMapFinal:", componentMapFinal);
     return (
         <gs.App
             appLogo={(appLogo === null ? 'gs_ai_logo_circle.svg' : appLogo)}
+            appLogoHeader={appLogoHeader}
             componentMap={componentMapFinal}
         />
     );

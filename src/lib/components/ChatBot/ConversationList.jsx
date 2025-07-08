@@ -32,7 +32,9 @@ import {
 // );
 const GsIcons = gs.IconsLib.GsIcons;
 
-const convertId = gs.dbService.convertId;
+// const convertId = gs.dbService.convertId;
+const convertId = gs.idUtilities.convertId;
+
 const console_debug_log = gs.loggingService.console_debug_log;
 const timestampToDate = gs.dateTimestamp.timestampToDate;
 const useAppContext = gs.AppContext.useAppContext;

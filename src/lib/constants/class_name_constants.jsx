@@ -8,7 +8,7 @@ export const CHATBOT_CONTAINER_DIV_1_CLASS = "relative flex w-full overflow-hidd
 
 // Conversation List column
 
-export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "ml-2 h-full flex-shrink-0 overflow-x-hidden 1-max-md:!w-0 chatbot-conversations-list-div-1-class";
+export const CHATBOT_CONVERSATIONS_LIST_DIV_1_CLASS = "ml-2 h-full shrink-0 overflow-x-hidden 1-max-md:!w-0 chatbot-conversations-list-div-1-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_2_CLASS = "w-[260px] h-full chatbot-conversations-list-div-2-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_3_CLASS = "draggable relative h-full w-full flex-1 items-start border-white/20 chatbot-conversations-list-div-3-class";
 export const CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS = "flex h-full w-full flex-col 1-px-3 chatbot-conversations-list-div-4-class";
@@ -72,14 +72,14 @@ export const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS = "rounded-md cha
 
 export const CHATBOT_INPUT_AREA_DIV_1_CLASS = "md:pt-0 dark:border-white/20 md:border-transparent md:dark:border-transparent w-full chatbot-input-area-div-1-class";
 export const CHATBOT_INPUT_AREA_DIV_2_CLASS = "text-base px-3 md:px-4 m-auto w-full md:px-5 lg:px-4 xl:px-5 chatbot-input-area-div-2-class";
-export const CHATBOT_INPUT_AREA_DIV_3_CLASS = "mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem] chatbot-input-area-div-3-class";
-export const CHATBOT_INPUT_AREA_DIV_4_CLASS = "mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-[40rem] xl:max-w-[48rem] chatbot-input-area-div-4-class";
+export const CHATBOT_INPUT_AREA_DIV_3_CLASS = "mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-160 xl:max-w-3xl chatbot-input-area-div-3-class";
+export const CHATBOT_INPUT_AREA_DIV_4_CLASS = "mx-auto flex flex-1 gap-4 text-base md:gap-5 lg:gap-6 md:max-w-3xl lg:max-w-160 xl:max-w-3xl chatbot-input-area-div-4-class";
 export const CHATBOT_INPUT_AREA_DIV_5_CLASS = "relative flex h-full max-w-full flex-1 flex-col chatbot-input-area-div-5-class";
 export const CHATBOT_INPUT_AREA_DIV_61_CLASS = "absolute bottom-full left-0 right-0 z-20 chatbot-input-area-div-61-class";
 export const CHATBOT_INPUT_AREA_DIV_62_CLASS = "group relative flex w-full items-center chatbot-input-area-div-62-class";
 
 // export const CHATBOT_INPUT_AREA_TEXTAREA_CLASS = "p-2 mr-2 rounded-xl w-full resize-none max-h-[200px] overflow-y-hidden chatbot-input-area-textarea-class";
-export const CHATBOT_INPUT_AREA_TEXTAREA_CLASS = "p-2 mr-2 rounded-xl w-full resize-none max-h-[200px] overflow-y-auto chatbot-input-area-textarea-class";
+export const CHATBOT_INPUT_AREA_TEXTAREA_CLASS = "p-3 mr-2 rounded-xl w-full resize-none max-h-[200px] overflow-y-auto bg-white min-h-[50px] border border-gray-300 chatbot-input-area-textarea-class";
 export const CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS = "bg-gray-300 chatbot-input-area-textarea-lm-class";
 export const CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS = "chatbot-input-area-textarea-dm-class";
 export const CHATBOT_INPUT_AREA_BUTTON_CLASS = `${BUTTON_LISTING_CLASS} mr-2 chatbot-input-area-button-class`;
@@ -97,7 +97,7 @@ export const AUDIO_PLAYER_PLAY_BUTTON_CLASS = "border-none focus:outline-none au
 export const CAMERA_COMPONENT_DIV_1_CLASS = "camera-component-div-1-class";
 export const CAMERA_COMPONENT_DIV_2_CLASS = "min-w-full w-full flex items-center mr-3 camera-component-div-2-class";
 export const CAMERA_COMPONENT_BUTTON_SUB_CLASS = `${BUTTON_LISTING_CLASS} mr-2 camera-component-button-sub-class`;
-export const CAMERA_COMPONENT_BUTTON_MAIN_CLASS = `border-none mr-2 text-sm camera-component-button-main-class`;
+export const CAMERA_COMPONENT_BUTTON_MAIN_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 text-sm camera-component-button-main-class`;
 export const CAMERA_COMPONENT_VIDEO_CONTAINER_CLASS = "relative w-full max-w-full camera-component-video-container-class";
 export const CAMERA_COMPONENT_PHOTO_CLASS = "mr-2 camera-component-photo-class";
 export const CAMERA_COMPONENT_VIDEO_CLASS = "w-full h-auto .video-container camera-component-video-class";
@@ -121,14 +121,14 @@ export const SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS = "1-mt-3 text-center scroll-to-
 export const FILE_UPLOADER_DIV_1_CLASS = "file-uploader-div-1-class";
 export const FILE_UPLOADER_DIV_2_CLASS = "flex items-center file-uploader-div-1-class";
 export const FILE_UPLOADER_BASE_BUTTON_CLASS = `${BUTTON_LISTING_CLASS} file-uploader-base-button-class`;
-export const FILE_UPLOADER_BUTTON_CLASS = `border-none mr-2 file-uploader-button-class`;
+export const FILE_UPLOADER_BUTTON_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 file-uploader-button-class`;
 export const FILE_UPLOADER_INPUT_AREA_CONTAINER_CLASS = "flex items-center file-uploader-input-area-container-class";
 export const FILE_UPLOADER_INPUT_AREA_INPUT_CLASS = "p-0 m-0 file-uploader-input-area-input-class";
 
 // VoiceMessageRecorder
 
 export const VOICE_MESSAGE_RECORDER_DIV_1_CLASS = "voice-message-recorder-div-1-class";
-export const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = `border-none mr-1 mt-1 voice-message-recorder-button-class`;
+export const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 voice-message-recorder-button-class`;
 
 // ChatBotButton
 

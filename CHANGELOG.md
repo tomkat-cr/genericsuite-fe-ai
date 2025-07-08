@@ -16,6 +16,31 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Breaks
 
 
+## 1.0.23 (2025-07-08)
+---
+
+### New
+Add landscape logo to the App header (appLogoHeader) [GS-63].
+
+### Changes
+GenericSuite FE core upgraded to v1.0.25.
+convertId() function moved from db.service.jsx to id.utilities.jsx in GenericSuite FE [GS-185].
+  Before: const convertId = gs.dbService.convertId; ... or editor.db.convertId(...)
+  Now: const convertId = gs.idUtilities.convertId;
+Implement axios in all API calls to handle Flask backend files retrieval with all required headers [GS-15].
+Add Vite as alternative to webpack [GS-195].
+Tailwind CSS updated from "^v3.4.9" to "^v4.1.5" [GS-112].
+Add setupTests.js to fix jest test with "react-router-dom" to v7 [GS-199].
+Default node version upgraded to 20 in ".nvmrc" [GS-199].
+Add "@types/node" to resolve paths without error using "@/" prefix [GS-112] [PC-2].
+
+### Fixes
+Fix the net:ERR_CERT_AUTHORITY_INVALID error in GenericSuite FE/BE using the https protocol [GS-198].
+Fix the React Router v7 Future Flag Warning by upgrading "react-router-dom" to v7 [GS-199].
+Fix "Warning: Each child in a list should have a unique "key" prop. Check the render method of `ChatCodeBlock`" warning.
+Update "webpack.config.js" to fix the error "Error: Can't resolve 'process/browser'" and remove NODE_TLS_REJECT_UNAUTHORIZED envvar [GS-199] [GS-198] [GS-195].
+
+
 ## 1.0.22 (2025-02-19)
 ---
 
