@@ -2089,12 +2089,13 @@ const WARNING_MSG_CLASS$1 = gs__namespace.classNameConstants.WARNING_MSG_CLASS;
 gs__namespace.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs__namespace.blobFilesUtilities.decodeBlob;
 const console_debug_log = gs__namespace.loggingService.console_debug_log;
-const AudioPlayer = ({
-  blobUrl,
-  filename,
-  expired,
-  errorMsgSuffix
-}) => {
+const AudioPlayer = _ref => {
+  let {
+    blobUrl,
+    filename,
+    expired,
+    errorMsgSuffix
+  } = _ref;
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [currentTime, setCurrentTime] = React.useState(0);
@@ -2143,7 +2144,7 @@ const AudioPlayer = ({
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, `Audio file expired${errorMsgSuffix}`);
+    }, "Audio file expired".concat(errorMsgSuffix));
   }
   {
     console_debug_log("AudioPlayer | browserAudioController | blobUrl:", blobUrl);
