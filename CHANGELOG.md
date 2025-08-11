@@ -17,11 +17,16 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ## [1.1.0] - 2025-08-08
 
+### Added
+- Add local run protocol options (RUN_PROTOCOL) in .env.example.
+
 ### Changed
 - Update CHANGELOG format to be more semantic.
+- Remove logging in AudioPlayer component for clarity.
 
 ### Fixed
-- AI Assistant chat shows code blocks wrong with no word-wrapping or horizontal scrolling [GS-225].
+- Fix the AI Assistant chat shows code blocks wrong with no word-wrapping or horizontal scrolling [GS-225].
+- Remove Vite, Webpack and React-App-Rewired dependencies before publishing to NPM.
 - Replace class-properties plugin with transform-class-properties to fix the "npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead." warning [GS-219].
 
 ### Security

@@ -83,7 +83,6 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^24.0.3",
     "@types/react": "^18.2.63",
-    "@vitejs/plugin-react": "^4.6.0",
     "autoprefixer": "^10.4.16",
     "babel-jest": "^29.7.0",
     "babel-loader": "^9.1.3",
@@ -107,8 +106,6 @@
     "tailwindcss": "^4.1.10",
     "typescript": "^5.3.3",
     "url-loader": "^4.1.1",
-    "vite": "^5.4.19",
-    "vite-plugin-require": "^1.2.14",
     "whatwg-fetch": "^3.6.20"
   },
   "peerDependencies": {

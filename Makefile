@@ -106,6 +106,10 @@ pre-publish:
 
 publish: pre-publish
 	# sh node_modules/genericsuite/scripts/npm_publish.sh publish
+	npm un install --save-dev \
+		webpack webpack-cli webpack-dev-server html-webpack-plugin interpolate-html-plugin \
+		vite @vitejs/plugin-react vite-plugin-require \
+		react-app-rewired react-scripts
 	echo "Press Enter to publish, Ctrl-C to stop"
 	read answer
 	npm publish --access=public

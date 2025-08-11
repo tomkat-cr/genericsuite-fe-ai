@@ -5,6 +5,12 @@ const fs = require('fs');
 const path = require('path');
 const appLocalDomainName = process.env.APP_LOCAL_DOMAIN_NAME;
 
+/*
+https://github.com/timarney/react-app-rewired
+
+npm install --save-dev react-app-rewired react-scripts
+*/
+
 module.exports = {
     // The Webpack config to use when compiling your react app for development or production.
     webpack: function(config, env) {
