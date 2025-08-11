@@ -44,6 +44,6 @@ GenericSuite AI is open-sourced software licensed under the ISC license.
 
 ## Credits
 
-This project is developed and maintained by Carlos J. Ramirez. For more information or to contribute to the project, visit [GenericSuite AI on GitHub](https://github.com/tomkat-cr/genericsuite-fe-ai).
+This project is developed and maintained by [Carlos J. Ramirez](https://github.com/tomkat-cr). For more information or to contribute to the project, visit [GenericSuite AI on GitHub](https://github.com/tomkat-cr/genericsuite-fe-ai).
 
 Happy Coding!

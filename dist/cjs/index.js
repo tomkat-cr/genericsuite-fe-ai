@@ -2238,6 +2238,7 @@ element && element.scrollHeight > element.scrollTop + element.clientHeight ? 'vi
 gs__namespace.ui.LinkifyText;
 const CopyButton = gs__namespace.ui.CopyButton;
 const renderMarkdownContent = gs__namespace.ui.renderMarkdownContent;
+const prismLanguajes = getPrismLanguajes();
 const ChatCodeBlock = _ref => {
   let {
     children,
@@ -2292,11 +2293,15 @@ const ChatCodeBlock = _ref => {
         }
       }, language), /*#__PURE__*/React.createElement("div", {
         key: "".concat(index, "-content")
-      }, shType === "prism" ? /*#__PURE__*/React.createElement(reactSyntaxHighlighter.Prism, {
+      }, shType === "prism" && prismLanguajes.includes(language) ? /*#__PURE__*/React.createElement(reactSyntaxHighlighter.Prism, {
         language: language,
         style: index_js.vscDarkPlus,
         wrapLongLines: true
-      }, content) : /*#__PURE__*/React.createElement(reactSyntaxHighlighter.Light, {
+      }, content) :
+      /*#__PURE__*/
+      // If the language is not in the prismLanguajes list, it's not a language, it's a comment...
+      // So Prism is not good for comments because it doesn't wrap long lines even if wrapLongLines is true, and Light does
+      React.createElement(reactSyntaxHighlighter.Light, {
         language: language,
         style: index_js$1.grayscale,
         wrapLongLines: true
@@ -2306,6 +2311,9 @@ const ChatCodeBlock = _ref => {
     }
   }));
 };
+function getPrismLanguajes() {
+  return ['abap', 'abnf', 'actionscript', 'ada', 'agda', 'al', 'antlr4', 'apacheconf', 'apex', 'apl', 'applescript', 'aql', 'arduino', 'arff', 'asciidoc', 'asm6502', 'asmatmel', 'aspnet', 'autohotkey', 'autoit', 'avisynth', 'avroIdl', 'avro-idl', 'bash', 'basic', 'batch', 'bbcode', 'bicep', 'birb', 'bison', 'bnf', 'brainfuck', 'brightscript', 'bro', 'bsl', 'c', 'cfscript', 'chaiscript', 'cil', 'clike', 'clojure', 'cmake', 'cobol', 'coffeescript', 'concurnas', 'coq', 'cpp', 'crystal', 'csharp', 'cshtml', 'csp', 'cssExtras', 'css-extras', 'css', 'csv', 'cypher', 'd', 'dart', 'dataweave', 'dax', 'dhall', 'diff', 'django', 'dnsZoneFile', 'dns-zone-file', 'docker', 'dot', 'ebnf', 'editorconfig', 'eiffel', 'ejs', 'elixir', 'elm', 'erb', 'erlang', 'etlua', 'excelFormula', 'excel-formula', 'factor', 'falselang', 'false', 'firestoreSecurityRules', 'firestore-security-rules', 'flow', 'fortran', 'fsharp', 'ftl', 'gap', 'gcode', 'gdscript', 'gedcom', 'gherkin', 'git', 'glsl', 'gml', 'gn', 'goModule', 'go-module', 'go', 'graphql', 'groovy', 'haml', 'handlebars', 'haskell', 'haxe', 'hcl', 'hlsl', 'hoon', 'hpkp', 'hsts', 'http', 'ichigojam', 'icon', 'icuMessageFormat', 'icu-message-format', 'idris', 'iecst', 'ignore', 'inform7', 'ini', 'io', 'j', 'java', 'javadoc', 'javadoclike', 'javascript', 'javastacktrace', 'jexl', 'jolie', 'jq', 'jsExtras', 'js-extras', 'jsTemplates', 'js-templates', 'jsdoc', 'json', 'json5', 'jsonp', 'jsstacktrace', 'jsx', 'julia', 'keepalived', 'keyman', 'kotlin', 'kumir', 'kusto', 'latex', 'latte', 'less', 'lilypond', 'liquid', 'lisp', 'livescript', 'llvm', 'log', 'lolcode', 'lua', 'magma', 'makefile', 'markdown', 'markupTemplating', 'markup-templating', 'markup', 'matlab', 'maxscript', 'mel', 'mermaid', 'mizar', 'mongodb', 'monkey', 'moonscript', 'n1ql', 'n4js', 'nand2tetrisHdl', 'nand2tetris-hdl', 'naniscript', 'nasm', 'neon', 'nevod', 'nginx', 'nim', 'nix', 'nsis', 'objectivec', 'ocaml', 'opencl', 'openqasm', 'oz', 'parigp', 'parser', 'pascal', 'pascaligo', 'pcaxis', 'peoplecode', 'perl', 'phpExtras', 'php-extras', 'php', 'phpdoc', 'plsql', 'powerquery', 'powershell', 'processing', 'prolog', 'promql', 'properties', 'protobuf', 'psl', 'pug', 'puppet', 'pure', 'purebasic', 'purescript', 'python', 'q', 'qml', 'qore', 'qsharp', 'r', 'racket', 'reason', 'regex', 'rego', 'renpy', 'rest', 'rip', 'roboconf', 'robotframework', 'ruby', 'rust', 'sas', 'sass', 'scala', 'scheme', 'scss', 'shellSession', 'shell-session', 'smali', 'smalltalk', 'smarty', 'sml', 'solidity', 'solutionFile', 'solution-file', 'soy', 'sparql', 'splunkSpl', 'splunk-spl', 'sqf', 'sql', 'squirrel', 'stan', 'stylus', 'swift', 'systemd', 't4Cs', 't4-cs', 't4Templating', 't4-templating', 't4Vb', 't4-vb', 'tap', 'tcl', 'textile', 'toml', 'tremor', 'tsx', 'tt2', 'turtle', 'twig', 'typescript', 'typoscript', 'unrealscript', 'uorazor', 'uri', 'v', 'vala', 'vbnet', 'velocity', 'verilog', 'vhdl', 'vim', 'visualBasic', 'visual-basic', 'warpscript', 'wasm', 'webIdl', 'web-idl', 'wiki', 'wolfram', 'wren', 'xeora', 'xmlDoc', 'xml-doc', 'xojo', 'xquery', 'yaml', 'yang', 'zig'];
+}
 
 // import './ChatBot.css';
 
