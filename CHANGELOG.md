@@ -15,7 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
-## [1.1.0] - 2025-09-03
+## [1.1.0] - 2025-09-04
 
 ### Added
 - Add local run protocol options (RUN_PROTOCOL) in .env.example.
