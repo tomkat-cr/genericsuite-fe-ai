@@ -28,7 +28,7 @@ dev:
 	npm install --dev
 
 clean:
-	npm --rm
+	npm cache clean --force && rm -rf node_modules
 
 fresh: clean install
 
@@ -106,7 +106,7 @@ pre-publish:
 
 publish: pre-publish
 	# sh node_modules/genericsuite/scripts/npm_publish.sh publish
-	npm un install --save-dev \
+	npm uninstall --save-dev \
 		webpack webpack-cli webpack-dev-server html-webpack-plugin interpolate-html-plugin \
 		vite @vitejs/plugin-react vite-plugin-require \
 		react-app-rewired react-scripts

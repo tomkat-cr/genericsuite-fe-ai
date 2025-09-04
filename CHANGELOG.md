@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
 
-## [Unreleased] - Date
+## [Unreleased] (Date)
 
 ### Added
 
@@ -15,7 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
-## [1.1.0] - 2025-08-08
+## [1.1.0] (2025-09-03)
 
 ### Added
 - Add local run protocol options (RUN_PROTOCOL) in .env.example.
@@ -35,7 +35,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Basic rate limiting to mitigate DoS via expensive FS operations in "server.js" [GS-219].
 
 
-## [1.0.23] - 2025-07-08
+## [1.0.23] (2025-07-08)
 
 ### Added
 - Add landscape logo to the App header (appLogoHeader) [GS-63].
@@ -59,13 +59,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Update "webpack.config.js" to fix the error "Error: Can't resolve 'process/browser'" and remove NODE_TLS_REJECT_UNAUTHORIZED envvar [GS-199] [GS-198] [GS-195].
 
 
-## [1.0.22] - 2025-02-19
+## [1.0.22] (2025-02-19)
 
 ### Changed
 - GenericSuite FE core upgraded to v1.0.24.
 
 
-## [1.0.21] - 2024-10-25
+## [1.0.21] (2024-10-25)
 
 ### Changed
 - GenericSuite FE core upgraded to v1.0.23.
@@ -78,7 +78,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix AI Assistant in mobile devices.
 
 
-## [1.0.20] - 2024-10-07
+## [1.0.20] (2024-10-07)
 
 ### Added
 - New Genericsuite Core 1.0.22.
@@ -108,7 +108,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - SVG images removed and included in the "GsIcons" library [GS-115].
 
 
-## [1.0.19] - 2024-07-27
+## [1.0.19] (2024-07-27)
 
 ### Added
 - Add: ".nvmrc" file to set the repo default node version.
@@ -125,7 +125,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix: "ReferenceError: fetch is not defined" error in npm test.
 
 
-## [1.0.18] - 2024-06-06
+## [1.0.18] (2024-06-06)
 
 ### Added
 - Add REACT_APP_USE_AXIOS env. var. to eventually suppress use of axios to send files. Axios is needed for FastAPI based API backend. Defaults to "1" [GS-95].
@@ -135,32 +135,32 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Revert the box size and location on <VoiceMessageRecorder> change [GS-4].
 
 
-## [1.0.17] - 2024-05-17
+## [1.0.17] (2024-05-17)
 
 ### Fixed
 - Fix the "Uncaught ReferenceError: global is not defined" error removing "global.TextEncoder" from <FileUploader>.
 - Fix the "TextEncoder is not a constructor" error moving "axios", "browserify-zlib", "https-browserify", "net", "stream-http", "text-encoding", "util" to the peerDependencies.
 
 
-## [1.0.16] - 2024-05-17
+## [1.0.16] (2024-05-17)
 
 ### Fixed
 - Try to fix the "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" error adding GenericSuite FE to prod dependencies.
 
 
-## [1.0.15] - 2024-05-17
+## [1.0.15] (2024-05-17)
 
 ### Fixed
 - Try to fix the "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" error adding the TextEncodingPolyfill to index.cjs.
 
 
-## [1.0.14] - 2024-05-17
+## [1.0.14] (2024-05-17)
 
 ### Fixed
 - Try to fix the Fix "Uncaught TypeError: util__WEBPACK_IMPORTED_MODULE_6__.TextEncoder is not a constructor" using axios by installing by import "text-encoding" in <FileUploader>.
 
 
-## [1.0.13] - 2024-05-04
+## [1.0.13] (2024-05-04)
 
 ### Added
 - Add "axios" to send files to the FastAPk bacjend API [GS-68].
@@ -174,7 +174,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix: <VoiceMessageRecorder /> to restore the other buttons when there's any error.
 
 
-## [1.0.12] - 2024-04-20
+## [1.0.12] (2024-04-20)
 
 ### Changed
 - New version of genericsuite-fe 1.0.19 with FastAPI enhanced support [FA-246].
@@ -183,13 +183,13 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Homepage pointed to "https://genericsuite.carlosjramirez.com/Frontend-Development/GenericSuite-AI/" [FA-257].
 
 
-## [1.0.11] - 2024-04-06
+## [1.0.11] (2024-04-06)
 
 ### Changed
 - New version of genericsuite-fe 1.0.18.
 
 
-## [1.0.10] - 2024-04-01
+## [1.0.10] (2024-04-01)
 
 ### Added
 - Add `make deploy_demo` and `make config_demo` to manage the "demo" stage.
@@ -212,7 +212,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix "add_github_submodules.sh" to do "git submodule init", "git submodule sync" and "git pull --tags origin main" instead of "git checkout origin/main" to effectively pull the JSON configs from the git repository when the directory specified in "GIT_SUBMODULE_LOCAL_PATH" already exists and "git submodule add" was already run.
 
 
-## [1.0.9] - 2024-03-22
+## [1.0.9] (2024-03-22)
 
 ### Added
 - Add About and HomePage components (not exported, only for "src/index.jsx" test).
@@ -230,7 +230,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix the "ReferenceError: Response is not defined" message during the tests by adding the "whatwg-fetch" devDependency.
 
 
-## [1.0.8] - 2024-03-19
+## [1.0.8] (2024-03-19)
 
 ### Added
 - Add `make pre-publish` and `make publish` to publish library to NPMJS.
@@ -249,7 +249,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix the "Import in body of module; reorder to top" in all AI components [FA-83], [FA-239].
 
 
-## [1.0.7] - 2024-03-13
+## [1.0.7] (2024-03-13)
 
 ### Added
 - Add ChatBotButton component.
@@ -258,19 +258,19 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix the component exports for the "dist", isolating each component.
 
 
-## [1.0.6] - 2024-03-13
+## [1.0.6] (2024-03-13)
 
 ### Fixed
 - Fix error "Warning: React.createElement: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: object." in the referring project, replacing "import { App as GsApp } from 'genericsuite'" by "import * as gs from "genericsuite"" in src/components/App.jsx.
 
 
-## [1.0.5] - 2024-03-13
+## [1.0.5] (2024-03-13)
 
 ### Fixed
 - Fix error "Uncaught ReferenceError: require is not defined at ./node_modules/genericsuite-ai/dist/esm/index.js (chatbot.general.functions.jsx:) replacing all "require('genericsuite)" with "import * as gs from "genericsuite"".
 
 
-## [1.0.4] - 2024-03-13
+## [1.0.4] (2024-03-13)
 
 ### Added
 - Library documentation in the README file.
@@ -283,7 +283,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix error "BREAKING CHANGE: The request 'react-syntax-highlighter/dist/cjs/styles/hljs' failed to resolve only because it was resolved as fully specified.
 
 
-## [1.0.3] - 2024-03-11
+## [1.0.3] (2024-03-11)
 
 ### Changed
 - New version of genericsuite-fe 0.1.10.
@@ -292,7 +292,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - "package-lock.json" rebuilt.
 
 
-## [1.0.2] - 2024-03-11
+## [1.0.2] (2024-03-11)
 
 ### Added
 - Add files and package.json configurations to make genericsuite-ai an npm module.
@@ -325,20 +325,20 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
   - "types": "dist/index.d.ts",
 
 
-## [1.0.1] - 2024-03-06
+## [1.0.1] (2024-03-06)
 
 ### Fixed
 - Fix .babel, rollup.config.js, tsconfig.json, package.json, and index.tsx to generate the npm module and include the "/dist" files.
 
 
-## [1.0.0] - 2024-03-05
+## [1.0.0] (2024-03-05)
 
 ### Added
 - Separate FE Generic Suite AI to publish on NPM [FA-221].
 - Initial commit as an independent repository.
 
 
-## [0.0.2] - 2024-02-18
+## [0.0.2] (2024-02-18)
 
 ### Added
 - Add image generator using OpenAPI DALL-E 3 and show in the conversation component [FA-165].
@@ -348,7 +348,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - FE-BE: ChatBOT chats stored in the DB [FA-119].
 
 
-## [0.0.1] - 2023-07-21
+## [0.0.1] (2023-07-21)
 
 ### Added
 - Start AI Chatbot development [FA-93].
