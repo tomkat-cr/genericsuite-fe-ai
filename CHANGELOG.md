@@ -15,7 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
-## [1.1.0] - 2025-09-04
+## [1.1.0] - 2025-11-03
 
 ### Added
 - Add local run protocol options (RUN_PROTOCOL) in .env.example.
@@ -28,11 +28,23 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix the AI Assistant chat shows code blocks wrong with no word-wrapping or horizontal scrolling [GS-225].
 - Remove Vite, Webpack and React-App-Rewired dependencies before publishing to NPM.
 - Replace class-properties plugin with transform-class-properties to fix the "npm warn deprecated @babel/plugin-proposal-class-properties@7.18.6: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead." warning [GS-219].
+- Fix the "[!] Only inline sourcemaps are supported when bundling to stdout." error when running "make publish" (specifically in the "rollup -c" command) because of `react-syntax-highlighter` v16+ and its dependencies now use ES modules exclusively, and Jest needs explicit configuration to transform these modules from `node_modules` (which are normally ignored by default) [FA-83].
 
 ### Security
-- Update "axios" to ^1.11.0 to fix the "form-data" CWE-343, CVE-2025-7783, CVSS 9.4 security vulnerability [GS-219].
+- Update "axios" to ^1.13.0 to fix the following security vulnerability [GS-219]:
+  - "form-data" CWE-343, CVE-2025-7783, CVSS 9.4.
+  - "Axios is vulnerable to DoS attack through lack of data size check"
+  - "form-data uses unsafe random function in form-data for choosing boundary"
 - Fix "PostCSS line return parsing error" by updating "postcss" to "^8.5.6" [GS-219].
 - Basic rate limiting to mitigate DoS via expensive FS operations in "server.js" [GS-219].
+- Update "react-syntax-highlighter" to "^16.1.0" to fix the security vulnerability [GS-219]:
+  - "PrismJS DOM Clobbering vulnerability"
+- The following security vulnerabilities were fixed by running "npm update" [GS-219]:
+  - "Prototype Pollution in JSON5 via Parse Method"
+  - "pbkdf2 returns predictable uninitialized/zero-filled memory for non-normalized or unimplemented algos"
+  - "pbkdf2 silently disregards Uint8Array input, returning static keys"
+  - "Prototype pollution in webpack loader-utils"
+  - "sha.js is missing type checks leading to hash rewind and passing on crafted data"
 
 
 ## [1.0.23] - 2025-07-08
