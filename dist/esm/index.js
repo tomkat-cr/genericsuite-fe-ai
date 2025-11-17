@@ -2164,10 +2164,11 @@ const GoToTheBottom = _ref => {
 
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
-const ScrollToBottomButton = ({
-  elementId,
-  elementsToRender
-}) => {
+const ScrollToBottomButton = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
