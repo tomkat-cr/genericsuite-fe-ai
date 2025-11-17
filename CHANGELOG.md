@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
 
-## [Unreleased] - Date
+## [Unreleased]
 
 ### Added
 
@@ -15,7 +15,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
-## [1.1.0] - 2025-11-03
+## [1.1.0] - 2025-11-17
 
 ### Added
 - Add local run protocol options (RUN_PROTOCOL) in .env.example.
@@ -23,6 +23,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changed
 - Update CHANGELOG format to be more semantic.
 - Remove logging in AudioPlayer component for clarity.
+- Modify Makefile to move development dependencies before pre-publishing [GS-230].
+- Optimize ChatCodeBlock component by import the list of supported languages directly from react-syntax-highlighter instead of defining a long, hardcoded list of languages in getPrismLanguajes() [GS-230].
 
 ### Fixed
 - Fix the AI Assistant chat shows code blocks wrong with no word-wrapping or horizontal scrolling [GS-225].
@@ -39,6 +41,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Basic rate limiting to mitigate DoS via expensive FS operations in "server.js" [GS-219].
 - Update "react-syntax-highlighter" to "^16.1.0" to fix the security vulnerability [GS-219]:
   - "PrismJS DOM Clobbering vulnerability"
+- Bump babel-loader to ^10.0.0 to fix "@eslint/plugin-kit is vulnerable to Regular Expression Denial of Service attacks through ConfigCommentParser" [GS-219].
 - The following security vulnerabilities were fixed by running "npm update" [GS-219]:
   - "Prototype Pollution in JSON5 via Parse Method"
   - "pbkdf2 returns predictable uninitialized/zero-filled memory for non-normalized or unimplemented algos"
