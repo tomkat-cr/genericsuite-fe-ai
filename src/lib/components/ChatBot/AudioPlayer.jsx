@@ -28,7 +28,7 @@ const defaultFilenametoDownload = gs.blobFilesUtilities.defaultFilenametoDownloa
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 const console_debug_log = gs.loggingService.console_debug_log;
 
-const debug = true;
+const debug = false;
 
 const browserAudioController = true;
 

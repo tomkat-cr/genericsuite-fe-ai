@@ -28,7 +28,7 @@ dev:
 	npm install --dev
 
 clean:
-	npm --rm
+	npm cache clean --force && rm -rf node_modules
 
 fresh: clean install
 
@@ -104,7 +104,13 @@ pre-publish:
 	npm install --package-lock-only
 	npm run build
 
-publish: pre-publish
+remove-dev-dependencies:
+	npm uninstall --save-dev \
+		webpack webpack-cli webpack-dev-server html-webpack-plugin interpolate-html-plugin \
+		vite @vitejs/plugin-react vite-plugin-require \
+		react-app-rewired react-scripts
+
+publish: remove-dev-dependencies pre-publish
 	# sh node_modules/genericsuite/scripts/npm_publish.sh publish
 	echo "Press Enter to publish, Ctrl-C to stop"
 	read answer

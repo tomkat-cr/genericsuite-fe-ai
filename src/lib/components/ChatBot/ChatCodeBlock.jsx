@@ -12,6 +12,8 @@ import { Prism, Light } from 'react-syntax-highlighter';
 import { vscDarkPlus as shStyleforPrism } from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
 import { grayscale as shStyleForLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
 
+import { "default" as prismLanguajes } from 'react-syntax-highlighter/dist/cjs/languages/prism/supported-languages.js';
+
 ///////////////////////////
 
 import * as gs from "genericsuite";
@@ -49,7 +51,7 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
                     // Handle code blocks
                     let content = part.trim();
                     let language = content.split('\n')[0];
-                    
+
                     // Special handling for plaintext
                     if (language === 'plaintext') {
                         content = content.substring(language.length + 1).trim();
@@ -61,10 +63,11 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
                     }
 
                     content = content.substring(language.length + 1).trim();
-                    
                     return (
                         <div key={`${index}-content-wrapper`}>
-                            <div style={{ position: 'relative' }}>
+                            <div
+                                style={{ position: 'relative' }}
+                            >
                                 <div
                                     key={`${index}-language`}
                                     style={{
@@ -78,7 +81,7 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
                                     {language}
                                 </div>
                                 <div key={`${index}-content`}>
-                                    {shType === "prism" ? (
+                                    {shType === "prism" && prismLanguajes.includes(language) ? (
                                         <Prism
                                             language={language}
                                             style={shStyleforPrism}
@@ -87,6 +90,8 @@ export const ChatCodeBlock = ({ children, shType = "prism" }) => {
                                             {content}
                                         </Prism>
                                     ) : (
+                                        // If the language is not in the prismLanguajes list, it's not a language, it's a comment...
+                                        // So Prism is not good for comments because it doesn't wrap long lines even if wrapLongLines is true, and Light does
                                         <Light
                                             language={language}
                                             style={shStyleForLight}

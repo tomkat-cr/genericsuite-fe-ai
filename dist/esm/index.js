@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Prism, Light } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
 import { grayscale } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
+import prismLanguajes from 'react-syntax-highlighter/dist/cjs/languages/prism/supported-languages.js';
 
 function _defineProperty(e, r, t) {
   return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
@@ -442,7 +443,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 const GsIcons$8 = gs.IconsLib.GsIcons;
 const dbApiService$3 = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER$2 = gs.dbService.MULTIPART_FORM_DATA_HEADER;
-const console_debug_log$2 = gs.loggingService.console_debug_log;
+const console_debug_log$1 = gs.loggingService.console_debug_log;
 const formatCaughtError$4 = gs.errorAndReenter.formatCaughtError;
 const toggleIdVisibility$3 = gs.ui.toggleIdVisibility;
 const getMediaTypeToRecord = gs.media.getMediaTypeToRecord;
@@ -658,7 +659,7 @@ const defaultValue = gs.genericEditorUtilities.defaultValue;
 
 // const getUuidV4 = gs.idUtilities.getUuidV4;
 
-const console_debug_log$1 = gs.loggingService.console_debug_log;
+const console_debug_log = gs.loggingService.console_debug_log;
 
 // Current user
 
@@ -831,8 +832,8 @@ const ApiCall = async (dispatch, params) => {
     response.operationMessage = "".concat(the, " ").concat(operationDescription, " ").concat(ActionDescription, " ").concat(was_successful);
   } else {
     response.operationMessage = "".concat(error_in_the, " ").concat(operationDescription, " ").concat(ActionDescription);
-    console_debug_log$1('ApiCall ERROR:');
-    console_debug_log$1(response.operationMessage);
+    console_debug_log('ApiCall ERROR:');
+    console_debug_log(response.operationMessage);
   }
   dispatch({
     type: 'API_PROCESSING_STATUS',
@@ -2067,7 +2068,7 @@ gs.IconsLib.GsIcons;
 const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
-const console_debug_log = gs.loggingService.console_debug_log;
+gs.loggingService.console_debug_log;
 const AudioPlayer = _ref => {
   let {
     blobUrl,
@@ -2082,7 +2083,6 @@ const AudioPlayer = _ref => {
 
   const fixBlob = () => {
     if (!blobUrl) {
-      console_debug_log("AudioPlayer | fixBlob | blobUrl is empty");
       return;
     }
     fetch(blobUrl).then(r => {
@@ -2094,7 +2094,6 @@ const AudioPlayer = _ref => {
           const newBlobUrl = decodeBlob(reader.result, filename);
           audioPlayer.current.src = newBlobUrl;
           audioPlayer.current.play();
-          console_debug_log("AudioPlayer | fixBlob | newBlobUrl:", newBlobUrl);
         };
       });
     });
@@ -2106,7 +2105,6 @@ const AudioPlayer = _ref => {
     setIsPlaying(!prevValue);
     if (!prevValue) {
       audioPlayer.current.play().catch(error => {
-        console_debug_log("AudioPlayer | togglePlayPause | error:", error, 'error.message:', error.message);
         const errorMsgs = ["Failed to load because no supported source was found.", "The element has no supported sources."];
         if (Object.values(errorMsgs).some(msg => error.message.includes(msg))) {
           // Probably the data comes from AWS API Gateway in Base64 format
@@ -2126,7 +2124,6 @@ const AudioPlayer = _ref => {
     }, "Audio file expired".concat(errorMsgSuffix));
   }
   {
-    console_debug_log("AudioPlayer | browserAudioController | blobUrl:", blobUrl);
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
       ref: audioPlayer,
       src: blobUrl,
@@ -2271,11 +2268,15 @@ const ChatCodeBlock = _ref => {
         }
       }, language), /*#__PURE__*/React.createElement("div", {
         key: "".concat(index, "-content")
-      }, shType === "prism" ? /*#__PURE__*/React.createElement(Prism, {
+      }, shType === "prism" && prismLanguajes.includes(language) ? /*#__PURE__*/React.createElement(Prism, {
         language: language,
         style: vscDarkPlus,
         wrapLongLines: true
-      }, content) : /*#__PURE__*/React.createElement(Light, {
+      }, content) :
+      /*#__PURE__*/
+      // If the language is not in the prismLanguajes list, it's not a language, it's a comment...
+      // So Prism is not good for comments because it doesn't wrap long lines even if wrapLongLines is true, and Light does
+      React.createElement(Light, {
         language: language,
         style: grayscale,
         wrapLongLines: true
