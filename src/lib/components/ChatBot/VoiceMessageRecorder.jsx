@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import * as gs from "genericsuite";
@@ -26,6 +26,7 @@ import {
 const GsIcons = gs.IconsLib.GsIcons;
 
 const dbApiService = gs.dbService.dbApiService;
+const fetchUtilities = gs.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log = gs.loggingService.console_debug_log;
 const formatCaughtError = gs.errorAndReenter.formatCaughtError;
@@ -85,7 +86,7 @@ export const VoiceMessageRecorder = ({
         //     setErrorMsg(`${errorMsgAux} ${e.message}`);
         // });
     };
-    
+
     const startMediaDevices = async () => {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -99,7 +100,7 @@ export const VoiceMessageRecorder = ({
             mediaRecorderRef.current = mediaRecorder;
 
             // Handle the data available event
-            const chunks = [];  
+            const chunks = [];
             mediaRecorder.ondataavailable = (e) => {
                 chunks.push(e.data);
             };
@@ -129,7 +130,7 @@ export const VoiceMessageRecorder = ({
             stopMediaDevices();
         }
     };
-    
+
     const stopMicRecording = () => {
         if (mediaRecorderRef.current) {
             setIsRecording(false);
@@ -165,9 +166,9 @@ export const VoiceMessageRecorder = ({
 
     const sendFile = async (url, formData, authHeader, queryParams) => {
         const headers = Object.assign(
-            { 
+            {
                 'Access-Control-Allow-Origin': '*',
-            }, 
+            },
             authHeader
         );
         try {
@@ -195,7 +196,7 @@ export const VoiceMessageRecorder = ({
         } catch (errorRaw) {
             console.error(errorRaw);
             // Hide WaitAnimation after the error
-            const error = errorRaw.message + (typeof errorRaw.response !== 'undefined' ?  ": " + errorRaw.response.data : '');
+            const error = errorRaw.message + (typeof errorRaw.response !== 'undefined' ? ": " + errorRaw.response.data : '');
             // Hide WaitAnimation after the error
             dispatchWaitAnimation(false, dispatch);
             // Restore buttons in the input text area
@@ -248,7 +249,7 @@ export const VoiceMessageRecorder = ({
             dispatchWaitAnimation(true, dispatch);
             if (useAxios) {
                 const authHeader = gs.authHeader.authHeader();
-                const endpointUrl = `${process.env.REACT_APP_API_URL}/${"ai/voice_to_text"}`;
+                const endpointUrl = `${fetchUtilities.getBaseApiUrl()}/${"ai/voice_to_text"}`;
                 await sendFile(endpointUrl, formData, authHeader, query_params)
             } else {
                 db.getAll(query_params, formData, 'POST', options).then(

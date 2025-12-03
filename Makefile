@@ -100,7 +100,7 @@ run_lib: config_lib
 
 pre-publish:
 	# sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
-	npm run test
+	if [ "${UPDATE_SNAPSHOTS}" = "1" ]; then npm test -- -u; else npm run test; fi
 	npm install --package-lock-only
 	npm run build
 

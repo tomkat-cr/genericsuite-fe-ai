@@ -34,6 +34,7 @@ import { checkConversationIdChange } from './chatbot.db.operations.jsx';
 const GsIcons = gs.IconsLib.GsIcons;
 
 const dbApiService = gs.dbService.dbApiService;
+const fetchUtilities = gs.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log = gs.loggingService.console_debug_log;
 const formatCaughtError = gs.errorAndReenter.formatCaughtError;
@@ -74,9 +75,9 @@ export function FileUploader({
 
     const sendFile = async (url, formData, authHeader, queryParams) => {
         const headers = Object.assign(
-            { 
+            {
                 'Access-Control-Allow-Origin': '*',
-            }, 
+            },
             authHeader
         );
         try {
@@ -99,7 +100,7 @@ export function FileUploader({
         } catch (errorRaw) {
             console.error(errorRaw);
             // Hide WaitAnimation after the error
-            const error = errorRaw.message + (typeof errorRaw.response !== 'undefined' ?  ": " + errorRaw.response.data : '');
+            const error = errorRaw.message + (typeof errorRaw.response !== 'undefined' ? ": " + errorRaw.response.data : '');
             console.error('Error uploading the file:', error);
             setChatbotErrorMsg(error, dispatch);
             dispatchWaitAnimation(false, dispatch);
@@ -139,7 +140,7 @@ export function FileUploader({
             }
             if (useAxios) {
                 const authHeader = gs.authHeader.authHeader();
-                const endpointUrl = `${process.env.REACT_APP_API_URL}/${"ai/image_to_text"}`;
+                const endpointUrl = `${fetchUtilities.getBaseApiUrl()}/${"ai/image_to_text"}`;
                 await sendFile(endpointUrl, formData, authHeader, query)
             } else {
                 const db = new dbApiService({ url: "ai/image_to_text" });

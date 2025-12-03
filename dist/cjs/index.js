@@ -463,6 +463,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 // );
 const GsIcons$8 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$3 = gs__namespace.dbService.dbApiService;
+const fetchUtilities$1 = gs__namespace.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER$2 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log$1 = gs__namespace.loggingService.console_debug_log;
 const formatCaughtError$4 = gs__namespace.errorAndReenter.formatCaughtError;
@@ -616,7 +617,7 @@ const VoiceMessageRecorder = _ref => {
       dispatchWaitAnimation(true, dispatch);
       if (useAxios$1) {
         const authHeader = gs__namespace.authHeader.authHeader();
-        const endpointUrl = "".concat(process.env.REACT_APP_API_URL, "/", "ai/voice_to_text");
+        const endpointUrl = "".concat(fetchUtilities$1.getBaseApiUrl(), "/", "ai/voice_to_text");
         await sendFile(endpointUrl, formData, authHeader, query_params);
       } else {
         db.getAll(query_params, formData, 'POST', options).then(data => {
@@ -1057,6 +1058,7 @@ const handleCancelProcessing = dispatch => {
 // );
 const GsIcons$7 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$1 = gs__namespace.dbService.dbApiService;
+const fetchUtilities = gs__namespace.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER$1 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
 gs__namespace.loggingService.console_debug_log;
 const formatCaughtError$2 = gs__namespace.errorAndReenter.formatCaughtError;
@@ -1143,7 +1145,7 @@ function FileUploader(_ref) {
       dispatchWaitAnimation(true, dispatch);
       if (useAxios) {
         const authHeader = gs__namespace.authHeader.authHeader();
-        const endpointUrl = "".concat(process.env.REACT_APP_API_URL, "/", "ai/image_to_text");
+        const endpointUrl = "".concat(fetchUtilities.getBaseApiUrl(), "/", "ai/image_to_text");
         await sendFile(endpointUrl, formData, authHeader, query);
       } else {
         const db = new dbApiService$1({
@@ -2090,13 +2092,12 @@ const WARNING_MSG_CLASS$1 = gs__namespace.classNameConstants.WARNING_MSG_CLASS;
 gs__namespace.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs__namespace.blobFilesUtilities.decodeBlob;
 gs__namespace.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [currentTime, setCurrentTime] = React.useState(0);
@@ -2142,7 +2143,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -2153,83 +2154,6 @@ const AudioPlayer = _ref => {
     }));
   }
 };
-
-gs__namespace.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
-  const objDiv = document.getElementById(elementId);
-  React.useEffect(() => {
-    if (objDiv && elementsToRender !== '') {
-      // objDiv.scrollIntoView(false);
-      objDiv.scrollTop = objDiv.scrollHeight;
-      // Sometimes it needs a second change, specially when the object is being populated
-      // objDiv.scrollTop = objDiv.scrollHeight;
-    }
-  }, [objDiv, elementsToRender, elementId]);
-  return /*#__PURE__*/React.createElement(React.Fragment, null);
-};
-
-// import "./ScrollToBottomButton.css";
-
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import fontawesome from "@fortawesome/fontawesome";
-// import {
-//     faArrowDown,
-// } from "@fortawesome/fontawesome-free-solid";
-// fontawesome.library.add(
-//     faArrowDown,
-// );
-
-const GsIcons$1 = gs__namespace.IconsLib.GsIcons;
-gs__namespace.loggingService.console_debug_log;
-const ScrollToBottomButton = ({
-  elementId,
-  elementsToRender
-}) => {
-  const element = document.getElementById(elementId);
-  const scrollToBottom = () => {
-    if (element) {
-      element.scrollTop = element.scrollHeight;
-    }
-  };
-  React.useEffect(() => {
-    if (element && elementsToRender !== '') {
-      // let lastScrollTop =
-      //     element.scrollY || element.scrollTop;
-      element.addEventListener('scroll', function handleScroll() {
-        const buttonElement = document.getElementById('scroll-overfolw-button');
-        buttonElement.style.visibility = showButton(element);
-      }, false);
-    }
-  }, [element, elementsToRender, elementId]);
-  return /*#__PURE__*/React.createElement("div", {
-    id: "scroll-overfolw-button",
-    style: {
-      visibility: showButton(element)
-    },
-    className: SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS
-  }, /*#__PURE__*/React.createElement("div", {
-    className: SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS
-  }, /*#__PURE__*/React.createElement("div", {
-    className: SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: scrollToBottom,
-    className: SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS
-  }, /*#__PURE__*/React.createElement("i", {
-    // className="a fa-plus my-float"
-    className: SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS
-  }, /*#__PURE__*/React.createElement(GsIcons$1, {
-    icon: "arrow-down",
-    size: "lg",
-    additionalIconsFn: iconsLibAiExtras
-  }))))));
-};
-const showButton = element =>
-// 'visible' and 'hidden' cannot be VISIBLE_CLASS and HIDDEN_CLASS constants, should remain as those fixed strings...
-element && element.scrollHeight > element.scrollTop + element.clientHeight ? 'visible' : 'hidden';
 
 gs__namespace.ui.LinkifyText;
 const CopyButton = gs__namespace.ui.CopyButton;
@@ -2306,6 +2230,84 @@ const ChatCodeBlock = _ref => {
     }
   }));
 };
+
+gs__namespace.loggingService.console_debug_log;
+const GoToTheBottom = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
+  const objDiv = document.getElementById(elementId);
+  React.useEffect(() => {
+    if (objDiv && elementsToRender !== '') {
+      // objDiv.scrollIntoView(false);
+      objDiv.scrollTop = objDiv.scrollHeight;
+      // Sometimes it needs a second change, specially when the object is being populated
+      // objDiv.scrollTop = objDiv.scrollHeight;
+    }
+  }, [objDiv, elementsToRender, elementId]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null);
+};
+
+// import "./ScrollToBottomButton.css";
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faArrowDown,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faArrowDown,
+// );
+
+const GsIcons$1 = gs__namespace.IconsLib.GsIcons;
+gs__namespace.loggingService.console_debug_log;
+const ScrollToBottomButton = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
+  const element = document.getElementById(elementId);
+  const scrollToBottom = () => {
+    if (element) {
+      element.scrollTop = element.scrollHeight;
+    }
+  };
+  React.useEffect(() => {
+    if (element && elementsToRender !== '') {
+      // let lastScrollTop =
+      //     element.scrollY || element.scrollTop;
+      element.addEventListener('scroll', function handleScroll() {
+        const buttonElement = document.getElementById('scroll-overfolw-button');
+        buttonElement.style.visibility = showButton(element);
+      }, false);
+    }
+  }, [element, elementsToRender, elementId]);
+  return /*#__PURE__*/React.createElement("div", {
+    id: "scroll-overfolw-button",
+    style: {
+      visibility: showButton(element)
+    },
+    className: SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS
+  }, /*#__PURE__*/React.createElement("div", {
+    className: SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS
+  }, /*#__PURE__*/React.createElement("div", {
+    className: SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: scrollToBottom,
+    className: SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS
+  }, /*#__PURE__*/React.createElement("i", {
+    // className="a fa-plus my-float"
+    className: SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS
+  }, /*#__PURE__*/React.createElement(GsIcons$1, {
+    icon: "arrow-down",
+    size: "lg",
+    additionalIconsFn: iconsLibAiExtras
+  }))))));
+};
+const showButton = element =>
+// 'visible' and 'hidden' cannot be VISIBLE_CLASS and HIDDEN_CLASS constants, should remain as those fixed strings...
+element && element.scrollHeight > element.scrollTop + element.clientHeight ? 'visible' : 'hidden';
 
 // import './ChatBot.css';
 
@@ -2400,7 +2402,7 @@ const ConversationBlock = _ref => {
       }, /*#__PURE__*/React.createElement("img", {
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS,
         src: messageObject.attachment_url,
-        alt: "Attachment: ".concat(message),
+        alt: message,
         style: {
           maxHeight: 'auto',
           width: 'fit-content',
@@ -2442,7 +2444,7 @@ const ConversationBlock = _ref => {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: id ? id : "conversation-block",
     className: "".concat(CHATBOT_MESSAGE_BLOCK_CLASS, " ").concat(theme.background)
-  }, state && !state.errorMsg && state.messages && elementsToRender), /*#__PURE__*/React.createElement(ScrollToBottomButton, {
+  }, state && state.messages && elementsToRender), /*#__PURE__*/React.createElement(ScrollToBottomButton, {
     elementId: id ? id : "conversation-block",
     elementsToRender: elementsToRender
   }), /*#__PURE__*/React.createElement(GoToTheBottom, {

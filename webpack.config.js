@@ -11,7 +11,12 @@ const localEnvironment = process.env.REACT_APP_API_URL.includes("local") || ['de
 /*
 https://webpack.js.org/
 
-npm install --save-dev webpack webpack-cli webpack-dev-server html-webpack-plugin interpolate-html-plugin
+npm install --save-dev \
+   webpack \
+   webpack-cli \
+   webpack-dev-server \
+   html-webpack-plugin \
+   interpolate-html-plugin
 */
 
 let devServerConfig = {
@@ -44,6 +49,7 @@ const process_env = {
     // PUBLIC_URL: JSON.stringify(`https://${appLocalDomainName}`),
     REACT_APP_VERSION: JSON.stringify(process.env.REACT_APP_VERSION || fs.readFileSync('version.txt', 'utf8')),
     REACT_APP_API_URL: JSON.stringify(process.env.REACT_APP_API_URL || `https://${appLocalDomainName}`),
+    REACT_APP_API_VERSION: JSON.stringify(process.env.REACT_APP_API_VERSION || process.env.API_VERSION || 'v1'),
     REACT_APP_DEBUG: JSON.stringify(process.env.REACT_APP_DEBUG || '0'),
     REACT_APP_URI_PREFIX: JSON.stringify(process.env.REACT_APP_URI_PREFIX || 'exampleapp_frontend'),
     REACT_APP_X_TOKEN: JSON.stringify(process.env.REACT_APP_X_TOKEN || ''),
@@ -96,7 +102,7 @@ module.exports = {
         alias: {
             '@': path.resolve(__dirname, 'src/'),
         },
-        fallback: { 
+        fallback: {
             "os": require.resolve("os-browserify/browser"),
             "url": require.resolve("url"),
             "crypto": require.resolve("crypto-browserify"),
