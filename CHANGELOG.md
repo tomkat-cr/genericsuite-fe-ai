@@ -26,7 +26,11 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - The error message in the AI Assistant chat is now floating [GS-246].
 
 ### Fixed
-- Fix "npm warn deprecated text-encoding@0.7.0: no longer maintained" by removing "text-encoding" dependency and rollup external configuration [GS-219]
+- Fix "npm warn deprecated text-encoding@0.7.0: no longer maintained" by removing "text-encoding" dependency and rollup external configuration [GS-219].
+- Fix "make publish" build error by reverting all run_lib changes in package.json and "public/static" removal.
+
+### Removed
+- Remove @tailwindcss/vite
 
 
 ## [1.1.0] - 2025-11-17

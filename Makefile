@@ -109,6 +109,11 @@ remove-dev-dependencies:
 		webpack webpack-cli webpack-dev-server html-webpack-plugin interpolate-html-plugin \
 		vite @vitejs/plugin-react vite-plugin-require \
 		react-app-rewired react-scripts
+	rm -rf ./public/static
+	perl -i -pe"s|\"type1\":|\"type\":|g" package.json
+	perl -i -pe"s|\"main1\":|\"main\":|g" package.json
+	perl -i -pe"s|\"module1\":|\"module\":|g" package.json
+	perl -i -pe"s|\"types1\":|\"types\":|g" package.json
 
 publish: remove-dev-dependencies pre-publish
 	# sh node_modules/genericsuite/scripts/npm_publish.sh publish

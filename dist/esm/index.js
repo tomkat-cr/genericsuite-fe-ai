@@ -2071,12 +2071,13 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = ({
-  blobUrl,
-  filename,
-  expired,
-  errorMsgSuffix
-}) => {
+const AudioPlayer = _ref => {
+  let {
+    blobUrl,
+    filename,
+    expired,
+    errorMsgSuffix
+  } = _ref;
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -2122,7 +2123,7 @@ const AudioPlayer = ({
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, `Audio file expired${errorMsgSuffix}`);
+    }, "Audio file expired".concat(errorMsgSuffix));
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -2211,11 +2212,10 @@ const ChatCodeBlock = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const GoToTheBottom = ({
+  elementId,
+  elementsToRender
+}) => {
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
