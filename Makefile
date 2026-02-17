@@ -50,73 +50,84 @@ eject-dev:
 	npm run eject-dev
 
 config:
-	sh node_modules/genericsuite/scripts/change_env_be_endpoint.sh dev
+	bash node_modules/genericsuite/scripts/change_env_be_endpoint.sh dev
 
 config_qa:
-	sh node_modules/genericsuite/scripts/change_env_be_endpoint.sh qa
+	bash node_modules/genericsuite/scripts/change_env_be_endpoint.sh qa
 
 config_demo:
-	sh node_modules/genericsuite/scripts/change_env_be_endpoint.sh demo
+	bash node_modules/genericsuite/scripts/change_env_be_endpoint.sh demo
 
 deploy: config
-	sh node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
+	bash node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
 
 deploy_qa: config_qa
-	sh node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
+	bash node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
 
 deploy_demo: config_demo
-	sh node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
+	bash node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
 
 run: config
-	sh node_modules/genericsuite/scripts/run_app_frontend.sh dev
+	bash node_modules/genericsuite/scripts/run_app_frontend.sh dev
 
 run_qa: config_qa
-	sh node_modules/genericsuite/scripts/run_app_frontend.sh qa
+	bash node_modules/genericsuite/scripts/run_app_frontend.sh qa
 
 server: run
 start: run
 local: run
 
 run_prod: build-prod
-	# sh node_modules/genericsuite/scripts/run_app_frontend.sh prod
+	# bash node_modules/genericsuite/scripts/run_app_frontend.sh prod
 	npm start
 
 tailwind:
 	npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch
 
 add_submodules:
-	sh node_modules/genericsuite/scripts/add_github_submodules.sh
+	bash node_modules/genericsuite/scripts/add_github_submodules.sh
 
 create_ssl_certs:
-	sh node_modules/genericsuite/scripts/create_ssl_certs.sh
+	bash node_modules/genericsuite/scripts/create_ssl_certs.sh
 
 ## NPM scripts library
 
 config_lib:
-	sh node_modules/genericsuite/scripts/change_env_be_endpoint.sh dev
+	bash node_modules/genericsuite/scripts/change_env_be_endpoint.sh dev
 
 run_lib: config_lib
-	sh node_modules/genericsuite/scripts/run_app_frontend.sh dev
+	bash node_modules/genericsuite/scripts/run_app_frontend.sh dev
 
 pre-publish:
-	# sh node_modules/genericsuite/scripts/npm_publish.sh pre-publish
-	if [ "${UPDATE_SNAPSHOTS}" = "1" ]; then npm test -- -u; else npm run test; fi
-	npm install --package-lock-only
-	npm run build
+	bash ./scripts/npm_publish.sh pre-publish
 
-remove-dev-dependencies:
-	npm uninstall --save-dev \
-		webpack webpack-cli webpack-dev-server html-webpack-plugin interpolate-html-plugin \
-		vite @vitejs/plugin-react vite-plugin-require \
-		react-app-rewired react-scripts
-	rm -rf ./public/static
-	perl -i -pe"s|\"type1\":|\"type\":|g" package.json
-	perl -i -pe"s|\"main1\":|\"main\":|g" package.json
-	perl -i -pe"s|\"module1\":|\"module\":|g" package.json
-	perl -i -pe"s|\"types1\":|\"types\":|g" package.json
+# pre-publish:
+# 	# bash node_modules/genericsuite/scripts/npm_publish.sh pre-publish
+# 	if [ "${UPDATE_SNAPSHOTS}" = "1" ]; then npm test -- -u; else npm run test; fi
+# 	npm install --package-lock-only
+# 	npm run build
 
-publish: remove-dev-dependencies pre-publish
-	# sh node_modules/genericsuite/scripts/npm_publish.sh publish
-	echo "Press Enter to publish, Ctrl-C to stop"
-	read answer
-	npm publish --access=public
+# remove-dev-dependencies:
+# 	npm uninstall --save-dev \
+# 		webpack webpack-cli webpack-dev-server html-webpack-plugin interpolate-html-plugin \
+# 		vite @vitejs/plugin-react vite-plugin-require \
+# 		react-app-rewired react-scripts
+# 	rm -rf ./public/static
+# 	perl -i -pe"s|\"type1\":|\"type\":|g" package.json
+# 	perl -i -pe"s|\"main1\":|\"main\":|g" package.json
+# 	perl -i -pe"s|\"module1\":|\"module\":|g" package.json
+# 	perl -i -pe"s|\"types1\":|\"types\":|g" package.json
+
+# publish: remove-dev-dependencies pre-publish
+# 	# bash node_modules/genericsuite/scripts/npm_publish.sh publish
+# 	@export PACKAGE_NAME=$(perl -ne 'print $1 if /"name":\s*"([^"]*)"/' package.json) && \
+# 	export PACKAGE_VERSION=$(perl -ne 'print $1 if /"version":\s*"([^"]*)"/' package.json) && \
+# 	echo "" && \
+# 	echo ${PACKAGE_NAME} && \
+# 	echo ${PACKAGE_VERSION} && \
+# 	echo "Press Enter to publish ${PACKAGE_NAME}@${PACKAGE_VERSION}, Ctrl-C to stop" && \
+# 	read answer
+# 	npm publish --access=public
+
+publish:
+	bash ./scripts/npm_publish.sh publish

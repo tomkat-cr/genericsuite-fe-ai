@@ -11,7 +11,7 @@ import {
     CHATBOT_BUTTON_LLM_POPUP_DIV_2,
 } from '../../constants/class_name_constants.jsx';
 
-import { ChatBot } from "../ChatBot/ChatBot.jsx"
+import { ChatBot } from "../ChatBot/ChatBot.jsx";
 
 const console_debug_log = gs.loggingService.console_debug_log;
 
@@ -37,14 +37,14 @@ export const ChatBotButton = ({
     const setPrompt = (prompt, valueToReplace) => {
         return prompt.replace("%s", valueToReplace);
     }
-    
+
     const handleSparkClick = (e) => {
         e.preventDefault();
         const inputValue = document.getElementById(valueElement).value;
         if (inputValue !== "") {
             if (sparkClickOpenWindow) {
                 window.open(
-                    window.location.origin + '/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue),
+                    window.location.origin + '/#/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue),
                     'AppChatbotPopUp',
                     'height=600,width=400'
                 );

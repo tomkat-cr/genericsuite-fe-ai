@@ -2233,10 +2233,11 @@ const ChatCodeBlock = _ref => {
 };
 
 gs__namespace.loggingService.console_debug_log;
-const GoToTheBottom = ({
-  elementId,
-  elementsToRender
-}) => {
+const GoToTheBottom = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const objDiv = document.getElementById(elementId);
   React.useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -2730,7 +2731,7 @@ const ChatBotButton = _ref => {
     const inputValue = document.getElementById(valueElement).value;
     if (inputValue !== "") {
       {
-        window.open(window.location.origin + '/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue), 'AppChatbotPopUp', 'height=600,width=400');
+        window.open(window.location.origin + '/#/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue), 'AppChatbotPopUp', 'height=600,width=400');
       }
     }
   };

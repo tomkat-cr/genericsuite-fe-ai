@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Changelog](http://keepachangelog.com/).
 
 
-## [Unreleased]
+## [Unreleased] - YYYY-MM-DD
 
 ### Added
 
@@ -15,19 +15,30 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
-## [Unreleased]
+## [1.2.0] - 2026-02-18
 
 ### Added
 - Add API_VERSION envvar to set the API version, default to "v1" [GS-245].
 - Add UPDATE_SNAPSHOTS envvar to "make publish" to run "npm test -- -u" instead of "npm run test"
+- Add VERBOSE_RUN_CONFIG envvar to enable verbose logging in run_config.sh.
+- Specific GS FE AI version of "run_publish.sh" command to publish the package to NPM.
 
 ### Changed
 - Rename the frontend envvars to avoid conflicts with the same envvar used in the backend and be able to merge the ".env" files in a monorepo: GIT_SUBMODULE_LOCAL_PATH to GIT_SUBMODULE_LOCAL_PATH_FRONTEND, and RUN_METHOD to RUN_BUNDLER [GS-243].
+- Refactor environment variable handling for monorepo compatibility:
+  - REACT_APP_APP_NAME envvar can be removed and replaced by APP_NAME in monorepos [GS-243].
+  - REACT_APP_DEBUG envvar can be removed and replaced by APP_DEBUG in monorepos [GS-243].
+  - If REACT_APP_API_URL is not set, APP_API_URL can be used instead [GS-243].
+  - If REACT_APP_URI_PREFIX is not set, URI_PREFIX can be used instead [GS-243].
+  - If REACT_APP_X_TOKEN is not set, X_TOKEN can be used instead [GS-243].
+  - If REACT_APP_USE_AXIOS is not set, USE_AXIOS can be used instead [GS-243].
 - The error message in the AI Assistant chat is now floating [GS-246].
 
 ### Fixed
 - Fix "npm warn deprecated text-encoding@0.7.0: no longer maintained" by removing "text-encoding" dependency and rollup external configuration [GS-219].
 - Fix "make publish" build error by reverting all run_lib changes in package.json and "public/static" removal.
+- Update chatbot popup routing to use hash-based URLs.
+- Adjust build output directories.
 
 ### Removed
 - Remove @tailwindcss/vite
