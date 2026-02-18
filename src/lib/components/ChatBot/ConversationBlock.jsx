@@ -38,6 +38,26 @@ const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 const debug = false;
 const defaultDownloadFilename = 'file_with_no_name.mp3'
 
+const sanitizeUrl = (url) => {
+    if (!url) return '#';
+    const trimmedUrl = url.trim();
+    if (trimmedUrl.toLowerCase().startsWith('javascript:')) {
+        return '#';
+    }
+    // Simple protocol check
+    const colonIndex = trimmedUrl.indexOf(':');
+    if (colonIndex === -1) {
+        // No colon, likely a relative path or fragment
+        return trimmedUrl;
+    }
+    const protocol = trimmedUrl.substring(0, colonIndex).toLowerCase();
+    const allowedProtocols = ['http', 'https', 'mailto', 'tel', 'data'];
+    if (allowedProtocols.includes(protocol)) {
+        return trimmedUrl;
+    }
+    return '#';
+};
+
 export const ConversationBlock = ({
     id,
     state,
@@ -130,7 +150,7 @@ export const ConversationBlock = ({
                     >
                         {hasAttachment && (
                             <a
-                                href={messageObject.attachment_url}
+                                href={sanitizeUrl(messageObject.attachment_url)}
                                 target='_blank'
                                 rel="noreferrer"
                                 className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS}
@@ -148,7 +168,7 @@ export const ConversationBlock = ({
                         >
                             <img
                                 className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS}
-                                src={messageObject.attachment_url}
+                                src={sanitizeUrl(messageObject.attachment_url)}
                                 alt={message}
                                 style={{ maxHeight: 'auto', width: 'fit-content', maxWidth: '100%' }}
                             />

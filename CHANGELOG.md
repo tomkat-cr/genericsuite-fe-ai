@@ -38,7 +38,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Fix "npm warn deprecated text-encoding@0.7.0: no longer maintained" by removing "text-encoding" dependency and rollup external configuration [GS-219].
 - Fix "make publish" build error by reverting all run_lib changes in package.json and "public/static" removal.
 - Update chatbot popup routing to use hash-based URLs.
-- Adjust build output directories.
+- Adjust build output directories [GS-262].
+- Implement URL sanitization in ConversationBlock and input sanitization in ChatBotButton to prevent XSS vulnerabilities, along with corresponding tests [GS-262].
 
 ### Removed
 - Remove @tailwindcss/vite

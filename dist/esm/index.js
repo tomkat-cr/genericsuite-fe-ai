@@ -2071,13 +2071,12 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -2123,7 +2122,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -2212,11 +2211,10 @@ const ChatCodeBlock = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const GoToTheBottom = ({
+  elementId,
+  elementsToRender
+}) => {
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -2242,11 +2240,10 @@ const GoToTheBottom = _ref => {
 
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
-const ScrollToBottomButton = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const ScrollToBottomButton = ({
+  elementId,
+  elementsToRender
+}) => {
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
@@ -2299,6 +2296,25 @@ const performDownload = gs.blobFilesUtilities.performDownload;
 const INFO_MSG_CLASS = gs.classNameConstants.INFO_MSG_CLASS;
 const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 const defaultDownloadFilename = 'file_with_no_name.mp3';
+const sanitizeUrl = url => {
+  if (!url) return '#';
+  const trimmedUrl = url.trim();
+  if (trimmedUrl.toLowerCase().startsWith('javascript:')) {
+    return '#';
+  }
+  // Simple protocol check
+  const colonIndex = trimmedUrl.indexOf(':');
+  if (colonIndex === -1) {
+    // No colon, likely a relative path or fragment
+    return trimmedUrl;
+  }
+  const protocol = trimmedUrl.substring(0, colonIndex).toLowerCase();
+  const allowedProtocols = ['http', 'https', 'mailto', 'tel', 'data'];
+  if (allowedProtocols.includes(protocol)) {
+    return trimmedUrl;
+  }
+  return '#';
+};
 const ConversationBlock = _ref => {
   let {
     id,
@@ -2373,7 +2389,7 @@ const ConversationBlock = _ref => {
       }, /*#__PURE__*/React.createElement("div", {
         className: CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS
       }, hasAttachment && /*#__PURE__*/React.createElement("a", {
-        href: messageObject.attachment_url,
+        href: sanitizeUrl(messageObject.attachment_url),
         target: "_blank",
         rel: "noreferrer",
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS
@@ -2381,7 +2397,7 @@ const ConversationBlock = _ref => {
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS
       }, /*#__PURE__*/React.createElement("img", {
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS,
-        src: messageObject.attachment_url,
+        src: sanitizeUrl(messageObject.attachment_url),
         alt: message,
         style: {
           maxHeight: 'auto',
@@ -2705,12 +2721,17 @@ const ChatBotButton = _ref => {
   const setPrompt = (prompt, valueToReplace) => {
     return prompt.replace("%s", valueToReplace);
   };
+  const sanitizePromptInput = input => {
+    if (!input) return "";
+    return input.replace(/[<>]/g, '').trim();
+  };
   const handleSparkClick = e => {
     e.preventDefault();
     const inputValue = document.getElementById(valueElement).value;
-    if (inputValue !== "") {
+    const sanitizedInput = sanitizePromptInput(inputValue);
+    if (sanitizedInput !== "") {
       {
-        window.open(window.location.origin + '/#/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue), 'AppChatbotPopUp', 'height=600,width=400');
+        window.open(window.location.origin + '/#/chatbot?menu=0&ssb=0&q=' + encodeURIComponent(setPrompt(chatbot_prompt, sanitizedInput)), 'AppChatbotPopUp', 'height=600,width=400');
       }
     }
   };
@@ -2729,7 +2750,7 @@ const ChatBotButton = _ref => {
     // className="llm-popup"
     className: CHATBOT_BUTTON_LLM_POPUP_DIV_2
   }, /*#__PURE__*/React.createElement(ChatBot, {
-    userQuestion: setPrompt(chatbot_prompt, document.getElementById(valueElement).value),
+    userQuestion: setPrompt(chatbot_prompt, sanitizePromptInput(document.getElementById(valueElement).value)),
     showSideBar: false
   }))));
 };
