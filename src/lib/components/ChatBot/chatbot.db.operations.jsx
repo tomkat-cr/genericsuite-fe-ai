@@ -5,7 +5,7 @@ const getErrorDetail = gs.errorAndReenter.getErrorDetail;
 const dbApiService = gs.dbService.dbApiService;
 const defaultValue = gs.genericEditorUtilities.defaultValue;
 
-// const getUuidV4 = gs.idUtilities.getUuidV4;
+// const getUuidV4 = gs.uuidUtilities.getUuidV4;
 
 const console_debug_log = gs.loggingService.console_debug_log;
 
@@ -40,16 +40,16 @@ export const ApiCall = async (
             case "getAll":
                 response = "load";
                 break;
-            case "getOne": 
+            case "getOne":
                 response = "load";
                 break;
-            case "createRow": 
+            case "createRow":
                 response = "creation";
                 break;
-            case "updateRow": 
+            case "updateRow":
                 response = "update";
                 break;
-            case "deleteRow": 
+            case "deleteRow":
                 response = "deletion";
                 break;
             default:
@@ -62,16 +62,16 @@ export const ApiCall = async (
         let response;
         switch (operationType) {
             case "getAll":
-            case "getOne": 
+            case "getOne":
                 response = "GET";
                 break;
-            case "createRow": 
+            case "createRow":
                 response = "POST";
                 break;
-            case "updateRow": 
+            case "updateRow":
                 response = "PUT";
                 break;
-            case "deleteRow": 
+            case "deleteRow":
                 response = "DELETE";
                 break;
             default:
@@ -120,9 +120,9 @@ export const ApiCall = async (
         }
     }
 
-    const the= "the";
+    const the = "the";
     const was_successful = "was successful";
-    const error_in_the =  "error in the";
+    const error_in_the = "error in the";
 
     const operationType = defaultValue(params, "operationType");
     const operationName = defaultValue(params, "operationName", "ApiCall");
@@ -136,7 +136,7 @@ export const ApiCall = async (
     const options = defaultValue(params, "options", {});
     const responseAttrName = defaultValue(params, "responseAttrName", "resultset");
 
-    let response; 
+    let response;
     const db = new dbApiService({ url: endpointUrl });
     if (debug) {
         console_debug_log(
@@ -245,7 +245,7 @@ export const checkConversationIdChange = async (state, dispatch, externalApiResp
     if (debug) {
         console_debug_log(`>> checkConversationIdChange | cid: ${cid} | externalApiResponse:`, externalApiResponse);
     }
-    if (typeof externalApiResponse['cid'] !== 'undefined' && 
+    if (typeof externalApiResponse['cid'] !== 'undefined' &&
         state.currentConversationId !== externalApiResponse['cid']
     ) {
         cid = externalApiResponse['cid'];
@@ -382,7 +382,7 @@ export const sendMessageToBot = async (messageText, state, dispatch) => {
     abortController = new AbortController(); // Create a new controller for the new request
     const chatToSend = [
         // ...state.messages,
-        {"role": "user", "content": messageText}
+        { "role": "user", "content": messageText }
     ];
     const response = ApiCall(
         dispatch,

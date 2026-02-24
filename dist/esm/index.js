@@ -658,7 +658,7 @@ const getErrorDetail = gs.errorAndReenter.getErrorDetail;
 const dbApiService$2 = gs.dbService.dbApiService;
 const defaultValue = gs.genericEditorUtilities.defaultValue;
 
-// const getUuidV4 = gs.idUtilities.getUuidV4;
+// const getUuidV4 = gs.uuidUtilities.getUuidV4;
 
 const console_debug_log = gs.loggingService.console_debug_log;
 
@@ -2211,10 +2211,11 @@ const ChatCodeBlock = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = ({
-  elementId,
-  elementsToRender
-}) => {
+const GoToTheBottom = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -2240,10 +2241,11 @@ const GoToTheBottom = ({
 
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
-const ScrollToBottomButton = ({
-  elementId,
-  elementsToRender
-}) => {
+const ScrollToBottomButton = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {

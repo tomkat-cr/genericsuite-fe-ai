@@ -21,7 +21,7 @@ export function mockGenericsuite() {
         // Emulate a logged-in user
         authenticationService: {
             currentUserValue: {
-              token: 'Mocked token',
+                token: 'Mocked token',
             }
         },
         // To fix the error: "TypeError: (0 , _authenticationService.getUserData) is not a function"
@@ -35,16 +35,18 @@ export function mockGenericsuite() {
                 superuser: 0,
             }
         }),
-        getCurrentUserData: () => Promise.resolve({resultset: {
-            error: false,
-            error_message: null,
+        getCurrentUserData: () => Promise.resolve({
             resultset: {
-                _id: 'mockedUserId',
-                first_name: 'Mocked firstName',
-                last_name: 'Mocked lastName',
-                superuser: 0,
+                error: false,
+                error_message: null,
+                resultset: {
+                    _id: 'mockedUserId',
+                    first_name: 'Mocked firstName',
+                    last_name: 'Mocked lastName',
+                    superuser: 0,
+                }
             }
-        }}),
+        }),
         // Emulate images handling
         spark: 'mockedSparkIcon.svg',
         // Emulate console_debug_log
@@ -60,7 +62,7 @@ export function mockGenericsuite() {
             imageDirectory: '/mocked/image/directory/',
         },
         // Utilities
-        dbService:{
+        dbService: {
             dbApiService: {
                 getOne: jest.fn(),
                 getAll: jest.fn(),
@@ -139,8 +141,10 @@ export function mockGenericsuite() {
         dictUtilities: {
             mergeDicts: jest.fn(),
         },
-        idUtilities: {
+        uuidUtilities: {
             getUuidV4: jest.fn(),
+        },
+        idUtilities: {
             convertId: jest.fn(),
         },
     };

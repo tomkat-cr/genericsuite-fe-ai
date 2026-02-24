@@ -33,6 +33,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
   - If REACT_APP_X_TOKEN is not set, X_TOKEN can be used instead [GS-243].
   - If REACT_APP_USE_AXIOS is not set, USE_AXIOS can be used instead [GS-243].
 - The error message in the AI Assistant chat is now floating [GS-246].
+- Rename "idUtilities.getUuidV4" to "uuidUtilities.getUuidV4" [GS-266].
 
 ### Fixed
 - Fix "npm warn deprecated text-encoding@0.7.0: no longer maintained" by removing "text-encoding" dependency and rollup external configuration [GS-219].
@@ -42,6 +43,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Security
 - Implement URL sanitization in ConversationBlock and input sanitization in ChatBotButton to prevent XSS vulnerabilities, along with corresponding tests [GS-262].
+- Upgrade jest and babel to latest versions to fix the "npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful." warning [GS-219] [GS-267].
+- 37 security vulnerabilities (including high and critical ones) found in the project's dependencies were addressed, adding an "overrides" section to package.json to force secure versions of transitive dependencies (elliptic, json5, minimatch, postcss, loader-utils) without breaking your high-level setup [GS-219] [GS-267].
 
 ### Removed
 - Remove @tailwindcss/vite
