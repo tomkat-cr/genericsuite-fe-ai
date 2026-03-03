@@ -71,7 +71,11 @@ check_one_bundle() {
             read answer
         done
         if [[ $answer =~ ^[Yy]$ ]]; then
-            sh "${SCRIPTS_DIR}/run_method_dependency_manager.sh" uninstall ${bundle_name}
+            if ! bash "${SCRIPTS_DIR}/run_method_dependency_manager.sh" uninstall ${bundle_name}
+            then
+                echo "ERROR: uninstalling ${bundle_name}"
+                exit 1
+            fi
         fi
     fi
 }

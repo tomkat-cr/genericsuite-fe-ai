@@ -1,5 +1,5 @@
 # .DEFAULT_GOAL := local
-# .PHONY: tests
+.PHONY: tests tailwind-build
 SHELL := /bin/bash
 
 # General Commands
@@ -83,6 +83,9 @@ run_prod: build-prod
 
 tailwind:
 	npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css --watch
+
+tailwind-build:
+	npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css
 
 add_submodules:
 	bash node_modules/genericsuite/scripts/add_github_submodules.sh

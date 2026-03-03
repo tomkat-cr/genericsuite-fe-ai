@@ -51,8 +51,11 @@ const sanitizeUrl = (url) => {
         return trimmedUrl;
     }
     const protocol = trimmedUrl.substring(0, colonIndex).toLowerCase();
-    const allowedProtocols = ['http', 'https', 'mailto', 'tel', 'data'];
+    const allowedProtocols = ['http', 'https', 'mailto', 'tel'];
     if (allowedProtocols.includes(protocol)) {
+        return trimmedUrl;
+    }
+    if (protocol === "data" && (trimmedUrl.startsWith("data:image/png;") || trimmedUrl.startsWith("data:image/jpeg;"))) {
         return trimmedUrl;
     }
     return '#';
@@ -120,7 +123,7 @@ export const ConversationBlock = ({
                         className={INFO_MSG_CLASS}
                         onClick={(e) => {
                             e.preventDefault();
-                            performDownload(url, filename);
+                            performDownload(sanitizeUrl(url), filename);
                         }}
                     >
                         {(message ? message : `Click here to download the "${filename}" file`) + errorMsgSuffix}
