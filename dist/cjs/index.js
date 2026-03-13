@@ -463,6 +463,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 // );
 const GsIcons$8 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$3 = gs__namespace.dbService.dbApiService;
+const fetchUtilities$1 = gs__namespace.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER$2 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
 const console_debug_log$1 = gs__namespace.loggingService.console_debug_log;
 const formatCaughtError$4 = gs__namespace.errorAndReenter.formatCaughtError;
@@ -616,7 +617,7 @@ const VoiceMessageRecorder = _ref => {
       dispatchWaitAnimation(true, dispatch);
       if (useAxios$1) {
         const authHeader = gs__namespace.authHeader.authHeader();
-        const endpointUrl = "".concat(process.env.REACT_APP_API_URL, "/", "ai/voice_to_text");
+        const endpointUrl = "".concat(fetchUtilities$1.getBaseApiUrl(), "/", "ai/voice_to_text");
         await sendFile(endpointUrl, formData, authHeader, query_params);
       } else {
         db.getAll(query_params, formData, 'POST', options).then(data => {
@@ -678,7 +679,7 @@ const getErrorDetail = gs__namespace.errorAndReenter.getErrorDetail;
 const dbApiService$2 = gs__namespace.dbService.dbApiService;
 const defaultValue = gs__namespace.genericEditorUtilities.defaultValue;
 
-// const getUuidV4 = gs.idUtilities.getUuidV4;
+// const getUuidV4 = gs.uuidUtilities.getUuidV4;
 
 const console_debug_log = gs__namespace.loggingService.console_debug_log;
 
@@ -1057,6 +1058,7 @@ const handleCancelProcessing = dispatch => {
 // );
 const GsIcons$7 = gs__namespace.IconsLib.GsIcons;
 const dbApiService$1 = gs__namespace.dbService.dbApiService;
+const fetchUtilities = gs__namespace.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER$1 = gs__namespace.dbService.MULTIPART_FORM_DATA_HEADER;
 gs__namespace.loggingService.console_debug_log;
 const formatCaughtError$2 = gs__namespace.errorAndReenter.formatCaughtError;
@@ -1143,7 +1145,7 @@ function FileUploader(_ref) {
       dispatchWaitAnimation(true, dispatch);
       if (useAxios) {
         const authHeader = gs__namespace.authHeader.authHeader();
-        const endpointUrl = "".concat(process.env.REACT_APP_API_URL, "/", "ai/image_to_text");
+        const endpointUrl = "".concat(fetchUtilities.getBaseApiUrl(), "/", "ai/image_to_text");
         await sendFile(endpointUrl, formData, authHeader, query);
       } else {
         const db = new dbApiService$1({
@@ -2154,84 +2156,6 @@ const AudioPlayer = _ref => {
   }
 };
 
-gs__namespace.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
-  const objDiv = document.getElementById(elementId);
-  React.useEffect(() => {
-    if (objDiv && elementsToRender !== '') {
-      // objDiv.scrollIntoView(false);
-      objDiv.scrollTop = objDiv.scrollHeight;
-      // Sometimes it needs a second change, specially when the object is being populated
-      // objDiv.scrollTop = objDiv.scrollHeight;
-    }
-  }, [objDiv, elementsToRender, elementId]);
-  return /*#__PURE__*/React.createElement(React.Fragment, null);
-};
-
-// import "./ScrollToBottomButton.css";
-
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import fontawesome from "@fortawesome/fontawesome";
-// import {
-//     faArrowDown,
-// } from "@fortawesome/fontawesome-free-solid";
-// fontawesome.library.add(
-//     faArrowDown,
-// );
-
-const GsIcons$1 = gs__namespace.IconsLib.GsIcons;
-gs__namespace.loggingService.console_debug_log;
-const ScrollToBottomButton = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
-  const element = document.getElementById(elementId);
-  const scrollToBottom = () => {
-    if (element) {
-      element.scrollTop = element.scrollHeight;
-    }
-  };
-  React.useEffect(() => {
-    if (element && elementsToRender !== '') {
-      // let lastScrollTop =
-      //     element.scrollY || element.scrollTop;
-      element.addEventListener('scroll', function handleScroll() {
-        const buttonElement = document.getElementById('scroll-overfolw-button');
-        buttonElement.style.visibility = showButton(element);
-      }, false);
-    }
-  }, [element, elementsToRender, elementId]);
-  return /*#__PURE__*/React.createElement("div", {
-    id: "scroll-overfolw-button",
-    style: {
-      visibility: showButton(element)
-    },
-    className: SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS
-  }, /*#__PURE__*/React.createElement("div", {
-    className: SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS
-  }, /*#__PURE__*/React.createElement("div", {
-    className: SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS
-  }, /*#__PURE__*/React.createElement("button", {
-    onClick: scrollToBottom,
-    className: SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS
-  }, /*#__PURE__*/React.createElement("i", {
-    // className="a fa-plus my-float"
-    className: SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS
-  }, /*#__PURE__*/React.createElement(GsIcons$1, {
-    icon: "arrow-down",
-    size: "lg",
-    additionalIconsFn: iconsLibAiExtras
-  }))))));
-};
-const showButton = element =>
-// 'visible' and 'hidden' cannot be VISIBLE_CLASS and HIDDEN_CLASS constants, should remain as those fixed strings...
-element && element.scrollHeight > element.scrollTop + element.clientHeight ? 'visible' : 'hidden';
-
 gs__namespace.ui.LinkifyText;
 const CopyButton = gs__namespace.ui.CopyButton;
 const renderMarkdownContent = gs__namespace.ui.renderMarkdownContent;
@@ -2308,6 +2232,83 @@ const ChatCodeBlock = _ref => {
   }));
 };
 
+gs__namespace.loggingService.console_debug_log;
+const GoToTheBottom = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
+  const objDiv = document.getElementById(elementId);
+  React.useEffect(() => {
+    if (objDiv && elementsToRender !== '') {
+      // objDiv.scrollIntoView(false);
+      objDiv.scrollTop = objDiv.scrollHeight;
+      // Sometimes it needs a second change, specially when the object is being populated
+      // objDiv.scrollTop = objDiv.scrollHeight;
+    }
+  }, [objDiv, elementsToRender, elementId]);
+  return /*#__PURE__*/React.createElement(React.Fragment, null);
+};
+
+// import "./ScrollToBottomButton.css";
+
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import fontawesome from "@fortawesome/fontawesome";
+// import {
+//     faArrowDown,
+// } from "@fortawesome/fontawesome-free-solid";
+// fontawesome.library.add(
+//     faArrowDown,
+// );
+
+const GsIcons$1 = gs__namespace.IconsLib.GsIcons;
+gs__namespace.loggingService.console_debug_log;
+const ScrollToBottomButton = ({
+  elementId,
+  elementsToRender
+}) => {
+  const element = document.getElementById(elementId);
+  const scrollToBottom = () => {
+    if (element) {
+      element.scrollTop = element.scrollHeight;
+    }
+  };
+  React.useEffect(() => {
+    if (element && elementsToRender !== '') {
+      // let lastScrollTop =
+      //     element.scrollY || element.scrollTop;
+      element.addEventListener('scroll', function handleScroll() {
+        const buttonElement = document.getElementById('scroll-overfolw-button');
+        buttonElement.style.visibility = showButton(element);
+      }, false);
+    }
+  }, [element, elementsToRender, elementId]);
+  return /*#__PURE__*/React.createElement("div", {
+    id: "scroll-overfolw-button",
+    style: {
+      visibility: showButton(element)
+    },
+    className: SCROLL_TO_BOTTOM_BUTTON_DIV_1_CLASS
+  }, /*#__PURE__*/React.createElement("div", {
+    className: SCROLL_TO_BOTTOM_BUTTON_DIV_2_CLASS
+  }, /*#__PURE__*/React.createElement("div", {
+    className: SCROLL_TO_BOTTOM_BUTTON_DIV_3_CLASS
+  }, /*#__PURE__*/React.createElement("button", {
+    onClick: scrollToBottom,
+    className: SCROLL_TO_BOTTOM_BUTTON_FLOAT_CLASS
+  }, /*#__PURE__*/React.createElement("i", {
+    // className="a fa-plus my-float"
+    className: SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS
+  }, /*#__PURE__*/React.createElement(GsIcons$1, {
+    icon: "arrow-down",
+    size: "lg",
+    additionalIconsFn: iconsLibAiExtras
+  }))))));
+};
+const showButton = element =>
+// 'visible' and 'hidden' cannot be VISIBLE_CLASS and HIDDEN_CLASS constants, should remain as those fixed strings...
+element && element.scrollHeight > element.scrollTop + element.clientHeight ? 'visible' : 'hidden';
+
 // import './ChatBot.css';
 
 const useAppContext$1 = gs__namespace.AppContext.useAppContext;
@@ -2318,6 +2319,28 @@ const performDownload = gs__namespace.blobFilesUtilities.performDownload;
 const INFO_MSG_CLASS = gs__namespace.classNameConstants.INFO_MSG_CLASS;
 const WARNING_MSG_CLASS = gs__namespace.classNameConstants.WARNING_MSG_CLASS;
 const defaultDownloadFilename = 'file_with_no_name.mp3';
+const sanitizeUrl = url => {
+  if (!url) return '#';
+  const trimmedUrl = url.trim();
+  if (trimmedUrl.toLowerCase().startsWith('javascript:')) {
+    return '#';
+  }
+  // Simple protocol check
+  const colonIndex = trimmedUrl.indexOf(':');
+  if (colonIndex === -1) {
+    // No colon, likely a relative path or fragment
+    return trimmedUrl;
+  }
+  const protocol = trimmedUrl.substring(0, colonIndex).toLowerCase();
+  const allowedProtocols = ['http', 'https', 'mailto', 'tel'];
+  if (allowedProtocols.includes(protocol)) {
+    return trimmedUrl;
+  }
+  if (protocol === "data" && (trimmedUrl.startsWith("data:image/png;") || trimmedUrl.startsWith("data:image/jpeg;"))) {
+    return trimmedUrl;
+  }
+  return '#';
+};
 const ConversationBlock = _ref => {
   let {
     id,
@@ -2369,7 +2392,7 @@ const ConversationBlock = _ref => {
           className: INFO_MSG_CLASS,
           onClick: e => {
             e.preventDefault();
-            performDownload(url, filename);
+            performDownload(sanitizeUrl(url), filename);
           }
         }, (message ? message : "Click here to download the \"".concat(filename, "\" file")) + errorMsgSuffix);
       }
@@ -2392,7 +2415,7 @@ const ConversationBlock = _ref => {
       }, /*#__PURE__*/React.createElement("div", {
         className: CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS
       }, hasAttachment && /*#__PURE__*/React.createElement("a", {
-        href: messageObject.attachment_url,
+        href: sanitizeUrl(messageObject.attachment_url),
         target: "_blank",
         rel: "noreferrer",
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS
@@ -2400,8 +2423,8 @@ const ConversationBlock = _ref => {
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS
       }, /*#__PURE__*/React.createElement("img", {
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS,
-        src: messageObject.attachment_url,
-        alt: "Attachment: ".concat(message),
+        src: sanitizeUrl(messageObject.attachment_url),
+        alt: message,
         style: {
           maxHeight: 'auto',
           width: 'fit-content',
@@ -2443,7 +2466,7 @@ const ConversationBlock = _ref => {
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: id ? id : "conversation-block",
     className: "".concat(CHATBOT_MESSAGE_BLOCK_CLASS, " ").concat(theme.background)
-  }, state && !state.errorMsg && state.messages && elementsToRender), /*#__PURE__*/React.createElement(ScrollToBottomButton, {
+  }, state && state.messages && elementsToRender), /*#__PURE__*/React.createElement(ScrollToBottomButton, {
     elementId: id ? id : "conversation-block",
     elementsToRender: elementsToRender
   }), /*#__PURE__*/React.createElement(GoToTheBottom, {
@@ -2724,12 +2747,17 @@ const ChatBotButton = _ref => {
   const setPrompt = (prompt, valueToReplace) => {
     return prompt.replace("%s", valueToReplace);
   };
+  const sanitizePromptInput = input => {
+    if (!input) return "";
+    return input.replace(/[<>]/g, '').trim();
+  };
   const handleSparkClick = e => {
     e.preventDefault();
     const inputValue = document.getElementById(valueElement).value;
-    if (inputValue !== "") {
+    const sanitizedInput = sanitizePromptInput(inputValue);
+    if (sanitizedInput !== "") {
       {
-        window.open(window.location.origin + '/chatbot?menu=0&ssb=0&q=' + setPrompt(chatbot_prompt, inputValue), 'AppChatbotPopUp', 'height=600,width=400');
+        window.open(window.location.origin + '/#/chatbot?menu=0&ssb=0&q=' + encodeURIComponent(setPrompt(chatbot_prompt, sanitizedInput)), 'AppChatbotPopUp', 'height=600,width=400');
       }
     }
   };
@@ -2748,7 +2776,7 @@ const ChatBotButton = _ref => {
     // className="llm-popup"
     className: CHATBOT_BUTTON_LLM_POPUP_DIV_2
   }, /*#__PURE__*/React.createElement(ChatBot, {
-    userQuestion: setPrompt(chatbot_prompt, document.getElementById(valueElement).value),
+    userQuestion: setPrompt(chatbot_prompt, sanitizePromptInput(document.getElementById(valueElement).value)),
     showSideBar: false
   }))));
 };

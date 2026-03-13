@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import * as gs from "genericsuite";
 
-import AudioPlayer from './AudioPlayer.jsx';
-import { GoToTheBottom } from './GoToTheBottom.jsx'
-import { ScrollToBottomButton } from './ScrollToBottomButton.jsx'
-import { ChatCodeBlock } from './ChatCodeBlock.jsx';
 import {
-    CHATBOT_MESSAGE_BLOCK_CLASS,
-    CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS,
-    CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS,
-    CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS,
+    CHATBOT_BOT_MESSAGE_CLASS,
+    CHATBOT_BOT_MESSAGE_CONTAINER_CLASS,
+    CHATBOT_BOT_MESSAGE_DM_CLASS,
+    CHATBOT_BOT_MESSAGE_LM_CLASS,
     CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS,
     CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS,
+    CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS,
+    CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS,
+    CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS,
+    CHATBOT_MESSAGE_BLOCK_CLASS,
     CHATBOT_MESSAGE_CLASS,
-    CHATBOT_BOT_MESSAGE_CLASS,
     CHATBOT_USER_MESSAGE_CLASS,
+    CHATBOT_USER_MESSAGE_CONTAINER_CLASS,
     CHATBOT_USER_MESSAGE_DM_CLASS,
     CHATBOT_USER_MESSAGE_LM_CLASS,
-    CHATBOT_BOT_MESSAGE_LM_CLASS,
-    CHATBOT_BOT_MESSAGE_DM_CLASS,
-    CHATBOT_USER_MESSAGE_CONTAINER_CLASS,
-    CHATBOT_BOT_MESSAGE_CONTAINER_CLASS,
 } from '../../constants/class_name_constants.jsx';
+import AudioPlayer from './AudioPlayer.jsx';
+import { ChatCodeBlock } from './ChatCodeBlock.jsx';
+import { GoToTheBottom } from './GoToTheBottom.jsx';
+import { ScrollToBottomButton } from './ScrollToBottomButton.jsx';
 
 // import './ChatBot.css';
 
@@ -38,6 +38,29 @@ const WARNING_MSG_CLASS = gs.classNameConstants.WARNING_MSG_CLASS;
 const debug = false;
 const defaultDownloadFilename = 'file_with_no_name.mp3'
 
+const sanitizeUrl = (url) => {
+    if (!url) return '#';
+    const trimmedUrl = url.trim();
+    if (trimmedUrl.toLowerCase().startsWith('javascript:')) {
+        return '#';
+    }
+    // Simple protocol check
+    const colonIndex = trimmedUrl.indexOf(':');
+    if (colonIndex === -1) {
+        // No colon, likely a relative path or fragment
+        return trimmedUrl;
+    }
+    const protocol = trimmedUrl.substring(0, colonIndex).toLowerCase();
+    const allowedProtocols = ['http', 'https', 'mailto', 'tel'];
+    if (allowedProtocols.includes(protocol)) {
+        return trimmedUrl;
+    }
+    if (protocol === "data" && (trimmedUrl.startsWith("data:image/png;") || trimmedUrl.startsWith("data:image/jpeg;"))) {
+        return trimmedUrl;
+    }
+    return '#';
+};
+
 export const ConversationBlock = ({
     id,
     state,
@@ -45,7 +68,7 @@ export const ConversationBlock = ({
 }) => {
     const { theme, isWide, isDarkMode } = useAppContext();
 
-    const getStyleClasses = () => ({        
+    const getStyleClasses = () => ({
         "userMessage": `${theme.text} ${CHATBOT_USER_MESSAGE_CLASS} ${isDarkMode ? CHATBOT_USER_MESSAGE_DM_CLASS : CHATBOT_USER_MESSAGE_LM_CLASS}`,
         "userMessageContainer": CHATBOT_USER_MESSAGE_CONTAINER_CLASS,
         "botMessage": `${theme.label} ${CHATBOT_BOT_MESSAGE_CLASS} ${isDarkMode ? CHATBOT_BOT_MESSAGE_DM_CLASS : CHATBOT_BOT_MESSAGE_LM_CLASS}`,
@@ -70,7 +93,7 @@ export const ConversationBlock = ({
         const downloadedFilename = hasDownloadFileToken ? message.replace("[SEND_FILE_BACK]=", "").split('/').pop() : null;
         const url = typeof messageObject.attachment_url !== "undefined" ? messageObject.attachment_url : null;
         const hasAttachment = (url !== null || hasDownloadFileToken);
-        let filename = typeof messageObject.filename !== "undefined" ? messageObject.filename : downloadedFilename; 
+        let filename = typeof messageObject.filename !== "undefined" ? messageObject.filename : downloadedFilename;
         const extension = filename ? getFileExtension(filename) : null;
         let errorMsgSuffix = usePlainFetch ? " (No headers allowed)" : "";
         if (hasAttachment && extension) {
@@ -100,10 +123,10 @@ export const ConversationBlock = ({
                         className={INFO_MSG_CLASS}
                         onClick={(e) => {
                             e.preventDefault();
-                            performDownload(url, filename);
+                            performDownload(sanitizeUrl(url), filename);
                         }}
                     >
-                        {(message ? message : `Click here to download the "${filename}" file`)+errorMsgSuffix}
+                        {(message ? message : `Click here to download the "${filename}" file`) + errorMsgSuffix}
                     </button>
                 );
             }
@@ -130,30 +153,30 @@ export const ConversationBlock = ({
                     >
                         {hasAttachment && (
                             <a
-                                href={messageObject.attachment_url}
+                                href={sanitizeUrl(messageObject.attachment_url)}
                                 target='_blank'
                                 rel="noreferrer"
                                 className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS}
                             >
-                                {message+errorMsgSuffix}
+                                {message + errorMsgSuffix}
                             </a>
                         )}
                         {!hasAttachment && (
-                            <>{message+errorMsgSuffix}</>
+                            <>{message + errorMsgSuffix}</>
                         )}
                     </div>
                     {hasAttachment && ['jpg', 'jpeg', 'gif', 'png', 'svg', 'bmp', 'webp', 'tiff'].includes(String(getFileExtension(messageObject.attachment_url)).toLowerCase()) && (
-                            <div
-                                className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS}
-                            >
-                                <img
-                                    className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS}
-                                    src={messageObject.attachment_url}
-                                    alt={`Attachment: ${message}`}
-                                    style={{maxHeight: 'auto', width: 'fit-content', maxWidth: '100%'}}
-                                />
-                            </div>
-                        )
+                        <div
+                            className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS}
+                        >
+                            <img
+                                className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS}
+                                src={sanitizeUrl(messageObject.attachment_url)}
+                                alt={message}
+                                style={{ maxHeight: 'auto', width: 'fit-content', maxWidth: '100%' }}
+                            />
+                        </div>
+                    )
                     }
                 </div>
             );
@@ -172,7 +195,7 @@ export const ConversationBlock = ({
                 message = message.substring('```plaintext```'.length);
             }
         }
-        
+
         // If there are no code blocks, wrap the content in plaintext markers
         if (!message.includes('```')) {
             message = '```plaintext\n' + message + '\n```';
@@ -207,7 +230,7 @@ export const ConversationBlock = ({
                 id={id ? id : "conversation-block"}
                 className={`${CHATBOT_MESSAGE_BLOCK_CLASS} ${theme.background}`}
             >
-                {state && !state.errorMsg && state.messages && elementsToRender}
+                {state && state.messages && elementsToRender}
             </div>
             <ScrollToBottomButton
                 elementId={id ? id : "conversation-block"}
