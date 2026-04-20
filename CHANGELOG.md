@@ -15,6 +15,17 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
+## [Unreleased] - 2026-04-03
+
+### Added
+- AGENTS.md and CLAUDE.md files to provide context and instructions to AI agents [GS-303].
+- Add SAST testing [GS-315].
+- Add frontend scripts library [GS-107].
+
+### Removed
+- The `scripts/` directory were replaced by the frontend scripts library [GS-107].
+
+
 ## [1.2.0] - 2026-02-18
 
 ### Added

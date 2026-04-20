@@ -40,45 +40,45 @@ test:
 	npm test
 
 test-run-build:
-	. node_modules/genericsuite/scripts/build_prod_test.sh
-	. node_modules/genericsuite/scripts/build_prod_test.sh restore
+	. ./node_modules/genericsuite-fe-scripts/scripts/build_prod_test.sh
+	. ./node_modules/genericsuite-fe-scripts/scripts/build_prod_test.sh restore
  
 test-run-build-restore:
-	. node_modules/genericsuite/scripts/build_prod_test.sh restore
+	. ./node_modules/genericsuite-fe-scripts/scripts/build_prod_test.sh restore
 
 eject-dev:
 	npm run eject-dev
 
 config:
-	bash node_modules/genericsuite/scripts/change_env_be_endpoint.sh dev
+	bash ./node_modules/genericsuite-fe-scripts/scripts/change_env_be_endpoint.sh dev
 
 config_qa:
-	bash node_modules/genericsuite/scripts/change_env_be_endpoint.sh qa
+	bash ./node_modules/genericsuite-fe-scripts/scripts/change_env_be_endpoint.sh qa
 
 config_demo:
-	bash node_modules/genericsuite/scripts/change_env_be_endpoint.sh demo
+	bash ./node_modules/genericsuite-fe-scripts/scripts/change_env_be_endpoint.sh demo
 
 deploy: config
-	bash node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
+	bash ./node_modules/genericsuite-fe-scripts/scripts/aws_deploy_to_s3.sh
 
 deploy_qa: config_qa
-	bash node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
+	bash ./node_modules/genericsuite-fe-scripts/scripts/aws_deploy_to_s3.sh
 
 deploy_demo: config_demo
-	bash node_modules/genericsuite/scripts/aws_deploy_to_s3.sh
+	bash ./node_modules/genericsuite-fe-scripts/scripts/aws_deploy_to_s3.sh
 
 run: config
-	bash node_modules/genericsuite/scripts/run_app_frontend.sh dev
+	bash ./node_modules/genericsuite-fe-scripts/scripts/run_app_frontend.sh dev
 
 run_qa: config_qa
-	bash node_modules/genericsuite/scripts/run_app_frontend.sh qa
+	bash ./node_modules/genericsuite-fe-scripts/scripts/run_app_frontend.sh qa
 
 server: run
 start: run
 local: run
 
 run_prod: build-prod
-	# bash node_modules/genericsuite/scripts/run_app_frontend.sh prod
+	# bash ./node_modules/genericsuite-fe-scripts/scripts/run_app_frontend.sh prod
 	npm start
 
 tailwind:
@@ -88,49 +88,27 @@ tailwind-build:
 	npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css
 
 add_submodules:
-	bash node_modules/genericsuite/scripts/add_github_submodules.sh
+	bash ./node_modules/genericsuite-fe-scripts/scripts/add_github_submodules.sh
 
 create_ssl_certs:
-	bash node_modules/genericsuite/scripts/create_ssl_certs.sh
+	bash ./node_modules/genericsuite-fe-scripts/scripts/create_ssl_certs.sh
 
 ## NPM scripts library
 
 config_lib:
-	bash node_modules/genericsuite/scripts/change_env_be_endpoint.sh dev
+	bash ./node_modules/genericsuite-fe-scripts/scripts/change_env_be_endpoint.sh dev
 
 run_lib: config_lib
-	bash node_modules/genericsuite/scripts/run_app_frontend.sh dev
+	bash ./node_modules/genericsuite-fe-scripts/scripts/run_app_frontend.sh dev
 
-pre-publish:
-	bash ./scripts/npm_publish.sh pre-publish
+sast-test:
+	bash ./node_modules/genericsuite-fe-scripts/scripts/sast_test.sh
 
-# pre-publish:
-# 	# bash node_modules/genericsuite/scripts/npm_publish.sh pre-publish
-# 	if [ "${UPDATE_SNAPSHOTS}" = "1" ]; then npm test -- -u; else npm run test; fi
-# 	npm install --package-lock-only
-# 	npm run build
+pre-publish: sast-test
+	bash ./node_modules/genericsuite-fe-scripts/scripts/npm_publish.sh pre-publish
 
-# remove-dev-dependencies:
-# 	npm uninstall --save-dev \
-# 		webpack webpack-cli webpack-dev-server html-webpack-plugin interpolate-html-plugin \
-# 		vite @vitejs/plugin-react vite-plugin-require \
-# 		react-app-rewired react-scripts
-# 	rm -rf ./public/static
-# 	perl -i -pe"s|\"type1\":|\"type\":|g" package.json
-# 	perl -i -pe"s|\"main1\":|\"main\":|g" package.json
-# 	perl -i -pe"s|\"module1\":|\"module\":|g" package.json
-# 	perl -i -pe"s|\"types1\":|\"types\":|g" package.json
+publish: sast-test
+	bash ./node_modules/genericsuite-fe-scripts/scripts/npm_publish.sh publish
 
-# publish: remove-dev-dependencies pre-publish
-# 	# bash node_modules/genericsuite/scripts/npm_publish.sh publish
-# 	@export PACKAGE_NAME=$(perl -ne 'print $1 if /"name":\s*"([^"]*)"/' package.json) && \
-# 	export PACKAGE_VERSION=$(perl -ne 'print $1 if /"version":\s*"([^"]*)"/' package.json) && \
-# 	echo "" && \
-# 	echo ${PACKAGE_NAME} && \
-# 	echo ${PACKAGE_VERSION} && \
-# 	echo "Press Enter to publish ${PACKAGE_NAME}@${PACKAGE_VERSION}, Ctrl-C to stop" && \
-# 	read answer
-# 	npm publish --access=public
-
-publish:
-	bash ./scripts/npm_publish.sh publish
+agents_md_link:
+	ln -s CLAUDE.md AGENTS.md
