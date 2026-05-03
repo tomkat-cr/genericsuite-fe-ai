@@ -22,6 +22,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Add SAST testing [GS-315].
 - Add frontend scripts library [GS-107].
 
+### Changed
+- License changed to MIT [FA-244].
+
 ### Removed
 - The `scripts/` directory were replaced by the frontend scripts library [GS-107].
 
