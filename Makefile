@@ -109,6 +109,3 @@ pre-publish: sast-test
 
 publish: sast-test
 	bash ./node_modules/genericsuite-fe-scripts/scripts/npm_publish.sh publish
-
-agents_md_link:
-	ln -s CLAUDE.md AGENTS.md
