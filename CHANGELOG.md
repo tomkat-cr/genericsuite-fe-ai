@@ -24,6 +24,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Changed
 - License changed to MIT [FA-244].
+- Rename AWS_S3_BUCKET_NAME to AWS_S3_BUCKET_NAME_FE in the .env file [GS-328].
 
 ### Removed
 - The `scripts/` directory were replaced by the frontend scripts library [GS-107].
