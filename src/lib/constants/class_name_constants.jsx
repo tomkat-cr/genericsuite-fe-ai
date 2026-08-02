@@ -49,24 +49,41 @@ export const CHATBOT_MESSAGE_AREA_DIV_4_CLASS = "relative h-full chatbot-message
 
 // Conversation messages row
 
-export const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto chatbot-message-block-class";
+export const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto overflow-x-hidden chatbot-message-block-class";
 
-export const CHATBOT_MESSAGE_CLASS = "p-2 flex chatbot-message-class";
+// `min-w-0` / `max-w-full` on the message rows and bubbles: a flex item defaults to
+// `min-width: auto`, so it refuses to shrink below its content's intrinsic size. An
+// attachment image is wider than the chat column, which pushed the whole message area
+// past the viewport and produced a horizontal scrollbar on wide screens.
+export const CHATBOT_MESSAGE_CLASS = "p-2 flex max-w-full chatbot-message-class";
 export const CHATBOT_USER_MESSAGE_CONTAINER_CLASS = "justify-end chatbot-user-message-container-class";
 // export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-full w-auto chatbot-user-message-class";
-export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-xl w-auto chatbot-user-message-class";
+export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-xl w-auto min-w-0 max-w-full chatbot-user-message-class";
 export const CHATBOT_USER_MESSAGE_LM_CLASS = "bg-gray-300 chatbot-user-message-lm-class";
 export const CHATBOT_USER_MESSAGE_DM_CLASS = "bg-gray-500 chatbot-user-message-dm-class";
 export const CHATBOT_BOT_MESSAGE_CONTAINER_CLASS = "justify-start chatbot-bot-message-container-class";
-export const CHATBOT_BOT_MESSAGE_CLASS = "p-1 rounded chatbot-bot-message-class";
+export const CHATBOT_BOT_MESSAGE_CLASS = "p-1 rounded min-w-0 max-w-full chatbot-bot-message-class";
 export const CHATBOT_BOT_MESSAGE_LM_CLASS = "chatbot-bot-message-lm-class";
 export const CHATBOT_BOT_MESSAGE_DM_CLASS = "chatbot-bot-message-dm-class";
 
-export const CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS = "chatbot-format-message-div-1-class";
-export const CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS = "rounded-md p-2 shadow-sm chatbot-format-message-div-2-class";
-export const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS = "text-black font-bold chatbot-format-message-attachment-message-class";
-export const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS = "mt-2 chatbot-format-message-attachment-image-div-class";
-export const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS = "rounded-md chatbot-format-message-attachment-image-img-class";
+// Code / text blocks rendered by <ChatCodeBlock />. The visual treatment of the code
+// card lives inline in the component so it survives a host app whose Tailwind config
+// does not scan this library's `dist`; these names are the host-app styling hooks.
+export const CHATBOT_CODE_BLOCK_CARD_CLASS = "min-w-0 max-w-full chatbot-code-block-card-class";
+export const CHATBOT_CODE_BLOCK_HEADER_CLASS = "truncate chatbot-code-block-header-class";
+// No `relative` here on purpose: the Copy button is absolutely positioned and must
+// anchor to the card (so it lands in the header), which sets `position` inline.
+export const CHATBOT_CODE_BLOCK_BODY_CLASS = "min-w-0 max-w-full chatbot-code-block-body-class";
+export const CHATBOT_CODE_BLOCK_TEXT_CLASS = "min-w-0 max-w-full break-words chatbot-code-block-text-class";
+export const CHATBOT_CODE_BLOCK_COPY_BUTTON_CLASS = "chatbot-code-block-copy-button-class";
+
+export const CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS = "min-w-0 max-w-full chatbot-format-message-div-1-class";
+// `break-words` so the signed attachment URLs and long generated filenames wrap
+// instead of stretching the bubble past the chat column.
+export const CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS = "rounded-md p-2 shadow-sm min-w-0 max-w-full break-words chatbot-format-message-div-2-class";
+export const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS = "text-black font-bold break-words chatbot-format-message-attachment-message-class";
+export const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS = "mt-2 min-w-0 max-w-full chatbot-format-message-attachment-image-div-class";
+export const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS = "rounded-md block h-auto max-w-full chatbot-format-message-attachment-image-img-class";
 
 // User input area row
 

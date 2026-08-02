@@ -25,11 +25,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Changed
 - License changed to MIT [FA-244].
 - Rename AWS_S3_BUCKET_NAME to AWS_S3_BUCKET_NAME_FE in the .env file [GS-328].
+- ChatBot conversation code blocks enhancements: replace copy text button by an icon, and enhance design [GS-214].
+- Add "tailwind-build" script to deploy_* and run_* Makefile commands [GS-214].
 
 ### Fixed
 - "Could not resolve dependency: formik@2.4.5" error in `ExampleApp`, `FastApiTemplate` and all apps that uses `genericsuite-fe-ai` as a dependency [GS-254].
+- "installHook.js:1 TypeError: JY.default.includes is not a function" error when certain ChatBot conversations are clicked and the page becomes empty [GS-214].
 
 ### Security
+- json5, postcss, and prismjs security vulnerabilities fixed by upgrading their dependent packages [GS-214].
 - Upgrade dependencies to latest version: crypto-browserify@^3.12.1, downshift@^9.4.0, react-icons@^5.7.0, react-markdown@^10.1.0, react-syntax-highlighter@^16.1.1 [GS-219].
 - Upgrade axios@^1.19.0 to fix the security vulnerabilities [GS-219]:
   - Server-side Request Forgery (SSRF) [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111062] in axios@1.15.1

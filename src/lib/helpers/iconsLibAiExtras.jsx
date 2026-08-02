@@ -101,6 +101,27 @@ export const iconsLibAiExtras = (
             );
             break;
 
+        case 'copy':
+            // faCopy (regular)
+            // Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com
+            // License - https://fontawesome.com/license/free (icons: CC BY 4.0)
+            // Copyright 2026 Fonticons, Inc.
+            // No width/height here on purpose: GsIcons only falls back to its own
+            // `size` mapping when the svg does not declare them.
+            selectedSvg = (
+                <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="copy" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M384 336l-192 0c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l133.5 0c4.2 0 8.3 1.7 11.3 4.7l58.5 58.5c3 3 4.7 7.1 4.7 11.3L400 320c0 8.8-7.2 16-16 16zM192 384l192 0c35.3 0 64-28.7 64-64l0-197.5c0-17-6.7-33.3-18.7-45.3L370.7 18.7C358.7 6.7 342.5 0 325.5 0L192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-16-48 0 0 16c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l16 0 0-48-16 0z"></path></svg>
+            );
+            break;
+
+        case 'check':
+            // faCheck - the confirmation state for the copy button
+            // Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com
+            // License - https://fontawesome.com/license/free (icons: CC BY 4.0)
+            selectedSvg = (
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path></svg>
+            );
+            break;
+
         case 'two-lines-left-menu':
             selectedSvg = (
                 <svg

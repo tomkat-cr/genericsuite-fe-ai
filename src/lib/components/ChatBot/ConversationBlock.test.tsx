@@ -100,6 +100,34 @@ describe("ConversationBlock sanitization", () => {
         expect(img.getAttribute('src')).toBe('#');
     });
 
+    it("keeps attachment images inside the chat column", () => {
+        const state = {
+            messages: [
+                {
+                    role: 'attachment',
+                    content: 'generated.png',
+                    attachment_url: 'https://example.com/a-very-wide-generated.png'
+                }
+            ]
+        };
+
+        render(<ConversationBlock state={state} id="test-cb" handleRetry={mockDispatch} />);
+
+        const img = screen.getByRole('img') as HTMLImageElement;
+        expect(img.style.maxWidth).toBe('100%');
+        expect(img.style.display).toBe('block');
+        expect(img.style.height).toBe('auto');
+        // `fit-content` sized the image to its intrinsic width, defeating max-width
+        expect(img.style.width).toBe('');
+
+        // The bubble is a flex item: without `min-width: 0` it cannot shrink below
+        // the image's intrinsic width and the whole page scrolls horizontally.
+        const bubble = img.closest('.chatbot-bot-message-class') as HTMLElement;
+        expect(bubble).toBeTruthy();
+        expect(bubble.style.minWidth).toBe('0');
+        expect(bubble.style.maxWidth).toBe('100%');
+    });
+
     it("allows data: URIs for images", () => {
         const dataUrl = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==';
         const state = {

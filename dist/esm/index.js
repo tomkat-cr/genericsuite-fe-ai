@@ -3,8 +3,8 @@ import * as gs from 'genericsuite';
 import axios from 'axios';
 import { Prism, Light } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
-import { grayscale } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
-import prismLanguajes from 'react-syntax-highlighter/dist/cjs/languages/prism/supported-languages.js';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
+import * as prismSupportedLanguagesModule from 'react-syntax-highlighter/dist/cjs/languages/prism/supported-languages.js';
 
 function _defineProperty(e, r, t) {
   return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
@@ -265,6 +265,43 @@ const iconsLibAiExtras = (icon, size, width, height, alt, id, className, role) =
         d: "M176 352c53.02 0 96-42.98 96-96V96c0-53.02-42.98-96-96-96S80 42.98 80 96v160c0 53.02 42.98 96 96 96zm160-160h-16c-8.84 0-16 7.16-16 16v48c0 74.8-64.49 134.82-140.79 127.38C96.71 376.89 48 317.11 48 250.3V208c0-8.84-7.16-16-16-16H16c-8.84 0-16 7.16-16 16v40.16c0 89.64 63.97 169.55 152 181.69V464H96c-8.84 0-16 7.16-16 16v16c0 8.84 7.16 16 16 16h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16h-56v-33.77C285.71 418.47 352 344.9 352 256v-48c0-8.84-7.16-16-16-16z"
       }));
       break;
+    case 'copy':
+      // faCopy (regular)
+      // Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com
+      // License - https://fontawesome.com/license/free (icons: CC BY 4.0)
+      // Copyright 2026 Fonticons, Inc.
+      // No width/height here on purpose: GsIcons only falls back to its own
+      // `size` mapping when the svg does not declare them.
+      selectedSvg = /*#__PURE__*/React.createElement("svg", {
+        "aria-hidden": "true",
+        focusable: "false",
+        "data-prefix": "far",
+        "data-icon": "copy",
+        role: "img",
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 448 512"
+      }, /*#__PURE__*/React.createElement("path", {
+        fill: "currentColor",
+        d: "M384 336l-192 0c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l133.5 0c4.2 0 8.3 1.7 11.3 4.7l58.5 58.5c3 3 4.7 7.1 4.7 11.3L400 320c0 8.8-7.2 16-16 16zM192 384l192 0c35.3 0 64-28.7 64-64l0-197.5c0-17-6.7-33.3-18.7-45.3L370.7 18.7C358.7 6.7 342.5 0 325.5 0L192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-16-48 0 0 16c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l16 0 0-48-16 0z"
+      }));
+      break;
+    case 'check':
+      // faCheck - the confirmation state for the copy button
+      // Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com
+      // License - https://fontawesome.com/license/free (icons: CC BY 4.0)
+      selectedSvg = /*#__PURE__*/React.createElement("svg", {
+        "aria-hidden": "true",
+        focusable: "false",
+        "data-prefix": "fas",
+        "data-icon": "check",
+        role: "img",
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 448 512"
+      }, /*#__PURE__*/React.createElement("path", {
+        fill: "currentColor",
+        d: "M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+      }));
+      break;
     case 'two-lines-left-menu':
       selectedSvg = /*#__PURE__*/React.createElement("svg", {
         width: "24",
@@ -356,22 +393,40 @@ const CHATBOT_MESSAGE_AREA_DIV_4_CLASS = "relative h-full chatbot-message-area-d
 
 // Conversation messages row
 
-const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto chatbot-message-block-class";
-const CHATBOT_MESSAGE_CLASS = "p-2 flex chatbot-message-class";
+const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto overflow-x-hidden chatbot-message-block-class";
+
+// `min-w-0` / `max-w-full` on the message rows and bubbles: a flex item defaults to
+// `min-width: auto`, so it refuses to shrink below its content's intrinsic size. An
+// attachment image is wider than the chat column, which pushed the whole message area
+// past the viewport and produced a horizontal scrollbar on wide screens.
+const CHATBOT_MESSAGE_CLASS = "p-2 flex max-w-full chatbot-message-class";
 const CHATBOT_USER_MESSAGE_CONTAINER_CLASS = "justify-end chatbot-user-message-container-class";
 // export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-full w-auto chatbot-user-message-class";
-const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-xl w-auto chatbot-user-message-class";
+const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-xl w-auto min-w-0 max-w-full chatbot-user-message-class";
 const CHATBOT_USER_MESSAGE_LM_CLASS = "bg-gray-300 chatbot-user-message-lm-class";
 const CHATBOT_USER_MESSAGE_DM_CLASS = "bg-gray-500 chatbot-user-message-dm-class";
 const CHATBOT_BOT_MESSAGE_CONTAINER_CLASS = "justify-start chatbot-bot-message-container-class";
-const CHATBOT_BOT_MESSAGE_CLASS = "p-1 rounded chatbot-bot-message-class";
+const CHATBOT_BOT_MESSAGE_CLASS = "p-1 rounded min-w-0 max-w-full chatbot-bot-message-class";
 const CHATBOT_BOT_MESSAGE_LM_CLASS = "chatbot-bot-message-lm-class";
 const CHATBOT_BOT_MESSAGE_DM_CLASS = "chatbot-bot-message-dm-class";
-const CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS = "chatbot-format-message-div-1-class";
-const CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS = "rounded-md p-2 shadow-sm chatbot-format-message-div-2-class";
-const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS = "text-black font-bold chatbot-format-message-attachment-message-class";
-const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS = "mt-2 chatbot-format-message-attachment-image-div-class";
-const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS = "rounded-md chatbot-format-message-attachment-image-img-class";
+
+// Code / text blocks rendered by <ChatCodeBlock />. The visual treatment of the code
+// card lives inline in the component so it survives a host app whose Tailwind config
+// does not scan this library's `dist`; these names are the host-app styling hooks.
+const CHATBOT_CODE_BLOCK_CARD_CLASS = "min-w-0 max-w-full chatbot-code-block-card-class";
+const CHATBOT_CODE_BLOCK_HEADER_CLASS = "truncate chatbot-code-block-header-class";
+// No `relative` here on purpose: the Copy button is absolutely positioned and must
+// anchor to the card (so it lands in the header), which sets `position` inline.
+const CHATBOT_CODE_BLOCK_BODY_CLASS = "min-w-0 max-w-full chatbot-code-block-body-class";
+const CHATBOT_CODE_BLOCK_TEXT_CLASS = "min-w-0 max-w-full break-words chatbot-code-block-text-class";
+const CHATBOT_CODE_BLOCK_COPY_BUTTON_CLASS = "chatbot-code-block-copy-button-class";
+const CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS = "min-w-0 max-w-full chatbot-format-message-div-1-class";
+// `break-words` so the signed attachment URLs and long generated filenames wrap
+// instead of stretching the bubble past the chat column.
+const CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS = "rounded-md p-2 shadow-sm min-w-0 max-w-full break-words chatbot-format-message-div-2-class";
+const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS = "text-black font-bold break-words chatbot-format-message-attachment-message-class";
+const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS = "mt-2 min-w-0 max-w-full chatbot-format-message-attachment-image-div-class";
+const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS = "rounded-md block h-auto max-w-full chatbot-format-message-attachment-image-img-class";
 
 // User input area row
 
@@ -440,7 +495,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 //     faMicrophone,
 //     faStop,
 // );
-const GsIcons$8 = gs.IconsLib.GsIcons;
+const GsIcons$9 = gs.IconsLib.GsIcons;
 const dbApiService$3 = gs.dbService.dbApiService;
 const fetchUtilities$1 = gs.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER$2 = gs.dbService.MULTIPART_FORM_DATA_HEADER;
@@ -644,7 +699,7 @@ const VoiceMessageRecorder = _ref => {
     onClick: isRecording ? stopRecording : startRecording,
     className: VOICE_MESSAGE_RECORDER_BUTTON_CLASS,
     title: isRecording ? 'Stop Recording' : 'Start Recording'
-  }, /*#__PURE__*/React.createElement(GsIcons$8, {
+  }, /*#__PURE__*/React.createElement(GsIcons$9, {
     icon: isRecording ? 'stop' : 'microphone'
     // size='lg'
     ,
@@ -1035,7 +1090,7 @@ const handleCancelProcessing = dispatch => {
 //     faTimes, // Close
 //     faPaperclip, // Added clip icon
 // );
-const GsIcons$7 = gs.IconsLib.GsIcons;
+const GsIcons$8 = gs.IconsLib.GsIcons;
 const dbApiService$1 = gs.dbService.dbApiService;
 const fetchUtilities = gs.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER$1 = gs.dbService.MULTIPART_FORM_DATA_HEADER;
@@ -1167,7 +1222,7 @@ function FileUploader(_ref) {
     onClick: () => setButtonToggle(buttonToggle ? false : true),
     className: FILE_UPLOADER_BUTTON_CLASS,
     title: buttonToggle ? 'Close' : 'Select File'
-  }, /*#__PURE__*/React.createElement(GsIcons$7, {
+  }, /*#__PURE__*/React.createElement(GsIcons$8, {
     icon: buttonToggle ? 'times' : 'paperclip'
     // size='lg'
     ,
@@ -1186,7 +1241,7 @@ function FileUploader(_ref) {
     ,
     className: FILE_UPLOADER_BASE_BUTTON_CLASS,
     title: "Submit"
-  }, /*#__PURE__*/React.createElement(GsIcons$7, {
+  }, /*#__PURE__*/React.createElement(GsIcons$8, {
     icon: "arrow-up",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1239,7 +1294,7 @@ styleInject(css_248z);
 //     faCameraRetro, // Icon for taking the photo
 //     faExchangeAlt, // Icon for interchange
 // );
-const GsIcons$6 = gs.IconsLib.GsIcons;
+const GsIcons$7 = gs.IconsLib.GsIcons;
 const dbApiService = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
 gs.loggingService.console_debug_log;
@@ -1396,7 +1451,7 @@ const CameraComponent = _ref => {
     },
     className: CAMERA_COMPONENT_BUTTON_MAIN_CLASS,
     title: buttonToggle ? 'Close' : 'Start Camera'
-  }, /*#__PURE__*/React.createElement(GsIcons$6, {
+  }, /*#__PURE__*/React.createElement(GsIcons$7, {
     icon: buttonToggle ? 'times' : 'camera'
     // size='lg'
     ,
@@ -1406,7 +1461,7 @@ const CameraComponent = _ref => {
     onClick: () => cameraOnOff(!cameraOn),
     className: CAMERA_COMPONENT_BUTTON_SUB_CLASS,
     title: "Start Camera"
-  }, /*#__PURE__*/React.createElement(GsIcons$6, {
+  }, /*#__PURE__*/React.createElement(GsIcons$7, {
     icon: "camera-retro",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1414,7 +1469,7 @@ const CameraComponent = _ref => {
     onClick: sendPhoto,
     className: CAMERA_COMPONENT_BUTTON_SUB_CLASS,
     title: "Send Photo"
-  }, /*#__PURE__*/React.createElement(GsIcons$6, {
+  }, /*#__PURE__*/React.createElement(GsIcons$7, {
     icon: "arrow-up",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1462,7 +1517,7 @@ expected one of ["2xs","xs","sm","lg","xl","2xl","1x","2x","3x","4x","5x","6x","
 //     faGreaterThan,
 //     faStop,
 // );
-const GsIcons$5 = gs.IconsLib.GsIcons;
+const GsIcons$6 = gs.IconsLib.GsIcons;
 const useAppContext$3 = gs.AppContext.useAppContext;
 const resizeManager = gs.ui.resizeManager;
 gs.loggingService.console_debug_log;
@@ -1728,7 +1783,7 @@ const UserInput = _ref => {
     onClick: () => state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage(),
     className: CHATBOT_INPUT_AREA_BUTTON_CLASS,
     title: state && state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'
-  }, /*#__PURE__*/React.createElement(GsIcons$5
+  }, /*#__PURE__*/React.createElement(GsIcons$6
   // icon={state && state.isApiProcessing ? 'stop' : 'greater-than'}
   , {
     icon: state && state.isApiProcessing ? 'stop' : 'arrow-up',
@@ -1766,7 +1821,7 @@ const UserInput = _ref => {
 // const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 // //const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
-const GsIcons$4 = gs.IconsLib.GsIcons;
+const GsIcons$5 = gs.IconsLib.GsIcons;
 
 // const debug = false;
 
@@ -1796,7 +1851,7 @@ const NewConversationButton = _ref => {
     // className={`${BUTTON_LISTING_CLASS} text-xs mb-2`}
     ,
     className: CHATBOT_NEW_CONVERSATION_BUTTON_CLASS
-  }, /*#__PURE__*/React.createElement(GsIcons$4, {
+  }, /*#__PURE__*/React.createElement(GsIcons$5, {
     icon: 'new-conversation',
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1813,7 +1868,7 @@ const NewConversationButton = _ref => {
 // fontawesome.library.add(
 //     faTrash,
 // );
-const GsIcons$3 = gs.IconsLib.GsIcons;
+const GsIcons$4 = gs.IconsLib.GsIcons;
 
 // const convertId = gs.dbService.convertId;
 const convertId$1 = gs.idUtilities.convertId;
@@ -1977,7 +2032,7 @@ const ConversationList = _ref => {
         onClick: () => confirmDeleteConversation(convId, dispatch, conversation.title),
         className: CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS
         // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS} ${theme.textHoverSide}`}
-      }, /*#__PURE__*/React.createElement(GsIcons$3, {
+      }, /*#__PURE__*/React.createElement(GsIcons$4, {
         icon: "trash",
         size: "xs"
       })))));
@@ -2033,7 +2088,7 @@ const ConversationList = _ref => {
 //     faLessThan,
 // );
 
-const GsIcons$2 = gs.IconsLib.GsIcons;
+const GsIcons$3 = gs.IconsLib.GsIcons;
 // const ToggleSideBar = gs.NavLib.ToggleSideBar;
 gs.loggingService.console_debug_log;
 const ConversationsToggleButton = _ref => {
@@ -2047,7 +2102,7 @@ const ConversationsToggleButton = _ref => {
     key: id,
     className: CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className !== null && className !== void 0 ? className : ''),
     onClick: () => setConversationListToggle(!state.conversationListToggle, dispatch)
-  }, /*#__PURE__*/React.createElement(GsIcons$2, {
+  }, /*#__PURE__*/React.createElement(GsIcons$3, {
     icon: 'conversation-list-toggle',
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -2071,12 +2126,13 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = ({
-  blobUrl,
-  filename,
-  expired,
-  errorMsgSuffix
-}) => {
+const AudioPlayer = _ref => {
+  let {
+    blobUrl,
+    filename,
+    expired,
+    errorMsgSuffix
+  } = _ref;
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -2122,7 +2178,7 @@ const AudioPlayer = ({
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, `Audio file expired${errorMsgSuffix}`);
+    }, "Audio file expired".concat(errorMsgSuffix));
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -2134,9 +2190,182 @@ const AudioPlayer = ({
   }
 };
 
+const GsIcons$2 = gs.IconsLib.GsIcons;
+const COPIED_FEEDBACK_MS = 2000;
+
+// Inline styles rather than Tailwind utilities: the host app compiles this
+// library's classes, so a `dist` its config does not scan would leave the button
+// unstyled. Hover is driven from state for the same reason - there is no
+// stylesheet shipped with this package to hold a `:hover` rule.
+const baseButtonStyle = {
+  position: 'absolute',
+  top: '6px',
+  right: '8px',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '6px',
+  padding: '5px 7px',
+  border: '1px solid transparent',
+  borderRadius: '6px',
+  background: 'transparent',
+  color: '#a8a8a8',
+  cursor: 'pointer',
+  fontSize: '11px',
+  lineHeight: 1,
+  transition: 'background-color .15s ease, color .15s ease, border-color .15s ease'
+};
+const hoverButtonStyle = {
+  backgroundColor: 'rgba(255, 255, 255, 0.10)',
+  borderColor: 'rgba(255, 255, 255, 0.14)',
+  color: '#ffffff'
+};
+const copiedButtonStyle = {
+  color: '#6ee7a8'
+};
+const ChatCopyButton = _ref => {
+  let {
+    text,
+    label = 'Copy code'
+  } = _ref;
+  const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const resetTimer = useRef(null);
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current) {
+        clearTimeout(resetTimer.current);
+      }
+    };
+  }, []);
+  const unsecuredCopyToClipboard = value => {
+    const textArea = document.createElement("textarea");
+    textArea.value = value;
+    // Keep the scroll position stable while the textarea is focused
+    textArea.style.position = 'fixed';
+    textArea.style.top = '-1000px';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+    } catch (err) {
+      console.error('Unable to copy to clipboard', err);
+    }
+    document.body.removeChild(textArea);
+  };
+  const handleCopy = () => {
+    if (window.isSecureContext && navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+    } else {
+      unsecuredCopyToClipboard(text);
+    }
+    setCopied(true);
+    if (resetTimer.current) {
+      clearTimeout(resetTimer.current);
+    }
+    resetTimer.current = setTimeout(() => setCopied(false), COPIED_FEEDBACK_MS);
+  };
+  return /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    id: "copyButton",
+    className: CHATBOT_CODE_BLOCK_COPY_BUTTON_CLASS,
+    style: _objectSpread2(_objectSpread2(_objectSpread2({}, baseButtonStyle), hovered ? hoverButtonStyle : {}), copied ? copiedButtonStyle : {}),
+    title: copied ? 'Copied!' : label,
+    "aria-label": copied ? 'Copied!' : label,
+    onMouseEnter: () => setHovered(true),
+    onMouseLeave: () => setHovered(false),
+    onFocus: () => setHovered(true),
+    onBlur: () => setHovered(false),
+    onClick: handleCopy
+  }, /*#__PURE__*/React.createElement(GsIcons$2, {
+    icon: copied ? 'check' : 'copy',
+    size: "sm",
+    additionalIconsFn: iconsLibAiExtras
+  }), /*#__PURE__*/React.createElement("span", {
+    role: "status",
+    "aria-live": "polite",
+    style: {
+      position: 'absolute',
+      width: '1px',
+      height: '1px',
+      overflow: 'hidden',
+      clip: 'rect(0 0 0 0)',
+      whiteSpace: 'nowrap'
+    }
+  }, copied ? 'Copied!' : ''));
+};
+
 gs.ui.LinkifyText;
-const CopyButton = gs.ui.CopyButton;
 const renderMarkdownContent = gs.ui.renderMarkdownContent;
+
+// "supported-languages.js" is a CommonJS file inside react-syntax-highlighter's
+// "dist/cjs" tree, so the shape it arrives in depends on how the consuming app's
+// bundler does ESM/CJS interop: the array itself, `{ default: array }`, or
+// double-wrapped as `{ default: { default: array } }` when `__esModule` is not
+// honoured. Reading `.default` directly worked in jest but crashed the deployed
+// bundle with "TypeError: <ns>.default.includes is not a function", so unwrap
+// defensively instead of assuming one shape.
+const MAX_INTEROP_DEPTH = 3;
+const resolveSupportedLanguages = moduleExport => {
+  let value = moduleExport;
+  for (let depth = 0; depth < MAX_INTEROP_DEPTH; depth++) {
+    if (Array.isArray(value)) {
+      return value;
+    }
+    if (!value || typeof value !== 'object') {
+      break;
+    }
+    value = value.default;
+  }
+  return Array.isArray(value) ? value : [];
+};
+const prismLanguajes = resolveSupportedLanguages(prismSupportedLanguagesModule);
+
+// The code block chrome is styled inline rather than with Tailwind utilities: the
+// host app is what compiles this library's classes, so a `dist` that its Tailwind
+// config does not scan would leave the block unstyled. The class names above stay
+// on the elements so host apps can still restyle them.
+const CODE_BLOCK_SURFACE = '#1e1e1e';
+const codeBlockCardStyle = {
+  position: 'relative',
+  margin: '12px 0',
+  borderRadius: '10px',
+  overflow: 'hidden',
+  border: '1px solid rgba(255, 255, 255, 0.10)',
+  backgroundColor: CODE_BLOCK_SURFACE,
+  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.30)'
+};
+const codeBlockHeaderStyle = {
+  // Right padding keeps the label clear of the absolutely positioned Copy button.
+  padding: '9px 44px 9px 14px',
+  backgroundColor: 'rgba(255, 255, 255, 0.06)',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+  color: '#d4d4d4',
+  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+  fontSize: '12px',
+  letterSpacing: '0.3px',
+  userSelect: 'none'
+};
+
+// `background: transparent` lets the card supply one surface colour for both the
+// Prism and the hljs theme, so every code block matches whatever the language is.
+const codeBlockPreStyle = {
+  margin: 0,
+  borderRadius: 0,
+  padding: '14px 16px',
+  background: 'transparent',
+  fontSize: '13px',
+  lineHeight: '1.55'
+};
+
+// With no language there is no header bar to hold the Copy button, which is
+// absolutely positioned at the top of the card - reserve a strip so it never
+// sits on top of the first line of code.
+const codeBlockPreNoHeaderStyle = _objectSpread2(_objectSpread2({}, codeBlockPreStyle), {}, {
+  paddingTop: '38px'
+});
 const ChatCodeBlock = _ref => {
   let {
     children,
@@ -2159,41 +2388,40 @@ const ChatCodeBlock = _ref => {
       //     );
       // }
       return /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-other")
+        key: "".concat(index, "-other"),
+        className: CHATBOT_CODE_BLOCK_TEXT_CLASS
       }, renderMarkdownContent(part));
     } else {
-      // Handle code blocks
-      let content = part.trim();
-      let language = content.split('\n')[0];
+      // Handle code blocks. The info string (the language) is only
+      // whatever follows the opening fence on the same line, so read
+      // it off the raw part: trimming first would pull the first line
+      // of a fence opened without a language up into the language slot.
+      const newlineIndex = part.indexOf('\n');
+      const language = (newlineIndex === -1 ? part : part.slice(0, newlineIndex)).trim();
+      let content = (newlineIndex === -1 ? '' : part.slice(newlineIndex + 1)).trim();
 
       // Special handling for plaintext
       if (language === 'plaintext') {
-        content = content.substring(language.length + 1).trim();
         return /*#__PURE__*/React.createElement("div", {
-          key: "".concat(index, "-plaintext")
+          key: "".concat(index, "-plaintext"),
+          className: CHATBOT_CODE_BLOCK_TEXT_CLASS
         }, renderMarkdownContent(content));
       }
-      content = content.substring(language.length + 1).trim();
       return /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-content-wrapper")
-      }, /*#__PURE__*/React.createElement("div", {
-        style: {
-          position: 'relative'
-        }
-      }, /*#__PURE__*/React.createElement("div", {
+        key: "".concat(index, "-content-wrapper"),
+        className: CHATBOT_CODE_BLOCK_CARD_CLASS,
+        style: codeBlockCardStyle
+      }, language && /*#__PURE__*/React.createElement("div", {
         key: "".concat(index, "-language"),
-        style: {
-          backgroundColor: 'rgb(30, 30, 30)',
-          color: 'wheat',
-          marginTop: '10px',
-          padding: '10px',
-          overflowX: 'auto'
-        }
+        className: CHATBOT_CODE_BLOCK_HEADER_CLASS,
+        style: codeBlockHeaderStyle
       }, language), /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-content")
+        key: "".concat(index, "-content"),
+        className: CHATBOT_CODE_BLOCK_BODY_CLASS
       }, shType === "prism" && prismLanguajes.includes(language) ? /*#__PURE__*/React.createElement(Prism, {
         language: language,
         style: vscDarkPlus,
+        customStyle: language ? codeBlockPreStyle : codeBlockPreNoHeaderStyle,
         wrapLongLines: true
       }, content) :
       /*#__PURE__*/
@@ -2201,20 +2429,22 @@ const ChatCodeBlock = _ref => {
       // So Prism is not good for comments because it doesn't wrap long lines even if wrapLongLines is true, and Light does
       React.createElement(Light, {
         language: language,
-        style: grayscale,
+        style: atomOneDark,
+        customStyle: language ? codeBlockPreStyle : codeBlockPreNoHeaderStyle,
         wrapLongLines: true
-      }, content), /*#__PURE__*/React.createElement(CopyButton, {
+      }, content), /*#__PURE__*/React.createElement(ChatCopyButton, {
         text: content
-      }))));
+      })));
     }
   }));
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = ({
-  elementId,
-  elementsToRender
-}) => {
+const GoToTheBottom = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -2240,10 +2470,11 @@ const GoToTheBottom = ({
 
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
-const ScrollToBottomButton = ({
-  elementId,
-  elementsToRender
-}) => {
+const ScrollToBottomButton = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
@@ -2401,10 +2632,16 @@ const ConversationBlock = _ref => {
       }, /*#__PURE__*/React.createElement("img", {
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS,
         src: sanitizeUrl(messageObject.attachment_url),
-        alt: message,
+        alt: message
+        // Kept inline (not only in the class constants) because the
+        // host app is what compiles this library's Tailwind classes,
+        // and an unscanned `dist` leaves the image unconstrained.
+        // `width: fit-content` sized the image to its intrinsic width
+        // and `maxHeight: 'auto'` is not a valid CSS value.
+        ,
         style: {
-          maxHeight: 'auto',
-          width: 'fit-content',
+          display: 'block',
+          height: 'auto',
           maxWidth: '100%'
         }
       })));
@@ -2435,9 +2672,21 @@ const ConversationBlock = _ref => {
   useEffect(() => {
     setElementsToRender(state.messages.map((message, index) => /*#__PURE__*/React.createElement("div", {
       key: index,
-      className: "".concat(CHATBOT_MESSAGE_CLASS, " ").concat(message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer)
+      className: "".concat(CHATBOT_MESSAGE_CLASS, " ").concat(message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer),
+      style: {
+        maxWidth: '100%'
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: message.role === 'user' ? styleClass.userMessage : styleClass.botMessage
+      // A flex item defaults to `min-width: auto` and so will not shrink
+      // below the intrinsic width of an attachment image. Without this the
+      // message row grows past the chat column and the page scrolls
+      // horizontally on wide screens.
+      ,
+      style: {
+        minWidth: 0,
+        maxWidth: '100%'
+      }
     }, formatMessage(message)))));
   }, [state.messages]);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
