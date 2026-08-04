@@ -38,6 +38,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Removed a bogus `"with"` entry from the `config-overrides.js` `resolve.fallback` config — `with` is not a Node.js core module, so the fallback never did anything [GS-338].
 - The `webpack.config.js` fallback referenced `require.resolve("assert")` for a package that was never declared anywhere in `package.json`; documented it in the install note instead of leaving a silently-broken reference [GS-338].
 - `rollup.config.mjs`: removed `formik` from the `external` array — it isn't a declared peer dependency and isn't imported anywhere in `src/` (leftover from copying `genericsuite-fe`'s Rollup config) [GS-338].
+- "config-overrides.js" updated to fix errors running the app with RUN_BUNDLER="react-scripts" [GS-338].
+- "process" dependency installation on "webpack.config.js" file documentation to to fix errors running the app [GS-338].
 
 ### Security
 - json5, postcss, and prismjs security vulnerabilities fixed by upgrading their dependent packages [GS-214].

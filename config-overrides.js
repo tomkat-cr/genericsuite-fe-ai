@@ -22,8 +22,19 @@ npm install --save-dev \
    crypto-browserify \
    stream-browserify \
    vm-browserify \
-   tty-browserify \
-   process
+   tty-browserify
+
+To avoid issues with the app URL and execution:
+
+File: "package.json"
+
+- If there is a "type": "module" attribute, rename it to e.g. "type1"
+- If there is a "homepage": "..." attribute, rename it to e.g. "homepage1" (unless you really need a URL # suffix)
+- If there is a "eslintConfig": "..." attribute, rename it to e.g. "eslintConfig1"
+- Add the following entry to "scripts":
+    "start-dev:react-app-rewired": "bash ../node_modules/genericsuite-fe-scripts/scripts/change_env_be_endpoint.sh dev && npx react-app-rewired start",
+- Install typescript: "npm installl -D typescript" or "npm installl -D -w ui typescript"
+- After changing "package.json", run "npm update" or "npm update -w ui" before start the app.
 */
 
 export default {
@@ -60,6 +71,7 @@ export default {
       // Create the default config by calling configFunction with the proxy/allowedHost parameters
       const config = configFunction(proxy, allowedHost);
       config.allowedHosts = [appLocalDomainName, "localhost", "127.0.0.1"]; // To avoid "Invalid Host header" error
+      config.hostName = appLocalDomainName;
       config.historyApiFallback = true;
       config.hot = true;
       config.compress = true;
@@ -103,12 +115,12 @@ export default {
     config.fallback = {
       "fs": false,
       // Uncomment as needed (see the npm install note above):
-      // "os": require.resolve("os-browserify/browser"),
-      // "url": require.resolve("url"),
-      // "crypto": require.resolve("crypto-browserify"),
-      // "stream": require.resolve("stream-browserify"),
-      // "vm": require.resolve("vm-browserify"),
-      // "tty": require.resolve("tty-browserify"),
+      "os": require.resolve("os-browserify/browser"),
+      "url": require.resolve("url"),
+      "crypto": require.resolve("crypto-browserify"),
+      "stream": require.resolve("stream-browserify"),
+      "vm": require.resolve("vm-browserify"),
+      "tty": require.resolve("tty-browserify"),
     };
     return config;
   },
