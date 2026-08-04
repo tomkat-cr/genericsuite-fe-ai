@@ -1,8 +1,9 @@
 /* config-overrides.js | react-app-rewired */
 
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const fs = require('fs');
-const path = require('path');
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import fs from 'fs';
+import path from 'path';
+
 const appLocalDomainName = process.env.APP_LOCAL_DOMAIN_NAME;
 
 process.env.REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION || process.env.API_VERSION || 'v1';
@@ -11,9 +12,21 @@ process.env.REACT_APP_API_VERSION = process.env.REACT_APP_API_VERSION || process
 https://github.com/timarney/react-app-rewired
 
 npm install --save-dev react-app-rewired react-scripts
+
+If one of your dependencies needs Node.js core modules polyfilled in the
+browser bundle (see the commented-out "fallback" entries below), also run:
+
+npm install --save-dev \
+   os-browserify \
+   url \
+   crypto-browserify \
+   stream-browserify \
+   vm-browserify \
+   tty-browserify \
+   process
 */
 
-module.exports = {
+export default {
   // The Webpack config to use when compiling your react app for development or production.
   webpack: function (config, env) {
     // ...add your webpack config
@@ -88,14 +101,14 @@ module.exports = {
       '@': path.resolve(__dirname, 'src/'),
     };
     config.fallback = {
-      "os": require.resolve("os-browserify/browser"),
-      "url": require.resolve("url"),
-      "crypto": require.resolve("crypto-browserify"),
-      "stream": require.resolve("stream-browserify"),
-      "with": require.resolve("with"),
-      "vm": require.resolve("vm-browserify"),
-      "tty": require.resolve("tty-browserify"),
-      "fs": false
+      "fs": false,
+      // Uncomment as needed (see the npm install note above):
+      // "os": require.resolve("os-browserify/browser"),
+      // "url": require.resolve("url"),
+      // "crypto": require.resolve("crypto-browserify"),
+      // "stream": require.resolve("stream-browserify"),
+      // "vm": require.resolve("vm-browserify"),
+      // "tty": require.resolve("tty-browserify"),
     };
     return config;
   },

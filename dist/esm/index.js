@@ -6,6 +6,14 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism/inde
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
 import * as prismSupportedLanguagesModule from 'react-syntax-highlighter/dist/cjs/languages/prism/supported-languages.js';
 
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+function _arrayWithHoles(r) {
+  if (Array.isArray(r)) return r;
+}
 function _defineProperty(e, r, t) {
   return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
     value: t,
@@ -13,6 +21,33 @@ function _defineProperty(e, r, t) {
     configurable: true,
     writable: true
   }) : e[r] = t, e;
+}
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = true,
+      o = false;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = true, n = r;
+    } finally {
+      try {
+        if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 function ownKeys(e, r) {
   var t = Object.keys(e);
@@ -35,6 +70,9 @@ function _objectSpread2(e) {
   }
   return e;
 }
+function _slicedToArray(r, e) {
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
 function _toPrimitive(t, r) {
   if ("object" != typeof t || !t) return t;
   var e = t[Symbol.toPrimitive];
@@ -48,6 +86,13 @@ function _toPrimitive(t, r) {
 function _toPropertyKey(t) {
   var i = _toPrimitive(t, "string");
   return "symbol" == typeof i ? i : i + "";
+}
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
 }
 
 gs.loggingService.console_debug_log;
@@ -509,16 +554,23 @@ const debug = false;
 const extControlsToShowHide$1 = ['user_input', 'user_input_submit', 'fileUploader', 'cameraComponent'];
 const useAxios$1 = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 const VoiceMessageRecorder = _ref => {
-  let {
-    id,
-    setExternalInputMessage,
-    handleUpdateSize,
-    dispatch,
-    sendMessage
-  } = _ref;
-  const [isRecording, setIsRecording] = useState(false);
-  const [audioData, setAudioData] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  let id = _ref.id,
+    setExternalInputMessage = _ref.setExternalInputMessage,
+    handleUpdateSize = _ref.handleUpdateSize,
+    dispatch = _ref.dispatch,
+    sendMessage = _ref.sendMessage;
+  const _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isRecording = _useState2[0],
+    setIsRecording = _useState2[1];
+  const _useState3 = useState(null),
+    _useState4 = _slicedToArray(_useState3, 2),
+    audioData = _useState4[0],
+    setAudioData = _useState4[1];
+  const _useState5 = useState(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    errorMsg = _useState6[0],
+    setErrorMsg = _useState6[1];
   const mediaRecorderRef = useRef(null);
   const startRecording = async () => {
     toggleIdVisibility$3("off", extControlsToShowHide$1);
@@ -1099,17 +1151,21 @@ const formatCaughtError$2 = gs.errorAndReenter.formatCaughtError;
 const toggleIdVisibility$2 = gs.ui.toggleIdVisibility;
 const useAxios = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 function FileUploader(_ref) {
-  let {
-    id,
-    setExternalInputMessage,
-    handleUpdateSize,
-    dispatch,
-    state,
-    question,
-    fileTypeFilter
-  } = _ref;
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [buttonToggle, setButtonToggle] = useState(false);
+  let id = _ref.id,
+    setExternalInputMessage = _ref.setExternalInputMessage,
+    handleUpdateSize = _ref.handleUpdateSize,
+    dispatch = _ref.dispatch,
+    state = _ref.state,
+    question = _ref.question,
+    fileTypeFilter = _ref.fileTypeFilter;
+  const _useState = useState(null),
+    _useState2 = _slicedToArray(_useState, 2),
+    selectedFile = _useState2[0],
+    setSelectedFile = _useState2[1];
+  const _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    buttonToggle = _useState4[0],
+    setButtonToggle = _useState4[1];
   const handleFileChange = e => {
     const file = e.target.files[0];
     if (file) {
@@ -1310,18 +1366,28 @@ const VIDEO_ON = {
   display: ''
 };
 const CameraComponent = _ref => {
-  let {
-    id,
-    setExternalInputMessage,
-    handleUpdateSize,
-    dispatch,
-    state,
-    question
-  } = _ref;
-  const [facingMode, setFacingMode] = useState('environment');
-  const [buttonToggle, setButtonToggle] = useState(false);
-  const [photo, setPhoto] = useState(null);
-  const [cameraOn, setCameraOn] = useState(true);
+  let id = _ref.id,
+    setExternalInputMessage = _ref.setExternalInputMessage,
+    handleUpdateSize = _ref.handleUpdateSize,
+    dispatch = _ref.dispatch,
+    state = _ref.state,
+    question = _ref.question;
+  const _useState = useState('environment'),
+    _useState2 = _slicedToArray(_useState, 2),
+    facingMode = _useState2[0],
+    setFacingMode = _useState2[1];
+  const _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    buttonToggle = _useState4[0],
+    setButtonToggle = _useState4[1];
+  const _useState5 = useState(null),
+    _useState6 = _slicedToArray(_useState5, 2),
+    photo = _useState6[0],
+    setPhoto = _useState6[1];
+  const _useState7 = useState(true),
+    _useState8 = _slicedToArray(_useState7, 2),
+    cameraOn = _useState8[0],
+    setCameraOn = _useState8[1];
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const stream = useRef(null);
@@ -1583,19 +1649,22 @@ const resizeAll = () => {
   setConversationBlockHeight();
 };
 const UserInput = _ref => {
-  let {
-    dispatch,
-    state,
-    userQuestion // state.inputMessage
-  } = _ref;
-  const {
-    theme,
-    isWide,
-    isDarkMode,
-    sideMenu
-  } = useAppContext$3();
-  const [inputMessage, setInputMessage] = useState(userQuestion);
-  const [updateSize, setUpdateSize] = useState(false);
+  let dispatch = _ref.dispatch,
+    state = _ref.state,
+    userQuestion = _ref.userQuestion;
+  const _useAppContext = useAppContext$3(),
+    theme = _useAppContext.theme;
+    _useAppContext.isWide;
+    const isDarkMode = _useAppContext.isDarkMode;
+    _useAppContext.sideMenu;
+  const _useState = useState(userQuestion),
+    _useState2 = _slicedToArray(_useState, 2),
+    inputMessage = _useState2[0],
+    setInputMessage = _useState2[1];
+  const _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    updateSize = _useState4[0],
+    setUpdateSize = _useState4[1];
   useEffect(() => {
     resizeAll();
   }, []);
@@ -1826,10 +1895,7 @@ const GsIcons$5 = gs.IconsLib.GsIcons;
 // const debug = false;
 
 const NewConversationButton = _ref => {
-  let {
-    dispatch
-    // startNewConversation,
-  } = _ref;
+  let dispatch = _ref.dispatch;
   // Call this when you want to start a new conversation
   const startNewConversation = () => {
     // Generate a new conversation ID using UUID for enhanced security
@@ -1880,16 +1946,13 @@ const HIDDEN_CLASS$1 = gs.classNameConstants.HIDDEN_CLASS;
 // const dateColumn = "creation_date";
 const dateColumn = "update_date";
 const ConversationList = _ref => {
-  let {
-    state,
-    dispatch,
-    showSideBar
-  } = _ref;
-  const {
-    theme,
-    isWide,
-    isDarkMode
-  } = useAppContext$2();
+  let state = _ref.state,
+    dispatch = _ref.dispatch,
+    showSideBar = _ref.showSideBar;
+  const _useAppContext = useAppContext$2(),
+    theme = _useAppContext.theme;
+    _useAppContext.isWide;
+    _useAppContext.isDarkMode;
   const setErrorMsg = errorMsg => {
     dispatch({
       type: 'SET_ERROR_MSG',
@@ -2092,12 +2155,10 @@ const GsIcons$3 = gs.IconsLib.GsIcons;
 // const ToggleSideBar = gs.NavLib.ToggleSideBar;
 gs.loggingService.console_debug_log;
 const ConversationsToggleButton = _ref => {
-  let {
-    id,
-    className,
-    state,
-    dispatch
-  } = _ref;
+  let id = _ref.id,
+    className = _ref.className,
+    state = _ref.state,
+    dispatch = _ref.dispatch;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
     key: id,
     className: CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className !== null && className !== void 0 ? className : ''),
@@ -2126,13 +2187,12 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -2178,7 +2238,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -2224,12 +2284,17 @@ const copiedButtonStyle = {
   color: '#6ee7a8'
 };
 const ChatCopyButton = _ref => {
-  let {
-    text,
-    label = 'Copy code'
-  } = _ref;
-  const [copied, setCopied] = useState(false);
-  const [hovered, setHovered] = useState(false);
+  let text = _ref.text,
+    _ref$label = _ref.label,
+    label = _ref$label === void 0 ? 'Copy code' : _ref$label;
+  const _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    copied = _useState2[0],
+    setCopied = _useState2[1];
+  const _useState3 = useState(false),
+    _useState4 = _slicedToArray(_useState3, 2),
+    hovered = _useState4[0],
+    setHovered = _useState4[1];
   const resetTimer = useRef(null);
   useEffect(() => {
     return () => {
@@ -2367,10 +2432,9 @@ const codeBlockPreNoHeaderStyle = _objectSpread2(_objectSpread2({}, codeBlockPre
   paddingTop: '38px'
 });
 const ChatCodeBlock = _ref => {
-  let {
-    children,
-    shType = "prism"
-  } = _ref;
+  let children = _ref.children,
+    _ref$shType = _ref.shType,
+    shType = _ref$shType === void 0 ? "prism" : _ref$shType;
   // Regular expression to match code blocks enclosed in ```
   const codeRegex = /```([\s\S]*?)```/g;
 
@@ -2441,10 +2505,8 @@ const ChatCodeBlock = _ref => {
 
 gs.loggingService.console_debug_log;
 const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+  let elementId = _ref.elementId,
+    elementsToRender = _ref.elementsToRender;
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -2471,10 +2533,8 @@ const GoToTheBottom = _ref => {
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
 const ScrollToBottomButton = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+  let elementId = _ref.elementId,
+    elementsToRender = _ref.elementsToRender;
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
@@ -2550,24 +2610,27 @@ const sanitizeUrl = url => {
   return '#';
 };
 const ConversationBlock = _ref => {
-  let {
-    id,
-    state,
-    handleRetry
-  } = _ref;
-  const {
-    theme,
-    isWide,
-    isDarkMode
-  } = useAppContext$1();
+  let id = _ref.id,
+    state = _ref.state;
+    _ref.handleRetry;
+  const _useAppContext = useAppContext$1(),
+    theme = _useAppContext.theme;
+    _useAppContext.isWide;
+    const isDarkMode = _useAppContext.isDarkMode;
   const getStyleClasses = () => ({
     "userMessage": "".concat(theme.text, " ").concat(CHATBOT_USER_MESSAGE_CLASS, " ").concat(isDarkMode ? CHATBOT_USER_MESSAGE_DM_CLASS : CHATBOT_USER_MESSAGE_LM_CLASS),
     "userMessageContainer": CHATBOT_USER_MESSAGE_CONTAINER_CLASS,
     "botMessage": "".concat(theme.label, " ").concat(CHATBOT_BOT_MESSAGE_CLASS, " ").concat(isDarkMode ? CHATBOT_BOT_MESSAGE_DM_CLASS : CHATBOT_BOT_MESSAGE_LM_CLASS),
     "botMessageContainer": CHATBOT_BOT_MESSAGE_CONTAINER_CLASS
   });
-  const [elementsToRender, setElementsToRender] = useState('');
-  const [styleClass, setStyleClass] = useState(getStyleClasses());
+  const _useState = useState(''),
+    _useState2 = _slicedToArray(_useState, 2),
+    elementsToRender = _useState2[0],
+    setElementsToRender = _useState2[1];
+  const _useState3 = useState(getStyleClasses()),
+    _useState4 = _slicedToArray(_useState3, 2),
+    styleClass = _useState4[0],
+    setStyleClass = _useState4[1];
   useEffect(() => {
     setStyleClass(getStyleClasses());
   }, [theme, isDarkMode]);
@@ -2796,33 +2859,34 @@ const chatReducer = (state, action) => {
 // Chatbot main component
 
 const ChatBot = _ref => {
-  let {
-    userQuestion = urlParams.q ? decodeURIComponent(urlParams.q) : '',
-    showSideBar = !(urlParams.ssb && urlParams.ssb === "0")
-  } = _ref;
-  const {
-    currentUser
-  } = useUser();
-  const {
-    theme,
-    isWide,
-    isDarkMode,
-    sideMenu,
-    setIsWide
-  } = useAppContext();
-  const [state, dispatch] = useReducer(chatReducer, {
-    messages: [],
-    conversations: [],
-    currentConversationId: null,
-    isApiProcessing: false,
-    isTyping: false,
-    inputMessage: userQuestion,
-    // conversationListToggle: false, // conversation history sidebar off by default always
-    conversationListToggle: !isMobileDevice(),
-    // conversation history sidebar on by default in desktop
-    errorMsg: null,
-    currentUser: currentUser
-  });
+  let _ref$userQuestion = _ref.userQuestion,
+    userQuestion = _ref$userQuestion === void 0 ? urlParams.q ? decodeURIComponent(urlParams.q) : '' : _ref$userQuestion,
+    _ref$showSideBar = _ref.showSideBar,
+    showSideBar = _ref$showSideBar === void 0 ? !(urlParams.ssb && urlParams.ssb === "0") : _ref$showSideBar;
+  const _useUser = useUser(),
+    currentUser = _useUser.currentUser;
+  const _useAppContext = useAppContext(),
+    theme = _useAppContext.theme;
+    _useAppContext.isWide;
+    _useAppContext.isDarkMode;
+    const sideMenu = _useAppContext.sideMenu,
+    setIsWide = _useAppContext.setIsWide;
+  const _useReducer = useReducer(chatReducer, {
+      messages: [],
+      conversations: [],
+      currentConversationId: null,
+      isApiProcessing: false,
+      isTyping: false,
+      inputMessage: userQuestion,
+      // conversationListToggle: false, // conversation history sidebar off by default always
+      conversationListToggle: !isMobileDevice(),
+      // conversation history sidebar on by default in desktop
+      errorMsg: null,
+      currentUser: currentUser
+    }),
+    _useReducer2 = _slicedToArray(_useReducer, 2),
+    state = _useReducer2[0],
+    dispatch = _useReducer2[1];
   const columnSizeList = () => showSideBar && state.conversationListToggle ? isMobileDevice() ? '60%' : '20%' : "0%";
 
   // If there's an initial UserQuestion, send it inmediatelly to the LLM
@@ -2942,11 +3006,12 @@ const defaultComponentMap = {
   // "ChatBotButton": ChatBotButton,
 };
 const App = _ref => {
-  let {
-    componentMap = {},
-    appLogo = null,
-    appLogoHeader = null
-  } = _ref;
+  let _ref$componentMap = _ref.componentMap,
+    componentMap = _ref$componentMap === void 0 ? {} : _ref$componentMap,
+    _ref$appLogo = _ref.appLogo,
+    appLogo = _ref$appLogo === void 0 ? null : _ref$appLogo,
+    _ref$appLogoHeader = _ref.appLogoHeader,
+    appLogoHeader = _ref$appLogoHeader === void 0 ? null : _ref$appLogoHeader;
   const componentMapFinal = mergeDicts(componentMap, defaultComponentMap);
   return /*#__PURE__*/React.createElement(gs.App, {
     appLogo: appLogo === null ? 'gs_ai_logo_circle.svg' : appLogo,
@@ -2954,8 +3019,6 @@ const App = _ref => {
     componentMap: componentMapFinal
   });
 };
-
-// AI button
 
 gs.loggingService.console_debug_log;
 
@@ -2965,11 +3028,12 @@ gs.loggingService.console_debug_log;
 // import SparkIcon from "../../images/spark.svg";
 const GsIcons = gs.IconsLib.GsIcons;
 const ChatBotButton = _ref => {
-  let {
-    valueElement,
-    chatbot_prompt
-  } = _ref;
-  const [showLLMPopup, setShowLLMPopup] = useState(false);
+  let valueElement = _ref.valueElement,
+    chatbot_prompt = _ref.chatbot_prompt;
+  const _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    showLLMPopup = _useState2[0];
+    _useState2[1];
   const setPrompt = (prompt, valueToReplace) => {
     return prompt.replace("%s", valueToReplace);
   };

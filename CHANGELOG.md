@@ -12,6 +12,8 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Fixed
 
+### Security
+
 ### Removed
 
 
@@ -27,10 +29,15 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Rename AWS_S3_BUCKET_NAME to AWS_S3_BUCKET_NAME_FE in the .env file [GS-328].
 - ChatBot conversation code blocks enhancements: replace copy text button by an icon, and enhance design [GS-214].
 - Add "tailwind-build" script to deploy_* and run_* Makefile commands [GS-214].
+- `webpack.config.js` and `config-overrides.js`: commented out the Node.js core module `resolve.fallback` polyfills (`os`, `url`, `crypto`, `stream`, `assert`, `vm`, `tty`, `constants`, `zlib`, `https`, `http`, `util`) since nothing in the codebase needs them and Vite already runs fine without them; added `npm install --save-dev ...` notes above each so they can be re-enabled if a consumer's own dependency graph needs them [GS-338].
 
 ### Fixed
 - "Could not resolve dependency: formik@2.4.5" error in `ExampleApp`, `FastApiTemplate` and all apps that uses `genericsuite-fe-ai` as a dependency [GS-254].
 - "installHook.js:1 TypeError: JY.default.includes is not a function" error when certain ChatBot conversations are clicked and the page becomes empty [GS-214].
+- `tsconfig.json` was missing an `exclude` for `*.test.tsx`, so every test file got its own `.d.ts` stub emitted into `dist/esm` and `dist/cjs` during the Rollup build. These 14 stray files were already committed to the repo and shipping in `dist/` with every npm publish [GS-338].
+- Removed a bogus `"with"` entry from the `config-overrides.js` `resolve.fallback` config — `with` is not a Node.js core module, so the fallback never did anything [GS-338].
+- The `webpack.config.js` fallback referenced `require.resolve("assert")` for a package that was never declared anywhere in `package.json`; documented it in the install note instead of leaving a silently-broken reference [GS-338].
+- `rollup.config.mjs`: removed `formik` from the `external` array — it isn't a declared peer dependency and isn't imported anywhere in `src/` (leftover from copying `genericsuite-fe`'s Rollup config) [GS-338].
 
 ### Security
 - json5, postcss, and prismjs security vulnerabilities fixed by upgrading their dependent packages [GS-214].
@@ -54,6 +61,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Removed
 - The `scripts/` directory were moved to the [frontend scripts library](https://github.com/tomkat-cr/genericsuite-fe-scripts) [GS-107].
+- Unused `peerDependencies`: `react-icons`, `web-vitals`, `fs`, `json-loader`, `with`, `constants-browserify`, `crypto-browserify`, `os-browserify`, `stream-browserify`, `tty-browserify`, `url`, `vm-browserify`, `browserify-zlib`, `https-browserify`, `net`, `stream-http`, `util`, `buffer`, `downshift`, `history`, `rxjs`, `react-markdown`, `yup`. None are imported anywhere in `src/`; the CRUD-editor-oriented ones (`buffer`, `downshift`, `history`, `rxjs`, `react-markdown`, `yup`) are already required transitively through the `genericsuite` peer dependency for anyone who needs them, and the Node.js core module shims were only ever used by the (optional) webpack/`react-app-rewired` dev-server configs [GS-338].
+- Unused `devDependencies`: `@babel/cli`, `@babel/preset-stage-0`, `@rollup/plugin-typescript`, `file-loader`, `path`, `url-loader` (same reasoning as `genericsuite-fe`), and `whatwg-fetch` (no test needs it here). `@testing-library/user-event` was kept — unlike `genericsuite-fe`, it's genuinely used in `ChatCodeBlock.test.tsx` [GS-338].
+- Unnecessary dependencies  (css-loader, postcss-loader, style-loader, and , gh-pages). The user can import them if webpack or github pages are going to be used in their app [GS-338].
 
 
 ## [1.2.0] - 2026-02-18
