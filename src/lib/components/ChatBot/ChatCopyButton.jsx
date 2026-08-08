@@ -91,7 +91,6 @@ export const ChatCopyButton = ({ text, label = 'Copy code' }) => {
     return (
         <button
             type="button"
-            id="copyButton"
             className={CHATBOT_CODE_BLOCK_COPY_BUTTON_CLASS}
             style={{
                 ...baseButtonStyle,

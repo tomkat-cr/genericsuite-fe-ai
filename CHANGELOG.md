@@ -38,8 +38,9 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Removed a bogus `"with"` entry from the `config-overrides.js` `resolve.fallback` config — `with` is not a Node.js core module, so the fallback never did anything [GS-338].
 - The `webpack.config.js` fallback referenced `require.resolve("assert")` for a package that was never declared anywhere in `package.json`; documented it in the install note instead of leaving a silently-broken reference [GS-338].
 - `rollup.config.mjs`: removed `formik` from the `external` array — it isn't a declared peer dependency and isn't imported anywhere in `src/` (leftover from copying `genericsuite-fe`'s Rollup config) [GS-338].
-- "config-overrides.js" updated to fix errors running the app with RUN_BUNDLER="react-scripts" [GS-338].
+- "config-overrides.js" updated to fix errors running the app with RUN_BUNDLER="react-scripts" [GS-338], and refactor it to use fileURLToPath for path resolution and clean up unused debug logs [GS-327].
 - "process" dependency installation on "webpack.config.js" file documentation to to fix errors running the app [GS-338].
+
 
 ### Security
 - json5, postcss, and prismjs security vulnerabilities fixed by upgrading their dependent packages [GS-214].
@@ -60,12 +61,14 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Upgrade react-router-dom@^7.18.2 to fix the security vulnerability [GS-219]:
   - React Router: RSC Mode CSRF Bypass Allows Action Execution Before 400 Response. This is a follow up to CVE-2026-22030 to address related CSRF flows in unstable RSC code paths.
 - "react" and "react-dom" have now peer dependencies with "^18.2.0" that does not affect this codebase because it only uses BrowserRouter/Routes/Route/Link/Navigate, no RSC APIs. By the way React/ReactDOM will be upgraded to 19 on next release to fix the mentioned react-router-dom security vulnerability [GS-219].
+- Bump Node version in .nvmrc to 26 [GS-339].
 
 ### Removed
 - The `scripts/` directory were moved to the [frontend scripts library](https://github.com/tomkat-cr/genericsuite-fe-scripts) [GS-107].
 - Unused `peerDependencies`: `react-icons`, `web-vitals`, `fs`, `json-loader`, `with`, `constants-browserify`, `crypto-browserify`, `os-browserify`, `stream-browserify`, `tty-browserify`, `url`, `vm-browserify`, `browserify-zlib`, `https-browserify`, `net`, `stream-http`, `util`, `buffer`, `downshift`, `history`, `rxjs`, `react-markdown`, `yup`. None are imported anywhere in `src/`; the CRUD-editor-oriented ones (`buffer`, `downshift`, `history`, `rxjs`, `react-markdown`, `yup`) are already required transitively through the `genericsuite` peer dependency for anyone who needs them, and the Node.js core module shims were only ever used by the (optional) webpack/`react-app-rewired` dev-server configs [GS-338].
 - Unused `devDependencies`: `@babel/cli`, `@babel/preset-stage-0`, `@rollup/plugin-typescript`, `file-loader`, `path`, `url-loader` (same reasoning as `genericsuite-fe`), and `whatwg-fetch` (no test needs it here). `@testing-library/user-event` was kept — unlike `genericsuite-fe`, it's genuinely used in `ChatCodeBlock.test.tsx` [GS-338].
 - Unnecessary dependencies  (css-loader, postcss-loader, style-loader, and , gh-pages). The user can import them if webpack or github pages are going to be used in their app [GS-338].
+- 'id="copyButton"' attribute from the <ChatCopyButton /> component [GS-327].
 
 
 ## [1.2.0] - 2026-02-18

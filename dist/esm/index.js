@@ -2187,15 +2187,23 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = ({
-  blobUrl,
-  filename,
-  expired,
-  errorMsgSuffix
-}) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+const AudioPlayer = _ref => {
+  let blobUrl = _ref.blobUrl,
+    filename = _ref.filename,
+    expired = _ref.expired,
+    errorMsgSuffix = _ref.errorMsgSuffix;
+  const _useState = useState(false),
+    _useState2 = _slicedToArray(_useState, 2),
+    isPlaying = _useState2[0],
+    setIsPlaying = _useState2[1];
+  const _useState3 = useState(0),
+    _useState4 = _slicedToArray(_useState3, 2);
+    _useState4[0];
+    _useState4[1];
+  const _useState5 = useState(0),
+    _useState6 = _slicedToArray(_useState5, 2);
+    _useState6[0];
+    _useState6[1];
   const audioPlayer = useRef(); // reference to the audio component
 
   const fixBlob = () => {
@@ -2238,7 +2246,7 @@ const AudioPlayer = ({
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, `Audio file expired${errorMsgSuffix}`);
+    }, "Audio file expired".concat(errorMsgSuffix));
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -2283,18 +2291,12 @@ const hoverButtonStyle = {
 const copiedButtonStyle = {
   color: '#6ee7a8'
 };
-const ChatCopyButton = _ref => {
-  let text = _ref.text,
-    _ref$label = _ref.label,
-    label = _ref$label === void 0 ? 'Copy code' : _ref$label;
-  const _useState = useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    copied = _useState2[0],
-    setCopied = _useState2[1];
-  const _useState3 = useState(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    hovered = _useState4[0],
-    setHovered = _useState4[1];
+const ChatCopyButton = ({
+  text,
+  label = 'Copy code'
+}) => {
+  const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const resetTimer = useRef(null);
   useEffect(() => {
     return () => {
@@ -2334,9 +2336,12 @@ const ChatCopyButton = _ref => {
   };
   return /*#__PURE__*/React.createElement("button", {
     type: "button",
-    id: "copyButton",
     className: CHATBOT_CODE_BLOCK_COPY_BUTTON_CLASS,
-    style: _objectSpread2(_objectSpread2(_objectSpread2({}, baseButtonStyle), hovered ? hoverButtonStyle : {}), copied ? copiedButtonStyle : {}),
+    style: {
+      ...baseButtonStyle,
+      ...(hovered ? hoverButtonStyle : {}),
+      ...(copied ? copiedButtonStyle : {})
+    },
     title: copied ? 'Copied!' : label,
     "aria-label": copied ? 'Copied!' : label,
     onMouseEnter: () => setHovered(true),
@@ -2532,9 +2537,10 @@ const GoToTheBottom = _ref => {
 
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
-const ScrollToBottomButton = _ref => {
-  let elementId = _ref.elementId,
-    elementsToRender = _ref.elementsToRender;
+const ScrollToBottomButton = ({
+  elementId,
+  elementsToRender
+}) => {
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
