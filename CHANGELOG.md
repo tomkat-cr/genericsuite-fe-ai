@@ -61,7 +61,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - Upgrade react-router-dom@^7.18.2 to fix the security vulnerability [GS-219]:
   - React Router: RSC Mode CSRF Bypass Allows Action Execution Before 400 Response. This is a follow up to CVE-2026-22030 to address related CSRF flows in unstable RSC code paths.
 - "react" and "react-dom" have now peer dependencies with "^18.2.0" that does not affect this codebase because it only uses BrowserRouter/Routes/Route/Link/Navigate, no RSC APIs. By the way React/ReactDOM will be upgraded to 19 on next release to fix the mentioned react-router-dom security vulnerability [GS-219].
-- Bump Node version in .nvmrc to 26 [GS-339].
+- Bump Node.js version in .nvmrc to 26 [GS-339].
 
 ### Removed
 - The `scripts/` directory were moved to the [frontend scripts library](https://github.com/tomkat-cr/genericsuite-fe-scripts) [GS-107].
@@ -311,7 +311,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - "make publish" report the package name and version in the publishing confirmation.
 - "run_app_frontend.sh" assign APP_API_URL_DEV and REACT_APP_API_URL in the "dev" stage for both http and https modes. Previously it was only made for http.
 - "config-overrides.js", "webpack.config.js" and "server.js" use the "FRONTEND_LOCAL_PORT" env. var.
-- Node install links changed to include the NVM alternative download in the README.
+- Node.js install links changed to include the NVM alternative download in the README.
 - License changed to ISC [FA-244].
 
 ### Fixed
