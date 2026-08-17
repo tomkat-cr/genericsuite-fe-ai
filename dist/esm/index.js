@@ -6,95 +6,6 @@ import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism/inde
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
 import * as prismSupportedLanguagesModule from 'react-syntax-highlighter/dist/cjs/languages/prism/supported-languages.js';
 
-function _arrayLikeToArray(r, a) {
-  (null == a || a > r.length) && (a = r.length);
-  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
-  return n;
-}
-function _arrayWithHoles(r) {
-  if (Array.isArray(r)) return r;
-}
-function _defineProperty(e, r, t) {
-  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
-    value: t,
-    enumerable: true,
-    configurable: true,
-    writable: true
-  }) : e[r] = t, e;
-}
-function _iterableToArrayLimit(r, l) {
-  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
-  if (null != t) {
-    var e,
-      n,
-      i,
-      u,
-      a = [],
-      f = true,
-      o = false;
-    try {
-      if (i = (t = t.call(r)).next, 0 === l) ; else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
-    } catch (r) {
-      o = true, n = r;
-    } finally {
-      try {
-        if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return;
-      } finally {
-        if (o) throw n;
-      }
-    }
-    return a;
-  }
-}
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-function ownKeys(e, r) {
-  var t = Object.keys(e);
-  if (Object.getOwnPropertySymbols) {
-    var o = Object.getOwnPropertySymbols(e);
-    r && (o = o.filter(function (r) {
-      return Object.getOwnPropertyDescriptor(e, r).enumerable;
-    })), t.push.apply(t, o);
-  }
-  return t;
-}
-function _objectSpread2(e) {
-  for (var r = 1; r < arguments.length; r++) {
-    var t = null != arguments[r] ? arguments[r] : {};
-    r % 2 ? ownKeys(Object(t), true).forEach(function (r) {
-      _defineProperty(e, r, t[r]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
-      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
-    });
-  }
-  return e;
-}
-function _slicedToArray(r, e) {
-  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
-}
-function _toPrimitive(t, r) {
-  if ("object" != typeof t || !t) return t;
-  var e = t[Symbol.toPrimitive];
-  if (void 0 !== e) {
-    var i = e.call(t, r);
-    if ("object" != typeof i) return i;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return ("string" === r ? String : Number)(t);
-}
-function _toPropertyKey(t) {
-  var i = _toPrimitive(t, "string");
-  return "symbol" == typeof i ? i : i + "";
-}
-function _unsupportedIterableToArray(r, a) {
-  if (r) {
-    if ("string" == typeof r) return _arrayLikeToArray(r, a);
-    var t = {}.toString.call(r).slice(8, -1);
-    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
-  }
-}
-
 gs.loggingService.console_debug_log;
 const setChatbotErrorMsg = (errorMsg, dispatch) => {
   dispatch({
@@ -413,7 +324,7 @@ const CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS = "flex h-full w-full flex-col 1-px
 const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[40px] mt-2 mb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
 const CHATBOT_NEW_CONVERSATION_BUTTON_DIV_1_CLASS = "flex chatbot-new-conversation-button-div-1-class";
 const CHATBOT_NEW_CONVERSATION_BUTTON_SPAN_CLASS = "flex chatbot-new-conversation-button-span-class";
-const CHATBOT_NEW_CONVERSATION_BUTTON_CLASS = "text-xs chatbot-new-conversation-button-class";
+const CHATBOT_NEW_CONVERSATION_BUTTON_CLASS = `text-xs chatbot-new-conversation-button-class`;
 const CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS = "flex-col flex-1 h-[90%] transition-opacity duration-500 relative -mr-2 pr-2 overflow-y-auto chatbot-conversations-list-row-2-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS = "space-y-1 chatbot-conversations-list-heading-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS = "mb-2 text-sm chatbot-conversations-list-heading-div-2-class";
@@ -487,15 +398,15 @@ const CHATBOT_INPUT_AREA_DIV_62_CLASS = "group relative flex w-full items-center
 const CHATBOT_INPUT_AREA_TEXTAREA_CLASS = "p-3 mr-2 rounded-xl w-full resize-none max-h-[200px] overflow-y-auto bg-white min-h-[50px] border border-gray-300 chatbot-input-area-textarea-class";
 const CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS = "bg-gray-300 chatbot-input-area-textarea-lm-class";
 const CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS = "chatbot-input-area-textarea-dm-class";
-const CHATBOT_INPUT_AREA_BUTTON_CLASS = "".concat(BUTTON_LISTING_CLASS, " mr-2 chatbot-input-area-button-class");
+const CHATBOT_INPUT_AREA_BUTTON_CLASS = `${BUTTON_LISTING_CLASS} mr-2 chatbot-input-area-button-class`;
 const CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS = "ml-2 flex items-center chatbot-input-area-wait-animation-class";
 
 // CameraComponent.css
 
 const CAMERA_COMPONENT_DIV_1_CLASS = "camera-component-div-1-class";
 const CAMERA_COMPONENT_DIV_2_CLASS = "min-w-full w-full flex items-center mr-3 camera-component-div-2-class";
-const CAMERA_COMPONENT_BUTTON_SUB_CLASS = "".concat(BUTTON_LISTING_CLASS, " mr-2 camera-component-button-sub-class");
-const CAMERA_COMPONENT_BUTTON_MAIN_CLASS = "border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 text-sm camera-component-button-main-class";
+const CAMERA_COMPONENT_BUTTON_SUB_CLASS = `${BUTTON_LISTING_CLASS} mr-2 camera-component-button-sub-class`;
+const CAMERA_COMPONENT_BUTTON_MAIN_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 text-sm camera-component-button-main-class`;
 const CAMERA_COMPONENT_VIDEO_CONTAINER_CLASS = "relative w-full max-w-full camera-component-video-container-class";
 const CAMERA_COMPONENT_PHOTO_CLASS = "mr-2 camera-component-photo-class";
 const CAMERA_COMPONENT_VIDEO_CLASS = "w-full h-auto .video-container camera-component-video-class";
@@ -513,15 +424,15 @@ const SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS = "1-mt-3 text-center scroll-to-bottom-
 
 const FILE_UPLOADER_DIV_1_CLASS = "file-uploader-div-1-class";
 const FILE_UPLOADER_DIV_2_CLASS = "flex items-center file-uploader-div-1-class";
-const FILE_UPLOADER_BASE_BUTTON_CLASS = "".concat(BUTTON_LISTING_CLASS, " file-uploader-base-button-class");
-const FILE_UPLOADER_BUTTON_CLASS = "border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 file-uploader-button-class";
+const FILE_UPLOADER_BASE_BUTTON_CLASS = `${BUTTON_LISTING_CLASS} file-uploader-base-button-class`;
+const FILE_UPLOADER_BUTTON_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 file-uploader-button-class`;
 const FILE_UPLOADER_INPUT_AREA_CONTAINER_CLASS = "flex items-center file-uploader-input-area-container-class";
 const FILE_UPLOADER_INPUT_AREA_INPUT_CLASS = "p-0 m-0 file-uploader-input-area-input-class";
 
 // VoiceMessageRecorder
 
 const VOICE_MESSAGE_RECORDER_DIV_1_CLASS = "voice-message-recorder-div-1-class";
-const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = "border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 voice-message-recorder-button-class";
+const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 voice-message-recorder-button-class`;
 
 // ChatBotButton
 
@@ -554,23 +465,16 @@ const debug = false;
 const extControlsToShowHide$1 = ['user_input', 'user_input_submit', 'fileUploader', 'cameraComponent'];
 const useAxios$1 = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 const VoiceMessageRecorder = _ref => {
-  let id = _ref.id,
-    setExternalInputMessage = _ref.setExternalInputMessage,
-    handleUpdateSize = _ref.handleUpdateSize,
-    dispatch = _ref.dispatch,
-    sendMessage = _ref.sendMessage;
-  const _useState = useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isRecording = _useState2[0],
-    setIsRecording = _useState2[1];
-  const _useState3 = useState(null),
-    _useState4 = _slicedToArray(_useState3, 2),
-    audioData = _useState4[0],
-    setAudioData = _useState4[1];
-  const _useState5 = useState(null),
-    _useState6 = _slicedToArray(_useState5, 2),
-    errorMsg = _useState6[0],
-    setErrorMsg = _useState6[1];
+  let {
+    id,
+    setExternalInputMessage,
+    handleUpdateSize,
+    dispatch,
+    sendMessage
+  } = _ref;
+  const [isRecording, setIsRecording] = useState(false);
+  const [audioData, setAudioData] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
   const mediaRecorderRef = useRef(null);
   const startRecording = async () => {
     toggleIdVisibility$3("off", extControlsToShowHide$1);
@@ -602,7 +506,7 @@ const VoiceMessageRecorder = _ref => {
       // Handle the stop event
       mediaRecorder.onstop = () => {
         const blob = new Blob(chunks, {
-          type: "audio/".concat(mediaType["extension"])
+          type: `audio/${mediaType["extension"]}`
         });
         setAudioData(blob);
       };
@@ -613,7 +517,7 @@ const VoiceMessageRecorder = _ref => {
       const errorMsgAux = 'Error starting recording:';
       console.error(errorMsg, error);
       setIsRecording(false);
-      setErrorMsg("".concat(errorMsgAux, " ").concat(error.message));
+      setErrorMsg(`${errorMsgAux} ${error.message}`);
       toggleIdVisibility$3("on", extControlsToShowHide$1);
     }
   };
@@ -673,7 +577,7 @@ const VoiceMessageRecorder = _ref => {
       // Prepare the audit to send to the API
       const formData = new FormData();
       const extension = audioData.type.split('/')[1];
-      const fileName = "voiceMessage.".concat(extension);
+      const fileName = `voiceMessage.${extension}`;
       // const appleDevice = MediaRecorder.isTypeSupported('audio/mpeg');
       const appleDevice = extension === 'mp4';
       const sourceLang = appleDevice ? 'get_user_lang' : 'auto';
@@ -703,7 +607,7 @@ const VoiceMessageRecorder = _ref => {
       dispatchWaitAnimation(true, dispatch);
       if (useAxios$1) {
         const authHeader = gs.authHeader.authHeader();
-        const endpointUrl = "".concat(fetchUtilities$1.getBaseApiUrl(), "/", "ai/voice_to_text");
+        const endpointUrl = `${fetchUtilities$1.getBaseApiUrl()}/${"ai/voice_to_text"}`;
         await sendFile(endpointUrl, formData, authHeader, query_params);
       } else {
         db.getAll(query_params, formData, 'POST', options).then(data => {
@@ -739,7 +643,7 @@ const VoiceMessageRecorder = _ref => {
   }, [isRecording, audioData, setExternalInputMessage, handleUpdateSize, dispatch, sendMessage]);
   useEffect(() => {
     if (errorMsg != null) {
-      setChatbotErrorMsg("Error processing the voice message: ".concat(errorMsg), dispatch);
+      setChatbotErrorMsg(`Error processing the voice message: ${errorMsg}`, dispatch);
     }
   }, [errorMsg, dispatch]);
   return /*#__PURE__*/React.createElement("div", {
@@ -832,7 +736,7 @@ const ApiCall = async (dispatch, params) => {
       return {
         ok: false,
         response: null,
-        errorMessage: "Element ".concat(responseAttrName, " not found in the API response")
+        errorMessage: `Element ${responseAttrName} not found in the API response`
       };
     }
     return {
@@ -853,7 +757,7 @@ const ApiCall = async (dispatch, params) => {
   const verifyId = id => {
     return {
       ok: id !== null,
-      errorMessage: id !== null ? "" : "Missing ID: ".concat(id)
+      errorMessage: id !== null ? "" : `Missing ID: ${id}`
     };
   };
   const the = "the";
@@ -925,7 +829,7 @@ const ApiCall = async (dispatch, params) => {
       default:
         response = {
           ok: false,
-          errorMessage: "Invalid operation type: \"".concat(operationType, "\""),
+          errorMessage: `Invalid operation type: "${operationType}"`,
           errorDetails: null
         };
     }
@@ -937,9 +841,9 @@ const ApiCall = async (dispatch, params) => {
     };
   }
   if (response.ok) {
-    response.operationMessage = "".concat(the, " ").concat(operationDescription, " ").concat(ActionDescription, " ").concat(was_successful);
+    response.operationMessage = `${the} ${operationDescription} ${ActionDescription} ${was_successful}`;
   } else {
-    response.operationMessage = "".concat(error_in_the, " ").concat(operationDescription, " ").concat(ActionDescription);
+    response.operationMessage = `${error_in_the} ${operationDescription} ${ActionDescription}`;
     console_debug_log('ApiCall ERROR:');
     console_debug_log(response.operationMessage);
   }
@@ -1151,21 +1055,17 @@ const formatCaughtError$2 = gs.errorAndReenter.formatCaughtError;
 const toggleIdVisibility$2 = gs.ui.toggleIdVisibility;
 const useAxios = (process.env.REACT_APP_USE_AXIOS || "1") == "1";
 function FileUploader(_ref) {
-  let id = _ref.id,
-    setExternalInputMessage = _ref.setExternalInputMessage,
-    handleUpdateSize = _ref.handleUpdateSize,
-    dispatch = _ref.dispatch,
-    state = _ref.state,
-    question = _ref.question,
-    fileTypeFilter = _ref.fileTypeFilter;
-  const _useState = useState(null),
-    _useState2 = _slicedToArray(_useState, 2),
-    selectedFile = _useState2[0],
-    setSelectedFile = _useState2[1];
-  const _useState3 = useState(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    buttonToggle = _useState4[0],
-    setButtonToggle = _useState4[1];
+  let {
+    id,
+    setExternalInputMessage,
+    handleUpdateSize,
+    dispatch,
+    state,
+    question,
+    fileTypeFilter
+  } = _ref;
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [buttonToggle, setButtonToggle] = useState(false);
   const handleFileChange = e => {
     const file = e.target.files[0];
     if (file) {
@@ -1235,7 +1135,7 @@ function FileUploader(_ref) {
       dispatchWaitAnimation(true, dispatch);
       if (useAxios) {
         const authHeader = gs.authHeader.authHeader();
-        const endpointUrl = "".concat(fetchUtilities.getBaseApiUrl(), "/", "ai/image_to_text");
+        const endpointUrl = `${fetchUtilities.getBaseApiUrl()}/${"ai/image_to_text"}`;
         await sendFile(endpointUrl, formData, authHeader, query);
       } else {
         const db = new dbApiService$1({
@@ -1366,28 +1266,18 @@ const VIDEO_ON = {
   display: ''
 };
 const CameraComponent = _ref => {
-  let id = _ref.id,
-    setExternalInputMessage = _ref.setExternalInputMessage,
-    handleUpdateSize = _ref.handleUpdateSize,
-    dispatch = _ref.dispatch,
-    state = _ref.state,
-    question = _ref.question;
-  const _useState = useState('environment'),
-    _useState2 = _slicedToArray(_useState, 2),
-    facingMode = _useState2[0],
-    setFacingMode = _useState2[1];
-  const _useState3 = useState(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    buttonToggle = _useState4[0],
-    setButtonToggle = _useState4[1];
-  const _useState5 = useState(null),
-    _useState6 = _slicedToArray(_useState5, 2),
-    photo = _useState6[0],
-    setPhoto = _useState6[1];
-  const _useState7 = useState(true),
-    _useState8 = _slicedToArray(_useState7, 2),
-    cameraOn = _useState8[0],
-    setCameraOn = _useState8[1];
+  let {
+    id,
+    setExternalInputMessage,
+    handleUpdateSize,
+    dispatch,
+    state,
+    question
+  } = _ref;
+  const [facingMode, setFacingMode] = useState('environment');
+  const [buttonToggle, setButtonToggle] = useState(false);
+  const [photo, setPhoto] = useState(null);
+  const [cameraOn, setCameraOn] = useState(true);
   const videoRef = useRef(null);
   const canvasRef = useRef(null);
   const stream = useRef(null);
@@ -1451,7 +1341,7 @@ const CameraComponent = _ref => {
     const blob = await base64Response.blob();
     const fileExtension = 'jpg';
     const timestamp = new Date().toISOString().replace(/[-:.]/g, '_').slice(0, -5);
-    const fileName = "image_capture_".concat(timestamp, ".").concat(fileExtension);
+    const fileName = `image_capture_${timestamp}.${fileExtension}`;
     const fileSize = blob.size / (1024 * 1024).toFixed(2); // Size in Mb
     formData.append('file', blob, fileName);
     const options = {
@@ -1610,7 +1500,7 @@ const setConversationBlockHeight = () => {
   const chatbotInputAreaObj = document.getElementById('chatbot-input-area');
   // Assign the height of the main container to the chatbot container
   if (chatbotInputAreaObj) {
-    conversationBlockObj.style.height = "".concat(chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10, "px");
+    conversationBlockObj.style.height = `${chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10}px`;
   }
 };
 const getWindowMaxHeight = () => {
@@ -1631,7 +1521,7 @@ const setChatBotContainerHeight = () => {
   // const footerHeight = (sideMenu ? (footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0) : 5);
   const footerHeight = 5;
   // Assign the height of the chatbot container to the main container minus the footer height
-  chatbotContainerObj.style.height = "".concat(mainContainerHeight - footerHeight, "px");
+  chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
 };
 const setTextAreaHeight = () => {
   // Adjust text area size
@@ -1639,7 +1529,7 @@ const setTextAreaHeight = () => {
     const user_input = document.getElementById("user_input");
     if (user_input) {
       user_input.style.height = 'auto';
-      user_input.style.height = "".concat(Math.min(user_input.scrollHeight, userInputMaxOffsetHeight), "px");
+      user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`;
     }
   }
 };
@@ -1649,22 +1539,19 @@ const resizeAll = () => {
   setConversationBlockHeight();
 };
 const UserInput = _ref => {
-  let dispatch = _ref.dispatch,
-    state = _ref.state,
-    userQuestion = _ref.userQuestion;
-  const _useAppContext = useAppContext$3(),
-    theme = _useAppContext.theme;
-    _useAppContext.isWide;
-    const isDarkMode = _useAppContext.isDarkMode;
-    _useAppContext.sideMenu;
-  const _useState = useState(userQuestion),
-    _useState2 = _slicedToArray(_useState, 2),
-    inputMessage = _useState2[0],
-    setInputMessage = _useState2[1];
-  const _useState3 = useState(false),
-    _useState4 = _slicedToArray(_useState3, 2),
-    updateSize = _useState4[0],
-    setUpdateSize = _useState4[1];
+  let {
+    dispatch,
+    state,
+    userQuestion // state.inputMessage
+  } = _ref;
+  const {
+    theme,
+    isWide,
+    isDarkMode,
+    sideMenu
+  } = useAppContext$3();
+  const [inputMessage, setInputMessage] = useState(userQuestion);
+  const [updateSize, setUpdateSize] = useState(false);
   useEffect(() => {
     resizeAll();
   }, []);
@@ -1777,7 +1664,7 @@ const UserInput = _ref => {
         // Refresh the conversation list on any error...
         fetchConversations(state, dispatch).then(apiResponse => {
           if (!apiResponse.ok) {
-            errorToReport = "\n\nAditionally, refreshing the conversations list: ".concat(apiResponse.errorMessage);
+            errorToReport = `\n\nAditionally, refreshing the conversations list: ${apiResponse.errorMessage}`;
           } else {
             // Try to refresh current conversation from botReply.response
             let cid = state.currentConversationId;
@@ -1803,12 +1690,12 @@ const UserInput = _ref => {
               }, error => {
                 error = formatCaughtError(error);
                 console.error('>> UserInput current conversation update error:', error);
-                errorToReport = "\n\nAditionally, reading current conversation: ".concat(error);
+                errorToReport = `\n\nAditionally, reading current conversation: ${error}`;
               });
             }
           }
         }, error => {
-          errorToReport = "\n\nAditionally: ".concat(error);
+          errorToReport = `\n\nAditionally: ${error}`;
         });
         setChatbotErrorMsg(errorToReport, dispatch);
       }
@@ -1817,7 +1704,7 @@ const UserInput = _ref => {
   };
   return /*#__PURE__*/React.createElement("div", {
     id: "chatbot-input-area",
-    className: "".concat(CHATBOT_INPUT_AREA_DIV_1_CLASS, " ").concat(theme.background)
+    className: `${CHATBOT_INPUT_AREA_DIV_1_CLASS} ${theme.background}`
   }, /*#__PURE__*/React.createElement("div", {
     className: CHATBOT_INPUT_AREA_DIV_2_CLASS
   }, /*#__PURE__*/React.createElement("div", {
@@ -1834,7 +1721,7 @@ const UserInput = _ref => {
     name: "user_input",
     id: "user_input",
     value: inputMessage,
-    className: "".concat(CHATBOT_INPUT_AREA_TEXTAREA_CLASS, " ").concat(theme.input, " ").concat(isDarkMode ? CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS : CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS),
+    className: `${CHATBOT_INPUT_AREA_TEXTAREA_CLASS} ${theme.input} ${isDarkMode ? CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS : CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS}`,
     "aria-label": "Message AI Assistant...",
     rows: "1",
     onChange: handleInputChange
@@ -1895,7 +1782,10 @@ const GsIcons$5 = gs.IconsLib.GsIcons;
 // const debug = false;
 
 const NewConversationButton = _ref => {
-  let dispatch = _ref.dispatch;
+  let {
+    dispatch
+    // startNewConversation,
+  } = _ref;
   // Call this when you want to start a new conversation
   const startNewConversation = () => {
     // Generate a new conversation ID using UUID for enhanced security
@@ -1946,20 +1836,23 @@ const HIDDEN_CLASS$1 = gs.classNameConstants.HIDDEN_CLASS;
 // const dateColumn = "creation_date";
 const dateColumn = "update_date";
 const ConversationList = _ref => {
-  let state = _ref.state,
-    dispatch = _ref.dispatch,
-    showSideBar = _ref.showSideBar;
-  const _useAppContext = useAppContext$2(),
-    theme = _useAppContext.theme;
-    _useAppContext.isWide;
-    _useAppContext.isDarkMode;
+  let {
+    state,
+    dispatch,
+    showSideBar
+  } = _ref;
+  const {
+    theme,
+    isWide,
+    isDarkMode
+  } = useAppContext$2();
   const setErrorMsg = errorMsg => {
     dispatch({
       type: 'SET_ERROR_MSG',
       payload: errorMsg
     });
   };
-  const h2_class = "".concat(CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS, " ").concat(theme.isDarkMode ? CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS : CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS);
+  const h2_class = `${CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS} ${theme.isDarkMode ? CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS : CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS}`;
 
   // Handle load conversation
   const handleLoadConversation = async (conversationId, state, dispatch) => {
@@ -1981,7 +1874,7 @@ const ConversationList = _ref => {
     }
   };
   const confirmDeleteConversation = async (conversationId, dispatch, title) => {
-    if (window.confirm("'Are you sure you want to delete this conversation?\n\n".concat(title))) {
+    if (window.confirm(`'Are you sure you want to delete this conversation?\n\n${title}`)) {
       handleDeleteConversation(conversationId, dispatch);
     }
   };
@@ -2052,45 +1945,45 @@ const ConversationList = _ref => {
       // console.log('renderConversations | convId: ' + `${convId}_div...`);
       // console.log('renderConversations | conversation:', conversation);
       return /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_main_div"),
+        key: `${convId}_main_div`,
         className: CHATBOT_CONVERSATION_ITEM_DIV_1_CLASS,
         onMouseOver: () => {
-          const element = document.getElementById("".concat(convId, "_options"));
+          const element = document.getElementById(`${convId}_options`);
           if (element) {
             element.style.display = 'block';
           }
         },
         onMouseOut: () => {
-          const element = document.getElementById("".concat(convId, "_options"));
+          const element = document.getElementById(`${convId}_options`);
           if (element) {
             element.style.display = 'none';
           }
         }
       }, /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_inner_div"),
+        key: `${convId}_inner_div`,
         className: CHATBOT_CONVERSATION_ITEM_DIV_2_CLASS
       }, /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_desc_outter_div"),
-        className: "".concat(CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS, " ").concat(theme.textHoverSide),
+        key: `${convId}_desc_outter_div`,
+        className: `${CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS} ${theme.textHoverSide}`,
         onClick: () => handleLoadConversation(convId, state, dispatch)
       }, /*#__PURE__*/React.createElement("button", {
-        key: "".concat(convId, "_desc_button"),
+        key: `${convId}_desc_button`,
         title: timestampToDate(conversation[dateColumn], true, " ", false)
       }, /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_desc_inner_div"),
+        key: `${convId}_desc_inner_div`,
         className: CHATBOT_CONVERSATION_ITEM_DESC_INNER_CLASS
       }, fixTitle(conversation.title))))), /*#__PURE__*/React.createElement("div", {
-        id: "".concat(convId, "_options"),
+        id: `${convId}_options`,
         className: HIDDEN_CLASS$1
       }, /*#__PURE__*/React.createElement("div", {
         className: CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS
       }), /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_delete_div")
+        key: `${convId}_delete_div`
         // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS} ${theme.textHoverSide}`}
         ,
         className: CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS
       }, /*#__PURE__*/React.createElement("button", {
-        key: "".concat(convId, "_delete_button"),
+        key: `${convId}_delete_button`,
         type: "button",
         onClick: () => confirmDeleteConversation(convId, dispatch, conversation.title),
         className: CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS
@@ -2155,13 +2048,15 @@ const GsIcons$3 = gs.IconsLib.GsIcons;
 // const ToggleSideBar = gs.NavLib.ToggleSideBar;
 gs.loggingService.console_debug_log;
 const ConversationsToggleButton = _ref => {
-  let id = _ref.id,
-    className = _ref.className,
-    state = _ref.state,
-    dispatch = _ref.dispatch;
+  let {
+    id,
+    className,
+    state,
+    dispatch
+  } = _ref;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
     key: id,
-    className: CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className !== null && className !== void 0 ? className : ''),
+    className: CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className ?? ''),
     onClick: () => setConversationListToggle(!state.conversationListToggle, dispatch)
   }, /*#__PURE__*/React.createElement(GsIcons$3, {
     icon: 'conversation-list-toggle',
@@ -2187,23 +2082,15 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let blobUrl = _ref.blobUrl,
-    filename = _ref.filename,
-    expired = _ref.expired,
-    errorMsgSuffix = _ref.errorMsgSuffix;
-  const _useState = useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    isPlaying = _useState2[0],
-    setIsPlaying = _useState2[1];
-  const _useState3 = useState(0),
-    _useState4 = _slicedToArray(_useState3, 2);
-    _useState4[0];
-    _useState4[1];
-  const _useState5 = useState(0),
-    _useState6 = _slicedToArray(_useState5, 2);
-    _useState6[0];
-    _useState6[1];
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [currentTime, setCurrentTime] = useState(0);
   const audioPlayer = useRef(); // reference to the audio component
 
   const fixBlob = () => {
@@ -2246,7 +2133,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -2433,13 +2320,15 @@ const codeBlockPreStyle = {
 // With no language there is no header bar to hold the Copy button, which is
 // absolutely positioned at the top of the card - reserve a strip so it never
 // sits on top of the first line of code.
-const codeBlockPreNoHeaderStyle = _objectSpread2(_objectSpread2({}, codeBlockPreStyle), {}, {
+const codeBlockPreNoHeaderStyle = {
+  ...codeBlockPreStyle,
   paddingTop: '38px'
-});
+};
 const ChatCodeBlock = _ref => {
-  let children = _ref.children,
-    _ref$shType = _ref.shType,
-    shType = _ref$shType === void 0 ? "prism" : _ref$shType;
+  let {
+    children,
+    shType = "prism"
+  } = _ref;
   // Regular expression to match code blocks enclosed in ```
   const codeRegex = /```([\s\S]*?)```/g;
 
@@ -2457,7 +2346,7 @@ const ChatCodeBlock = _ref => {
       //     );
       // }
       return /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-other"),
+        key: `${index}-other`,
         className: CHATBOT_CODE_BLOCK_TEXT_CLASS
       }, renderMarkdownContent(part));
     } else {
@@ -2472,20 +2361,20 @@ const ChatCodeBlock = _ref => {
       // Special handling for plaintext
       if (language === 'plaintext') {
         return /*#__PURE__*/React.createElement("div", {
-          key: "".concat(index, "-plaintext"),
+          key: `${index}-plaintext`,
           className: CHATBOT_CODE_BLOCK_TEXT_CLASS
         }, renderMarkdownContent(content));
       }
       return /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-content-wrapper"),
+        key: `${index}-content-wrapper`,
         className: CHATBOT_CODE_BLOCK_CARD_CLASS,
         style: codeBlockCardStyle
       }, language && /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-language"),
+        key: `${index}-language`,
         className: CHATBOT_CODE_BLOCK_HEADER_CLASS,
         style: codeBlockHeaderStyle
       }, language), /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-content"),
+        key: `${index}-content`,
         className: CHATBOT_CODE_BLOCK_BODY_CLASS
       }, shType === "prism" && prismLanguajes.includes(language) ? /*#__PURE__*/React.createElement(Prism, {
         language: language,
@@ -2509,9 +2398,10 @@ const ChatCodeBlock = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let elementId = _ref.elementId,
-    elementsToRender = _ref.elementsToRender;
+const GoToTheBottom = ({
+  elementId,
+  elementsToRender
+}) => {
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
@@ -2616,27 +2506,24 @@ const sanitizeUrl = url => {
   return '#';
 };
 const ConversationBlock = _ref => {
-  let id = _ref.id,
-    state = _ref.state;
-    _ref.handleRetry;
-  const _useAppContext = useAppContext$1(),
-    theme = _useAppContext.theme;
-    _useAppContext.isWide;
-    const isDarkMode = _useAppContext.isDarkMode;
+  let {
+    id,
+    state,
+    handleRetry
+  } = _ref;
+  const {
+    theme,
+    isWide,
+    isDarkMode
+  } = useAppContext$1();
   const getStyleClasses = () => ({
-    "userMessage": "".concat(theme.text, " ").concat(CHATBOT_USER_MESSAGE_CLASS, " ").concat(isDarkMode ? CHATBOT_USER_MESSAGE_DM_CLASS : CHATBOT_USER_MESSAGE_LM_CLASS),
+    "userMessage": `${theme.text} ${CHATBOT_USER_MESSAGE_CLASS} ${isDarkMode ? CHATBOT_USER_MESSAGE_DM_CLASS : CHATBOT_USER_MESSAGE_LM_CLASS}`,
     "userMessageContainer": CHATBOT_USER_MESSAGE_CONTAINER_CLASS,
-    "botMessage": "".concat(theme.label, " ").concat(CHATBOT_BOT_MESSAGE_CLASS, " ").concat(isDarkMode ? CHATBOT_BOT_MESSAGE_DM_CLASS : CHATBOT_BOT_MESSAGE_LM_CLASS),
+    "botMessage": `${theme.label} ${CHATBOT_BOT_MESSAGE_CLASS} ${isDarkMode ? CHATBOT_BOT_MESSAGE_DM_CLASS : CHATBOT_BOT_MESSAGE_LM_CLASS}`,
     "botMessageContainer": CHATBOT_BOT_MESSAGE_CONTAINER_CLASS
   });
-  const _useState = useState(''),
-    _useState2 = _slicedToArray(_useState, 2),
-    elementsToRender = _useState2[0],
-    setElementsToRender = _useState2[1];
-  const _useState3 = useState(getStyleClasses()),
-    _useState4 = _slicedToArray(_useState3, 2),
-    styleClass = _useState4[0],
-    setStyleClass = _useState4[1];
+  const [elementsToRender, setElementsToRender] = useState('');
+  const [styleClass, setStyleClass] = useState(getStyleClasses());
   useEffect(() => {
     setStyleClass(getStyleClasses());
   }, [theme, isDarkMode]);
@@ -2662,7 +2549,7 @@ const ConversationBlock = _ref => {
           return /*#__PURE__*/React.createElement("p", {
             className: WARNING_MSG_CLASS,
             title: filename
-          }, (['wav', 'mp3'].includes(extension.toLowerCase()) ? "Audio file link" : "Link") + " expired...".concat(errorMsgSuffix));
+          }, (['wav', 'mp3'].includes(extension.toLowerCase()) ? "Audio file link" : "Link") + ` expired...${errorMsgSuffix}`);
         }
         // Link to download the file calling the performDownload function   
         return /*#__PURE__*/React.createElement("button", {
@@ -2671,7 +2558,7 @@ const ConversationBlock = _ref => {
             e.preventDefault();
             performDownload(sanitizeUrl(url), filename);
           }
-        }, (message ? message : "Click here to download the \"".concat(filename, "\" file")) + errorMsgSuffix);
+        }, (message ? message : `Click here to download the "${filename}" file`) + errorMsgSuffix);
       }
     }
     if (hasAttachment || message && message.startsWith('```File')) {
@@ -2741,7 +2628,7 @@ const ConversationBlock = _ref => {
   useEffect(() => {
     setElementsToRender(state.messages.map((message, index) => /*#__PURE__*/React.createElement("div", {
       key: index,
-      className: "".concat(CHATBOT_MESSAGE_CLASS, " ").concat(message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer),
+      className: `${CHATBOT_MESSAGE_CLASS} ${message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer}`,
       style: {
         maxWidth: '100%'
       }
@@ -2760,7 +2647,7 @@ const ConversationBlock = _ref => {
   }, [state.messages]);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: id ? id : "conversation-block",
-    className: "".concat(CHATBOT_MESSAGE_BLOCK_CLASS, " ").concat(theme.background)
+    className: `${CHATBOT_MESSAGE_BLOCK_CLASS} ${theme.background}`
   }, state && state.messages && elementsToRender), /*#__PURE__*/React.createElement(ScrollToBottomButton, {
     elementId: id ? id : "conversation-block",
     elementsToRender: elementsToRender
@@ -2789,71 +2676,83 @@ const chatReducer = (state, action) => {
 
     case 'ADD_MESSAGE':
       // Adds a new message to the chat history
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         messages: [...state.messages, action.payload]
-      });
+      };
     case 'SET_MESSAGES':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         // Payload has an array of messages and the conversationId
         currentConversationId: action.payload.conversationId,
         messages: action.payload.messages
-      });
+      };
 
     // Conversations
 
     // TODO
     case 'CLEAR_CHAT':
       // Clears the chat history
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         messages: []
-      });
+      };
     case 'START_NEW_CONVERSATION':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         currentConversationId: action.payload.conversationId,
         messages: []
-      });
+      };
     case 'SET_CONVERSATION_ID':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         currentConversationId: action.payload
-      });
+      };
 
     // Conversation List
 
     case 'SET_CONVERSATIONS':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         conversations: action.payload
-      });
+      };
     case 'DELETE_CONVERSATION':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         conversations: state.conversations.filter(conversation => convertId(conversation._id) !== action.payload)
-      });
+      };
 
     // Bot
 
     case 'API_PROCESSING_STATUS':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         isApiProcessing: action.payload
-      });
+      };
     case 'SET_INPUT_MESSAGE':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         inputMessage: action.payload
-      });
+      };
     case 'SET_CONVERSATION_LIST_TOGGLE':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         conversationListToggle: action.payload
-      });
+      };
     case 'SET_ERROR_MSG':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         errorMsg: action.payload
-      });
+      };
 
     // Current user
 
     case 'SET_CURRENT_USER':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         // Payload has the currentUser data
         currentUser: action.payload
-      });
+      };
 
     // Not registered action
 
@@ -2865,34 +2764,33 @@ const chatReducer = (state, action) => {
 // Chatbot main component
 
 const ChatBot = _ref => {
-  let _ref$userQuestion = _ref.userQuestion,
-    userQuestion = _ref$userQuestion === void 0 ? urlParams.q ? decodeURIComponent(urlParams.q) : '' : _ref$userQuestion,
-    _ref$showSideBar = _ref.showSideBar,
-    showSideBar = _ref$showSideBar === void 0 ? !(urlParams.ssb && urlParams.ssb === "0") : _ref$showSideBar;
-  const _useUser = useUser(),
-    currentUser = _useUser.currentUser;
-  const _useAppContext = useAppContext(),
-    theme = _useAppContext.theme;
-    _useAppContext.isWide;
-    _useAppContext.isDarkMode;
-    const sideMenu = _useAppContext.sideMenu,
-    setIsWide = _useAppContext.setIsWide;
-  const _useReducer = useReducer(chatReducer, {
-      messages: [],
-      conversations: [],
-      currentConversationId: null,
-      isApiProcessing: false,
-      isTyping: false,
-      inputMessage: userQuestion,
-      // conversationListToggle: false, // conversation history sidebar off by default always
-      conversationListToggle: !isMobileDevice(),
-      // conversation history sidebar on by default in desktop
-      errorMsg: null,
-      currentUser: currentUser
-    }),
-    _useReducer2 = _slicedToArray(_useReducer, 2),
-    state = _useReducer2[0],
-    dispatch = _useReducer2[1];
+  let {
+    userQuestion = urlParams.q ? decodeURIComponent(urlParams.q) : '',
+    showSideBar = !(urlParams.ssb && urlParams.ssb === "0")
+  } = _ref;
+  const {
+    currentUser
+  } = useUser();
+  const {
+    theme,
+    isWide,
+    isDarkMode,
+    sideMenu,
+    setIsWide
+  } = useAppContext();
+  const [state, dispatch] = useReducer(chatReducer, {
+    messages: [],
+    conversations: [],
+    currentConversationId: null,
+    isApiProcessing: false,
+    isTyping: false,
+    inputMessage: userQuestion,
+    // conversationListToggle: false, // conversation history sidebar off by default always
+    conversationListToggle: !isMobileDevice(),
+    // conversation history sidebar on by default in desktop
+    errorMsg: null,
+    currentUser: currentUser
+  });
   const columnSizeList = () => showSideBar && state.conversationListToggle ? isMobileDevice() ? '60%' : '20%' : "0%";
 
   // If there's an initial UserQuestion, send it inmediatelly to the LLM
@@ -2949,7 +2847,7 @@ const ChatBot = _ref => {
   }, [sideMenu]);
   return /*#__PURE__*/React.createElement("div", {
     id: "chatbot-container",
-    className: "".concat(CHATBOT_CONTAINER_DIV_1_CLASS, " ").concat(theme.background)
+    className: `${CHATBOT_CONTAINER_DIV_1_CLASS} ${theme.background}`
   }, state.errorMsg && /*#__PURE__*/React.createElement(React.Fragment, null, errorAndReEnter(state.errorMsg, null, null, handleRetry, null, false, true, handleClose)), !(showSideBar && state.conversationListToggle) && /*#__PURE__*/React.createElement(ConversationsToggleButton, {
     id: "conversations-toggle-button-1",
     className: CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS,
@@ -3012,12 +2910,11 @@ const defaultComponentMap = {
   // "ChatBotButton": ChatBotButton,
 };
 const App = _ref => {
-  let _ref$componentMap = _ref.componentMap,
-    componentMap = _ref$componentMap === void 0 ? {} : _ref$componentMap,
-    _ref$appLogo = _ref.appLogo,
-    appLogo = _ref$appLogo === void 0 ? null : _ref$appLogo,
-    _ref$appLogoHeader = _ref.appLogoHeader,
-    appLogoHeader = _ref$appLogoHeader === void 0 ? null : _ref$appLogoHeader;
+  let {
+    componentMap = {},
+    appLogo = null,
+    appLogoHeader = null
+  } = _ref;
   const componentMapFinal = mergeDicts(componentMap, defaultComponentMap);
   return /*#__PURE__*/React.createElement(gs.App, {
     appLogo: appLogo === null ? 'gs_ai_logo_circle.svg' : appLogo,
@@ -3025,6 +2922,8 @@ const App = _ref => {
     componentMap: componentMapFinal
   });
 };
+
+// AI button
 
 gs.loggingService.console_debug_log;
 
@@ -3034,12 +2933,11 @@ gs.loggingService.console_debug_log;
 // import SparkIcon from "../../images/spark.svg";
 const GsIcons = gs.IconsLib.GsIcons;
 const ChatBotButton = _ref => {
-  let valueElement = _ref.valueElement,
-    chatbot_prompt = _ref.chatbot_prompt;
-  const _useState = useState(false),
-    _useState2 = _slicedToArray(_useState, 2),
-    showLLMPopup = _useState2[0];
-    _useState2[1];
+  let {
+    valueElement,
+    chatbot_prompt
+  } = _ref;
+  const [showLLMPopup, setShowLLMPopup] = useState(false);
   const setPrompt = (prompt, valueToReplace) => {
     return prompt.replace("%s", valueToReplace);
   };

@@ -41,25 +41,57 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - "config-overrides.js" updated to fix errors running the app with RUN_BUNDLER="react-scripts" [GS-338], and refactor it to use fileURLToPath for path resolution and clean up unused debug logs [GS-327].
 - "process" dependency installation on "webpack.config.js" file documentation to to fix errors running the app [GS-338].
 
-
 ### Security
 - json5, postcss, and prismjs security vulnerabilities fixed by upgrading their dependent packages [GS-214].
 - Upgrade dependencies to latest version: crypto-browserify@^3.12.1, downshift@^9.4.0, react-icons@^5.7.0, react-markdown@^10.1.0, react-syntax-highlighter@^16.1.1 [GS-219].
 - Upgrade axios@^1.19.0 to fix the security vulnerabilities [GS-219]:
-  - Server-side Request Forgery (SSRF) [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111062] in axios@1.15.1
-  - Prototype Pollution [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111079] in axios@1.15.1
-  - Insertion of Sensitive Information Into Sent Data [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17172681] in axios@1.15.1
-  - Improperly Controlled Modification of Dynamically-Determined Object Attributes [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-16299921] in axios@1.15.1
-  - Prototype Pollution [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111060] in axios@1.15.1
-  - Prototype Pollution [Critical Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-16417750] in axios@1.15.1
-  - Improper Removal of Sensitive Information Before Storage or Transfer [High Severity][https://security.snyk.io/vuln/SNYK-JS-FOLLOWREDIRECTS-16032162] in follow-redirects@1.15.11
+  * Server-side Request Forgery (SSRF) [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111062] in axios@1.15.1
+  * Prototype Pollution [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111079] in axios@1.15.1
+  * Insertion of Sensitive Information Into Sent Data [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17172681] in axios@1.15.1
+  * Improperly Controlled Modification of Dynamically-Determined Object Attributes [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-16299921] in axios@1.15.1
+  * Prototype Pollution [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111060] in axios@1.15.1
+  * Prototype Pollution [Critical Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-16417750] in axios@1.15.1
+  * Improper Removal of Sensitive Information Before Storage or Transfer [High Severity][https://security.snyk.io/vuln/SNYK-JS-FOLLOWREDIRECTS-16032162] in follow-redirects@1.15.11
+  * Allocation of Resources Without Limits or Throttling in Axios
+  * form-data: CRLF injection in form-data via unescaped multipart field names and filenames
+  * Axios: Incomplete Fix for CVE-2025-62718 — NO_PROXY Protection Bypassed via RFC 1122 Loopback Subnet (127.0.0.0/8) in Axios 1.15.0
+  * Axios: Header Injection via Prototype Pollution
+  * Axios: unbounded recursion in toFormData causes DoS via deeply nested request data
+  * follow-redirects leaks Custom Authentication Headers to Cross-Domain Redirect Targets
 - Upgrade yup@^1.7.1 to fix the security vulnerabilities [GS-219]:
-  - Arbitrary Code Injection [High Severity][https://security.snyk.io/vuln/SNYK-JS-LODASH-15869625] in lodash@4.17.23
+  * Arbitrary Code Injection [High Severity][https://security.snyk.io/vuln/SNYK-JS-LODASH-15869625] in lodash@4.17.23
     introduced by yup@0.32.11 > lodash@4.17.23
-  - Arbitrary Code Injection [High Severity][https://security.snyk.io/vuln/SNYK-JS-LODASHES-15869627] in lodash-es@4.17.23
+  * Arbitrary Code Injection [High Severity][https://security.snyk.io/vuln/SNYK-JS-LODASHES-15869627] in lodash-es@4.17.23
     introduced by yup@0.32.11 > lodash-es@4.17.23
+  * lodash vulnerable to Prototype Pollution via array path bypass in `_.unset` and `_.omit`
 - Upgrade react-router-dom@^7.18.2 to fix the security vulnerability [GS-219]:
-  - React Router: RSC Mode CSRF Bypass Allows Action Execution Before 400 Response. This is a follow up to CVE-2026-22030 to address related CSRF flows in unstable RSC code paths.
+  * React Router: RSC Mode CSRF Bypass Allows Action Execution Before 400 Response. This is a follow up to CVE-2026-22030 to address related CSRF flows in unstable RSC code paths.
+  * React Router's vendored turbo-stream v2 allows arbitrary constructor invocation via TYPE_ERROR deserialization leading to Unauth RCE
+  * React Router vulnerable to XSS in unstable RSC redirect handling via javascript: redirect targets
+  * React Router vulnerable to DoS via unbounded path expansion in __manifest endpoin
+  * React Router vulnerable to Denial of Service via reflected user input in single-fetch #105
+- Upgrade jest to "^30.4.2", jest-environment-jsdom to "^30.4.1", and "babel-jest" to "^30.4.1" to fix the security vulnerabilities [GS-219].
+  * @babel/plugin-transform-modules-systemjs generates arbitrary code when compiling malicious input
+  * ws: Memory exhaustion DoS from tiny fragments and data chunks 
+  * brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups
+  * js-yaml: YAML merge-key chains can force quadratic CPU consumption
+  * @babel/core: Arbitrary File Read via sourceMappingURL Comment
+- Upgrade rollup-plugin-typescript2 to "^0.37.0" and typescript to "^5.3.3" to fix the security vulnerabilities [GS-219].
+  * Picomatch: Method Injection in POSIX Character Classes causes incorrect Glob Matching
+- Other security vulnerabilities fixed by upgrading their dependent packages [GS-219]:
+  * SVGO removeScripts plugin leaves some executable scripts intact
+  * serialize-javascript [removed] Serialize JavaScript is Vulnerable to RCE via RegExp.flags and Date.prototype.toISOString() [CVE-2020-7660](https://github.com/advisories/GHSA-hxcc-f52p-wc94)
+  * serialize-javascript [removed] Serialize JavaScript has CPU Exhaustion Denial of Service via crafted array-like objects
+  * PostCSS: Arbitrary file read and information disclosure via attacker-controlled sourceMappingURL in CSS comments
+  * fast-uri [removed] fast-uri vulnerable to path traversal via percent-encoded dot segments
+  * fast-uri [removed] fast-uri vulnerable to host confusion via percent-encoded authority delimiters
+  * fast-uri [removed] fast-uri vulnerable to host confusion via failed IDN canonicalization 
+  * path-to-regexp [removed] path-to-regexp vulnerable to Regular Expression Denial of Service via multiple route parameters [CVE-2024-45296](https://github.com/advisories/GHSA-9wv6-86v2-598j)
+  * ip-address [removed] ip-address: Address4 decodes leading-zero octets as decimal while resolvers decode them as octal, allowing SSRF and trust-boundary bypass
+  * express-rate-limit [removed] express-rate-limit: IPv4-mapped IPv6 addresses bypass per-client rate limiting on servers with dual-stack network 
+  * qs [removed] qs has a remotely triggerable DoS: qs.stringify crashes with TypeError on null/undefined entries in comma-format arrays when encodeValuesOnly is set
+  * body-parser [removed] body-parser vulnerable to denial of service when invalid limit value silently disables size enforcement
+  * elliptic [removed] Elliptic Uses a Cryptographic Primitive with a Risky Implementation
 - "react" and "react-dom" have now peer dependencies with "^18.2.0" that does not affect this codebase because it only uses BrowserRouter/Routes/Route/Link/Navigate, no RSC APIs. By the way React/ReactDOM will be upgraded to 19 on next release to fix the mentioned react-router-dom security vulnerability [GS-219].
 - Bump Node.js version in .nvmrc to 26 [GS-339].
 
