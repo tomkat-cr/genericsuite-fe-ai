@@ -17,7 +17,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
-## [1.3.0] - 2026-07-15
+## [1.3.0] - 2026-08-30
 
 ### Added
 - AGENTS.md, GEMINI.md, and CLAUDE.md files to provide context and instructions to AI Coding Assistants [GS-303].
@@ -43,7 +43,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 
 ### Security
 - json5, postcss, and prismjs security vulnerabilities fixed by upgrading their dependent packages [GS-214].
-- Upgrade dependencies to latest version: crypto-browserify@^3.12.1, downshift@^9.4.0, react-icons@^5.7.0, react-markdown@^10.1.0, react-syntax-highlighter@^16.1.1 [GS-219].
+- Upgrade dependencies to latest version: crypto-browserify@^3.12.1, downshift@^9.4.0, react-icons@^5.7.0, react-markdown@^10.1.0, react-syntax-highlighter@^16.1.1 [GS-219] [GS-214].
 - Upgrade axios@^1.19.0 to fix the security vulnerabilities [GS-219]:
   * Server-side Request Forgery (SSRF) [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111062] in axios@1.15.1
   * Prototype Pollution [High Severity][https://security.snyk.io/vuln/SNYK-JS-AXIOS-17111079] in axios@1.15.1
@@ -94,6 +94,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
   * elliptic [removed] Elliptic Uses a Cryptographic Primitive with a Risky Implementation
 - "react" and "react-dom" have now peer dependencies with "^18.2.0" that does not affect this codebase because it only uses BrowserRouter/Routes/Route/Link/Navigate, no RSC APIs. By the way React/ReactDOM will be upgraded to 19 on next release to fix the mentioned react-router-dom security vulnerability [GS-219].
 - Bump Node.js version in .nvmrc to 26 [GS-339].
+- Upgrade @babel/core to ^7.29.7 to fix the @babel/core: Arbitrary File Read via sourceMappingURL Comment ([CVE-2026-49356](https://github.com/babel/babel/security/advisories/GHSA-4x5r-pxfx-6jf8)) [GS-219].
 
 ### Removed
 - The `scripts/` directory were moved to the [frontend scripts library](https://github.com/tomkat-cr/genericsuite-fe-scripts) [GS-107].
@@ -162,7 +163,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
   - "form-data uses unsafe random function in form-data for choosing boundary"
 - Fix "PostCSS line return parsing error" by updating "postcss" to "^8.5.6" [GS-219].
 - Basic rate limiting to mitigate DoS via expensive FS operations in "server.js" [GS-219].
-- Update "react-syntax-highlighter" to "^16.1.0" to fix the security vulnerability [GS-219]:
+ - Update "react-syntax-highlighter" to "^16.1.0" to fix the security vulnerability [GS-219] [GS-214]:
   - "PrismJS DOM Clobbering vulnerability"
 - Bump babel-loader to ^10.0.0 to fix "@eslint/plugin-kit is vulnerable to Regular Expression Denial of Service attacks through ConfigCommentParser" [GS-219].
 - The following security vulnerabilities were fixed by running "npm update" [GS-219]:
