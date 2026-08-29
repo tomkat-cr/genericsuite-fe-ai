@@ -173,7 +173,12 @@ export const ConversationBlock = ({
                                 className={CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS}
                                 src={sanitizeUrl(messageObject.attachment_url)}
                                 alt={message}
-                                style={{ maxHeight: 'auto', width: 'fit-content', maxWidth: '100%' }}
+                                // Kept inline (not only in the class constants) because the
+                                // host app is what compiles this library's Tailwind classes,
+                                // and an unscanned `dist` leaves the image unconstrained.
+                                // `width: fit-content` sized the image to its intrinsic width
+                                // and `maxHeight: 'auto'` is not a valid CSS value.
+                                style={{ display: 'block', height: 'auto', maxWidth: '100%' }}
                             />
                         </div>
                     )
@@ -214,9 +219,15 @@ export const ConversationBlock = ({
             <div
                 key={index}
                 className={`${CHATBOT_MESSAGE_CLASS} ${message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer}`}
+                style={{ maxWidth: '100%' }}
             >
                 <div
                     className={message.role === 'user' ? styleClass.userMessage : styleClass.botMessage}
+                    // A flex item defaults to `min-width: auto` and so will not shrink
+                    // below the intrinsic width of an attachment image. Without this the
+                    // message row grows past the chat column and the page scrolls
+                    // horizontally on wide screens.
+                    style={{ minWidth: 0, maxWidth: '100%' }}
                 >
                     {formatMessage(message)}
                 </div>

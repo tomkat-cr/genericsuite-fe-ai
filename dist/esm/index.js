@@ -3,52 +3,8 @@ import * as gs from 'genericsuite';
 import axios from 'axios';
 import { Prism, Light } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism/index.js';
-import { grayscale } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
-import prismLanguajes from 'react-syntax-highlighter/dist/cjs/languages/prism/supported-languages.js';
-
-function _defineProperty(e, r, t) {
-  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
-    value: t,
-    enumerable: true,
-    configurable: true,
-    writable: true
-  }) : e[r] = t, e;
-}
-function ownKeys(e, r) {
-  var t = Object.keys(e);
-  if (Object.getOwnPropertySymbols) {
-    var o = Object.getOwnPropertySymbols(e);
-    r && (o = o.filter(function (r) {
-      return Object.getOwnPropertyDescriptor(e, r).enumerable;
-    })), t.push.apply(t, o);
-  }
-  return t;
-}
-function _objectSpread2(e) {
-  for (var r = 1; r < arguments.length; r++) {
-    var t = null != arguments[r] ? arguments[r] : {};
-    r % 2 ? ownKeys(Object(t), true).forEach(function (r) {
-      _defineProperty(e, r, t[r]);
-    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) {
-      Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r));
-    });
-  }
-  return e;
-}
-function _toPrimitive(t, r) {
-  if ("object" != typeof t || !t) return t;
-  var e = t[Symbol.toPrimitive];
-  if (void 0 !== e) {
-    var i = e.call(t, r);
-    if ("object" != typeof i) return i;
-    throw new TypeError("@@toPrimitive must return a primitive value.");
-  }
-  return ("string" === r ? String : Number)(t);
-}
-function _toPropertyKey(t) {
-  var i = _toPrimitive(t, "string");
-  return "symbol" == typeof i ? i : i + "";
-}
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs/index.js';
+import * as prismSupportedLanguagesModule from 'react-syntax-highlighter/dist/cjs/languages/prism/supported-languages.js';
 
 gs.loggingService.console_debug_log;
 const setChatbotErrorMsg = (errorMsg, dispatch) => {
@@ -265,6 +221,43 @@ const iconsLibAiExtras = (icon, size, width, height, alt, id, className, role) =
         d: "M176 352c53.02 0 96-42.98 96-96V96c0-53.02-42.98-96-96-96S80 42.98 80 96v160c0 53.02 42.98 96 96 96zm160-160h-16c-8.84 0-16 7.16-16 16v48c0 74.8-64.49 134.82-140.79 127.38C96.71 376.89 48 317.11 48 250.3V208c0-8.84-7.16-16-16-16H16c-8.84 0-16 7.16-16 16v40.16c0 89.64 63.97 169.55 152 181.69V464H96c-8.84 0-16 7.16-16 16v16c0 8.84 7.16 16 16 16h160c8.84 0 16-7.16 16-16v-16c0-8.84-7.16-16-16-16h-56v-33.77C285.71 418.47 352 344.9 352 256v-48c0-8.84-7.16-16-16-16z"
       }));
       break;
+    case 'copy':
+      // faCopy (regular)
+      // Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com
+      // License - https://fontawesome.com/license/free (icons: CC BY 4.0)
+      // Copyright 2026 Fonticons, Inc.
+      // No width/height here on purpose: GsIcons only falls back to its own
+      // `size` mapping when the svg does not declare them.
+      selectedSvg = /*#__PURE__*/React.createElement("svg", {
+        "aria-hidden": "true",
+        focusable: "false",
+        "data-prefix": "far",
+        "data-icon": "copy",
+        role: "img",
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 448 512"
+      }, /*#__PURE__*/React.createElement("path", {
+        fill: "currentColor",
+        d: "M384 336l-192 0c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l133.5 0c4.2 0 8.3 1.7 11.3 4.7l58.5 58.5c3 3 4.7 7.1 4.7 11.3L400 320c0 8.8-7.2 16-16 16zM192 384l192 0c35.3 0 64-28.7 64-64l0-197.5c0-17-6.7-33.3-18.7-45.3L370.7 18.7C358.7 6.7 342.5 0 325.5 0L192 0c-35.3 0-64 28.7-64 64l0 256c0 35.3 28.7 64 64 64zM64 128c-35.3 0-64 28.7-64 64L0 448c0 35.3 28.7 64 64 64l192 0c35.3 0 64-28.7 64-64l0-16-48 0 0 16c0 8.8-7.2 16-16 16L64 464c-8.8 0-16-7.2-16-16l0-256c0-8.8 7.2-16 16-16l16 0 0-48-16 0z"
+      }));
+      break;
+    case 'check':
+      // faCheck - the confirmation state for the copy button
+      // Font Awesome Free v7.3.1 by @fontawesome - https://fontawesome.com
+      // License - https://fontawesome.com/license/free (icons: CC BY 4.0)
+      selectedSvg = /*#__PURE__*/React.createElement("svg", {
+        "aria-hidden": "true",
+        focusable: "false",
+        "data-prefix": "fas",
+        "data-icon": "check",
+        role: "img",
+        xmlns: "http://www.w3.org/2000/svg",
+        viewBox: "0 0 448 512"
+      }, /*#__PURE__*/React.createElement("path", {
+        fill: "currentColor",
+        d: "M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+      }));
+      break;
     case 'two-lines-left-menu':
       selectedSvg = /*#__PURE__*/React.createElement("svg", {
         width: "24",
@@ -331,7 +324,7 @@ const CHATBOT_CONVERSATIONS_LIST_DIV_4_CLASS = "flex h-full w-full flex-col 1-px
 const CHATBOT_CONVERSATIONS_LIST_ROW_1_DIV_1_CLASS = "flex justify-between flex h-[40px] mt-2 mb-4 items-center md:h-header-height chatbot-conversations-list-row-1-div-1-class";
 const CHATBOT_NEW_CONVERSATION_BUTTON_DIV_1_CLASS = "flex chatbot-new-conversation-button-div-1-class";
 const CHATBOT_NEW_CONVERSATION_BUTTON_SPAN_CLASS = "flex chatbot-new-conversation-button-span-class";
-const CHATBOT_NEW_CONVERSATION_BUTTON_CLASS = "text-xs chatbot-new-conversation-button-class";
+const CHATBOT_NEW_CONVERSATION_BUTTON_CLASS = `text-xs chatbot-new-conversation-button-class`;
 const CHATBOT_CONVERSATIONS_LIST_ROW_2_DIV_1_CLASS = "flex-col flex-1 h-[90%] transition-opacity duration-500 relative -mr-2 pr-2 overflow-y-auto chatbot-conversations-list-row-2-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_1_CLASS = "space-y-1 chatbot-conversations-list-heading-div-1-class";
 const CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS = "mb-2 text-sm chatbot-conversations-list-heading-div-2-class";
@@ -356,22 +349,40 @@ const CHATBOT_MESSAGE_AREA_DIV_4_CLASS = "relative h-full chatbot-message-area-d
 
 // Conversation messages row
 
-const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto chatbot-message-block-class";
-const CHATBOT_MESSAGE_CLASS = "p-2 flex chatbot-message-class";
+const CHATBOT_MESSAGE_BLOCK_CLASS = "flex-1 p-4 mb-2 overflow-y-auto overflow-x-hidden chatbot-message-block-class";
+
+// `min-w-0` / `max-w-full` on the message rows and bubbles: a flex item defaults to
+// `min-width: auto`, so it refuses to shrink below its content's intrinsic size. An
+// attachment image is wider than the chat column, which pushed the whole message area
+// past the viewport and produced a horizontal scrollbar on wide screens.
+const CHATBOT_MESSAGE_CLASS = "p-2 flex max-w-full chatbot-message-class";
 const CHATBOT_USER_MESSAGE_CONTAINER_CLASS = "justify-end chatbot-user-message-container-class";
 // export const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-full w-auto chatbot-user-message-class";
-const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-xl w-auto chatbot-user-message-class";
+const CHATBOT_USER_MESSAGE_CLASS = "p-2 rounded-xl w-auto min-w-0 max-w-full chatbot-user-message-class";
 const CHATBOT_USER_MESSAGE_LM_CLASS = "bg-gray-300 chatbot-user-message-lm-class";
 const CHATBOT_USER_MESSAGE_DM_CLASS = "bg-gray-500 chatbot-user-message-dm-class";
 const CHATBOT_BOT_MESSAGE_CONTAINER_CLASS = "justify-start chatbot-bot-message-container-class";
-const CHATBOT_BOT_MESSAGE_CLASS = "p-1 rounded chatbot-bot-message-class";
+const CHATBOT_BOT_MESSAGE_CLASS = "p-1 rounded min-w-0 max-w-full chatbot-bot-message-class";
 const CHATBOT_BOT_MESSAGE_LM_CLASS = "chatbot-bot-message-lm-class";
 const CHATBOT_BOT_MESSAGE_DM_CLASS = "chatbot-bot-message-dm-class";
-const CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS = "chatbot-format-message-div-1-class";
-const CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS = "rounded-md p-2 shadow-sm chatbot-format-message-div-2-class";
-const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS = "text-black font-bold chatbot-format-message-attachment-message-class";
-const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS = "mt-2 chatbot-format-message-attachment-image-div-class";
-const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS = "rounded-md chatbot-format-message-attachment-image-img-class";
+
+// Code / text blocks rendered by <ChatCodeBlock />. The visual treatment of the code
+// card lives inline in the component so it survives a host app whose Tailwind config
+// does not scan this library's `dist`; these names are the host-app styling hooks.
+const CHATBOT_CODE_BLOCK_CARD_CLASS = "min-w-0 max-w-full chatbot-code-block-card-class";
+const CHATBOT_CODE_BLOCK_HEADER_CLASS = "truncate chatbot-code-block-header-class";
+// No `relative` here on purpose: the Copy button is absolutely positioned and must
+// anchor to the card (so it lands in the header), which sets `position` inline.
+const CHATBOT_CODE_BLOCK_BODY_CLASS = "min-w-0 max-w-full chatbot-code-block-body-class";
+const CHATBOT_CODE_BLOCK_TEXT_CLASS = "min-w-0 max-w-full break-words chatbot-code-block-text-class";
+const CHATBOT_CODE_BLOCK_COPY_BUTTON_CLASS = "chatbot-code-block-copy-button-class";
+const CHATBOT_FORMAT_MESSAGE_DIV_1_CLASS = "min-w-0 max-w-full chatbot-format-message-div-1-class";
+// `break-words` so the signed attachment URLs and long generated filenames wrap
+// instead of stretching the bubble past the chat column.
+const CHATBOT_FORMAT_MESSAGE_DIV_2_CLASS = "rounded-md p-2 shadow-sm min-w-0 max-w-full break-words chatbot-format-message-div-2-class";
+const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_MESSAGE_CLASS = "text-black font-bold break-words chatbot-format-message-attachment-message-class";
+const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_DIV_CLASS = "mt-2 min-w-0 max-w-full chatbot-format-message-attachment-image-div-class";
+const CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS = "rounded-md block h-auto max-w-full chatbot-format-message-attachment-image-img-class";
 
 // User input area row
 
@@ -387,15 +398,15 @@ const CHATBOT_INPUT_AREA_DIV_62_CLASS = "group relative flex w-full items-center
 const CHATBOT_INPUT_AREA_TEXTAREA_CLASS = "p-3 mr-2 rounded-xl w-full resize-none max-h-[200px] overflow-y-auto bg-white min-h-[50px] border border-gray-300 chatbot-input-area-textarea-class";
 const CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS = "bg-gray-300 chatbot-input-area-textarea-lm-class";
 const CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS = "chatbot-input-area-textarea-dm-class";
-const CHATBOT_INPUT_AREA_BUTTON_CLASS = "".concat(BUTTON_LISTING_CLASS, " mr-2 chatbot-input-area-button-class");
+const CHATBOT_INPUT_AREA_BUTTON_CLASS = `${BUTTON_LISTING_CLASS} mr-2 chatbot-input-area-button-class`;
 const CHATBOT_INPUT_AREA_WAIT_ANIMATION_CLASS = "ml-2 flex items-center chatbot-input-area-wait-animation-class";
 
 // CameraComponent.css
 
 const CAMERA_COMPONENT_DIV_1_CLASS = "camera-component-div-1-class";
 const CAMERA_COMPONENT_DIV_2_CLASS = "min-w-full w-full flex items-center mr-3 camera-component-div-2-class";
-const CAMERA_COMPONENT_BUTTON_SUB_CLASS = "".concat(BUTTON_LISTING_CLASS, " mr-2 camera-component-button-sub-class");
-const CAMERA_COMPONENT_BUTTON_MAIN_CLASS = "border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 text-sm camera-component-button-main-class";
+const CAMERA_COMPONENT_BUTTON_SUB_CLASS = `${BUTTON_LISTING_CLASS} mr-2 camera-component-button-sub-class`;
+const CAMERA_COMPONENT_BUTTON_MAIN_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 text-sm camera-component-button-main-class`;
 const CAMERA_COMPONENT_VIDEO_CONTAINER_CLASS = "relative w-full max-w-full camera-component-video-container-class";
 const CAMERA_COMPONENT_PHOTO_CLASS = "mr-2 camera-component-photo-class";
 const CAMERA_COMPONENT_VIDEO_CLASS = "w-full h-auto .video-container camera-component-video-class";
@@ -413,15 +424,15 @@ const SCROLL_TO_BOTTOM_BUTTON_ICON_CLASS = "1-mt-3 text-center scroll-to-bottom-
 
 const FILE_UPLOADER_DIV_1_CLASS = "file-uploader-div-1-class";
 const FILE_UPLOADER_DIV_2_CLASS = "flex items-center file-uploader-div-1-class";
-const FILE_UPLOADER_BASE_BUTTON_CLASS = "".concat(BUTTON_LISTING_CLASS, " file-uploader-base-button-class");
-const FILE_UPLOADER_BUTTON_CLASS = "border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 file-uploader-button-class";
+const FILE_UPLOADER_BASE_BUTTON_CLASS = `${BUTTON_LISTING_CLASS} file-uploader-base-button-class`;
+const FILE_UPLOADER_BUTTON_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 file-uploader-button-class`;
 const FILE_UPLOADER_INPUT_AREA_CONTAINER_CLASS = "flex items-center file-uploader-input-area-container-class";
 const FILE_UPLOADER_INPUT_AREA_INPUT_CLASS = "p-0 m-0 file-uploader-input-area-input-class";
 
 // VoiceMessageRecorder
 
 const VOICE_MESSAGE_RECORDER_DIV_1_CLASS = "voice-message-recorder-div-1-class";
-const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = "border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 voice-message-recorder-button-class";
+const VOICE_MESSAGE_RECORDER_BUTTON_CLASS = `border border-gray-300 p-2 rounded-xl bg-white hover:bg-blue-500 hover:text-white mr-2 voice-message-recorder-button-class`;
 
 // ChatBotButton
 
@@ -440,7 +451,7 @@ const CHATBOT_BUTTON_LLM_POPUP_DIV_2 = "chatbot-button-llm-popup-div-2-class";
 //     faMicrophone,
 //     faStop,
 // );
-const GsIcons$8 = gs.IconsLib.GsIcons;
+const GsIcons$9 = gs.IconsLib.GsIcons;
 const dbApiService$3 = gs.dbService.dbApiService;
 const fetchUtilities$1 = gs.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER$2 = gs.dbService.MULTIPART_FORM_DATA_HEADER;
@@ -495,7 +506,7 @@ const VoiceMessageRecorder = _ref => {
       // Handle the stop event
       mediaRecorder.onstop = () => {
         const blob = new Blob(chunks, {
-          type: "audio/".concat(mediaType["extension"])
+          type: `audio/${mediaType["extension"]}`
         });
         setAudioData(blob);
       };
@@ -506,7 +517,7 @@ const VoiceMessageRecorder = _ref => {
       const errorMsgAux = 'Error starting recording:';
       console.error(errorMsg, error);
       setIsRecording(false);
-      setErrorMsg("".concat(errorMsgAux, " ").concat(error.message));
+      setErrorMsg(`${errorMsgAux} ${error.message}`);
       toggleIdVisibility$3("on", extControlsToShowHide$1);
     }
   };
@@ -566,7 +577,7 @@ const VoiceMessageRecorder = _ref => {
       // Prepare the audit to send to the API
       const formData = new FormData();
       const extension = audioData.type.split('/')[1];
-      const fileName = "voiceMessage.".concat(extension);
+      const fileName = `voiceMessage.${extension}`;
       // const appleDevice = MediaRecorder.isTypeSupported('audio/mpeg');
       const appleDevice = extension === 'mp4';
       const sourceLang = appleDevice ? 'get_user_lang' : 'auto';
@@ -596,7 +607,7 @@ const VoiceMessageRecorder = _ref => {
       dispatchWaitAnimation(true, dispatch);
       if (useAxios$1) {
         const authHeader = gs.authHeader.authHeader();
-        const endpointUrl = "".concat(fetchUtilities$1.getBaseApiUrl(), "/", "ai/voice_to_text");
+        const endpointUrl = `${fetchUtilities$1.getBaseApiUrl()}/${"ai/voice_to_text"}`;
         await sendFile(endpointUrl, formData, authHeader, query_params);
       } else {
         db.getAll(query_params, formData, 'POST', options).then(data => {
@@ -632,7 +643,7 @@ const VoiceMessageRecorder = _ref => {
   }, [isRecording, audioData, setExternalInputMessage, handleUpdateSize, dispatch, sendMessage]);
   useEffect(() => {
     if (errorMsg != null) {
-      setChatbotErrorMsg("Error processing the voice message: ".concat(errorMsg), dispatch);
+      setChatbotErrorMsg(`Error processing the voice message: ${errorMsg}`, dispatch);
     }
   }, [errorMsg, dispatch]);
   return /*#__PURE__*/React.createElement("div", {
@@ -644,7 +655,7 @@ const VoiceMessageRecorder = _ref => {
     onClick: isRecording ? stopRecording : startRecording,
     className: VOICE_MESSAGE_RECORDER_BUTTON_CLASS,
     title: isRecording ? 'Stop Recording' : 'Start Recording'
-  }, /*#__PURE__*/React.createElement(GsIcons$8, {
+  }, /*#__PURE__*/React.createElement(GsIcons$9, {
     icon: isRecording ? 'stop' : 'microphone'
     // size='lg'
     ,
@@ -725,7 +736,7 @@ const ApiCall = async (dispatch, params) => {
       return {
         ok: false,
         response: null,
-        errorMessage: "Element ".concat(responseAttrName, " not found in the API response")
+        errorMessage: `Element ${responseAttrName} not found in the API response`
       };
     }
     return {
@@ -746,7 +757,7 @@ const ApiCall = async (dispatch, params) => {
   const verifyId = id => {
     return {
       ok: id !== null,
-      errorMessage: id !== null ? "" : "Missing ID: ".concat(id)
+      errorMessage: id !== null ? "" : `Missing ID: ${id}`
     };
   };
   const the = "the";
@@ -818,7 +829,7 @@ const ApiCall = async (dispatch, params) => {
       default:
         response = {
           ok: false,
-          errorMessage: "Invalid operation type: \"".concat(operationType, "\""),
+          errorMessage: `Invalid operation type: "${operationType}"`,
           errorDetails: null
         };
     }
@@ -830,9 +841,9 @@ const ApiCall = async (dispatch, params) => {
     };
   }
   if (response.ok) {
-    response.operationMessage = "".concat(the, " ").concat(operationDescription, " ").concat(ActionDescription, " ").concat(was_successful);
+    response.operationMessage = `${the} ${operationDescription} ${ActionDescription} ${was_successful}`;
   } else {
-    response.operationMessage = "".concat(error_in_the, " ").concat(operationDescription, " ").concat(ActionDescription);
+    response.operationMessage = `${error_in_the} ${operationDescription} ${ActionDescription}`;
     console_debug_log('ApiCall ERROR:');
     console_debug_log(response.operationMessage);
   }
@@ -1035,7 +1046,7 @@ const handleCancelProcessing = dispatch => {
 //     faTimes, // Close
 //     faPaperclip, // Added clip icon
 // );
-const GsIcons$7 = gs.IconsLib.GsIcons;
+const GsIcons$8 = gs.IconsLib.GsIcons;
 const dbApiService$1 = gs.dbService.dbApiService;
 const fetchUtilities = gs.fetchUtilities;
 const MULTIPART_FORM_DATA_HEADER$1 = gs.dbService.MULTIPART_FORM_DATA_HEADER;
@@ -1124,7 +1135,7 @@ function FileUploader(_ref) {
       dispatchWaitAnimation(true, dispatch);
       if (useAxios) {
         const authHeader = gs.authHeader.authHeader();
-        const endpointUrl = "".concat(fetchUtilities.getBaseApiUrl(), "/", "ai/image_to_text");
+        const endpointUrl = `${fetchUtilities.getBaseApiUrl()}/${"ai/image_to_text"}`;
         await sendFile(endpointUrl, formData, authHeader, query);
       } else {
         const db = new dbApiService$1({
@@ -1167,7 +1178,7 @@ function FileUploader(_ref) {
     onClick: () => setButtonToggle(buttonToggle ? false : true),
     className: FILE_UPLOADER_BUTTON_CLASS,
     title: buttonToggle ? 'Close' : 'Select File'
-  }, /*#__PURE__*/React.createElement(GsIcons$7, {
+  }, /*#__PURE__*/React.createElement(GsIcons$8, {
     icon: buttonToggle ? 'times' : 'paperclip'
     // size='lg'
     ,
@@ -1186,7 +1197,7 @@ function FileUploader(_ref) {
     ,
     className: FILE_UPLOADER_BASE_BUTTON_CLASS,
     title: "Submit"
-  }, /*#__PURE__*/React.createElement(GsIcons$7, {
+  }, /*#__PURE__*/React.createElement(GsIcons$8, {
     icon: "arrow-up",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1239,7 +1250,7 @@ styleInject(css_248z);
 //     faCameraRetro, // Icon for taking the photo
 //     faExchangeAlt, // Icon for interchange
 // );
-const GsIcons$6 = gs.IconsLib.GsIcons;
+const GsIcons$7 = gs.IconsLib.GsIcons;
 const dbApiService = gs.dbService.dbApiService;
 const MULTIPART_FORM_DATA_HEADER = gs.dbService.MULTIPART_FORM_DATA_HEADER;
 gs.loggingService.console_debug_log;
@@ -1330,7 +1341,7 @@ const CameraComponent = _ref => {
     const blob = await base64Response.blob();
     const fileExtension = 'jpg';
     const timestamp = new Date().toISOString().replace(/[-:.]/g, '_').slice(0, -5);
-    const fileName = "image_capture_".concat(timestamp, ".").concat(fileExtension);
+    const fileName = `image_capture_${timestamp}.${fileExtension}`;
     const fileSize = blob.size / (1024 * 1024).toFixed(2); // Size in Mb
     formData.append('file', blob, fileName);
     const options = {
@@ -1396,7 +1407,7 @@ const CameraComponent = _ref => {
     },
     className: CAMERA_COMPONENT_BUTTON_MAIN_CLASS,
     title: buttonToggle ? 'Close' : 'Start Camera'
-  }, /*#__PURE__*/React.createElement(GsIcons$6, {
+  }, /*#__PURE__*/React.createElement(GsIcons$7, {
     icon: buttonToggle ? 'times' : 'camera'
     // size='lg'
     ,
@@ -1406,7 +1417,7 @@ const CameraComponent = _ref => {
     onClick: () => cameraOnOff(!cameraOn),
     className: CAMERA_COMPONENT_BUTTON_SUB_CLASS,
     title: "Start Camera"
-  }, /*#__PURE__*/React.createElement(GsIcons$6, {
+  }, /*#__PURE__*/React.createElement(GsIcons$7, {
     icon: "camera-retro",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1414,7 +1425,7 @@ const CameraComponent = _ref => {
     onClick: sendPhoto,
     className: CAMERA_COMPONENT_BUTTON_SUB_CLASS,
     title: "Send Photo"
-  }, /*#__PURE__*/React.createElement(GsIcons$6, {
+  }, /*#__PURE__*/React.createElement(GsIcons$7, {
     icon: "arrow-up",
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1462,7 +1473,7 @@ expected one of ["2xs","xs","sm","lg","xl","2xl","1x","2x","3x","4x","5x","6x","
 //     faGreaterThan,
 //     faStop,
 // );
-const GsIcons$5 = gs.IconsLib.GsIcons;
+const GsIcons$6 = gs.IconsLib.GsIcons;
 const useAppContext$3 = gs.AppContext.useAppContext;
 const resizeManager = gs.ui.resizeManager;
 gs.loggingService.console_debug_log;
@@ -1489,7 +1500,7 @@ const setConversationBlockHeight = () => {
   const chatbotInputAreaObj = document.getElementById('chatbot-input-area');
   // Assign the height of the main container to the chatbot container
   if (chatbotInputAreaObj) {
-    conversationBlockObj.style.height = "".concat(chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10, "px");
+    conversationBlockObj.style.height = `${chatbotContainerObj.offsetHeight - chatbotInputAreaObj.offsetHeight - 10}px`;
   }
 };
 const getWindowMaxHeight = () => {
@@ -1510,7 +1521,7 @@ const setChatBotContainerHeight = () => {
   // const footerHeight = (sideMenu ? (footerObj && footerObj[0] ? footerObj[0].offsetHeight : 0) : 5);
   const footerHeight = 5;
   // Assign the height of the chatbot container to the main container minus the footer height
-  chatbotContainerObj.style.height = "".concat(mainContainerHeight - footerHeight, "px");
+  chatbotContainerObj.style.height = `${mainContainerHeight - footerHeight}px`;
 };
 const setTextAreaHeight = () => {
   // Adjust text area size
@@ -1518,7 +1529,7 @@ const setTextAreaHeight = () => {
     const user_input = document.getElementById("user_input");
     if (user_input) {
       user_input.style.height = 'auto';
-      user_input.style.height = "".concat(Math.min(user_input.scrollHeight, userInputMaxOffsetHeight), "px");
+      user_input.style.height = `${Math.min(user_input.scrollHeight, userInputMaxOffsetHeight)}px`;
     }
   }
 };
@@ -1653,7 +1664,7 @@ const UserInput = _ref => {
         // Refresh the conversation list on any error...
         fetchConversations(state, dispatch).then(apiResponse => {
           if (!apiResponse.ok) {
-            errorToReport = "\n\nAditionally, refreshing the conversations list: ".concat(apiResponse.errorMessage);
+            errorToReport = `\n\nAditionally, refreshing the conversations list: ${apiResponse.errorMessage}`;
           } else {
             // Try to refresh current conversation from botReply.response
             let cid = state.currentConversationId;
@@ -1679,12 +1690,12 @@ const UserInput = _ref => {
               }, error => {
                 error = formatCaughtError(error);
                 console.error('>> UserInput current conversation update error:', error);
-                errorToReport = "\n\nAditionally, reading current conversation: ".concat(error);
+                errorToReport = `\n\nAditionally, reading current conversation: ${error}`;
               });
             }
           }
         }, error => {
-          errorToReport = "\n\nAditionally: ".concat(error);
+          errorToReport = `\n\nAditionally: ${error}`;
         });
         setChatbotErrorMsg(errorToReport, dispatch);
       }
@@ -1693,7 +1704,7 @@ const UserInput = _ref => {
   };
   return /*#__PURE__*/React.createElement("div", {
     id: "chatbot-input-area",
-    className: "".concat(CHATBOT_INPUT_AREA_DIV_1_CLASS, " ").concat(theme.background)
+    className: `${CHATBOT_INPUT_AREA_DIV_1_CLASS} ${theme.background}`
   }, /*#__PURE__*/React.createElement("div", {
     className: CHATBOT_INPUT_AREA_DIV_2_CLASS
   }, /*#__PURE__*/React.createElement("div", {
@@ -1710,7 +1721,7 @@ const UserInput = _ref => {
     name: "user_input",
     id: "user_input",
     value: inputMessage,
-    className: "".concat(CHATBOT_INPUT_AREA_TEXTAREA_CLASS, " ").concat(theme.input, " ").concat(isDarkMode ? CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS : CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS),
+    className: `${CHATBOT_INPUT_AREA_TEXTAREA_CLASS} ${theme.input} ${isDarkMode ? CHATBOT_INPUT_AREA_TEXTAREA_DM_CLASS : CHATBOT_INPUT_AREA_TEXTAREA_LM_CLASS}`,
     "aria-label": "Message AI Assistant...",
     rows: "1",
     onChange: handleInputChange
@@ -1728,7 +1739,7 @@ const UserInput = _ref => {
     onClick: () => state && state.isApiProcessing ? handleCancelProcessing(dispatch) : sendMessage(),
     className: CHATBOT_INPUT_AREA_BUTTON_CLASS,
     title: state && state.isApiProcessing ? 'Stop Processing' : 'Chat with AI Assistant'
-  }, /*#__PURE__*/React.createElement(GsIcons$5
+  }, /*#__PURE__*/React.createElement(GsIcons$6
   // icon={state && state.isApiProcessing ? 'stop' : 'greater-than'}
   , {
     icon: state && state.isApiProcessing ? 'stop' : 'arrow-up',
@@ -1766,7 +1777,7 @@ const UserInput = _ref => {
 // const BUTTON_LISTING_CLASS = gs.classNameConstants.BUTTON_LISTING_CLASS;
 // //const INPUT_FLEXIBLE_CLASS = gs.classNameConstants.INPUT_FLEXIBLE_CLASS;
 
-const GsIcons$4 = gs.IconsLib.GsIcons;
+const GsIcons$5 = gs.IconsLib.GsIcons;
 
 // const debug = false;
 
@@ -1796,7 +1807,7 @@ const NewConversationButton = _ref => {
     // className={`${BUTTON_LISTING_CLASS} text-xs mb-2`}
     ,
     className: CHATBOT_NEW_CONVERSATION_BUTTON_CLASS
-  }, /*#__PURE__*/React.createElement(GsIcons$4, {
+  }, /*#__PURE__*/React.createElement(GsIcons$5, {
     icon: 'new-conversation',
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -1813,7 +1824,7 @@ const NewConversationButton = _ref => {
 // fontawesome.library.add(
 //     faTrash,
 // );
-const GsIcons$3 = gs.IconsLib.GsIcons;
+const GsIcons$4 = gs.IconsLib.GsIcons;
 
 // const convertId = gs.dbService.convertId;
 const convertId$1 = gs.idUtilities.convertId;
@@ -1841,7 +1852,7 @@ const ConversationList = _ref => {
       payload: errorMsg
     });
   };
-  const h2_class = "".concat(CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS, " ").concat(theme.isDarkMode ? CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS : CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS);
+  const h2_class = `${CHATBOT_CONVERSATIONS_LIST_HEADING_DIV_2_CLASS} ${theme.isDarkMode ? CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_DM_CLASS : CHATBOT_CONVERSATIONS_LIST_HEADING_TEXT_LM_CLASS}`;
 
   // Handle load conversation
   const handleLoadConversation = async (conversationId, state, dispatch) => {
@@ -1863,7 +1874,7 @@ const ConversationList = _ref => {
     }
   };
   const confirmDeleteConversation = async (conversationId, dispatch, title) => {
-    if (window.confirm("'Are you sure you want to delete this conversation?\n\n".concat(title))) {
+    if (window.confirm(`'Are you sure you want to delete this conversation?\n\n${title}`)) {
       handleDeleteConversation(conversationId, dispatch);
     }
   };
@@ -1934,50 +1945,50 @@ const ConversationList = _ref => {
       // console.log('renderConversations | convId: ' + `${convId}_div...`);
       // console.log('renderConversations | conversation:', conversation);
       return /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_main_div"),
+        key: `${convId}_main_div`,
         className: CHATBOT_CONVERSATION_ITEM_DIV_1_CLASS,
         onMouseOver: () => {
-          const element = document.getElementById("".concat(convId, "_options"));
+          const element = document.getElementById(`${convId}_options`);
           if (element) {
             element.style.display = 'block';
           }
         },
         onMouseOut: () => {
-          const element = document.getElementById("".concat(convId, "_options"));
+          const element = document.getElementById(`${convId}_options`);
           if (element) {
             element.style.display = 'none';
           }
         }
       }, /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_inner_div"),
+        key: `${convId}_inner_div`,
         className: CHATBOT_CONVERSATION_ITEM_DIV_2_CLASS
       }, /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_desc_outter_div"),
-        className: "".concat(CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS, " ").concat(theme.textHoverSide),
+        key: `${convId}_desc_outter_div`,
+        className: `${CHATBOT_CONVERSATION_ITEM_DESC_OUTTER_CLASS} ${theme.textHoverSide}`,
         onClick: () => handleLoadConversation(convId, state, dispatch)
       }, /*#__PURE__*/React.createElement("button", {
-        key: "".concat(convId, "_desc_button"),
+        key: `${convId}_desc_button`,
         title: timestampToDate(conversation[dateColumn], true, " ", false)
       }, /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_desc_inner_div"),
+        key: `${convId}_desc_inner_div`,
         className: CHATBOT_CONVERSATION_ITEM_DESC_INNER_CLASS
       }, fixTitle(conversation.title))))), /*#__PURE__*/React.createElement("div", {
-        id: "".concat(convId, "_options"),
+        id: `${convId}_options`,
         className: HIDDEN_CLASS$1
       }, /*#__PURE__*/React.createElement("div", {
         className: CHATBOT_CONVERSATION_ITEM_SEPARATOR_CLASS
       }), /*#__PURE__*/React.createElement("div", {
-        key: "".concat(convId, "_delete_div")
+        key: `${convId}_delete_div`
         // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS} ${theme.textHoverSide}`}
         ,
         className: CHATBOT_CONVERSATION_ITEM_DELETE_DIV_CLASS
       }, /*#__PURE__*/React.createElement("button", {
-        key: "".concat(convId, "_delete_button"),
+        key: `${convId}_delete_button`,
         type: "button",
         onClick: () => confirmDeleteConversation(convId, dispatch, conversation.title),
         className: CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS
         // className={`${CHATBOT_CONVERSATION_ITEM_DELETE_BUTTON_CLASS} ${theme.textHoverSide}`}
-      }, /*#__PURE__*/React.createElement(GsIcons$3, {
+      }, /*#__PURE__*/React.createElement(GsIcons$4, {
         icon: "trash",
         size: "xs"
       })))));
@@ -2033,7 +2044,7 @@ const ConversationList = _ref => {
 //     faLessThan,
 // );
 
-const GsIcons$2 = gs.IconsLib.GsIcons;
+const GsIcons$3 = gs.IconsLib.GsIcons;
 // const ToggleSideBar = gs.NavLib.ToggleSideBar;
 gs.loggingService.console_debug_log;
 const ConversationsToggleButton = _ref => {
@@ -2045,9 +2056,9 @@ const ConversationsToggleButton = _ref => {
   } = _ref;
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("button", {
     key: id,
-    className: CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className !== null && className !== void 0 ? className : ''),
+    className: CHATBOT_CONVERSATIONS_TOGGLE_BUTTON_CLASS + " " + (className ?? ''),
     onClick: () => setConversationListToggle(!state.conversationListToggle, dispatch)
-  }, /*#__PURE__*/React.createElement(GsIcons$2, {
+  }, /*#__PURE__*/React.createElement(GsIcons$3, {
     icon: 'conversation-list-toggle',
     size: "lg",
     additionalIconsFn: iconsLibAiExtras
@@ -2123,7 +2134,7 @@ const AudioPlayer = _ref => {
   if (expired) {
     return /*#__PURE__*/React.createElement("div", {
       className: WARNING_MSG_CLASS$1
-    }, "Audio file expired".concat(errorMsgSuffix));
+    }, `Audio file expired${errorMsgSuffix}`);
   }
   {
     return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("audio", {
@@ -2135,9 +2146,186 @@ const AudioPlayer = _ref => {
   }
 };
 
+const GsIcons$2 = gs.IconsLib.GsIcons;
+const COPIED_FEEDBACK_MS = 2000;
+
+// Inline styles rather than Tailwind utilities: the host app compiles this
+// library's classes, so a `dist` its config does not scan would leave the button
+// unstyled. Hover is driven from state for the same reason - there is no
+// stylesheet shipped with this package to hold a `:hover` rule.
+const baseButtonStyle = {
+  position: 'absolute',
+  top: '6px',
+  right: '8px',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '6px',
+  padding: '5px 7px',
+  border: '1px solid transparent',
+  borderRadius: '6px',
+  background: 'transparent',
+  color: '#a8a8a8',
+  cursor: 'pointer',
+  fontSize: '11px',
+  lineHeight: 1,
+  transition: 'background-color .15s ease, color .15s ease, border-color .15s ease'
+};
+const hoverButtonStyle = {
+  backgroundColor: 'rgba(255, 255, 255, 0.10)',
+  borderColor: 'rgba(255, 255, 255, 0.14)',
+  color: '#ffffff'
+};
+const copiedButtonStyle = {
+  color: '#6ee7a8'
+};
+const ChatCopyButton = _ref => {
+  let {
+    text,
+    label = 'Copy code'
+  } = _ref;
+  const [copied, setCopied] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const resetTimer = useRef(null);
+  useEffect(() => {
+    return () => {
+      if (resetTimer.current) {
+        clearTimeout(resetTimer.current);
+      }
+    };
+  }, []);
+  const unsecuredCopyToClipboard = value => {
+    const textArea = document.createElement("textarea");
+    textArea.value = value;
+    // Keep the scroll position stable while the textarea is focused
+    textArea.style.position = 'fixed';
+    textArea.style.top = '-1000px';
+    textArea.style.opacity = '0';
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    try {
+      document.execCommand('copy');
+    } catch (err) {
+      console.error('Unable to copy to clipboard', err);
+    }
+    document.body.removeChild(textArea);
+  };
+  const handleCopy = () => {
+    if (window.isSecureContext && navigator.clipboard) {
+      navigator.clipboard.writeText(text);
+    } else {
+      unsecuredCopyToClipboard(text);
+    }
+    setCopied(true);
+    if (resetTimer.current) {
+      clearTimeout(resetTimer.current);
+    }
+    resetTimer.current = setTimeout(() => setCopied(false), COPIED_FEEDBACK_MS);
+  };
+  return /*#__PURE__*/React.createElement("button", {
+    type: "button",
+    className: CHATBOT_CODE_BLOCK_COPY_BUTTON_CLASS,
+    style: {
+      ...baseButtonStyle,
+      ...(hovered ? hoverButtonStyle : {}),
+      ...(copied ? copiedButtonStyle : {})
+    },
+    title: copied ? 'Copied!' : label,
+    "aria-label": copied ? 'Copied!' : label,
+    onMouseEnter: () => setHovered(true),
+    onMouseLeave: () => setHovered(false),
+    onFocus: () => setHovered(true),
+    onBlur: () => setHovered(false),
+    onClick: handleCopy
+  }, /*#__PURE__*/React.createElement(GsIcons$2, {
+    icon: copied ? 'check' : 'copy',
+    size: "sm",
+    additionalIconsFn: iconsLibAiExtras
+  }), /*#__PURE__*/React.createElement("span", {
+    role: "status",
+    "aria-live": "polite",
+    style: {
+      position: 'absolute',
+      width: '1px',
+      height: '1px',
+      overflow: 'hidden',
+      clip: 'rect(0 0 0 0)',
+      whiteSpace: 'nowrap'
+    }
+  }, copied ? 'Copied!' : ''));
+};
+
 gs.ui.LinkifyText;
-const CopyButton = gs.ui.CopyButton;
 const renderMarkdownContent = gs.ui.renderMarkdownContent;
+
+// "supported-languages.js" is a CommonJS file inside react-syntax-highlighter's
+// "dist/cjs" tree, so the shape it arrives in depends on how the consuming app's
+// bundler does ESM/CJS interop: the array itself, `{ default: array }`, or
+// double-wrapped as `{ default: { default: array } }` when `__esModule` is not
+// honoured. Reading `.default` directly worked in jest but crashed the deployed
+// bundle with "TypeError: <ns>.default.includes is not a function", so unwrap
+// defensively instead of assuming one shape.
+const MAX_INTEROP_DEPTH = 3;
+const resolveSupportedLanguages = moduleExport => {
+  let value = moduleExport;
+  for (let depth = 0; depth < MAX_INTEROP_DEPTH; depth++) {
+    if (Array.isArray(value)) {
+      return value;
+    }
+    if (!value || typeof value !== 'object') {
+      break;
+    }
+    value = value.default;
+  }
+  return Array.isArray(value) ? value : [];
+};
+const prismLanguajes = resolveSupportedLanguages(prismSupportedLanguagesModule);
+
+// The code block chrome is styled inline rather than with Tailwind utilities: the
+// host app is what compiles this library's classes, so a `dist` that its Tailwind
+// config does not scan would leave the block unstyled. The class names above stay
+// on the elements so host apps can still restyle them.
+const CODE_BLOCK_SURFACE = '#1e1e1e';
+const codeBlockCardStyle = {
+  position: 'relative',
+  margin: '12px 0',
+  borderRadius: '10px',
+  overflow: 'hidden',
+  border: '1px solid rgba(255, 255, 255, 0.10)',
+  backgroundColor: CODE_BLOCK_SURFACE,
+  boxShadow: '0 1px 3px rgba(0, 0, 0, 0.30)'
+};
+const codeBlockHeaderStyle = {
+  // Right padding keeps the label clear of the absolutely positioned Copy button.
+  padding: '9px 44px 9px 14px',
+  backgroundColor: 'rgba(255, 255, 255, 0.06)',
+  borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+  color: '#d4d4d4',
+  fontFamily: 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace',
+  fontSize: '12px',
+  letterSpacing: '0.3px',
+  userSelect: 'none'
+};
+
+// `background: transparent` lets the card supply one surface colour for both the
+// Prism and the hljs theme, so every code block matches whatever the language is.
+const codeBlockPreStyle = {
+  margin: 0,
+  borderRadius: 0,
+  padding: '14px 16px',
+  background: 'transparent',
+  fontSize: '13px',
+  lineHeight: '1.55'
+};
+
+// With no language there is no header bar to hold the Copy button, which is
+// absolutely positioned at the top of the card - reserve a strip so it never
+// sits on top of the first line of code.
+const codeBlockPreNoHeaderStyle = {
+  ...codeBlockPreStyle,
+  paddingTop: '38px'
+};
 const ChatCodeBlock = _ref => {
   let {
     children,
@@ -2160,41 +2348,40 @@ const ChatCodeBlock = _ref => {
       //     );
       // }
       return /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-other")
+        key: `${index}-other`,
+        className: CHATBOT_CODE_BLOCK_TEXT_CLASS
       }, renderMarkdownContent(part));
     } else {
-      // Handle code blocks
-      let content = part.trim();
-      let language = content.split('\n')[0];
+      // Handle code blocks. The info string (the language) is only
+      // whatever follows the opening fence on the same line, so read
+      // it off the raw part: trimming first would pull the first line
+      // of a fence opened without a language up into the language slot.
+      const newlineIndex = part.indexOf('\n');
+      const language = (newlineIndex === -1 ? part : part.slice(0, newlineIndex)).trim();
+      let content = (newlineIndex === -1 ? '' : part.slice(newlineIndex + 1)).trim();
 
       // Special handling for plaintext
       if (language === 'plaintext') {
-        content = content.substring(language.length + 1).trim();
         return /*#__PURE__*/React.createElement("div", {
-          key: "".concat(index, "-plaintext")
+          key: `${index}-plaintext`,
+          className: CHATBOT_CODE_BLOCK_TEXT_CLASS
         }, renderMarkdownContent(content));
       }
-      content = content.substring(language.length + 1).trim();
       return /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-content-wrapper")
-      }, /*#__PURE__*/React.createElement("div", {
-        style: {
-          position: 'relative'
-        }
-      }, /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-language"),
-        style: {
-          backgroundColor: 'rgb(30, 30, 30)',
-          color: 'wheat',
-          marginTop: '10px',
-          padding: '10px',
-          overflowX: 'auto'
-        }
+        key: `${index}-content-wrapper`,
+        className: CHATBOT_CODE_BLOCK_CARD_CLASS,
+        style: codeBlockCardStyle
+      }, language && /*#__PURE__*/React.createElement("div", {
+        key: `${index}-language`,
+        className: CHATBOT_CODE_BLOCK_HEADER_CLASS,
+        style: codeBlockHeaderStyle
       }, language), /*#__PURE__*/React.createElement("div", {
-        key: "".concat(index, "-content")
+        key: `${index}-content`,
+        className: CHATBOT_CODE_BLOCK_BODY_CLASS
       }, shType === "prism" && prismLanguajes.includes(language) ? /*#__PURE__*/React.createElement(Prism, {
         language: language,
         style: vscDarkPlus,
+        customStyle: language ? codeBlockPreStyle : codeBlockPreNoHeaderStyle,
         wrapLongLines: true
       }, content) :
       /*#__PURE__*/
@@ -2202,11 +2389,12 @@ const ChatCodeBlock = _ref => {
       // So Prism is not good for comments because it doesn't wrap long lines even if wrapLongLines is true, and Light does
       React.createElement(Light, {
         language: language,
-        style: grayscale,
+        style: atomOneDark,
+        customStyle: language ? codeBlockPreStyle : codeBlockPreNoHeaderStyle,
         wrapLongLines: true
-      }, content), /*#__PURE__*/React.createElement(CopyButton, {
+      }, content), /*#__PURE__*/React.createElement(ChatCopyButton, {
         text: content
-      }))));
+      })));
     }
   }));
 };
@@ -2242,10 +2430,11 @@ const GoToTheBottom = _ref => {
 
 const GsIcons$1 = gs.IconsLib.GsIcons;
 gs.loggingService.console_debug_log;
-const ScrollToBottomButton = ({
-  elementId,
-  elementsToRender
-}) => {
+const ScrollToBottomButton = _ref => {
+  let {
+    elementId,
+    elementsToRender
+  } = _ref;
   const element = document.getElementById(elementId);
   const scrollToBottom = () => {
     if (element) {
@@ -2332,9 +2521,9 @@ const ConversationBlock = _ref => {
     isDarkMode
   } = useAppContext$1();
   const getStyleClasses = () => ({
-    "userMessage": "".concat(theme.text, " ").concat(CHATBOT_USER_MESSAGE_CLASS, " ").concat(isDarkMode ? CHATBOT_USER_MESSAGE_DM_CLASS : CHATBOT_USER_MESSAGE_LM_CLASS),
+    "userMessage": `${theme.text} ${CHATBOT_USER_MESSAGE_CLASS} ${isDarkMode ? CHATBOT_USER_MESSAGE_DM_CLASS : CHATBOT_USER_MESSAGE_LM_CLASS}`,
     "userMessageContainer": CHATBOT_USER_MESSAGE_CONTAINER_CLASS,
-    "botMessage": "".concat(theme.label, " ").concat(CHATBOT_BOT_MESSAGE_CLASS, " ").concat(isDarkMode ? CHATBOT_BOT_MESSAGE_DM_CLASS : CHATBOT_BOT_MESSAGE_LM_CLASS),
+    "botMessage": `${theme.label} ${CHATBOT_BOT_MESSAGE_CLASS} ${isDarkMode ? CHATBOT_BOT_MESSAGE_DM_CLASS : CHATBOT_BOT_MESSAGE_LM_CLASS}`,
     "botMessageContainer": CHATBOT_BOT_MESSAGE_CONTAINER_CLASS
   });
   const [elementsToRender, setElementsToRender] = useState('');
@@ -2364,7 +2553,7 @@ const ConversationBlock = _ref => {
           return /*#__PURE__*/React.createElement("p", {
             className: WARNING_MSG_CLASS,
             title: filename
-          }, (['wav', 'mp3'].includes(extension.toLowerCase()) ? "Audio file link" : "Link") + " expired...".concat(errorMsgSuffix));
+          }, (['wav', 'mp3'].includes(extension.toLowerCase()) ? "Audio file link" : "Link") + ` expired...${errorMsgSuffix}`);
         }
         // Link to download the file calling the performDownload function   
         return /*#__PURE__*/React.createElement("button", {
@@ -2373,7 +2562,7 @@ const ConversationBlock = _ref => {
             e.preventDefault();
             performDownload(sanitizeUrl(url), filename);
           }
-        }, (message ? message : "Click here to download the \"".concat(filename, "\" file")) + errorMsgSuffix);
+        }, (message ? message : `Click here to download the "${filename}" file`) + errorMsgSuffix);
       }
     }
     if (hasAttachment || message && message.startsWith('```File')) {
@@ -2403,10 +2592,16 @@ const ConversationBlock = _ref => {
       }, /*#__PURE__*/React.createElement("img", {
         className: CHATBOT_FORMAT_MESSAGE_ATTACHMENT_IMAGE_IMG_CLASS,
         src: sanitizeUrl(messageObject.attachment_url),
-        alt: message,
+        alt: message
+        // Kept inline (not only in the class constants) because the
+        // host app is what compiles this library's Tailwind classes,
+        // and an unscanned `dist` leaves the image unconstrained.
+        // `width: fit-content` sized the image to its intrinsic width
+        // and `maxHeight: 'auto'` is not a valid CSS value.
+        ,
         style: {
-          maxHeight: 'auto',
-          width: 'fit-content',
+          display: 'block',
+          height: 'auto',
           maxWidth: '100%'
         }
       })));
@@ -2437,14 +2632,26 @@ const ConversationBlock = _ref => {
   useEffect(() => {
     setElementsToRender(state.messages.map((message, index) => /*#__PURE__*/React.createElement("div", {
       key: index,
-      className: "".concat(CHATBOT_MESSAGE_CLASS, " ").concat(message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer)
+      className: `${CHATBOT_MESSAGE_CLASS} ${message.role === 'user' ? styleClass.userMessageContainer : styleClass.botMessageContainer}`,
+      style: {
+        maxWidth: '100%'
+      }
     }, /*#__PURE__*/React.createElement("div", {
       className: message.role === 'user' ? styleClass.userMessage : styleClass.botMessage
+      // A flex item defaults to `min-width: auto` and so will not shrink
+      // below the intrinsic width of an attachment image. Without this the
+      // message row grows past the chat column and the page scrolls
+      // horizontally on wide screens.
+      ,
+      style: {
+        minWidth: 0,
+        maxWidth: '100%'
+      }
     }, formatMessage(message)))));
   }, [state.messages]);
   return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/React.createElement("div", {
     id: id ? id : "conversation-block",
-    className: "".concat(CHATBOT_MESSAGE_BLOCK_CLASS, " ").concat(theme.background)
+    className: `${CHATBOT_MESSAGE_BLOCK_CLASS} ${theme.background}`
   }, state && state.messages && elementsToRender), /*#__PURE__*/React.createElement(ScrollToBottomButton, {
     elementId: id ? id : "conversation-block",
     elementsToRender: elementsToRender
@@ -2473,71 +2680,83 @@ const chatReducer = (state, action) => {
 
     case 'ADD_MESSAGE':
       // Adds a new message to the chat history
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         messages: [...state.messages, action.payload]
-      });
+      };
     case 'SET_MESSAGES':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         // Payload has an array of messages and the conversationId
         currentConversationId: action.payload.conversationId,
         messages: action.payload.messages
-      });
+      };
 
     // Conversations
 
     // TODO
     case 'CLEAR_CHAT':
       // Clears the chat history
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         messages: []
-      });
+      };
     case 'START_NEW_CONVERSATION':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         currentConversationId: action.payload.conversationId,
         messages: []
-      });
+      };
     case 'SET_CONVERSATION_ID':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         currentConversationId: action.payload
-      });
+      };
 
     // Conversation List
 
     case 'SET_CONVERSATIONS':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         conversations: action.payload
-      });
+      };
     case 'DELETE_CONVERSATION':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         conversations: state.conversations.filter(conversation => convertId(conversation._id) !== action.payload)
-      });
+      };
 
     // Bot
 
     case 'API_PROCESSING_STATUS':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         isApiProcessing: action.payload
-      });
+      };
     case 'SET_INPUT_MESSAGE':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         inputMessage: action.payload
-      });
+      };
     case 'SET_CONVERSATION_LIST_TOGGLE':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         conversationListToggle: action.payload
-      });
+      };
     case 'SET_ERROR_MSG':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         errorMsg: action.payload
-      });
+      };
 
     // Current user
 
     case 'SET_CURRENT_USER':
-      return _objectSpread2(_objectSpread2({}, state), {}, {
+      return {
+        ...state,
         // Payload has the currentUser data
         currentUser: action.payload
-      });
+      };
 
     // Not registered action
 
@@ -2632,7 +2851,7 @@ const ChatBot = _ref => {
   }, [sideMenu]);
   return /*#__PURE__*/React.createElement("div", {
     id: "chatbot-container",
-    className: "".concat(CHATBOT_CONTAINER_DIV_1_CLASS, " ").concat(theme.background)
+    className: `${CHATBOT_CONTAINER_DIV_1_CLASS} ${theme.background}`
   }, state.errorMsg && /*#__PURE__*/React.createElement(React.Fragment, null, errorAndReEnter(state.errorMsg, null, null, handleRetry, null, false, true, handleClose)), !(showSideBar && state.conversationListToggle) && /*#__PURE__*/React.createElement(ConversationsToggleButton, {
     id: "conversations-toggle-button-1",
     className: CHATBOT_CONVERSATIONS_HIDDEN_TOGGLE_BUTTON_CLASS,
