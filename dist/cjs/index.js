@@ -2201,11 +2201,10 @@ const hoverButtonStyle = {
 const copiedButtonStyle = {
   color: '#6ee7a8'
 };
-const ChatCopyButton = _ref => {
-  let {
-    text,
-    label = 'Copy code'
-  } = _ref;
+const ChatCopyButton = ({
+  text,
+  label = 'Copy code'
+}) => {
   const [copied, setCopied] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
   const resetTimer = React.useRef(null);

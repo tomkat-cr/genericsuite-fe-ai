@@ -30,6 +30,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 - ChatBot conversation code blocks enhancements: replace copy text button by an icon, and enhance design [GS-214].
 - Add "tailwind-build" script to deploy_* and run_* Makefile commands [GS-214].
 - `webpack.config.js` and `config-overrides.js`: commented out the Node.js core module `resolve.fallback` polyfills (`os`, `url`, `crypto`, `stream`, `assert`, `vm`, `tty`, `constants`, `zlib`, `https`, `http`, `util`) since nothing in the codebase needs them and Vite already runs fine without them; added `npm install --save-dev ...` notes above each so they can be re-enabled if a consumer's own dependency graph needs them [GS-338].
+- Update version to 1.3.0 in package.json, package-lock.json, and version.txt to reflect the latest release [GS-327].
 
 ### Fixed
 - "Could not resolve dependency: formik@2.4.5" error in `ExampleApp`, `FastApiTemplate` and all apps that uses `genericsuite-fe-ai` as a dependency [GS-254].
