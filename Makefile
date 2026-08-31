@@ -107,7 +107,10 @@ sast-test:
 pre-publish: sast-test
 	bash ./node_modules/genericsuite-fe-scripts/scripts/npm_publish.sh pre-publish
 
-publish:
+refresh-gs-fe-dev:
+	if [ "${REFRESH_GS}" != "0" ]; then npm uninstall genericsuite && npm install genericsuite; fi
+
+publish: refresh-gs-fe-dev
 	#
 	# To publish the package to NPMJS checking the test snapshots:
 	#    make publish

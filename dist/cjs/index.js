@@ -2104,13 +2104,12 @@ const WARNING_MSG_CLASS$1 = gs__namespace.classNameConstants.WARNING_MSG_CLASS;
 gs__namespace.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs__namespace.blobFilesUtilities.decodeBlob;
 gs__namespace.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = React.useState(false);
   const [duration, setDuration] = React.useState(0);
   const [currentTime, setCurrentTime] = React.useState(0);
@@ -2201,10 +2200,11 @@ const hoverButtonStyle = {
 const copiedButtonStyle = {
   color: '#6ee7a8'
 };
-const ChatCopyButton = ({
-  text,
-  label = 'Copy code'
-}) => {
+const ChatCopyButton = _ref => {
+  let {
+    text,
+    label = 'Copy code'
+  } = _ref;
   const [copied, setCopied] = React.useState(false);
   const [hovered, setHovered] = React.useState(false);
   const resetTimer = React.useRef(null);
@@ -2421,11 +2421,10 @@ const ChatCodeBlock = _ref => {
 };
 
 gs__namespace.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const GoToTheBottom = ({
+  elementId,
+  elementsToRender
+}) => {
   const objDiv = document.getElementById(elementId);
   React.useEffect(() => {
     if (objDiv && elementsToRender !== '') {

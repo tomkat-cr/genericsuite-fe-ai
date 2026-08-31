@@ -17,6 +17,12 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ### Removed
 
 
+## [1.3.1] - 2026-08-30
+
+### Fixed
+- Remove the develop dependency on "genericsuite" package in "publish" Makefile command to avoid conflicts with the "genericsuite" package in the parent project [GS-327].
+
+
 ## [1.3.0] - 2026-08-30
 
 ### Added
