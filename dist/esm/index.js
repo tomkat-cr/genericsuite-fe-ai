@@ -2082,13 +2082,12 @@ const WARNING_MSG_CLASS$1 = gs.classNameConstants.WARNING_MSG_CLASS;
 gs.blobFilesUtilities.defaultFilenametoDownload;
 const decodeBlob = gs.blobFilesUtilities.decodeBlob;
 gs.loggingService.console_debug_log;
-const AudioPlayer = _ref => {
-  let {
-    blobUrl,
-    filename,
-    expired,
-    errorMsgSuffix
-  } = _ref;
+const AudioPlayer = ({
+  blobUrl,
+  filename,
+  expired,
+  errorMsgSuffix
+}) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
@@ -2179,10 +2178,11 @@ const hoverButtonStyle = {
 const copiedButtonStyle = {
   color: '#6ee7a8'
 };
-const ChatCopyButton = ({
-  text,
-  label = 'Copy code'
-}) => {
+const ChatCopyButton = _ref => {
+  let {
+    text,
+    label = 'Copy code'
+  } = _ref;
   const [copied, setCopied] = useState(false);
   const [hovered, setHovered] = useState(false);
   const resetTimer = useRef(null);
@@ -2399,11 +2399,10 @@ const ChatCodeBlock = _ref => {
 };
 
 gs.loggingService.console_debug_log;
-const GoToTheBottom = _ref => {
-  let {
-    elementId,
-    elementsToRender
-  } = _ref;
+const GoToTheBottom = ({
+  elementId,
+  elementsToRender
+}) => {
   const objDiv = document.getElementById(elementId);
   useEffect(() => {
     if (objDiv && elementsToRender !== '') {
