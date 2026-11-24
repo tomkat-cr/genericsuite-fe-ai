@@ -371,6 +371,12 @@ export const deleteConversation = async (conversationId, state, dispatch) => {
 
 // BOT API management
 
+// Browser LOCAL calendar date as YYYY-MM-DD (toISOString would give the UTC date).
+export const getClientDate = (date = new Date()) => {
+    const pad = (n) => String(n).padStart(2, '0');
+    return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
+}
+
 export const sendMessageToBot = async (messageText, state, dispatch) => {
     // Set the fetch() abort controller
     if (abortController) {
@@ -394,7 +400,8 @@ export const sendMessageToBot = async (messageText, state, dispatch) => {
             requestMethod: "POST",
             body: {
                 "conversation": JSON.stringify(chatToSend),
-                "cid": state.currentConversationId
+                "cid": state.currentConversationId,
+                "client_date": getClientDate()
             },
             responseAttrName: "",
             options: {

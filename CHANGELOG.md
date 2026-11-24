@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](http://semver.org/) and [Keep a Ch
 ## [Unreleased] - YYYY-MM-DD
 
 ### Added
+- The chatbot question request body now includes `client_date` (browser LOCAL date, `YYYY-MM-DD`) so the backend can tell the LLM the user's local "today".
 
 ### Changed
 
